@@ -1,4 +1,5 @@
-manual.han.css
-==============
+漢字標準格式・使用手冊
+=======
 
-Manual of the ‘Hanzi Standardised Mode’ (Han.css)
+Manual of Hanzi-optimised CSS Mode
+-------
