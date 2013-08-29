@@ -1,52 +1,41 @@
 <style scoped>
-table {
-    font: .8em sans-serif;
-    margin: 1em auto;
-    text-align: center;
-    width: 90%;
-}
-
-table,
-table th,
-table td {  border: 1px solid #000;  }
-
-table tr:first-child th {  background-color: #ccc;  height: 2.5em;  }
-table th {  background-color: #eee;  }
-table td {  min-height: 1.8em;  padding: 3px 5px;  }
 
 table tr th:first-child {  width: 80px;  }
 table tr th:nth-child(n+2) {  width: 20%;  }
 table tr th:last-child {  width: 40%;  }
-table tr td:last-child {  text-align: justify;  }
 
-table .important {  background-color: #fdf9c5;  }
+table tr td:last-child {
+	line-height: 1.5em;
+	padding: 7px .5em 7px 0;
+	text-align: justify;
+}
+
 
 
 .fawe:before,
 .fawe:after {
-	font-family: FontAwesome;
-	font-weight: normal;
+	font-family: FontAwesome, sans-serif;
 	font-style: normal;
+	font-weight: normal;
 	text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
 }
 
 .sort.fawe:after {
-	color: #643;
-	content: '\f0dd';
+	color: #a56;
+	content: '\f15d';
 	display: inline-block;
 	font-size: 1.2em;
 	padding-left: .25em;
 }
 
 .none.fawe:before {
-	color: #d65;
+	color: #a56;
 	content: '\f120';
 	display: inline-block;
 	font-size: 1.2em;
 	font-weight: bolder;
 	padding-right: .25em;
-	margin-left: -1.25em;
 }
 
 .none.fawe {
@@ -55,11 +44,10 @@ table .important {  background-color: #fdf9c5;  }
 </style>
 
 
-附錄·詞彙 { #appendix-terminology }
+附錄·詞彙 { #terminology }
 ===
 
 這分附錄表格記錄着「_漢_{.pn}字標準格式」及其使用手冊上所使用的各種專有名詞詞彙和原文，並有簡短說明。依其_中_{.pn}文（_中_{.pn}譯）拼音之_拉丁_{.pn}字母順序排序。
-
 
 
 _英_{.pn}語<wbr>（原文詞彙）| _中_{.pn}文（_中_{.pn}譯）| [[_漢_{.pn}語拼音]]{.fawe.sort} | 定義
@@ -72,7 +60,7 @@ class | 類別 | leibie | 用於同種或同類元素間不同語義目的的分
 poem-like | 類詩篇（類別）| leishipian | 「_漢_{.pn}字標準格式」專有的語意類別，指詩篇或類似詩篇的文字段落，可用於文章元素、區塊引用元素、段落元素。
 grouping content | 內容群組元素 | neirong qunzu yuansu | 
 sections | 區塊元素 | qukuai yuansu |
-The Four Font Family | 四大字體集 | Si Da Zitiji | 「宋、黑、楷、仿宋體」四類_漢_{.pn}字印刷基本字體的總稱。
+The Four Typefaces | 四大字體集 | Si Da Zitiji | 「宋、黑、楷、仿宋體」四類_漢_{.pn}字印刷基本字體的總稱。
 annotations | 註記元素 | zhuji yuansu | 元素`<u>`的原名。預設樣式為文字下底線，通常用於_中_{.pn}文的專名，或錯誤拼寫及錯別字上，以為識別。
 <abbr>pn</abbr>: ++p++roper ++n++oun |  專名 | zhuanming | 專有名詞。
 text-level semantics | 字級語意元素 | ziji yuyi yuansu | 

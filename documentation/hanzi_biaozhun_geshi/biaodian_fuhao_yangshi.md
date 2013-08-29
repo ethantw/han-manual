@@ -1,26 +1,17 @@
 <style scoped>
 .punctuation-wrong-format {
-	font-family: 'Helvetica Neue', Helvetica, Arial, 'Heiti TC', 'Lihei Pro', 'Microsoft Jhenghei', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 
+	'Heiti TC', 'Lihei Pro', 'Microsoft Jhenghei', sans-serif;
 }
 
-table {
-    font: .8em sans-serif;
-    margin: 1em auto;
-    text-align: center;
-}
+table tr th:nth-child(2),
+table tr td:nth-child(2) {  text-align: center;  }
 
-table,
-table th,
-table td {  border: 1px solid #000;  }
 
-table tr:first-child th {  background-color: #ccc;  height: 2.5em;  }
-table th {  background-color: #eee;  }
-table td {  min-height: 1.8em;  }
+table.pro tr th:nth-child(1) {  width: 9em  }
+table.pro tr th:nth-child(3),
+table.pro tr th:nth-child(4) { width: 26%; }
 
-table tr th:first-child {  width: 80px;  }
-table tr th:nth-child(n+2) {  width: 120px;  }
-
-table .important {  background-color: #fdf9c5;  }
 
 
 table .example {
@@ -101,13 +92,15 @@ table.pro .example.cns {
 **註：**在_日_{ .pn }文網頁中，僅修正破折號及省略號。
 
 <table>
-<tbody>
+<thead>
 <tr>
 <th>標點</th>
 <th lang="en-GB">Unicode</th>
 <th>符號位置與修正說明</th>
 </tr>
+</thead>
 
+<tbody>
 <tr>
 <th>單點全形句號</th>
 <td>FF0E</td>
@@ -156,103 +149,111 @@ table.pro .example.cns {
 **註：**進階版<a href="#qiyong_fangshi-jinjieban">需另行啓用</a>。
 
 <table class="pro" markdown="1">
-<tbody>
+<thead>
 <tr>
 <th>標點</th>
-<th lang="en-GB" colspan="2">Unicode</th>
+<th lang="en-GB">Unicode</th>
 <th>_台_{ .pn }<wbr>_港_{ .pn }式</th>
 <th>_中_{ .pn }<wbr>_日_{ .pn }式</th>
 </tr>
+</thead>
 
+<tbody>
 <tr>
 <th>句號</th>
-<td colspan="2">3002</td>
+<td>3002</td>
 <td>居中<span class="example cns">。</span></td>
 <td>前字右下<span class="example">。</span></td>
 </tr>
 
 <tr>
 <th>單點全形句號</th>
-<td colspan="2">FF0E</td>
+<td>FF0E</td>
 <td colspan="2">前字右下<span class="example">．</span></td>
 </tr>
 
 <tr>
 <th>逗號</th>
-<td colspan="2">FF0C</td>
+<td>FF0C</td>
 <td>居中<span class="example cns">，</span></td>
 <td>前字右下<span class="example">，</span></td>
 </tr>
 
 <tr>
 <th>頓號</th>
-<td colspan="2">3001</td>
+<td>3001</td>
 <td>居中<span class="example cns">、</span></td>
 <td>前字右下<span class="example">、</span></td>
 </tr>
 
 <tr>
 <th>分號</th>
-<td colspan="2">FF1B</td>
+<td>FF1B</td>
 <td colspan="2">居中，佔一漢字長寬<span class="example">；</span></td>
 </tr>
 
 <tr>
 <th>冒號</th>
-<td colspan="2">FF1A</td>
+<td>FF1A</td>
 <td colspan="2">居中，佔一漢字長寬<span class="example">：</span></td>
 </tr>
 
 <tr>
 <th>問號</th>
-<td colspan="2">FF1F</td>
+<td>FF1F</td>
 <td colspan="2">居中，佔一漢字長寬<span class="example">？</span></td>
 </tr>
 
 <tr>
 <th>驚嘆號</th>
-<td colspan="2">FF01</td>
+<td>FF01</td>
 <td colspan="2">居中，佔一漢字長寬<span class="example">！</span></td>
 </tr>
 
 <tr>
-<th class="important">引號</th>
+<th>引號</th>
 <td>300C<br>300D<br>300E<br>300F</td>
-<td class="important">201C<br>201D<br>2018<br>2019</td>
-<td colspan="2" class="important">
+<td colspan="2">
 佔一漢字寬度，緊靠其內容<br>
-<span class="example">「內『內容』容」</span><br>
-<span class="example">“內‘內容’容”</span>
+<span class="example">「內『內容』容」</span>
 </td>
 </tr>
 
+<tr class="important">
+<th>彎引號</th>
+<td>201C<br>201D<br>2018<br>2019</td>
+<td colspan="2">
+佔一漢字寬度，緊靠其內容<br>
+<span class="example">“內‘內容’容”</span>
+</td>
+
 <tr>
 <th>書名號</th>
-<td colspan="2">300A<br>300B<br>3008<br>3009</td>
+<td>300A<br>300B<br>3008<br>3009</td>
 <td colspan="2">佔一漢字寬度，緊靠其內容<br><span class="example">《書名》〈篇名〉</span></td>
 </tr>
 
 <tr>
 <th>括號</th>
-<td colspan="2">FF08<br>FF09</td>
+<td>FF08<br>FF09</td>
 <td colspan="2">佔一漢字寬度，緊靠其內容<br><span class="example">（內容）</span></td>
 </tr>
 
 <tr class="important">
 <th>破折號</th>
-<td colspan="2">2014</td>
+<td>2014</td>
 <td colspan="2">相連無間隔<span class="example">——</span></td>
 </tr>
 
 <tr class="important">
 <th>刪節號</th>
-<td colspan="2">2026</td>
+<td>2026</td>
 <td colspan="2">居中<span class="example">……</span></td>
 </tr>
 
 <tr class="important">
 <th>間隔號</th>
-<td colspan="2">00B7</td>
+<td>00B7</td>
 <td colspan="2">
 佔一漢字寬度，居中<br>
 <span class="example">莫那·魯道</span>

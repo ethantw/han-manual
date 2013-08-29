@@ -15,11 +15,8 @@
 
 #### 範例 { #fanli }
 
-> 最近在看_張愛玲_{.pn}的小說<cite>傾城之戀</cite>。閱讀時搭配_諾拉·瓊絲_{.pn}收錄於<cite lang="en-GB">Come Away with Me</cite>專輯的<cite class="piece" lang="en-GB">Don't Know Why</cite>，隨著同故事情節波動的音符起舞，真是一大享受！
 
-<!---->
-
-> _朱自清_{.pn}的<cite class="piece">背影</cite>是篇跨時代的鉅作啊。在中學時期讀過的課文，我到現在竟仍能倒背如流。
+> <cite>漢語語音學</cite>探討了諸多同「_漢_{.pn}語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
 
 
 在_日_{.pn}文及_英_{.pn}文中，也有相似的使用情境，使用正確的語言屬性​即可正常顯示。
@@ -27,8 +24,12 @@
 <blockquote lang="ja" markdown="1">
 <cite>白い巨塔</cite>（しろいきょとう）は、山崎豊子の長編小説。1963年9月15日号から1965年6月13日号まで、<cite>サンデー毎日</cite>に連載された。
 </blockquote>
-
 <p class="cite"><cite><a href="http://ja.wikipedia.org/wiki/白い巨塔">Wikipedia・白い巨塔</a></cite></p>
+
+
+_中_{.pn}、_英_{.pn}文書名併列的情況，
+
+> 最近在看_張愛玲_{.pn}的小說<cite>傾城之戀</cite>。閱讀時搭配_諾拉·瓊絲_{.pn}收錄於<cite lang="en-GB">Come Away with Me</cite>專輯的<cite class="piece" lang="en-GB">Don't Know Why</cite>，隨著同故事情節波動的音符起舞，真是一大享受！
 
 
 

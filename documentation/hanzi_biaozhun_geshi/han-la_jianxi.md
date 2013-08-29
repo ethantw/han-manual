@@ -42,7 +42,7 @@ html.han-la .no-hanla span.hanla {
 1. 由於_中_{ .pn }文及_日_{ .pn }文不使用空格分詞，使用空格分隔_拉丁_{ .pn }字母及_阿拉伯_{ .pn }數字不符二語言的書寫習慣。若編者間沒有統一的寫作標準和規範，可能導致下列「空白使用不一致」的情況。
 
 	<blockquote class="no-hanla">
-	2009  年6月 13日，我離開了大學的殿堂，投入社會， honey 與我從A<sup>+</sup>實習生搖身一變成為真正的 DINK 族。
+	<p>2009  年6月 13日，我離開了大學的殿堂，投入社會， honey 與我從A<sup>+</sup>實習生搖身一變成為真正的 DINK 族。</p>
 	</blockquote>
 
 2. 而在_拉丁_{ .pn }字母單字詞或_阿拉伯_{ .pn }數字過短的情況下，單個半形空白將造成內容過於鬆散。
@@ -94,6 +94,24 @@ html.han-la .no-hanla span.hanla {
 	}
 
 
+#### [[IE]]{:en-GB}裡的漢拉間隙
+
+[[IE]]{:en-GB}支援一特殊|CSS|3屬性`text-autospace`，可自動加入_漢_{ .pn }<wbr>_拉_{ .pn }間隙，「_漢_{.pn}字標準格式」遇[[IE]]{:en-GB}瀏覽器時使用此|CSS|屬性，故需使用額外的代碼另行停用。下列代碼可以停用`X`元素下的所有_漢_{ .pn }<wbr>_拉_{ .pn }間隙，並繼承至其下子元素，
+
+**[CSS]: Cascading Style Sheets
+
+
+	html.han-la X,
+	html.han-la X * {
+		text-autospace: none;
+	}
+
+承上，若希望`X`元素裡的子元素`Y`仍使用_漢_{ .pn }<wbr>_拉_{ .pn }間隙，可以如下編寫，
+
+	html.han-la X Y,
+	html.han-la X Y * {
+		text-autospace: ideograph-alpha;
+	}
 
 <!--
 比較 { #bijiao }

@@ -1,5 +1,5 @@
 <style scoped>
-#yinyong {
+#yinyong h1 {
     letter-spacing: 2em;
     padding-left: 2em;
 }

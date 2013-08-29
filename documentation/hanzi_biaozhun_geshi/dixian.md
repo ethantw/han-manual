@@ -1,6 +1,6 @@
 
 <style scoped>
-#dixian {
+#dixian h1 {
     letter-spacing: 2em;
     padding-left: 2em;
 }
@@ -100,7 +100,7 @@
 連結、插入等元素 { #lianjie_charu_deng_yuansu }
 ---
 
-為了美觀、專名號的使用等原因，凡語系設定為「_中_{.pn}文」的網頁，皆取消了[連結][links]`<a>`、<ins>插入</ins>`<ins>`等元素的預設下劃線，並以其他樣式取代。
+為了美觀、專名號的使用等原因，凡語系設定為「_中_{.pn}文」的網頁，皆取消了[連結][links]`<a>`、<ins>插入</ins>`<ins>`等元素的預設下畫線，並以其他樣式取代。
 
 [links]: #lianjie_charu_deng_yuansu
 

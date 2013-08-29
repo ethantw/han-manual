@@ -46,7 +46,6 @@ $article = preg_replace_callback(
     'sectional',
     $article);
 
-
 ?><html lang="zh-hant-TW" class="han-biaodian-pro han-la">
 <head>
     <meta charset="UTF-8">
@@ -63,11 +62,63 @@ $article = preg_replace_callback(
 
     <meta name="author" content="Chen Yijun (@ethantw)">
     <meta name="dcterms.created" content="2011-09-11">
-    <meta name="dcterms.modified" content="2013-06-10">
+    <meta name="dcterms.modified" content="2013-07-16">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="../js/han.js"></script>
     <script src="../js/easier.to.read.js"></script>
+
+
+    <script>
+(function($){
+
+    var url = document.URL,
+    title = document.title;
+
+
+    $(document).bind('ready', function(){
+        var classes, id, cat, manual;
+
+
+        manual = ( url.match(/.*\/(quanyu_shiyong_de_css_reset|hanzi_biaozhun_geshi|api|appendix).*/) ) ? 
+        url.replace(/.*\/(quanyu_shiyong_de_css_reset|hanzi_biaozhun_geshi|api|appendix).*/ig, '$1') : 'jianjie';
+
+        $('body').addClass(manual);
+
+
+        if (url.match(/\/manual\/$/)) {
+            id = 'jianjie';
+        } else {
+            classes = url.replace(/(.*)manual\//, '').replace(/\/$/, '').split('/').reverse(),
+            id = ( classes[0].match(/^javascript_jiekou\-/) ) ? 'javascript_jiekou' : classes[0],
+            cat = classes[1];
+        }
+
+
+        $('nav#sidebar').find( 'a.' + id ).each(function(){
+            $(this)
+            .addClass('current')
+            .parents( 'ol.' + cat ).prev( 'a.' + cat ).addClass('current');
+        });
+
+
+        $('article header h1:eq(0)').each(function(){
+            var heading = $(this).html(),
+            heading_for_title = $(this).text(),
+            anchor;
+
+            anchor = $('<a>').html( heading ).attr({
+                'href': url
+            });
+
+            $(this).html( anchor );
+
+            document.title = heading_for_title + ' — ' + title;
+        });
+
+    });
+})(jQuery);
+    </script>
 </head>
 
 

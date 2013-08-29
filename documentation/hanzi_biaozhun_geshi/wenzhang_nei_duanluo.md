@@ -38,12 +38,46 @@
 <p class="cite"  markdown="1">_蘇軾_{ .pn }<cite class="piece">題西林寺壁</cite></p>
 
 
-**需在`article`、`blockquote`或`p`元素中手動套用類別`.poem-like`**（使用前二者將作用於其內<em>所有</em>段落`p`子元素），**再以`<br>`標籤換行。**例如：
+**需在段落元素`<p>`或其父輩元素（如但不限於`<article>`、`<blockquote>`、`<div>`等）中手動套用類別`.poem-like`**（使用前二者將作用於其內<em>所有</em>段落`p`子元素），**再以`<br>`標籤換行。**例如：
+
+    <article>
+        <p class="poem-like">金屋妝成嬌侍夜，玉樓宴罷醉和春。<br>
+        姊妹弟兄皆列土，可憐光彩生門戶。</p>
+    </article>
+
+
+也可以是`<blockquote>`：
 
     <blockquote class="poem-like">
-        <p>金屋妝成嬌侍夜，玉樓宴罷醉和春。<br>
-        姊妹弟兄皆列土，可憐光彩生門戶。</p>
+        <p>第一行……<br>
+        ……第二行……</p>
     </blockquote>
+
+
+也可以直接置於文章元素`<article>`上，
+
+    <article class="poem-like">
+        <p>第一行……<br>
+        ……第二行……<br>
+        ……第三行……<br>
+        ……很多很多行……</p>
+    </article>
+
+
+或，
+
+    <div class="poem-like">
+        <p>科學博物館：</p>
+
+        <p>
+            <address>台灣　台中市<br>
+            北區館前路1號<br>
+            404</address>
+        </p>
+    </div>
+
+
+……等等。
 
 
 
