@@ -3,31 +3,39 @@
 
 
 /* ---------------------------------------
-   滙入Font Awesome
+   `font-face`字體樣式
    --------------------------------------- */
-@import url('//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css') all;
+
+/* 滙入Font Awesome */
+@import url('//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.css') all;
 
 
-
-html {
-    font: 15px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/* 覆寫`han.ff.css`裡的「Han Heiti」。 */
+@font-face {
+    font-family: 'Han Heiti';
+    src:  local('Hiragino Kaku Gothic ProN'), local('Hiragino Kaku Gothic Pro'),
+        local('Hiragino Sans GB'), local('Heiti SC'), local('Heiti TC'),
+        local('Microsoft Yahei'), local('Microsoft Jhenghei'),
+        local('Droid Sans Fallback');
+}
+/* 騙過IE詭譎fallback的手法 */
+@font-face {
+    font-family: 'Han Heiti';
+    src: local('Microsoft Yahei'), local('Microsoft Jhenghei');
+    unicode-range: U+4E00;
 }
 
-body:before {
-    background-color: #f1f1ee;
-    background-image: radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -webkit-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -moz-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -ms-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-    content: '';
-    display: block;
-    height: 120%;
-    left: -5%;
-    opacity: .7;
-    position: fixed;
-    top: -5%;
-    width: 120%;
-    z-index: -5;
+
+
+/* ---------------------------------------
+   字體、連結文字、清單、代碼⋯⋯等，
+   基本元素樣式及重設
+   --------------------------------------- */
+
+html {
+    font: 15px 'Biaodian Sans Pro', 'Helvetica Neue', Helvetica, Arial,
+        'Han Heiti', sans-serif;
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -39,32 +47,46 @@ footer {
 }
 
 
-a:link {  color: #0645ad;  }
-a:visited {  color: #0645ad;  }
-a:hover {  color: #04317c;  }
-a:active {  color: #faa700;  }
+a:link {
+    color: #0645ad;
+}
+
+a:visited {
+    color: #0645ad;
+}
+
+a:hover {
+    color: #04317c;
+}
+
+a:active {
+    color: #faa700;
+}
 
 article {
     color: #222;
     font: .95em 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial,
-        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti', sans-serif;
+        'Han Heiti', sans-serif;
 }
 
-article ul {  list-style: square;  }
-article ul ul {  list-style: disc;  }
+article ul {
+    list-style: square;
+}
+
+article ul ul {
+    list-style: disc;
+}
 
 html:lang(zh).han-biaodian-pro code {
     font-family: 'Biaodian Pro Sans',
         Consolas, Menlo, 'Liberation Mono', Courier, 
-        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti',
-        monospace, sans-serif;
+        'Han Heiti', monospace, sans-serif;
 }
 
 html:lang(zh).han-biaodian-pro code:not(:lang(zh)):not(:lang(ja)),
 html:lang(zh).han-biaodian-pro code :not(:lang(zh)):not(:lang(ja)) {
     font-family: Consolas, Menlo, 'Liberation Mono', Courier, 
-        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti',
-        monospace, sans-serif;
+        'Han Heiti', monospace, sans-serif;
 }
 
 
@@ -107,7 +129,27 @@ pre code {
 
 
 
-/* theme */
+/* -------------------------------------
+ * 主題樣式
+ * ------------------------------------- */
+
+/* 漸層背景 */
+body:before {
+    background-color: #f1f1ee;
+    backgrounround-image: radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
+        background-image: -moz-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
+        background-image: -ms-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
+        background-image: -webkit-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
+    content: '';
+    display: block;
+    height: 120%;
+    left: -5%;
+    opacity: .7;
+    position: fixed;
+    top: -5%;
+    width: 120%;
+    z-index: -5;
+}
 
 header {
     background: url(../img/hr.png) no-repeat center bottom;
@@ -153,8 +195,8 @@ header h1 sup a:hover {
 
 header h1 + p.des {
     color: #6e8561;
-    font-family: 'Helvetica Neue', Helvetica, 
-        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans GB', sans-serif;
+    font-family: 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial,
+        'Han Heiti', sans-serif;
     font-size: .8em;
     font-weight: normal;
     letter-spacing: .25em;
@@ -164,6 +206,7 @@ header h1 + p.des {
 p.des u {  letter-spacing: 0;  margin-right: .35em;  }
 
 
+/* Fork圖章 */
 #fork {
     background: url(../img/fork.png) no-repeat 0 0;
     border: 0 none;
@@ -176,16 +219,6 @@ p.des u {  letter-spacing: 0;  margin-right: .35em;  }
     z-index: 5;
 }
 
-
-footer {
-    border-top: 1px dotted #bbb;
-    bottom: 0;
-    color: #777;
-    font: .8em/1.7 'Helvetica Neue', Helvetica, sans-serif;
-    margin-top: 15em;
-    padding: 7px;
-    text-align: center;
-}
 
 
 

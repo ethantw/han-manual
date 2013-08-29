@@ -1,10 +1,14 @@
 
+
 /* 
- * 漢字標準格式
- * Hanzi Standardised Mode
+ * 漢字標準格式 v2.0.0
+ * ---
+ * Hanzi-optimised CSS Mode
+ *
+ *
  *
  * Lisence: MIT Lisence
- * Last Modified: 2013/06/12
+ * Last Modified: 2013/07/23
  *
  */
  
@@ -13,17 +17,9 @@
 jQuery.noConflict();
 
 
-(function($, options){
+(function($){
 
     var version = '2.0.0',
-
-    options = {
-        asCopy: {
-            getBiaodian: ( typeof(options.asCopy) !== 'undefined') ? options.asCopy.getBiaodian || true : true,
-            markdownAlikeFormat: ( typeof(options.asCopy) !== 'undefined') ? options.asCopy.markdownAlikeFormat || false : false
-        }
-    },
-
 
     tests = [],
     rubies,
@@ -37,9 +33,9 @@ jQuery.noConflict();
     han = function() {
         $(document).ready(function(){
             (function(){
-                fontfaces['songti'] = tests_for_fontface( 'Han Songti' );
-                fontfaces['kaiti'] = tests_for_fontface( 'Han Kaiti' );
-                fontfaces['fangsong'] = tests_for_fontface( 'Han Fangsong' );
+                fontfaces['songti'] = test_for_fontface( 'Han Songti' );
+                fontfaces['kaiti'] = test_for_fontface( 'Han Kaiti' );
+                fontfaces['fangsong'] = test_for_fontface( 'Han Fangsong' );
 
                 for ( var font in fontfaces ) {
                     classes.push( ( fontfaces[font] ? '' : 'no-' ) + 'fontface-' + font );
@@ -82,8 +78,13 @@ jQuery.noConflict();
         var range = range || document;
 
 
-        // 修正註記元素<u>的底線相鄰問題
-        // fixing the underline-adjacency issues of <u> element
+        /* 
+         * 修正相鄰註記元素`<u>`的底線相連問題
+         * ---
+         * fixing the underline-adjacency issues on `<u>` element
+         *
+         */
+
         $( (range == document) ? 'body' : range ).each(function() {
             var html = $(this).html();
 
@@ -94,9 +95,18 @@ jQuery.noConflict();
 
 
 
-        // 加強漢字註音功能
-        // <ruby>
-        // **注意：**需置於<em> hack前。
+        /* 
+         * 加強漢字註音功能
+         * ---
+         * Enhance `<ruby>` element
+         *
+         * **注意：**需置於`<em>`的hack前。
+         *
+         * **Note:** The necessity of being 
+         * placed before the hack of
+         * the `<em>` element is required.
+         */
+
         $(range).find('ruby.pinyin').addClass('romanization');
         $(range).find('ruby.zhuyin').addClass('mps');
 
@@ -104,7 +114,7 @@ jQuery.noConflict();
             var html = $(this).html();
 
 
-            // 羅馬拼音（在不支援<ruby>的瀏覽器下）
+            // 羅馬拼音（在不支援`<ruby>`的瀏覽器下）
             if ( !$(this).hasClass('mps') && !tests['ruby']() ) {
                 var result = html
                       .replace(/<rt>/ig, '</span><span class="rt"><span class="rt inner">')
@@ -155,8 +165,13 @@ jQuery.noConflict();
 
 
 
-        // 強調元素<em>的着重號
-        // punctuation: CJK emphasis dots for <em>
+        /* 強調元素`<em>`的着重號
+         * ---
+         * punctuation: CJK emphasis dots
+         * on `<em>` element
+         *
+         */
+
         $(range).find('em').each(function() {
             $(this).html( characterize($(this).html(), {
                 cjk: ( tests['textemphasis']() ) ? 'biaodian' : 'individual',
@@ -166,37 +181,27 @@ jQuery.noConflict();
 
 
 
-        // 修正引言元素<q>不為WebKit等瀏覽器支援的問題
-        // punctuation: CJK quotes for <q>
+        /* 修正引言元素`<q>`不為WebKit引擎支援的問題
+         * ---
+         * punctuation: CJK quotes on `<q>` (WebKit)
+         *
+         */
 
-        //if ( !tests['quotes']() )
+        if ( !tests['quotes']() )
         $(range).find('q q').each(function() {
             if ( $(this).parents('q').length%2 != 0 )  $(this).addClass('double');
         });
 
 
 
-        // 複製時，一同複製`<q>`及`<cite>`上的標點
-        // Get the punctuations on `<q>` or `<cite>` as copy
-        if ( options.asCopy.getBiaodian )
-            $(range).find('cite, q').each(function() {
-                var name = this.tagName.toLowerCase(),
+        /* 漢拉間隙 
+         * ---
+         * Gaps between Hanzi and Latin Letter
+         * 
+         * 修改自：https://github.com/gibuloto/paranoid-auto-spacing/
+         *
+         */
 
-                lang = '',
-
-                biaodian = ( name === 'cite' ) ? ( !$(this).hasClass('piece') ? '《|》' : '〈|〉' ) :
-                    ( !$(this).hasClass('double') ? '「|」' : '『|』' );
-
-                $(this)
-                .prepend('<span class="han-biaodian-prepend">' + biaodian.split('|')[0] + '</span>')
-                .append('<span class="han-biaodian-append">' + biaodian.split('|')[1] + '</span>')
-            });
-
-
-
-        // 漢拉間隙 
-        // Gaps between Hanzi and Latin Letter
-        /* 修改自：https://github.com/gibuloto/paranoid-auto-spacing/ */
         hanla();
     },
 
@@ -312,7 +317,7 @@ jQuery.noConflict();
     },
 
 
-    tests_for_fontface = function( font ) {
+    test_for_fontface = function( font ) {
         if ( !tests['fontface']() )
             return false;
 
@@ -476,8 +481,12 @@ jQuery.noConflict();
     };
 
 
+
     /* --------------------------------------------------------
      * Unicode區域說明（6.2.0）
+     * --------------------------------------------------------
+     * 或參考：
+     * http://css.hanzi.co/manual/api/javascript_jiekou-han.unicode
      * --------------------------------------------------------
      *
      ** 以下歸類為「拉丁字母」（unicode['latin']）**
@@ -523,9 +532,9 @@ jQuery.noConflict();
     unicode['latin'][0] = '[a-z0-9\u00C0-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF\s]';
 
     unicode['latin']['punc'] = [];
-    unicode['latin']['punc'][0] = '[&;=_\[\$\%\^\*\-\+\/]';
-    unicode['latin']['punc']['open'] = '[\(\'"<‘“]';
-    unicode['latin']['punc']['close'] = '[\)\'">”’]';
+    unicode['latin']['punc'][0] = '[&;=_\,\.\$\%\^\*\-\+\/]';
+    unicode['latin']['punc']['open'] = '[\(\[\'"<‘“]';
+    unicode['latin']['punc']['close'] = '[\)\\]\'">”’]';
 
     unicode['hanzi'] = [];
     unicode['hanzi'][0] = '[\u4E00-\u9FFF\u3400-\u4DB5\u9FA6-\u9FBB\uFA70-\uFAD9\u9FBC-\u9FC3\u3007\u3040-\u309E\u30A1-\u30FA\u30FD\u30FE]';
@@ -540,6 +549,7 @@ jQuery.noConflict();
 
     unicode['bopomofo'] = [];
     unicode['bopomofo']['mps'] = [];
+    unicode['bopomofo']['mps'][0] = '[\u3105-\u312D]';
     unicode['bopomofo']['mps']['shengmu'] = '[\u3105-\u3119\u312A-\u312C]';
     unicode['bopomofo']['mps']['jieyin'] = '[\u3127-\u3129]';
     unicode['bopomofo']['mps']['yunmu'] = '[\u311A-\u3126\u312D]';
@@ -551,7 +561,9 @@ jQuery.noConflict();
 
 
 
-    /* tests for CSS3 features */
+    /* tests for HTML5/CSS3 features */
+
+    /* CSS3 property: `column-width` */
     tests['columnwidth'] = function() {
         var cw = $('<div style="display: none; column-width: 200px; -webkit-column-width: 200px;">tester</div>'),
 
@@ -562,19 +574,6 @@ jQuery.noConflict();
 
         return bool;
     };
-
-
-    tests['textemphasis'] = function() {
-        var em = $('<span style="display: none; text-emphasis: dot; -moz-text-emphasis: dot; -ms-text-emphasis: dot; -webkit-text-emphasis: dot;">tester</span>'),
-
-            bool = ( /^dot$/.test( em.css("-webkit-text-emphasis-style") ) ||
-                /^dot$/.test( em.css("text-emphasis-style") ) ||
-                /^dot$/.test( em.css("-moz-text-emphasis-style") ) ||
-                /^dot$/.test( em.css("-ms-text-emphasis-style") ) ) ? true : false;
-
-        return bool;
-    };
-
 
 
    /* --------------------------------------------------------
@@ -596,30 +595,6 @@ jQuery.noConflict();
 
         return bool;
     };
-
-
-
-    tests['quotes'] = function() {
-        var q = $('<q style="display: none; quotes: \'“\' \'”\' \'‘\' \'’\'">tester</q>'),
-
-            bool = /^"“" "”" "‘" "’"$/.test( q.css("quotes") );
-
-        return bool;
-    };
-
-
-
-    tests['writingmode'] = function() {
-        var wm = $('<div style="display: none; writing-mode: tb-rl; -moz-writing-mode: tb-rl; -ms-writing-mode: tb-rl; -webkit-writing-mode: vertical-rl;">tester</div>'),
-
-            bool = ( /^tb-rl$/.test( wm.css("writing-mode") ) ||
-            	/^vertical-rl$/.test( wm.css("-webkit-writing-mode") ) || 
-                /^tb-rl$/.test( wm.css("-moz-writing-mode") ) ||
-                /^tb-rl$/.test( wm.css("-ms-writing-mode") ) ) ? true: false;
-
-        return bool;
-    };
-
 
 
     tests['ruby'] = function() {
@@ -666,6 +641,39 @@ jQuery.noConflict();
     };
 
 
+    tests['textemphasis'] = function() {
+        var em = $('<span style="display: none; text-emphasis: dot; -moz-text-emphasis: dot; -ms-text-emphasis: dot; -webkit-text-emphasis: dot;">tester</span>'),
+
+            bool = ( /^dot$/.test( em.css("-webkit-text-emphasis-style") ) ||
+                /^dot$/.test( em.css("text-emphasis-style") ) ||
+                /^dot$/.test( em.css("-moz-text-emphasis-style") ) ||
+                /^dot$/.test( em.css("-ms-text-emphasis-style") ) ) ? true : false;
+
+        return bool;
+    };
+
+
+    tests['quotes'] = function() {
+        var q = $('<q style="display: none; quotes: \'“\' \'”\' \'‘\' \'’\'">tester</q>'),
+
+            bool = /^"“" "”" "‘" "’"$/.test( q.css("quotes") );
+
+        return bool;
+    };
+
+
+    tests['writingmode'] = function() {
+        var wm = $('<div style="display: none; writing-mode: tb-rl; -moz-writing-mode: tb-rl; -ms-writing-mode: tb-rl; -webkit-writing-mode: vertical-rl;">tester</div>'),
+
+            bool = ( /^tb-rl$/.test( wm.css("writing-mode") ) ||
+            	/^vertical-rl$/.test( wm.css("-webkit-writing-mode") ) || 
+                /^tb-rl$/.test( wm.css("-moz-writing-mode") ) ||
+                /^tb-rl$/.test( wm.css("-ms-writing-mode") ) ) ? true: false;
+
+        return bool;
+    };
+
+
 
     for ( var feature in tests ) {
         classes.push( ( tests[feature]() ? '' : 'no-' ) + feature );
@@ -678,7 +686,7 @@ jQuery.noConflict();
     }
 
     !function(window) {
-        eval("tester = ({\n" + tester.replace(/\n$/ig, '\nfont: tests_for_fontface\n}') + ")");
+        eval("tester = ({\n" + tester.replace(/\n$/ig, '\nfont: test_for_fontface\n}') + ")");
     }();
 
 
@@ -686,13 +694,12 @@ jQuery.noConflict();
     han();
 
     window.han = {
-        applyTo: init,
         characterize: characterize,
         unicode: unicode,
         support: tester
     }
 
-})(jQuery, ( typeof(han_options) !== 'undefined' ) ? han_options : {});
+})(jQuery);
 
 
 

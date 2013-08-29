@@ -5,17 +5,19 @@
 /* ---------------------------------------
    滙入過場動畫設置
    --------------------------------------- */
+
 @import url('./keyframes.css') all;
 
 
 /* ---------------------------------------
    可適性區塊配置
    --------------------------------------- */
+
 @media screen and (max-width: 799px) {
     nav#sidebar {
         animation-name: none !important;
-        -moz-animation-name: none !important;
-        -webkit-animation-name: none !important;
+            -moz-animation-name: none !important;
+            -webkit-animation-name: none !important;
     }
 
     nav#sidebar.off {
@@ -134,7 +136,6 @@
         margin-left: 33px;
         padding: 2.5em 0 3.5em;
         width: 235px;
-        z-index: 3;
     }
 
     nav#sidebar {
@@ -187,6 +188,10 @@
 }
 
 @media screen and (max-width: 1049px) {
+    header {
+        position: static;
+    }
+
     nav#sidebar.on {
         box-shadow: #6e5a45 0 0 30px;
     }
@@ -219,8 +224,6 @@
         margin-left: 197px;
     }
 }
-
-
 
 
 nav#sidebar {
@@ -431,18 +434,30 @@ nav#sidebar > ul > li > ol > li > ol li a {
     padding: 0 0 0 2em;
 }
 
-nav#sidebar > ul > li > ol > li > ol li a:hover {
-    color: #33757e;
-}
-
 nav#sidebar > ul > li > ol > li > ol li a:before {
-    content: counter(section-0) '　';
+    content: counter(section-0) '';
     counter-increment: section-0;
     display: inline-block;
     float: left;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-right: .75em;
     text-align: right;
     width: 3.5em;
+}
+
+nav#sidebar > ul > li > ol > li > ol li a:hover,
+nav#sidebar > ul > li > ol > li > ol li a.current {
+    color: #33757e;
+}
+
+nav#sidebar > ul > li > ol > li > ol li a.current {
+    cursor: default;
+}
+
+nav#sidebar > ul > li > ol > li > ol li a:hover:before,
+nav#sidebar > ul > li > ol > li > ol li a.current:before {
+    content: '\F0A9';
+    font-family: FontAwesome, sans-serif;
 }
 
 .hanzi_biaozhun_geshi nav#sidebar a[href="hanzi_biaozhun_geshi/"] + ol,
@@ -479,25 +494,32 @@ article h1:nth-of-type(1) {
     letter-spacing: .05em;
 }
 
+article h1:nth-of-type(1) {
+    border-bottom: 2px solid #dcbe7d;
+}
+
+article h1:nth-of-type(1):hover {
+    border-bottom-color: #d1ab55;
+}
+
 article h1:nth-of-type(1),
 article h1:nth-of-type(1) a:link,
 article h1:nth-of-type(1) a:visited {
-    border-bottom: 2px solid #dcbe7d;
     color: #b22731;
     text-shadow: #d99864 0 0 3px;
 }
 
-article h1:nth-of-type(1):hover,
+article h1:hover,
 article h1:nth-of-type(1) a:hover,
 article h1:nth-of-type(1) a:active {
-    border-bottom-color: #d1ab55;
     color: #ce2d39;
 }
 
 article header:nth-of-type(1) ~ p:nth-of-type(1):first-letter {
     display: inline-block;
     float: left;
-    font: 2.5em Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Han Songti', serif;
+    font: 2.5em Georgia, Times, 'Times New Roman',
+        'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Han Songti', serif;
     margin-right: .1em;
     margin-top: -moz-calc(.35em);
 }
@@ -581,9 +603,176 @@ blockquote + p.cite {
 
 article:lang(zh) blockquote + p.cite:before {
     content: '——';
-    font-family: 'Biaodian Pro Serif', 'Han Heiti', serif;
+    font-family: 'Biaodian Pro Sans', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti', sans-serif;
     padding-right: .25em;
 }
+
+article:lang(zh) blockquote b {
+    font-family: 'Biaodian Pro Sans', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti', sans-serif;
+}
+
+
+/* -------------------------------------
+ * 文章內的表格
+ * ------------------------------------- */
+
+table {
+    font: .8em 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial,
+        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Han Heiti', sans-serif;
+    margin: 1em auto 2em;
+    min-width: 355px;
+    width: 90%;
+    width: calc(100% - 4rem);
+        width: -moz-calc(100%3 - 4rem);
+        width: -webkit-calc(100% - 4rem);
+}
+
+
+table th {
+    text-align: left;
+}
+
+table thead tr th {
+    border-bottom: 2px solid #9e7611;
+    height: 2.5em;
+}
+
+table th,
+table td {
+    border-bottom: 1px dotted;
+        border-color: #ccc;
+        border-color: rgba(50%, 40%, 20%, 0.15);
+    height: 2em;
+}
+
+
+table tr th:first-child {
+    width: 25%;
+}
+
+table .important {
+    background-color: #fdf9c5;
+}
+
+table tbody tr:hover th,
+table tbody tr:hover td {
+    background-color: rgba(100%, 100%, 100%, .5);
+}
+
+
+
+/* ---------------------------------------
+   章節〈JavaScript函式〉的專用樣式
+   ---------------------------------------
+   clean the inherited style
+   --------------------------------------- */
+.api article article {
+    left: 0;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+.api article article h1:nth-of-type(1) {
+    border: 0 none;
+    margin: 0;
+    position: relative;
+    text-align: left;
+}
+
+.api article article:lang(zh) p {
+    text-indent: 0;
+}
+
+.api article header[id=javascript_jiekou]:nth-of-type(1) ~ p:nth-of-type(1)::first-letter {
+    display: inline;
+    float: none;
+    font: 1em 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro',
+        'Hiragino Sans GB', 'Han Heiti', san-serif;
+    margin-right: 0;
+    margin-top: -moz-calc(0);
+}
+
+.api article header[id=javascript_jiekou] h1 span:not(.hanla) {
+    color: rgba(55%, 60%, 30%, .8);
+    display: inline-block;
+    font: 400 1.2em 'Avenir Next', Avenir, 
+        'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: -.11em;
+    margin-left: .2em;
+    text-shadow: none;
+}
+
+.api article header[id=javascript_jiekou] h1 span:not(.hanla):before {
+    color: rgba(55%, 60%, 30%, .3);
+    content: '\F054';
+    font: .75em FontAwesome, sans-serif;
+    margin-right: .3em;
+}
+
+.api article header[id=javascript_jiekou] h1 span.middle-dot {
+    display: none;
+}
+
+.api article header[id=javascript_jiekou] h1:hover span:not(.hanla) {
+    color: rgba(55%, 60%, 30%, .9);
+}
+
+.api article p dfn.initial {
+    background-color: rgba(50%, 70%, 50%, .2);
+    color: rgba(55%, 60%, 30%, .75);
+    float: left;
+    font: 400 2em 'Avenir Next', Avenir, 
+        'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    height: 1.3em;
+    letter-spacing: -.11em;
+    margin: -.5em .25em 0 0;
+}
+
+
+
+/* theme style
+   --------------------------------------- */
+
+.api article > div.api {
+    margin-top: 3em;
+}
+
+.api div.api article {
+    background-color: rgba(65%, 50%, 5%, .1);
+    border: 1px solid rgba(20%, 15%, 3%, .2);
+    border-radius: 3px;
+    color: #553;
+    font-size: .9em;
+    margin: 2em auto;
+    padding: .5em .25em;
+    width: 93%;
+}
+
+.api div.api article:hover {
+    background-color: rgba(65%, 50%, 5%, .15);
+    border: 1px solid rgba(20%, 15%, 3%, .3);
+}
+
+.api article article h1:nth-of-type(1) {
+    color: rgb(45%, 35%, 10%);
+    font: 500 1.5em 'Avenir Next', Avenir, 
+        'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: -.05em;
+}
+
+.api article article h1:nth-of-type(1):after {
+    border-bottom: 3px solid #675311;
+    content: '';
+    display: block;
+    opacity: .7;
+    width: 35px;
+}
+
+.api article article p {
+    margin: .5em .5em .25em;
+}
+
 
 
 ol.sections-menu {
@@ -695,7 +884,7 @@ article h3:before {
 article h4:before {
     color: #962;
     content: '\F138';
-    font-family: FontAwesome;
+    font-family: FontAwesome, sans-serif;
     font-weight: normal;
     font-size: .95em;
     font-style: normal;
