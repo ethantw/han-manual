@@ -13,24 +13,24 @@ JavaScript接口 { #javascript_jiekou }
 
 <div class="api">
 
-<a href="api/javascript_jiekou-han.characterize">
+<a href="api/javascript_jiekou-jquery.charize">
 <article markdown="1">
-# han.characterize()
+# jQuery(selector).charize()
 
 將_漢_{.pn}字、_拉丁_{.pn}字符及各種標點符號等字元，按需求分割、包裹在文字範圍元素`<span>`中，並以類別屬性`class`區分，使設計師得依不同的情況調整各字元之樣式。
 </article>
 </a>
 
 
-<!--
-<a href="api/javascript_jiekou-han.convert">
+
+<!--<a href="api/javascript_jiekou-han.convert">
 <article markdown="1">
-# han.convert()
+# jQuery(selector).hanInit()
 
 將原始|HTML|代碼轉換成可完整支援樣式集`han.css`的代碼，適用於|DOM|更動後，新加入的元素或文字範圍。
 </article>
-</a>
--->
+</a>-->
+
 
 
 
@@ -56,9 +56,9 @@ JavaScript接口 { #javascript_jiekou }
 
 <a href="api/javascript_jiekou-han.unicode">
 <article markdown="1">
-# han.unicode[ {range} ]
+# han.unicode( range )
 
-包含着_漢_{.pn}字、注音符號、_拉丁_{.pn}字母、標點符號等萬國碼區段字元集的陣列。
+包含着_漢_{.pn}字、注音符號、_拉丁_{.pn}字母、標點符號等萬國碼區段字元集函式。
 </article>
 </a>
 

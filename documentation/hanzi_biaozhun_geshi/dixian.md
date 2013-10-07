@@ -29,7 +29,6 @@
 > _英國_{.pn}<!--注意：中間毋需插入任何空白-->_倫敦_{.pn}是個世上少有、數一數二，且融合古典及現代的大城市。
 
 
-
 上方的例子由以下代碼實現：
 
     <u class="pn">英國</u><!--注意：中間毋需插入任何空白--><u class="pn">倫敦</u>是個世上少有、數一數二，且融合古典及現代的大城市。
@@ -39,7 +38,13 @@
 
 1. 使用者開啓[[JavaScript]]{:en-GB}時有較佳瀏覽效果。
 
-2. 二個註記元素間*不得*出現***除*「註解」`<!--comment-->`或「機會斷行元素」`<wbr>`*外***的任何隱藏、空白元素，否則底線仍將相連。
+2. 二個註記元素間*不得*出現***除*「註解」`<!--comment-->`或「機會斷行元素」`<wbr>`*外***的任何隱藏、空白元素，且需為層級相同的**兄弟元素**，否則底線仍將相連。
+
+
+#### 實驗功能 { #han-lab-underline }
+
+在`<html>`標籤上加入類別`class="han-lab-underline"`，可啓用相鄰註記元素的實驗性解決方案，詳情請見`han.js`及`han.main.scss`中的「底線」部分之代碼。
+
 
 
 
@@ -72,26 +77,6 @@
 
     .color-blind a:link {
         border-bottom: 1px solid;
-    }
-
-
-
-### 覆寫／去除此元素樣式 { #zhuji_yuansu-overwrite }
-
-藉由以下代碼，你可以完整去除「_漢_{.pn}字標準格式」所定義的「++註記元素++」樣式。
-
-    :lang(zh) u,
-    :lang(ja) u {
-        letter-spacing: inherit;
-        border-bottom: inherit;
-        padding-bottom: inherit;
-        text-decoration: inherit;
-    }
-
-    u + u,
-    html.han-js u + u,
-    html.han-js u.adjacent {
-        margin-left: auto;
     }
 
 
@@ -131,14 +116,5 @@
     </html>
 
 
-
-### 覆寫／去除此元素樣式 { #lianjie_charu_deng_yuansu-overwrite }
-
-藉由以下代碼，你可以完整去除「_漢_{.pn}字標準格式」所定義的「++連結、插入元素++」樣式。
-
-    html:lang(zh) ins {
-        border-bottom: inherit;
-        padding-bottom: inherit;
-    }
 
 

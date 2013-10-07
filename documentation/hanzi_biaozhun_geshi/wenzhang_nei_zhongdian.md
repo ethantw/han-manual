@@ -10,15 +10,4 @@
 
 
 
-### 覆蓋此元素樣式 { #overwrite }
 
-	article strong:lang(zh),
-	article strong:lang(ja),
-	html.han-biaodian-pro article strong:lang(zh),
-	html.han-biaodian-pro-cns article strong:lang(zh),
-	article strong:not(:lang(zh)):not(:lang(ja)),
-	html.han-biaodian-pro article strong:not(:lang(zh)):not(:lang(ja)),
-	html.han-biaodian-pro-cns article strong:not(:lang(zh)):not(:lang(ja)) {
-	    font-family: inherit;
-	    font-weight: inherit;
-	}

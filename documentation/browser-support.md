@@ -11,7 +11,7 @@
 * [[Internet Explorer]]{:en-GB} 10
 * [[Mozilla Firefox]]{:en-GB}現行版本
 * [[Opera Next]]{:en-GB}現行版本
-* [[Safari]]{:en-GB} 5
+* [[Safari]]{:en-GB} 6
 
 
 

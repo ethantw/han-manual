@@ -50,11 +50,11 @@ $menu = array(
             'javascript_jiekou' => array(
                 '0' => '<span lang="en-GB">JavaScript</span>接口',
 
-                'han.characterize' => '<code>han.characterize()</code>',
+                'jquery.charize' => '<code>jQuery(<b>selector</b>).charize( <b>[glyph]</b> )</code>',
                 //'han.convert' => '<code>han.convert( <b>html</b> )</code>',
-                'han.support.feature' => '<code>han.support.<b>[feature]</b></code>',
-                'han.support.font' => '<code>han.support.font( \'<b>[font]</b>\' )</code>',
-                'han.unicode' => '<code>han.unicode[ <b>{range}</b> ]</code>'
+                'han.support.feature' => '<code>han.support.<b>feature</b></code>',
+                'han.support.font' => '<code>han.support.font( \'<b>font</b>\' )</code>',
+                'han.unicode' => '<code>han.unicode( <b>range</b> )</code>'
             ),
         ),
 

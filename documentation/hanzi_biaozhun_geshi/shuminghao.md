@@ -53,17 +53,6 @@ _中_{.pn}、_英_{.pn}文書名併列的情況，
 支援繁、簡_中_{.pn}文、_日_{.pn}語、_英_{.pn}文等語言的書名號用法。套用語言屬性`lang="zh/​ja/​en"`即可。
 
 
-### 覆寫／去除此元素樣式 { #overwrite }
-
-    cite:lang(zh):before,
-    cite:lang(zh):after,
-    cite:lang(ja):before,
-    cite:lang(ja):after,
-    cite:lang(en):before,
-    cite:lang(en):after {
-        content: none;
-    }
-
 
 ### 尖角括號 { #jianjiao_guahao }
 

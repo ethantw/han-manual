@@ -1,233 +1,898 @@
-@charset 'utf-8';
-
-
+@charset "utf-8";
+@import url("./han.css");
+/* ---------------------------------------
+   滙入「漢字標準格式」
+   --------------------------------------- */
+/* ---------------------------------------
+   版面基本元素的樣式
+   --------------------------------------- */
+/* ---------------------------------------
+   滙入「Font Awesome」
+   --------------------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot");
+  src: url("../fonts/fontawesome-webfont.eot") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff") format("woff"), url("../fonts/fontawesome-webfont.ttf") format("truetype"), url("../fonts/fontawesome-webfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* ---------------------------------------
    `font-face`字體樣式
    --------------------------------------- */
-
-/* 滙入Font Awesome */
-@import url('//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.css') all;
-
-
 /* 覆寫`han.ff.css`裡的「Han Heiti」。 */
 @font-face {
-    font-family: 'Han Heiti';
-    src:  local('Hiragino Kaku Gothic ProN'), local('Hiragino Kaku Gothic Pro'),
-        local('Hiragino Sans GB'), local('Heiti SC'), local('Heiti TC'),
-        local('Microsoft Yahei'), local('Microsoft Jhenghei'),
-        local('Droid Sans Fallback');
+  font-family: 'Han Heiti';
+  src: local("Hiragino Kaku Gothic ProN"), local("Hiragino Kaku Gothic Pro"), local("Hiragino Sans GB"), local("Lantinghei TC"), local("Heiti SC"), local("Heiti TC"), local("Microsoft Yahei"), local("Microsoft Jhenghei"), local("Droid Sans Fallback");
 }
+
 /* 騙過IE詭譎fallback的手法 */
 @font-face {
-    font-family: 'Han Heiti';
-    src: local('Microsoft Yahei'), local('Microsoft Jhenghei');
-    unicode-range: U+4E00;
+  font-family: 'Han Heiti';
+  src: local("Lantinghei TC"), local("Microsoft Yahei"), local("Microsoft Jhenghei");
+  unicode-range: U+4E00;
 }
 
-
+/* 解決Firefox不支援`unicode-range`的手法 */
+@font-face {
+  font-family: 'Han Heiti';
+  src: local("Hiragino Kaku Gothic ProN"), local("Hiragino Kaku Gothic Pro"), local("Hiragino Sans GB"), local("Lantinghei TC"), local("Heiti SC"), local("Heiti TC"), local("Microsoft Yahei"), local("Microsoft Jhenghei"), local("Droid Sans Fallback");
+  unicode-range: U+270C;
+}
 
 /* ---------------------------------------
    字體、連結文字、清單、代碼⋯⋯等，
-   基本元素樣式及重設
+   基本元素的樣式及重設
    --------------------------------------- */
-
 html {
-    font: 15px 'Biaodian Sans Pro', 'Helvetica Neue', Helvetica, Arial,
-        'Han Heiti', sans-serif;
-    -webkit-overflow-scrolling: touch;
+  font: 15px 'Biaodian Sans Pro', 'Helvetica Neue', Helvetica, Arial, 'Han Heiti', sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
-
 
 header,
 nav,
 article,
 footer {
-    position: relative;
+  position: relative;
 }
 
-
-a:link {
-    color: #0645ad;
+a:link, a:visited {
+  color: #0645ad;
 }
-
-a:visited {
-    color: #0645ad;
-}
-
 a:hover {
-    color: #04317c;
+  color: #04317c;
 }
-
 a:active {
-    color: #faa700;
+  color: #faa700;
 }
 
 article {
-    color: #222;
-    font: .95em 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial,
-        'Han Heiti', sans-serif;
+  color: #222;
+  font: .95em 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial, 'Han Heiti', sans-serif;
 }
-
 article ul {
-    list-style: square;
+  list-style: square;
 }
-
 article ul ul {
-    list-style: disc;
+  list-style: disc;
+}
+article a.external.text:after {
+  color: #110c76;
+  content: '\F08E';
+  font: normal .7em FontAwesome, sans-serif normal;
+  padding: 0 .125em 0 .4em;
+  text-emphasis: none;
+  -webkit-text-emphasis: none;
+  vertical-align: middle;
+  width: 1em;
 }
 
 html:lang(zh).han-biaodian-pro code {
-    font-family: 'Biaodian Pro Sans',
-        Consolas, Menlo, 'Liberation Mono', Courier, 
-        'Han Heiti', monospace, sans-serif;
+  font-family: 'Biaodian Pro Sans', Consolas, Menlo, 'Liberation Mono', Courier,  'Han Heiti', monospace, sans-serif;
+}
+html:lang(zh).han-biaodian-pro code:not(:lang(zh)):not(:lang(ja)), html:lang(zh).han-biaodian-pro code :not(:lang(zh)):not(:lang(ja)) {
+  font-family: Consolas, Menlo, 'Liberation Mono', Courier,  'Han Heiti', monospace, sans-serif;
 }
 
-html:lang(zh).han-biaodian-pro code:not(:lang(zh)):not(:lang(ja)),
-html:lang(zh).han-biaodian-pro code :not(:lang(zh)):not(:lang(ja)) {
-    font-family: Consolas, Menlo, 'Liberation Mono', Courier, 
-        'Han Heiti', monospace, sans-serif;
-}
-
-
-/*
- * 1. 只要是「行內區塊」元素（`inline-block`）
- *    便會繼承父元素的`text-indent`設定
- */
-p code,
-li code,
-dl > * code,
-table code {
-    color: #070;
-    display: inline-block;
-    font-size: .9em;
-    line-height: 1em;
-    margin: -4px 0 0;
-    text-indent: 0 /* 1 */;
-    vertical-align: middle;
+p code, li code, dl > * code, table code {
+  color: #070;
+  font-size: .9em;
+  line-height: 1em;
+  vertical-align: -.05em;
 }
 
 li pre {
-    margin: 0;
+  margin: 0;
 }
 
 pre code {
-    background-color: #f1f1ee;
-    border: 1px solid #bbb;
-    border-radius:          3px;
-        -moz-border-radius: 3px;
-    box-shadow:             #e0ccb7 0 1px 5px inset;
-        -moz-box-shadow:    #e0ccb7 0 1px 5px inset;
-        -webkit-box-shadow: #e0ccb7 0 1px 5px inset;
-    color: #6b5438;
-    font-size: .9em;
-    line-height: 1.5;
-    margin: 1em auto 2em;
-    padding: 7px;
-    width: 90%;
+  background-color: #f1f1ee;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: #e0ccb7 0 1px 5px inset;
+  -moz-box-shadow: #e0ccb7 0 1px 5px inset;
+  -webkit-box-shadow: #e0ccb7 0 1px 5px inset;
+  color: #6b5438;
+  font-size: .9em;
+  line-height: 1.5;
+  margin: 1em auto 2em;
+  padding: 7px;
+  width: 95%;
 }
-
-
 
 /* -------------------------------------
  * 主題樣式
  * ------------------------------------- */
-
 /* 漸層背景 */
 body:before {
-    background-color: #f1f1ee;
-    backgrounround-image: radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -moz-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -ms-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-        background-image: -webkit-radial-gradient(50% 50%, circle cover, #fff, #d9dbd1 60%);
-    content: '';
-    display: block;
-    height: 120%;
-    left: -5%;
-    opacity: .7;
-    position: fixed;
-    top: -5%;
-    width: 120%;
-    z-index: -5;
+  background-color: #f1f1ee;
+  background-image: -moz-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%);
+  background-image: -ms-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%);
+  background-image: -webkit-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%);
+  background-image: radial-gradient(50% 50%, circle cover, #ffffff, #d9dbd1 60%);
+  content: '';
+  display: block;
+  height: 120%;
+  left: -5%;
+  opacity: .7;
+  position: fixed;
+  top: -5%;
+  width: 120%;
+  z-index: -5;
 }
 
 header {
-    background: url(../img/hr.png) no-repeat center bottom;
-    height: 5em;
-    padding-bottom: 3em;
-    text-align: center;
+  background: url(../img/hr.png) no-repeat center bottom;
+  background-size: 35px 11px;
+  height: 5em;
+  padding-bottom: 3em;
+  text-align: center;
 }
-
 
 header h1 {
-    font: 300 1.65em
-        'Biaodian Serif', 'Bell MT', Georgia, 'Times New Roman',
-        'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Kozuka Mincho Pro',
-        '華康明體 Std', DFMingStd-W3, SimSun, serif;
-    letter-spacing: .25em;
-    margin: 0;
-    padding: .95em 0 .125em;
-    text-shadow: #999 1px 1px 3px;
+  font: 300 1.65em 'Biaodian Pro Serif CNS', 'Bell MT', Georgia, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Kozuka Mincho Pro', '華康明體 Std', DFMingStd-W3, SimSun, serif;
+  letter-spacing: .25em;
+  margin: 0;
+  padding: .95em 0 .125em;
+  text-shadow: #999 1px 1px 3px;
 }
-
 header h1 a:link,
-header h1 a:visited {  color: #058455;  }
-header h1 a:hover {  color: #069460;  }
-header h1 a:active {  color: #035335;  }
-
+header h1 a:visited {
+  color: #058455;
+}
+header h1 a:hover {
+  color: #069460;
+}
+header h1 a:active {
+  color: #035335;
+}
 header h1 a:link:last-child,
-header h1 a:visited:last-child {  color: #069460;  }
-
+header h1 a:visited:last-child {
+  color: #069460;
+}
 header h1 sup,
 header h1 sup a:link,
 header h1 sup a:visited {
-    color: #d6a901;
-    font: bold .75em Courier, monospace;
-    letter-spacing: 1px;
-    padding-left: .1em;
-    top: -.025em;
-    vertical-align: top;
+  color: #d6a901;
+  font: bold .75em Courier, monospace;
+  letter-spacing: 1px;
+  padding-left: .1em;
+  top: -.025em;
+  vertical-align: top;
 }
-
 header h1 sup a:hover {
-    text-decoration: underline !important;
+  text-decoration: underline !important;
 }
-
 header h1 + p.des {
-    color: #6e8561;
-    font-family: 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial,
-        'Han Heiti', sans-serif;
-    font-size: .8em;
-    font-weight: normal;
-    letter-spacing: .25em;
-    margin: -.2em .125em;
+  color: #6e8561;
+  font-family: 'Biaodian Pro Sans', 'Helvetica Neue', Helvetica, Arial, 'Han Heiti', sans-serif;
+  font-size: .8em;
+  font-weight: normal;
+  letter-spacing: .25em;
+  margin: -.2em .125em;
 }
-
-p.des u {  letter-spacing: 0;  margin-right: .35em;  }
-
+header h1 + p.des u {
+  letter-spacing: 0;
+  margin-right: .35em;
+}
 
 /* Fork圖章 */
 #fork {
-    background: url(../img/fork.png) no-repeat 0 0;
-    border: 0 none;
-    height: 141px;
-    left: -5px;
-    position: fixed;
-    text-indent: -999999px;
-    top: 0;
-    width: 150px;
-    z-index: 5;
+  background: url(../img/fork.png) no-repeat 0 0;
+  background-size: 140px 280px;
+  border: 0 none;
+  height: 140px;
+  left: -5px;
+  position: fixed;
+  text-indent: -999999px;
+  top: 0;
+  width: 150px;
+  z-index: 5;
 }
 
+/* ---------------------------------------
+   使用手冊樣式
+   --------------------------------------- */
+/* =================================================
+    滙入CSS3簡化函式
+ * ================================================= */
+/* =================================================
+    使用手冊固定樣式
+ * ================================================= */
+.manual {
+  -webkit-overflow-scrolling: touch;
+  /* =================================================
+      Navigator
+     ================================================= */
+  /* =================================================
+      不同頁面下的樹狀選單
+     ================================================= */
+  /* =================================================
+      `<article>`區塊
+     ================================================= */
+  /* =================================================
+      Responsive Web Design (900px and below)
+   * ================================================= */
+}
+.manual * {
+  box-sizing: border-box;
+}
+.manual header,
+.manual header * {
+  box-sizing: content-box;
+}
+.manual #fork {
+  left: 281px;
+  position: absolute;
+}
+.manual nav#sidebar {
+  /* theme */
+  background-color: #dadad2;
+  border-right: 2px solid #f9f9f7;
+  box-shadow: inset #cbcbbf -20px 20px 35px, inset #333 -1px 0 0, #ddd 1px 0 0;
+  /* positioning */
+  bottom: 0;
+  height: 100%;
+  position: fixed;
+  width: 280px;
+  z-index: 20;
+}
+.manual nav#sidebar ol, .manual nav#sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.manual nav#sidebar > div > ul {
+  background-color: #eee;
+  border: 1px solid #bbb;
+  border-radius: 7px;
+  left: 5%;
+  margin: 0;
+  opacity: .8;
+  overflow-y: auto;
+  position: absolute;
+  top: 145px;
+  width: 90%;
+}
+.manual nav#sidebar > div > ul > li {
+  letter-spacing: .25em;
+  font-size: 1.05em;
+  margin: 0;
+}
+.manual nav#sidebar > div > ul > li:last-child {
+  border: none;
+}
+.manual nav#sidebar > div > ul > li > a, .manual nav#sidebar > div > ul > li > .not-a-link {
+  border-bottom: 1px solid #ccc;
+  color: #725530;
+  display: block;
+  padding: .35em .75em .4em;
+}
+.manual nav#sidebar > div > ul > li > a:hover, .manual nav#sidebar > div > ul > li > a.current {
+  background-color: rgba(221, 221, 221, 0.8);
+  box-shadow: inset rgba(170, 170, 170, 0.3) 1px 3px 7px;
+  color: #3c2d19;
+}
+.manual nav#sidebar > div > ul > li:first-of-type > a {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  margin-top: -1px;
+}
+.manual nav#sidebar > div > ul > li:last-of-type > a {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-bottom: 0;
+  margin-bottom: -1px;
+}
+.manual nav#sidebar > div > ul > li > .not-a-link {
+  color: #1d431f;
+  border-bottom: 1px solid #ccc;
+}
+.manual nav#sidebar > div > ul > li > .not-a-link:hover {
+  color: #1d431f;
+}
+.manual nav#sidebar > div > ul > li > ol {
+  font-size: .9em;
+  letter-spacing: 0;
+  margin: 0;
+}
+.manual nav#sidebar > div > ul > li > ol :not(:lang(zh)):not(:lang(jp)) {
+  letter-spacing: 0;
+}
+.manual nav#sidebar > div > ul > li > ol > li a {
+  border-bottom: 1px dotted #ddd;
+  color: #347837;
+  display: block;
+  padding: .4em .5em .4em 1em;
+}
+.manual nav#sidebar > div > ul > li > ol > li a:hover, .manual nav#sidebar > div > ul > li > ol > li a.current {
+  border-color: #6a6;
+  color: #255427;
+  font-weight: bolder;
+}
+.manual nav#sidebar > div > ul > li > ol ol {
+  background-color: #e2e2db;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #bbb;
+  box-shadow: inset #d7d7cd 0 10px 10px;
+  counter-reset: section-0;
+  list-style: none;
+  margin: -1px 0 0;
+  padding: .5em 0;
+}
+.manual nav#sidebar > div > ul > li > ol ol li a {
+  border: 0;
+  padding: .2em .5em .2em 1em;
+}
+.manual nav#sidebar > div > ul > li > ol ol li a:before {
+  content: counter(section-0) "";
+  counter-increment: section-0;
+  display: inline-block;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin-right: .75em;
+  text-align: right;
+  width: 1em;
+}
+.manual nav#sidebar > div > ul > li > ol ol li a.current {
+  cursor: default;
+}
+.manual nav#sidebar > div > ul > li > ol ol li a:hover:before, .manual nav#sidebar > div > ul > li > ol ol li a.current:before {
+  content: "\f0a9 ";
+  font-family: FontAwesome, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+.manual nav#sidebar > div > ul > li > ol > li > ol {
+  display: none;
+}
+.manual.hanzi_biaozhun_geshi nav#sidebar ul, .manual.api nav#sidebar ul, .manual.appendix nav#sidebar ul {
+  border-bottom: 0;
+  border-radius: 0;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  height: -moz-calc(100% - 145px);
+  height: -webkit-calc(100% - 145px);
+  height: calc(100% - 145px);
+  padding-bottom: 1em;
+}
+.manual.hanzi_biaozhun_geshi nav#sidebar a[href="hanzi_biaozhun_geshi/"] + ol, .manual.api nav#sidebar a[href="api/"] + ol, .manual.appendix nav#sidebar a[href="appendix/"] + ol {
+  display: block;
+}
+.manual article {
+  left: 150px;
+  margin: 15em auto 17em;
+  max-width: 40em;
+}
+.manual article header {
+  background: none;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+.manual article hr {
+  background: url(../img/hr.png) no-repeat center center;
+  background-size: 35px 11px;
+  border: 0 none;
+  height: 15px;
+  margin: 3em 0 2em;
+  opacity: .6;
+}
+.manual article h1:nth-of-type(1) {
+  font: 1.7em 'Biaodian Pro Serif', Optima, Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Kozuka Mincho Pro', 'Han Songti', serif;
+  letter-spacing: .1em;
+  padding: 0 0 .3em .25em;
+  text-align: center;
+}
+:root:lang(zh) .manual article h1 :not(:lang(zh)), :root:lang(zh) .manual article h1:nth-of-type(1):not(:lang(zh)) {
+  font-family: Optima, Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Han Songti', serif;
+  letter-spacing: .05em;
+}
+.manual article h1:nth-of-type(1) {
+  border-bottom: 2px solid #dcbe7d;
+}
+.manual article h1:nth-of-type(1):hover {
+  border-bottom-color: #d1ab55;
+}
+.manual article h1:nth-of-type(1),
+.manual article h1:nth-of-type(1) a:link,
+.manual article h1:nth-of-type(1) a:visited {
+  color: #b22731;
+  text-shadow: #d99864 0 0 3px;
+}
+.manual article h1:hover,
+.manual article h1:nth-of-type(1) a:hover,
+.manual article h1:nth-of-type(1) a:active {
+  color: #ce2d39;
+}
+.manual article header:nth-of-type(1) ~ p:nth-of-type(1):first-letter {
+  display: inline-block;
+  float: left;
+  font: 2.5em Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Han Songti', serif;
+  margin-right: .1em;
+  margin-top: -moz-calc(.35em);
+}
+.manual article header:nth-of-type(1) ~ p:nth-of-type(1) + * {
+  clear: both;
+}
+.manual article h2 {
+  border-bottom: 1px solid #ccc;
+  color: #6e5a45;
+  letter-spacing: 5px;
+  margin: 3.5em 0 1.5em;
+  padding-bottom: .15em;
+}
+.manual article h2 u:lang(zh) {
+  border: 0 none;
+  letter-spacing: inherit;
+}
+.manual article h3 {
+  color: #b93f1b;
+}
+.manual article h2,
+.manual article h3 {
+  font-family: 'Biaodian Pro Serif', Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', serif;
+  font-weight: normal;
+}
+.manual article h4 {
+  margin: 1.5em 0 .5em;
+}
+.han-biaodian-pro .manual article h2 :not(:lang(zh)):not(:lang(ja)), .han-biaodian-pro .manual article h3 :not(:lang(zh)):not(:lang(ja)) {
+  font-family: Georgia, Times, 'Times New Roman', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Kozuka Mincho Pro', serif;
+  letter-spacing: 1px;
+}
+@media screen and (max-width: 760px) {
+  .manual {
+    /* =================================================
+        Navibar開關
+     * ================================================= */
+    /* =================================================
+        小螢幕（視窗）、小縮進
+     * ================================================= */
+  }
+  .manual #fork,
+  .manual nav#sidebar ul {
+    display: none;
+  }
+  .manual nav#sidebar {
+    background-color: #dadad2;
+    border: 0;
+    border-bottom: 1px solid #f9f9f7;
+    box-shadow: inset #cbcbbf 0px 20px 35px, inset #ccc 0 -1px 2px, #ccc 0 1px 2px;
+    box-sizing: border-box;
+    height: 50px;
+    opacity: .98;
+    padding: 0;
+    top: 0;
+    width: 100%;
+  }
+  .manual nav#sidebar > div {
+    margin: 0 auto;
+    padding: 0 2em;
+    position: relative;
+    top: 0;
+    max-width: 40em;
+    min-width: 300px;
+  }
+  .manual nav#sidebar header {
+    background-image: none;
+    font-size: .8em;
+    left: 0;
+    padding: 12px 0 0;
+    position: absolute;
+    top: -1.65em;
+    width: 200px;
+  }
+  .manual nav#sidebar header p.des {
+    display: none;
+  }
+  .manual nav#sidebar button#for-sidebar-nav {
+    background-color: #dfd4c9;
+    border: 1px solid #b9a089;
+    border-radius: 50%;
+    box-shadow: inset rgba(238, 238, 238, 0.8) 1px 1px 1px;
+    color: #6a543f;
+    display: block;
+    height: 2em;
+    letter-spacing: .5em;
+    margin: .6em 1.5em;
+    padding-top: .3em;
+    position: absolute;
+    right: .75em;
+    width: 2em;
+    z-index: 5;
+  }
+  .manual nav#sidebar button#for-sidebar-nav:hover {
+    border-color: #a68769;
+  }
+  .manual nav#sidebar button#for-sidebar-nav:active, .manual nav#sidebar button#for-sidebar-nav:focus {
+    background-color: #d5c7b9;
+    box-shadow: inset rgba(166, 135, 105, 0.8) 1px 1px 5px;
+    color: #333;
+  }
+  .manual nav#sidebar button#for-sidebar-nav span {
+    display: inline-block;
+    margin-left: -1em;
+    text-indent: -99999px;
+    width: 0;
+  }
+  .manual nav#sidebar button#for-sidebar-nav span:before {
+    color: #7a6149;
+    display: inline-block;
+    left: 0;
+    margin: .5em;
+    position: absolute;
+    text-indent: 0;
+    top: 0;
+    width: 1em;
+  }
+  .manual nav#sidebar.on {
+    opacity: .98;
+  }
+  .manual nav#sidebar.on button#for-sidebar-nav {
+    /* 黑背景，點按可關閉選單 */
+  }
+  .manual nav#sidebar.on button#for-sidebar-nav:before {
+    background-color: rgba(51, 51, 51, 0.7);
+    content: '';
+    cursor: default;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 51px;
+    width: 100%;
+    z-index: -100;
+  }
+  .manual nav#sidebar.on button#for-sidebar-nav span:before {
+    content: "\f07c";
+    font-family: FontAwesome, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-right: .29em;
+  }
+  .manual nav#sidebar.on ul {
+    background-color: #eee;
+    border-radius: 7px;
+    box-shadow: inset #aaa 0 3px 10px, #443 5px 10px 20px;
+    display: block;
+    height: -moz-calc(100% - 50px - 3em);
+    height: -webkit-calc(100% - 50px - 3em);
+    height: calc(100% - 50px - 3em);
+    left: 15%;
+    margin-top: 50px;
+    opacity: .9;
+    position: fixed;
+    top: 1em;
+    width: 70%;
+    z-index: 100;
+  }
+  .manual nav#sidebar.off button#for-sidebar-nav span:before {
+    content: "\f07b";
+    font-family: FontAwesome, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-right: .3em;
+  }
+  .manual article {
+    left: 0;
+    margin: 8em auto 13em;
+    min-width: 300px;
+    padding: 0 1.5em;
+  }
+  .manual article h4:before {
+    margin-left: -.6em !important;
+  }
+  .manual article:lang(zh).poem-like p,
+  .manual article:lang(zh) blockquote.poem-like p,
+  .manual article:lang(zh) p.poem-like,
+  .manual article:lang(zh) ol > li,
+  .manual article:lang(zh) ul > li {
+    margin-left: 1em;
+    padding: 0;
+    text-indent: 0;
+  }
+  .manual article:lang(zh).poem-like p > p,
+  .manual article:lang(zh) blockquote.poem-like p > p,
+  .manual article:lang(zh) p.poem-like > p,
+  .manual article:lang(zh) ol > li > p,
+  .manual article:lang(zh) ul > li > p {
+    text-indent: 0;
+  }
+  .manual article:lang(zh) blockquote {
+    margin-left: 1em;
+  }
+  .manual article:lang(zh) blockquote blockquote {
+    margin-left: 1em;
+    padding-left: 1em;
+  }
+  .manual article:lang(zh) blockquote blockquote p {
+    text-indent: 0;
+  }
+}
+@media screen and (min-width: 761px) and (max-width: 900px) {
+  .manual #fork {
+    left: 251px;
+  }
+  .manual nav#sidebar {
+    width: 250px;
+  }
+  .manual article {
+    left: 125px;
+    margin: 12em auto;
+    max-width: 500px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .manual nav#sidebar.on button#for-sidebar-nav,
+  .manual nav#sidebar.off button#for-sidebar-nav {
+    letter-spacing: 0;
+    padding-top: .1em;
+  }
+  .manual nav#sidebar.on ul {
+    left: 5%;
+    width: 90%;
+  }
+}
 
+/* =================================================
+    Semantics
+ * ================================================= */
+.no-biaodian {
+  font-family: sans-serif;
+}
 
+/*  引言區塊下方的`<cite>`元素
+ * ================================================= */
+blockquote + p.cite {
+  color: #333;
+  font-size: .9em;
+  margin: -1.5rem 0 2rem;
+  text-align: right;
+}
 
+article:lang(zh) blockquote + p.cite:before {
+  content: '——';
+  font-family: 'Biaodian Pro Sans', 'Han Heiti', sans-serif;
+  padding-right: .25em;
+}
 
+article:lang(zh) blockquote b {
+  font-family: 'Biaodian Pro Sans', 'Han Heiti', sans-serif;
+}
 
+/* =================================================
+    Indices
+ * ================================================= */
+article {
+  counter-reset: section-1;
+}
+article h2:nth-of-type(1) {
+  counter-reset: verse-1;
+}
+article header {
+  counter-reset: section-1;
+  counter-reset: verse-1;
+}
+article h2 {
+  counter-increment: section-1;
+  counter-reset: verse-1;
+}
+article h3:before {
+  content: counter(section-1) "." counter(verse-1);
+  counter-increment: verse-1;
+  font-weight: bolder;
+  margin-right: .75em;
+}
+article h4:before {
+  color: #962;
+  content: '\F138';
+  font-family: FontAwesome, sans-serif;
+  font-weight: normal;
+  font-size: .95em;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  margin: -1px .75em 0 .5em;
+}
 
+/* =================================================
+    `<article>`裹的章節選單Indices
+ * ================================================= */
+ol.manual-index:nth-of-type(1) {
+  counter-reset: section;
+  font: .9em 'Biaodian Pro Sans', 'Helvetica Neue', Arial, 'Han Heiti', sans-serif;
+  list-style: none;
+  margin: 5em auto 2em;
+  min-width: 13.5em;
+  position: relative;
+  width: 100%;
+}
+ol.manual-index:nth-of-type(1):after {
+  background-color: #f1f1ee;
+  border: 2px none #4c431d;
+  border-style: solid none;
+  box-shadow: inset #aaae98 10px 10px 30px;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  margin: -1.5em 0 2em;
+  opacity: .3;
+  padding: 2em 0 1em;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+ol.manual-index:nth-of-type(1) li a:before {
+  content: counter(section) "　";
+  counter-increment: section;
+}
+ol.manual-index:nth-of-type(1) ol {
+  counter-reset: verse;
+  list-style: none;
+  margin: 0;
+  padding-left: 4em;
+}
+ol.manual-index:nth-of-type(1) ol li a:before {
+  content: counter(section) "." counter(verse) "　";
+  counter-increment: verse;
+}
 
+/* =================================================
+    文章內的表格
+ * ================================================= */
+table {
+  font: .8em 'Biaodian Pro Sans', 'Helvetica Neue', Arial, 'Han Heiti', sans-serif;
+  margin: 1em auto 2em;
+  min-width: 355px;
+  width: 100%;
+}
+table th {
+  text-align: left;
+}
+table thead tr th {
+  border-bottom: 2px solid #9e7611;
+  height: 2.5em;
+}
+table th,
+table td {
+  border-bottom: 1px dotted;
+  border-color: #ccc;
+  border-color: rgba(127, 102, 51, 0.15);
+  height: 2em;
+}
+table tr th:first-child {
+  width: 25%;
+}
+table .important {
+  background-color: #fdf9c5;
+}
+table tbody tr:hover th, table tbody tr:hover td {
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
+/* =================================================
+    章節〈JavaScript函式〉的專用樣式
+ * ================================================= */
+.manual.api article article {
+  left: 0;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+.manual.api article article h1:nth-of-type(1) {
+  border: 0 none;
+  margin: 0;
+  position: relative;
+  text-align: left;
+}
+.manual.api article article:lang(zh) p {
+  text-indent: 0;
+}
+.manual.api article header[id=javascript_jiekou]:nth-of-type(1) ~ p:nth-of-type(1)::first-letter {
+  display: inline;
+  float: none;
+  font: 1em 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'Hiragino Sans GB', 'Han Heiti', san-serif;
+  margin-right: 0;
+  margin-top: -moz-calc(0);
+}
+.manual.api article header[id=javascript_jiekou] h1 span:not(.hanla) {
+  color: rgba(140, 153, 76, 0.8);
+  display: inline-block;
+  font: 400 1.2em 'Avenir Next', Avenir,  'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: -.11em;
+  margin-left: .2em;
+  text-shadow: none;
+}
+.manual.api article header[id=javascript_jiekou] h1 span:not(.hanla):before {
+  color: rgba(140, 153, 76, 0.3);
+  content: '\F054';
+  font: .75em FontAwesome, sans-serif;
+  margin-right: .3em;
+}
+.manual.api article header[id=javascript_jiekou] h1 span.middle-dot {
+  display: none;
+}
+.manual.api article header[id=javascript_jiekou] h1:hover span:not(.hanla) {
+  color: rgba(140, 153, 76, 0.9);
+}
+.manual.api article p dfn.initial {
+  background-color: rgba(127, 178, 127, 0.2);
+  color: rgba(140, 153, 76, 0.75);
+  font: 400 1.5em 'Avenir Next', Avenir,  'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 1.3em;
+  letter-spacing: -.05em;
+  margin: -.25em .25em 0 0;
+}
+.manual.api article > div.api {
+  margin-top: 3em;
+}
+.manual.api div.api article {
+  background-color: rgba(165, 127, 12, 0.1);
+  border: 1px solid rgba(51, 38, 7, 0.2);
+  border-radius: 3px;
+  color: #553;
+  font-size: .9em;
+  margin: .5em auto 2em;
+  padding: .5em .25em;
+  width: 93%;
+}
+.manual.api div.api article:hover {
+  background-color: rgba(165, 127, 12, 0.15);
+  border: 1px solid rgba(51, 38, 7, 0.3);
+}
+.manual.api article article h1:nth-of-type(1) {
+  color: #725919;
+  font: 500 1.5em 'Avenir Next', Avenir,  'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: -.05em;
+}
+.manual.api article article h1:nth-of-type(1):after {
+  border-bottom: 3px solid #675311;
+  content: '';
+  display: block;
+  opacity: .7;
+  width: 35px;
+}
+.manual.api article article p {
+  margin: .5em .5em .25em;
+}
 
-
-
-
+/* ---------------------------------------
+   列印樣式
+   --------------------------------------- */
+/* @import './print' print; */
+/* ---------------------------------------
+   Retina Display
+   --------------------------------------- */
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 760px), (min-resolution: 192dpi) and (max-width: 760px) {
+  .manual nav#sidebar header {
+    -moz-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    padding: .25em 0;
+  }
+  .manual nav#sidebar header p.des {
+    display: block;
+  }
+}

@@ -79,59 +79,6 @@ Cats are *cute* animals.
 
 
 
-### 覆寫／去除此元素樣式 { #overwrite }
-
-	html:not(.han-js) :lang(zh) em,
-	html:not(.han-js) :lang(ja) em {
-	    border-bottom: 0 none;
-	    padding-bottom: auto;
-	}
-
-	html.textemphasis :lang(zh) em,
-	html.textemphasis :lang(ja) em {
-	    text-emphasis:              none;
-	        -moz-text-emphasis:     none;
-	        -o-text-emphasis:       none;
-	        -webkit-text-emphasis:  none;
-	}
-
-	html.no-textemphasis :lang(zh) em span.cjk:after,
-	html.no-textemphasis :lang(ja) em span.cjk:after,
-	html.no-textemphasis :lang(zh) em span.latin:after,
-	html.no-textemphasis :lang(ja) em span.latin:after,
-	html.no-textemphasis :lang(ja) em span.cjk:after,
-	html.no-textemphasis :lang(ja) em span.latin:after,
-	html.no-textemphasis :lang(zh) em span.space:after,
-	html.no-textemphasis :lang(ja) em span.space:after,
-	html.no-textemphasis :lang(zh) em span.cjk.biaodian:after,
-	html.no-textemphasis :lang(ja) em span.cjk.biaodian:after {
-	    content: none;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

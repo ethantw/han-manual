@@ -1,5 +1,7 @@
 <style scoped>
 
+table {  margin-top: 5em;  }
+
 table tr th:first-child {  width: 80px;  }
 table tr th:nth-child(n+2) {  width: 20%;  }
 table tr th:last-child {  width: 40%;  }
@@ -48,6 +50,8 @@ table tr td:last-child {
 ===
 
 這分附錄表格記錄着「_漢_{.pn}字標準格式」及其使用手冊上所使用的各種專有名詞詞彙和原文，並有簡短說明。依其_中_{.pn}文（_中_{.pn}譯）拼音之_拉丁_{.pn}字母順序排序。
+
+*** 
 
 
 _英_{.pn}語<wbr>（原文詞彙）| _中_{.pn}文（_中_{.pn}譯）| [[_漢_{.pn}語拼音]]{.fawe.sort} | 定義

@@ -149,16 +149,20 @@
 
 ### 使用方式 { #zhuyin_fuhao-shiyong_fangshi }
 
-直接於`<ruby>`元素上套用`mps`或`zhuyin`類別，
+1. 參閱〈下載與啓用〉一節，[啓用注音符號支援][active]；
 
-	<ruby class="zhuyin">
-		柴<rt>ㄔㄞˊ</rt>
-		米<rt>ㄇㄧ˅</rt>
-		油<rt>ㄧㄡˊ</rt>
-		鹽<rt>ㄧㄢˊ</rt>
-		醬<rt>ㄐㄧㄤˋ</rt>
-		醋<rt>ㄘㄨˋ</rt>
-		茶<rt>ㄔㄚˊ</rt>
-	</ruby>
+[active]: download#qiyong_zhuyin_fuhao_zhiyuan
+
+2. 直接於`<ruby>`元素上套用`mps`或`zhuyin`類別，
+
+		<ruby class="zhuyin">
+			柴<rt>ㄔㄞˊ</rt>
+			米<rt>ㄇㄧ˅</rt>
+			油<rt>ㄧㄡˊ</rt>
+			鹽<rt>ㄧㄢˊ</rt>
+			醬<rt>ㄐㄧㄤˋ</rt>
+			醋<rt>ㄘㄨˋ</rt>
+			茶<rt>ㄔㄚˊ</rt>
+		</ruby>
 
 

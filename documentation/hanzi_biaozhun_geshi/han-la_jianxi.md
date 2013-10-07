@@ -79,7 +79,7 @@ html.han-la .no-hanla span.hanla {
 
 
 
-### 停用漢拉間隙 { #inactivation }
+### 在特定元素或範圍下停用漢拉間隙 { #inactivation }
 
 ++_漢_{ .pn }<wbr>_拉_{ .pn }間隙++的實質係一內容為空的文字範圍元素`<span>`。藉由下列的範例代碼，我們可以停用`X`元素下的所有_漢_{ .pn }<wbr>_拉_{ .pn }間隙，並繼承至其下子元素。
 
@@ -91,26 +91,6 @@ html.han-la .no-hanla span.hanla {
 
 	html.han-la X Y span.hanla {
 		display: inline;
-	}
-
-
-#### [[IE]]{:en-GB}裡的漢拉間隙
-
-[[IE]]{:en-GB}支援一特殊|CSS|3屬性`text-autospace`，可自動加入_漢_{ .pn }<wbr>_拉_{ .pn }間隙，「_漢_{.pn}字標準格式」遇[[IE]]{:en-GB}瀏覽器時使用此|CSS|屬性，故需使用額外的代碼另行停用。下列代碼可以停用`X`元素下的所有_漢_{ .pn }<wbr>_拉_{ .pn }間隙，並繼承至其下子元素，
-
-**[CSS]: Cascading Style Sheets
-
-
-	html.han-la X,
-	html.han-la X * {
-		text-autospace: none;
-	}
-
-承上，若希望`X`元素裡的子元素`Y`仍使用_漢_{ .pn }<wbr>_拉_{ .pn }間隙，可以如下編寫，
-
-	html.han-la X Y,
-	html.han-la X Y * {
-		text-autospace: ideograph-alpha;
 	}
 
 <!--

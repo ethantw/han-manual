@@ -1,70 +1,46 @@
 
-
 /* 
- * 漢字標準格式 v2.0.0
+ * 漢字標準格式 v2.1.0
  * ---
  * Hanzi-optimised CSS Mode
  *
  *
  *
  * Lisence: MIT Lisence
- * Last Modified: 2013/07/23
+ * Last Modified: 2013/10/5
  *
  */
- 
-
 
 jQuery.noConflict();
 
 
 (function($){
 
-    var version = '2.0.0',
+    var version = '2.1.0',
 
     tests = [],
     rubies,
 
     unicode = [],
 
-    classes = ['han-js'],
+    rendered = 'han-js-rendered',
+    classes = [rendered],
     fontfaces = [],
 
 
     han = function() {
-        $(document).ready(function(){
-            (function(){
-                fontfaces['songti'] = test_for_fontface( 'Han Songti' );
-                fontfaces['kaiti'] = test_for_fontface( 'Han Kaiti' );
-                fontfaces['fangsong'] = test_for_fontface( 'Han Fangsong' );
+        $(document).on('ready', function(){
+            fontfaces['songti'] = test_for_fontface( 'Han Songti' );
+            fontfaces['kaiti'] = test_for_fontface( 'Han Kaiti' );
+            fontfaces['fangsong'] = test_for_fontface( 'Han Fangsong' );
 
-                for ( var font in fontfaces ) {
-                    classes.push( ( fontfaces[font] ? '' : 'no-' ) + 'fontface-' + font );
-                }
-            })();
+            for ( var font in fontfaces ) {
+                classes.push( ( fontfaces[font] ? '' : 'no-' ) + 'fontface-' + font );
+            }
+
+            $('html').addClass( classes.join(' ') );
 
             init();
-        });
-
-
-        var had_spacing, // 是不是剛剛執行完 spacing
-            last_spacing_time = 0; // 0 means there were never any requests sent
-
-
-        $('body').bind('DOMNodeInserted', function() {
-            var d = new Date(),
-                current_time = d.getTime(), // get the time of this change event
-                interval = current_time - last_spacing_time; // how many milliseconds since the last request
-
-            if ( interval >= 1000 ) { // more than 1 second
-                last_spacing_time = current_time; // set last_spacing_time for next change event
-
-                if ( !had_spacing ) {
-                    had_spacing = setTimeout(function() {
-                        hanla();
-                        had_spacing = null;
-                    }, 1000);
-                }
-            }
         });
     },
 
@@ -73,25 +49,12 @@ jQuery.noConflict();
         if ( !range && $('html').hasClass('no-han-init') )
             return;
 
-        $(( !range ) ? 'html' : range).addClass( classes.join(' ') );
+        var range = range || 'body';
 
-        var range = range || document;
-
-
-        /* 
-         * 修正相鄰註記元素`<u>`的底線相連問題
-         * ---
-         * fixing the underline-adjacency issues on `<u>` element
-         *
-         */
-
-        $( (range == document) ? 'body' : range ).each(function() {
-            var html = $(this).html();
-
-            $(this)
-            .html( html.replace(/<\/u>(<!--.*?-->|<wbr[ ]?[\/]?>)*?<u(\s.*?)*?>/ig, '</u>$1<u data-adjacent $2>') )
-            .find('u[data-adjacent]').addClass('adjacent').removeAttr('data-adjacent');
-        });
+        if ( range !== 'body' && !$(range).hasClass(rendered) )
+            $(range).addClass(rendered);
+        else if ( range === 'body' && !$('html').hasClass(rendered) )
+            $('html').addClass(rendered);
 
 
 
@@ -113,7 +76,6 @@ jQuery.noConflict();
         $(range).find('ruby').each(function() {
             var html = $(this).html();
 
-
             // 羅馬拼音（在不支援`<ruby>`的瀏覽器下）
             if ( !$(this).hasClass('mps') && !tests['ruby']() ) {
                 var result = html
@@ -127,7 +89,7 @@ jQuery.noConflict();
                 var generic = $(this).css('font-family'),
                 zhuyin_font = ( generic.match(/(sans-serif|monospace)$/) ) ? 'sans-serif' : 'serif',
 
-                hanzi = unicode['hanzi'].join(''),
+                hanzi = unicode_set('hanzi'),
 
                 shengmu = unicode['bopomofo']['mps']['shengmu'],
                 jieyin = unicode['bopomofo']['mps']['jieyin'],
@@ -158,10 +120,82 @@ jQuery.noConflict();
 
 
                 $(this).replaceWith(
-                    $('<span class="ruby-zhuyin-constructed"></span>').addClass('zhuyin-' + zhuyin_font).html( html )
+                    $('<span class="han-js-zhuyin-rendered"></span>').addClass('zhuyin-' + zhuyin_font).html( html )
                 );
             }
         });
+
+
+
+        /* 
+         * 漢拉間隙 
+         * ---
+         * Gaps between Hanzi and Latin Letter
+         *
+         */
+
+        if ( $('html').hasClass('han-la') )
+            $(range).each(function(){
+                var hanzi = unicode_set('hanzi'),
+                    latin = unicode_set('latin') + '|' + unicode['punc'][0],
+                    punc = unicode['punc'];
+
+                    patterns = [
+                        '/(' + hanzi + ')(' + latin + '|' + punc[1] + ')/ig',
+                        '/(' + latin + '|' + punc[2] + ')(' + hanzi + ')/ig'
+                    ],
+
+                    replaceFn = function() {
+                        return function( fill, i ){
+                            var span = _span( 'hanla' );
+                            span.setAttribute('data-text-before', fill);
+
+                            return span;
+                        };
+                    };
+
+
+                patterns.forEach(function( exp ){
+                    findAndReplaceDOMText(eval( exp ), this, replaceFn(), 1);
+
+                    $(this).find('span.hanla[data-text-before]').each(function(){
+                        var char = $(this).attr('data-text-before'),
+                            parent = this.parentNode;
+
+                        parent.insertBefore(document.createTextNode( char ), this);
+                        $(this).removeAttr('data-text-before');
+                        parent.normalize();
+                    });
+                }, this);
+
+
+                $('* > span.hanla:last-child').parent().each(function(){
+                    if ( this.lastChild.nodeType == 1 ) {
+                        $(this).after( $('<span class="hanla"></span>') );
+                        $(this).find('span.hanla:last-child').remove();
+                    }
+                });
+            });
+
+
+
+        /* 
+         * 修正相鄰註記元素`<u>`的底線相連問題
+         * ---
+         * fixing the underline-adjacency issues on `<u>` element
+         *
+         */
+
+        if ( $('html').hasClass('han-lab-underline') )
+            $(range).find('u').charize('', true, true);
+        else
+            $(range).each(function() {
+                var html = $(this).html();
+
+                $(this)
+                .html( html.replace(/<\/u>(<!--.*?-->|<wbr[ ]?[\/]?>)*?<u(\s.*?)*?>/ig, '</u>$1<u data-adjacent $2>') )
+                .find('u[data-adjacent]').addClass('adjacent').removeAttr('data-adjacent');
+            });
 
 
 
@@ -172,13 +206,9 @@ jQuery.noConflict();
          *
          */
 
-        $(range).find('em').each(function() {
-            $(this).html( characterize($(this).html(), {
-                cjk: ( tests['textemphasis']() ) ? 'biaodian' : 'individual',
-                latin: ( tests['textemphasis']() ) ? 'none' : 'individual' })
-            );
+        $(range).find('em').charize({
+            latin: ( tests['textemphasis']() ) ? 'none' : 'individual'
         });
-
 
 
         /* 修正引言元素`<q>`不為WebKit引擎支援的問題
@@ -188,80 +218,45 @@ jQuery.noConflict();
          */
 
         if ( !tests['quotes']() )
-        $(range).find('q q').each(function() {
-            if ( $(this).parents('q').length%2 != 0 )  $(this).addClass('double');
-        });
-
-
-
-        /* 漢拉間隙 
-         * ---
-         * Gaps between Hanzi and Latin Letter
-         * 
-         * 修改自：https://github.com/gibuloto/paranoid-auto-spacing/
-         *
-         */
-
-        hanla();
+            $(range).find('q q').each(function() {
+                if ( $(this).parents('q').length%2 != 0 )
+                    $(this).addClass('double');
+            });
     },
 
 
 
-    characterize = function( content, glyph ) {
-        var content = content + '<!---->',
-            glyph = glyph || {};
+    unicode_set = function( set ) {
+        var join = ( set.match(/[hanzi|latin]/) ) ? true : false,
+        result = ( join ) ? unicode[set].join('|') : unicode[set];
 
-        glyph = {
-            cjk: glyph.cjk || 'individual',
-            latin: glyph.latin || 'group',
-            space: glyph.space || 'individual'
-        };
-
-
-        // CJK Unified Ideographs
-        if ( glyph.cjk === 'individual' )
-            content = content
-            .replace( eval('/(' + unicode['hanzi'].join('') + ')(?=[^>]*<)/ig'), '<span class="cjk">$1</span>' )
-            .replace( eval('/(' + unicode['biaodian'][0] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian">$1</span>' )
-            .replace( eval('/(' + unicode['biaodian']['open'] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian open">$1</span>' )
-            .replace( eval('/(' + unicode['biaodian']['close'] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian close">$1</span>' );
-
-
-        else if ( glyph.cjk === 'group' )
-            content = content
-            .replace( eval('/(' + unicode['hanzi'].join('') + '+)(?=[^>]*<)/ig'), '<span class="cjk">$1</span>' );
-
-
-        else if ( glyph.cjk === 'biaodian' )
-            content = content
-            .replace( eval('/(' + unicode['biaodian'][0] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian">$1</span>' )
-            .replace( eval('/(' + unicode['biaodian']['open'] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian open">$1</span>' )
-            .replace( eval('/(' + unicode['biaodian']['close'] + ')(?=[^>]*<)/ig'), '<span class="cjk biaodian close">$1</span>' );
-
-
-
-        // Latin letters
-        if ( glyph.latin === 'individual' )
-            content = content
-            .replace( eval('/(' + unicode['latin'].join('') + ')(?=[^>]*<)/ig'), '<span class="latin">$1</span>' );
-
-
-        else if ( glyph.latin === 'group' )
-            content = content
-            .replace( eval('/(' + unicode['latin'].join('') + '+)(?=[^>]*<)/ig'), '<span class="latin">$1</span>' );
-
-
-
-        // spaces
-        if ( glyph.space === 'individual' )
-            content = content
-            .replace( /([\s])(?=[^>]*<)/ig, '<span class="space">$1</span>' );
-
-
-        return content;
+        return result;
     },
 
-    
+
+    _span = function( className ) {
+        var span = document.createElement('span');
+        span.className = className;
+
+        return span;
+    },
+
+
+    findAndReplaceDOMText = function( exp, node, repNode, cG ) {
+
+        return window.findAndReplaceDOMText(
+            exp, node, repNode, cG || null, 
+            function( el ) {
+                var name = el.nodeName.toLowerCase(),
+                classes = ( el.nodeType == 1 ) ? el.getAttribute('class') : '',
+                charized = ( classes && classes.match(/han-js-charized/) != null ) ? true : false;
+
+                return name !== 'style' && name !== 'script' && !charized;
+            }
+        );
+    },
+
+
     inject_element_with_styles = function( rule, callback, nodes, testnames ) {
         var style, ret, node, docOverflow,
     
@@ -358,126 +353,6 @@ jQuery.noConflict();
         } catch ( err ) {
             return false;
         }
-    },
-
-
-
-    insert_hanla = function( text ) {
-        var hanzi = unicode['hanzi'].join(''),
-            latin = unicode['latin'] + unicode['latin']['punc'][0],
-            lo = latin + unicode['latin']['punc']['open'],
-            lc = latin + unicode['latin']['punc']['close'],
-
-        // CJK在前
-        regex0 = '/(' + hanzi + ')(' + lo.replace( /\]\[/g, '' ) + ')/ig',
-        // CJK在後
-        regex1 = '/(' + lc.replace( /\]\[/g, '' ) + ')(' + hanzi + ')/ig';
-
-        text = text.replace( eval(regex0), '$1![!hanla!]!$2' )
-            .replace( eval(regex1), '$1![!hanla!]!$2' );
-
-        return text;
-    },
-
-
-    hanla = function() {
-        if ( !document.evaluate )
-            return;
-
-        traversal_and_spacing();
-
-        $('body').each(function() {
-            var html = $(this).html()
-                hanla = '<span class="hanla"></span>';
-
-            $(this).html( html.replace(/!\[!hanla!\]!/ig, hanla) );
-
-
-            $('* > span.hanla:first-child').parent().each(function() {
-                if ( $(this).html().match(/^<span class="hanla">/i) )
-                    $(this).find('span.hanla:first-child').eq(0).remove();
-            });
-        });
-    },
-
-
-    traversal_and_spacing = function() {
-    	var firstTextChild = function(parentNode, targetChild) {
-    		var childNodes = parentNode.childNodes;
-    		for (var i = 0; i < childNodes.length && childNodes[i] != targetChild; i++) {
-    			if (childNodes[i].nodeType != 8 && childNodes[i].textContent) {
-    				return childNodes[i];
-    			}
-    		}
-    
-    		return targetChild;
-    	};
-    
-    	var lastTextChild = function(parentNode, targetChild) {
-    		var childNodes = parentNode.childNodes;
-    		for (var i = childNodes.length - 1; i > -1 && childNodes[i] != targetChild; i--) {
-    			if (childNodes[i].nodeType != 8 && childNodes[i].textContent) {
-    				return childNodes[i];
-    			}
-    		}
-    
-    		return targetChild;
-    	};
-    
-        var current_document = window.document;
-    
-        /*
-         // >> 選擇任意位置的某個節點
-         . >> 自己這個節點
-         .. >> 父節點
-         text() >> 尋找某點的文字型別，例如 hello 之於 <tag>hello</tag>
-         normalize-space() >> 字串頭和尾的空白字元都會被移除，大於兩個以上的空白字元會被置換成單一空白
-    
-         另外 XML 是 case-sensitive 的
-         試試 [translate(name(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")="html"]
-         而 lower-case(name(..)) 不起作用
-        */
-        var xpath_query = '//text()[normalize-space(.)][translate(name(..),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")!="title"][translate(name(..),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")!="style"][translate(name(..),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")!="script"]';
-    
-        var nodes = current_document.evaluate(xpath_query, current_document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-    
-        // snapshotLength 要配合 XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE 使用
-        var nodes_length = nodes.snapshotLength;
-    
-        var next_node;
-    
-        for (var i = nodes_length - 1; i > -1; --i) {
-            var current_node = nodes.snapshotItem(i);
-    
-            // .data 是 XML DOM 的屬性
-            // http://www.w3school.com.cn/xmldom/dom_text.asp
-            current_node.data = insert_hanla(current_node.data);
-    
-            if ( next_node ) {
-                var text = current_node.data.toString().substr(-1) + next_node.data.toString().substr(0, 1);
-                var newText = insert_hanla(text);
-    
-                if ( text != newText ) {
-                    var next_temp = next_node;
-                    while ( next_temp.parentNode && 
-                      next_temp.nodeName.search(/^(a|u)$/i) == -1 &&
-                      firstTextChild(next_temp.parentNode, next_temp) == next_temp ) {
-                        next_temp = next_temp.parentNode;
-                    }
-    
-                    var current_temp = current_node;
-                    while (current_temp.parentNode &&
-                      current_temp.nodeName.search(/^(a|u)$/i) == -1 &&
-                      lastTextChild(current_temp.parentNode, current_temp) == current_temp ) {
-                        current_temp = current_temp.parentNode;
-                    }
-    
-                    next_temp.parentNode.insertBefore(document.createTextNode("![!hanla!]!"), next_temp);
-                 }
-            }
-    
-            next_node = current_node;
-        }
     };
 
 
@@ -489,7 +364,7 @@ jQuery.noConflict();
      * http://css.hanzi.co/manual/api/javascript_jiekou-han.unicode
      * --------------------------------------------------------
      *
-     ** 以下歸類為「拉丁字母」（unicode['latin']）**
+     ** 以下歸類為「拉丁字母」（`unicode('latin')`）**
      *
      * 基本拉丁字母：a-z
      * 阿拉伯數字：0-9
@@ -497,11 +372,12 @@ jQuery.noConflict();
      * 拉丁字母擴展-A區：[\u0100-\u017F]
      * 拉丁字母擴展-B區：[\u0180-\u024F]
      * 拉丁字母附加區：[\u1E00-\u1EFF]
-     * 符號：[~!@#&;=_\$\%\^\*\-\+\,\.\/(\\)\?\:\'\"\[\]\(\)'"<>‘“”’]
+     *
+     ** 符號：[~!@#&;=_\$\%\^\*\-\+\,\.\/(\\)\?\:\'\"\[\]\(\)'"<>‘“”’]
      *
      * --------------------------------------------------------
      *
-     ** 以下歸類為「漢字」（unicode['hanzi']）**
+     ** 以下歸類為「漢字」（`unicode（'hanzi')`）**
      *
      * CJK一般：[\u4E00-\u9FFF]
      * CJK擴展-A區：[\u3400-\u4DB5]
@@ -512,40 +388,50 @@ jQuery.noConflict();
      * CJK擴展-D區：[\u2B740-\u2B81D]（急用漢字）
      * CJK擴展-E區：[\u2B820-\u2F7FF]（**註**：暫未支援）
      * CJK擴展-F區（**註**：暫未支援）
+     * CJK筆畫區：[\u31C0-\u31E3]
      * 數字「〇」：[\u3007]
      * 日文假名：[\u3040-\u309E][\u30A1-\u30FA][\u30FD\u30FE]（**註**：排除片假名中點、長音符）
      *
      * CJK相容表意文字：[\uF900-\uFAFF]（**註**：不使用）
      * --------------------------------------------------------
      *
+     ** 符號
+     * [·・︰、，。：；？！—⋯…．·「『（〔【《〈“‘」』）〕】》〉’”–ー—]
+     *
      ** 其他
      *
      * 漢語注音符號、擴充：[\u3105-\u312D][\u31A0-\u31BA]
      * 國語五聲調（三聲有二種符號）：[\u02D9\u02CA\u02C5\u02C7\u02CB]
      * 台灣漢語方言音擴充聲調：[\u02EA\u02EB]
-     * 符號：[·・︰、，。：；？！—⋯…．·「『（〔【《〈“‘」』）〕】》〉’”–ー—]
      *
      *
      */
 
-    unicode['latin'] = [];
-    unicode['latin'][0] = '[a-z0-9\u00C0-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF\s]';
+    unicode['latin'] = [
+        '[A-Za-z0-9\u00C0-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]'
+    ];
 
-    unicode['latin']['punc'] = [];
-    unicode['latin']['punc'][0] = '[&;=_\,\.\$\%\^\*\-\+\/]';
-    unicode['latin']['punc']['open'] = '[\(\[\'"<‘“]';
-    unicode['latin']['punc']['close'] = '[\)\\]\'">”’]';
 
-    unicode['hanzi'] = [];
-    unicode['hanzi'][0] = '[\u4E00-\u9FFF\u3400-\u4DB5\u9FA6-\u9FBB\uFA70-\uFAD9\u9FBC-\u9FC3\u3007\u3040-\u309E\u30A1-\u30FA\u30FD\u30FE]';
-    unicode['hanzi']['b'] = '[\uD840-\uD868][\uDC00-\uDFFF]|\uD869[\uDC00-\uDEDF]';
-    unicode['hanzi']['c'] = '\uD86D[\uDC00-\uDF3F]|[\uD86A-\uD86C][\uDC00-\uDFFF]|\uD869[\uDF00-\uDFFF]';
-    unicode['hanzi']['d'] = '\uD86D[\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1F]';
+    unicode['punc'] = [
+        '[@&;=_\,\.\?\!\$\%\^\*\-\+\/]',
+        '[\(\\[\'"<‘“]',
+        '[\)\\]\'">”’]'
+    ];
 
-    unicode['biaodian'] = [];
-    unicode['biaodian'][0] = '[·・︰、，。：；？！—⋯…．·]';
-    unicode['biaodian']['open'] = '[「『（〔【《〈“‘]';
-    unicode['biaodian']['close'] = '[」』）〕】》〉’”]';
+    unicode['hanzi'] = [
+        '[\u4E00-\u9FFF]',
+        '[\u3400-\u4DB5\u9FA6-\u9FBB\uFA70-\uFAD9\u9FBC-\u9FC3\u3007\u3040-\u309E\u30A1-\u30FA\u30FD\u30FE]',
+        '[\uD840-\uD868][\uDC00-\uDFFF]|\uD869[\uDC00-\uDEDF]',
+        '\uD86D[\uDC00-\uDF3F]|[\uD86A-\uD86C][\uDC00-\uDFFF]|\uD869[\uDF00-\uDFFF]',
+        '\uD86D[\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1F]',
+        '[\u31C0-\u31E3]'
+    ];
+
+    unicode['biaodian'] = [
+        '[·・︰、，。：；？！—ー⋯…．·／]',
+        '[「『（〔【《〈“‘]',
+        '[」』）〕】》〉’”]'
+    ];
 
     unicode['bopomofo'] = [];
     unicode['bopomofo']['mps'] = [];
@@ -557,7 +443,6 @@ jQuery.noConflict();
     unicode['bopomofo']['tone'] = [];
     unicode['bopomofo']['tone']['five'] = '[\u02D9\u02CA\u02C5\u02C7\u02CB]';
     unicode['bopomofo']['tone']['extend'] = '[\u02EA\u02EB]';
-
 
 
 
@@ -666,12 +551,159 @@ jQuery.noConflict();
         var wm = $('<div style="display: none; writing-mode: tb-rl; -moz-writing-mode: tb-rl; -ms-writing-mode: tb-rl; -webkit-writing-mode: vertical-rl;">tester</div>'),
 
             bool = ( /^tb-rl$/.test( wm.css("writing-mode") ) ||
-            	/^vertical-rl$/.test( wm.css("-webkit-writing-mode") ) || 
+            	  /^vertical-rl$/.test( wm.css("-webkit-writing-mode") ) || 
                 /^tb-rl$/.test( wm.css("-moz-writing-mode") ) ||
                 /^tb-rl$/.test( wm.css("-ms-writing-mode") ) ) ? true: false;
 
         return bool;
     };
+
+
+
+
+
+    $.fn.extend({
+        hanInit: function() {
+            return init(this);
+        },
+
+
+        bitouwei: function() {
+            return this.each(function(){
+                $(this).addClass( 'han-js-bitouwei-rendered' );
+
+                var tou = unicode['biaodian'][0] + unicode['biaodian'][2],
+                    wei = unicode['biaodian'][1],
+                    start = unicode['punc'][0] + unicode['punc'][2],
+                    end = unicode['punc'][1];
+
+                tou = tou.replace(/\]\[/g, '' );
+                start = start.replace(/\]\[/g, '' );
+
+
+                // CJK characters
+                findAndReplaceDOMText(
+                    eval( '/(' + wei + ')(' + unicode_set('hanzi') + ')(' + tou + ')/ig' ),
+                    this,
+                    _span( 'bitouwei bitouweidian' )
+                );
+
+                findAndReplaceDOMText(
+                    eval( '/(' + unicode_set('hanzi') + ')(' + tou + ')/ig' ),
+                    this,
+                    _span( 'bitouwei bitoudian' )
+                );
+
+                findAndReplaceDOMText(
+                    eval( '/(' + wei + ')(' + unicode_set('hanzi') + ')/ig' ),
+                    this,
+                    _span( 'bitouwei biweidian' )
+                );
+
+
+                // Latin letters
+                findAndReplaceDOMText(
+                    eval( '/(' + end + ')(' + unicode_set('latin') + '+)(' + start + ')/ig' ),
+                    this,
+                    _span( 'bitouwei bitouweidian' )
+                );
+
+                findAndReplaceDOMText(
+                    eval( '/(' + unicode_set('latin') + '+)(' + start + ')/ig' ),
+                    this,
+                    _span( 'bitouwei bitoudian' )
+                );
+
+                findAndReplaceDOMText(
+                    eval( '/(' + end + ')(' + unicode_set('latin') + '+)/ig' ),
+                    this,
+                    _span( 'bitouwei biweidian' )
+                );
+            });
+        },
+
+
+        charize: function( glyph, charClass, innerSpan ){
+            var glyph = glyph || {},
+            charClass = (charClass == true) ? true : false;
+
+            glyph = {
+                cjk: glyph.cjk || 'individual',
+                bitouwei: (glyph.bitouwei == false) ? false : true,
+                latin: glyph.latin || 'group'
+            };
+
+            return this.each(function(){
+                if ( glyph.bitouwei )
+                    $(this).bitouwei();
+
+
+                // CJK characters
+                if ( glyph.cjk === 'individual' )
+                    findAndReplaceDOMText(
+                        eval( '/(' + unicode_set('hanzi') + ')/ig' ),
+                        this,
+                        _span( 'char cjk' )
+                    );
+
+
+                if ( glyph.cjk === 'individual' || glyph.cjk === 'biaodian' )
+                    findAndReplaceDOMText(
+                        eval( '/(' + unicode_set('biaodian') + ')/ig' ),
+                        this,
+                        _span( 'char cjk biaodian' )
+                    );
+
+
+                if ( glyph.cjk === 'group' )
+                    findAndReplaceDOMText(
+                        eval( '/(' + unicode_set('hanzi') + '+|' + unicode_set('biaodian') + '+)/ig' ),
+                        this,
+                        _span( 'char cjk' )
+                    );
+
+
+                var latin_regex = ( glyph.latin === 'group' ) ?
+                    '/(' + unicode_set('latin') + '+)/ig' :
+                    '/(' + unicode_set('latin') + ')/ig';
+
+                findAndReplaceDOMText(
+                    eval( latin_regex ),
+                    this,
+                    _span( 'char latin' )
+                );
+
+
+                findAndReplaceDOMText(
+                    eval( '/(' + unicode_set('punc') + '+)/ig' ),
+                    this,
+                    _span( 'char latin punc' )
+                );
+
+                findAndReplaceDOMText(
+                    /([\s]+)/ig,
+                    this,
+                    _span( 'char space' )
+                );
+
+
+                if ( innerSpan )
+                    $(this).find('.char').each(function(){
+                        $(this).html(
+                            $('<span>').text( $(this).text() )
+                        );
+                    });
+
+
+                if ( charClass ) 
+                    $(this).addClass('han-js-charized');
+            });
+        }
+    });
+
+
+
+
 
 
 
@@ -694,8 +726,7 @@ jQuery.noConflict();
     han();
 
     window.han = {
-        characterize: characterize,
-        unicode: unicode,
+        unicode: unicode_set,
         support: tester
     }
 
@@ -704,4 +735,311 @@ jQuery.noConflict();
 
 
 
+/**
+ * findAndReplaceDOMText v 0.3.0
+ * @author James Padolsey http://james.padolsey.com
+ * @license http://unlicense.org/UNLICENSE
+ *
+ * Matches the text of a DOM node against a regular expression
+ * and replaces each match (or node-separated portions of the match)
+ * in the specified element.
+ *
+ * Example: Wrap 'test' in <em>:
+ *   <p id="target">This is a test</p>
+ *   <script>
+ *     findAndReplaceDOMText(
+ *       /test/,
+ *       document.getElementById('target'),
+ *       'em'
+ *     );
+ *   </script>
+ */
+window.findAndReplaceDOMText = (function() {
 
+  /** 
+   * findAndReplaceDOMText
+   * 
+   * Locates matches and replaces with replacementNode
+   *
+   * @param {RegExp} regex The regular expression to match
+   * @param {Node} node Element or Text node to search within
+   * @param {String|Element|Function} replacementNode A NodeName,
+   *  Node to clone, or a function which returns a node to use
+   *  as the replacement node.
+   * @param {Number} [captureGroup] A number specifiying which capture
+   *  group to use in the match. (optional)
+   * @param {Function} [elFilter] A Function to be called to check whether to
+   *  process an element. (returning true = process element,
+   *  returning false = avoid element)
+   */
+  function findAndReplaceDOMText(regex, node, replacementNode, captureGroup, elFilter) {
+
+    var m, matches = [], text = _getText(node, elFilter);
+    var replaceFn = _genReplacer(replacementNode);
+
+    if (!text) { return; }
+
+    if (regex.global) {
+      while (m = regex.exec(text)) {
+        matches.push(_getMatchIndexes(m, captureGroup));
+      }
+    } else {
+      m = text.match(regex);
+      matches.push(_getMatchIndexes(m, captureGroup));
+    }
+
+    if (matches.length) {
+      _stepThroughMatches(node, matches, replaceFn, elFilter);
+    }
+  }
+
+  /**
+   * Gets the start and end indexes of a match
+   */
+  function _getMatchIndexes(m, captureGroup) {
+
+    captureGroup = captureGroup || 0;
+ 
+    if (!m[0]) throw 'findAndReplaceDOMText cannot handle zero-length matches';
+ 
+    var index = m.index;
+
+    if (captureGroup > 0) {
+      var cg = m[captureGroup];
+      if (!cg) throw 'Invalid capture group';
+      index += m[0].indexOf(cg);
+      m[0] = cg;
+    }
+
+    return [ index, index + m[0].length, [ m[0] ] ];
+  };
+
+  /**
+   * Gets aggregate text of a node without resorting
+   * to broken innerText/textContent
+   */
+  function _getText(node, elFilter) {
+
+    if (node.nodeType === 3) {
+      return node.data;
+    }
+
+    if (elFilter && !elFilter(node)) {
+      return '';
+    }
+
+    var txt = '';
+
+    if (node = node.firstChild) do {
+      txt += _getText(node, elFilter);
+    } while (node = node.nextSibling);
+
+    return txt;
+
+  }
+
+  /** 
+   * Steps through the target node, looking for matches, and
+   * calling replaceFn when a match is found.
+   */
+  function _stepThroughMatches(node, matches, replaceFn, elFilter) {
+
+    var after, before,
+        startNode,
+        endNode,
+        startNodeIndex,
+        endNodeIndex,
+        innerNodes = [],
+        atIndex = 0,
+        curNode = node,
+        matchLocation = matches.shift(),
+        matchIndex = 0,
+        doAvoidNode;
+
+    out: while (true) {
+
+      if (curNode.nodeType === 3) {
+
+        if (!endNode && curNode.length + atIndex >= matchLocation[1]) {
+          // We've found the ending
+          endNode = curNode;
+          endNodeIndex = matchLocation[1] - atIndex;
+        } else if (startNode) {
+          // Intersecting node
+          innerNodes.push(curNode);
+        }
+
+        if (!startNode && curNode.length + atIndex > matchLocation[0]) {
+          // We've found the match start
+          startNode = curNode;
+          startNodeIndex = matchLocation[0] - atIndex;
+        }
+
+        atIndex += curNode.length;
+      }
+
+      doAvoidNode = curNode.nodeType === 1 && elFilter && !elFilter(curNode);
+
+      if (startNode && endNode) {
+        curNode = replaceFn({
+          startNode: startNode,
+          startNodeIndex: startNodeIndex,
+          endNode: endNode,
+          endNodeIndex: endNodeIndex,
+          innerNodes: innerNodes,
+          match: matchLocation[2],
+          matchIndex: matchIndex
+        });
+        // replaceFn has to return the node that replaced the endNode
+        // and then we step back so we can continue from the end of the 
+        // match:
+        atIndex -= (endNode.length - endNodeIndex);
+        startNode = null;
+        endNode = null;
+        innerNodes = [];
+        matchLocation = matches.shift();
+        matchIndex++;
+        if (!matchLocation) {
+          break; // no more matches
+        }
+      } else if (
+        !doAvoidNode &&
+        (curNode.firstChild || curNode.nextSibling)
+      ) {
+        // Move down or forward:
+        curNode = curNode.firstChild || curNode.nextSibling;
+        continue;
+      }
+
+      // Move forward or up:
+      while (true) {
+        if (curNode.nextSibling) {
+          curNode = curNode.nextSibling;
+          break;
+        } else if (curNode.parentNode !== node) {
+          curNode = curNode.parentNode;
+        } else {
+          break out;
+        }
+      }
+
+    }
+
+  }
+
+  var reverts;
+  /**
+   * Reverts the last findAndReplaceDOMText process
+   */
+  findAndReplaceDOMText.revert = function revert() {
+    for (var i = 0, l = reverts.length; i < l; ++i) {
+      reverts[i]();
+    }
+    reverts = [];
+  };
+
+  /** 
+   * Generates the actual replaceFn which splits up text nodes
+   * and inserts the replacement element.
+   */
+  function _genReplacer(nodeName) {
+
+    reverts = [];
+
+    var makeReplacementNode;
+
+    if (typeof nodeName != 'function') {
+      var stencilNode = nodeName.nodeType ? nodeName : document.createElement(nodeName);
+      makeReplacementNode = function(fill) {
+        var clone = document.createElement('div'),
+            el;
+        clone.innerHTML = stencilNode.outerHTML || new XMLSerializer().serializeToString(stencilNode);
+        el = clone.firstChild;
+        if (fill) {
+          el.appendChild(document.createTextNode(fill));
+        }
+        return el;
+      };
+    } else {
+      makeReplacementNode = nodeName;
+    }
+
+    return function replace(range) {
+
+      var startNode = range.startNode,
+          endNode = range.endNode,
+          matchIndex = range.matchIndex;
+
+      if (startNode === endNode) {
+        var node = startNode;
+        if (range.startNodeIndex > 0) {
+          // Add `before` text node (before the match)
+          var before = document.createTextNode(node.data.substring(0, range.startNodeIndex));
+          node.parentNode.insertBefore(before, node);
+        }
+
+        // Create the replacement node:
+        var el = makeReplacementNode(range.match[0], matchIndex, range.match[0]);
+        node.parentNode.insertBefore(el, node);
+
+        if (range.endNodeIndex < node.length) {
+          // Add `after` text node (after the match)
+          var after = document.createTextNode(node.data.substring(range.endNodeIndex));
+          node.parentNode.insertBefore(after, node);
+        }
+
+        node.parentNode.removeChild(node);
+
+        reverts.push(function() {
+          var pnode = el.parentNode;
+          pnode.insertBefore(el.firstChild, el);
+          pnode.removeChild(el);
+          pnode.normalize();
+        });
+
+        return el;
+
+      } else {
+        // Replace startNode -> [innerNodes...] -> endNode (in that order)
+        var before = document.createTextNode(startNode.data.substring(0, range.startNodeIndex));
+        var after = document.createTextNode(endNode.data.substring(range.endNodeIndex));
+        var elA = makeReplacementNode(startNode.data.substring(range.startNodeIndex), matchIndex, range.match[0]);
+        var innerEls = [];
+
+        for (var i = 0, l = range.innerNodes.length; i < l; ++i) {
+          var innerNode = range.innerNodes[i];
+          var innerEl = makeReplacementNode(innerNode.data, matchIndex, range.match[0]);
+          innerNode.parentNode.replaceChild(innerEl, innerNode);
+          innerEls.push(innerEl);
+        }
+
+        var elB = makeReplacementNode(endNode.data.substring(0, range.endNodeIndex), matchIndex, range.match[0]);
+
+        startNode.parentNode.insertBefore(before, startNode);
+        startNode.parentNode.insertBefore(elA, startNode);
+        startNode.parentNode.removeChild(startNode);
+        endNode.parentNode.insertBefore(elB, endNode);
+        endNode.parentNode.insertBefore(after, endNode);
+        endNode.parentNode.removeChild(endNode);
+
+        reverts.push(function() {
+          innerEls.unshift(elA);
+          innerEls.push(elB);
+          for (var i = 0, l = innerEls.length; i < l; ++i) {
+            var el = innerEls[i];
+            var pnode = el.parentNode;
+            pnode.insertBefore(el.firstChild, el);
+            pnode.removeChild(el);
+            pnode.normalize();
+          }
+        });
+
+        return elB;
+      }
+    };
+
+  }
+
+  return findAndReplaceDOMText;
+
+}());

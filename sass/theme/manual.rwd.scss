@@ -1,0 +1,254 @@
+
+
+/* =================================================
+    Responsive Web Design (900px and below)
+ * ================================================= */
+
+@media screen and (max-width: 760px) {
+    #fork,
+    nav#sidebar ul {
+        display: none;
+    }
+
+    nav#sidebar {
+        background-color: #dadad2;
+        border: 0;
+        border-bottom: 1px solid #f9f9f7;
+        box-shadow: inset #cbcbbf 0px 20px 35px,
+                    inset #ccc 0 -1px 2px,
+                    #ccc 0 1px 2px;
+        box-sizing: border-box;
+        height: 50px;
+        opacity: .98;
+        padding: 0;
+        top: 0;
+        width: 100%;
+
+
+
+        & > div {
+            margin: 0 auto;
+            padding: 0 2em;
+            position: relative;
+            top: 0;
+            max-width: 40em;
+            min-width: 300px;
+        }
+
+        header {
+            background-image: none;
+            font-size: .8em;
+            left: 0;
+            padding: 12px 0 0;
+            position: absolute;
+            top: -1.65em;
+            width: 200px;
+        
+            p.des {  display: none;  }
+        }
+
+        button#for-sidebar-nav {
+            background-color: lighten(#6a543f, 50%);
+            border: 1px solid lighten(#6a543f, 30%);
+            border-radius: 50%;
+            box-shadow: inset rgba(#eee, .8) 1px 1px 1px;
+            color: #6a543f;
+            display: block;
+            height: 2em;
+            letter-spacing: .5em;
+            margin: .6em 1.5em;
+            padding-top: .3em;
+            position: absolute;
+            right: .75em;
+            width: 2em;
+            z-index: 5;
+
+            &:hover {
+                border-color: lighten(#6a543f, 20%);
+            }
+
+            &:active,
+            &:focus {
+                background-color: lighten(#6a543f, 45%);
+                box-shadow: inset rgba(lighten(#6a543f, 20%), .8) 1px 1px 5px;
+                color: #333;
+            }
+
+
+            span {
+                display: inline-block;
+                margin-left: -1em;
+                text-indent: -99999px;
+                width: 0;
+            }
+
+            span:before {
+                color: lighten(#6a543f, 5%);
+                display: inline-block;
+                left: 0;
+                margin: .5em;
+                position: absolute;
+                text-indent: 0;
+                top: 0;
+                width: 1em;
+            }
+        }
+    }
+
+
+
+    /* =================================================
+        Navibar開關
+     * ================================================= */
+
+     nav#sidebar {
+
+        &.on {
+            opacity: .98;
+
+            button#for-sidebar-nav {
+
+                 /* 黑背景，點按可關閉選單 */
+                 &:before {
+                    background-color: rgba(#333, .7);
+                    content: '';
+                    cursor: default;
+                    display: block;
+                    height: 100%;
+                    left: 0;
+                    position: fixed;
+                    top: 51px;
+                    width: 100%;
+                    z-index: -100;
+                }
+
+                span:before {
+                    @include fawesome("\f07c");
+                    margin-right: .29em;
+                }
+            }
+
+
+            ul {
+                background-color: #eee;
+                border-radius: 7px;
+                box-shadow: inset #aaa 0 3px 10px,
+                            #443 5px 10px 20px;
+                display: block;
+                @include calc( height, "100% - 50px - 3em" );
+                left: 15%;
+                margin-top: 50px;
+                opacity: .9;
+                position: fixed;
+                top: 1em;
+                width: 70%;
+                z-index: 100;
+            }
+        }
+
+
+        &.off button#for-sidebar-nav span:before {
+            @include fawesome("\f07b");
+            margin-right: .3em;
+        }
+
+     }
+
+
+    article {
+        left: 0;
+        margin: 8em auto 13em;
+        min-width: 300px;
+        padding: 0 1.5em;
+    }
+
+
+
+    /* =================================================
+        小螢幕（視窗）、小縮進
+     * ================================================= */
+
+    article h4:before {
+        margin-left: -.6em !important;
+    }
+
+
+    article:lang(zh).poem-like p,
+    article:lang(zh) blockquote.poem-like p,
+    article:lang(zh) p.poem-like,
+    article:lang(zh) ol > li,
+    article:lang(zh) ul > li {
+        margin-left: 1em;
+        padding: 0;
+        text-indent: 0;
+
+        & > p {  text-indent: 0;  }
+    }
+
+    article:lang(zh) blockquote {
+        margin-left: 1em;
+    
+        & blockquote {
+            margin-left: 1em;
+            padding-left: 1em;
+
+            & p {  text-indent: 0;  }
+        }
+    }
+}
+
+
+
+@media screen and (min-width: 761px) and (max-width: 900px) {
+    #fork {  left: 251px;  }
+    nav#sidebar {  width: 250px;  }
+
+    article {
+        left: 125px;
+        margin: 12em auto;
+        max-width: 500px;
+    }
+}
+
+
+
+@media screen and (max-width: 400px) {
+    nav#sidebar.on button#for-sidebar-nav,
+    nav#sidebar.off button#for-sidebar-nav {
+        letter-spacing: 0;
+        padding-top: .1em;
+    }
+
+
+    nav#sidebar.on ul {
+        left: 5%;
+        width: 90%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

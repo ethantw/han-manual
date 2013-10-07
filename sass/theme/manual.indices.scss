@@ -1,0 +1,121 @@
+
+
+/* =================================================
+    Indices
+ * ================================================= */
+
+article {
+    counter-reset: section-1;
+
+    h2:nth-of-type(1) {
+        counter-reset: verse-1;
+    }
+
+    header {
+        counter-reset: section-1;
+        counter-reset: verse-1;
+    }
+
+    h2 {
+        counter-increment: section-1;
+        counter-reset: verse-1;
+    }
+
+    h3:before {
+        content: counter(section-1) '.' counter(verse-1);
+        counter-increment: verse-1;
+        font-weight: bolder;
+        margin-right: .75em;
+    }
+
+    h4:before {
+        color: #962;
+        content: '\F138';
+        font-family: FontAwesome, sans-serif;
+        font-weight: normal;
+        font-size: .95em;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+        margin: -1px .75em 0 .5em;
+    }
+}
+
+
+
+/* =================================================
+    `<article>`裹的章節選單Indices
+ * ================================================= */
+
+ol.manual-index:nth-of-type(1) {
+    counter-reset: section;
+    font: .9em 'Biaodian Pro Sans', 'Helvetica Neue', Arial, 'Han Heiti', sans-serif;
+    list-style: none;
+    margin: 5em auto 2em;
+    min-width: 13.5em;
+    position: relative;
+    width: 100%;
+
+    &:after {
+        background-color: #f1f1ee;
+        border: 2px none #4c431d;
+        border-style: solid none;
+        box-shadow: inset #aaae98 10px 10px 30px;
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        margin: -1.5em 0 2em;
+        opacity: .3;
+        padding: 2em 0 1em;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    li a:before {
+        content: counter(section) '　';
+        counter-increment: section;
+    }
+
+
+    ol {
+        counter-reset: verse;
+        list-style: none;
+        margin: 0;
+        padding-left: 4em;
+
+
+        li a:before {
+            content: counter(section) '.' counter(verse) '　';
+            counter-increment: verse;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

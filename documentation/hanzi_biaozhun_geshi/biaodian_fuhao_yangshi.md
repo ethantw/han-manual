@@ -4,8 +4,8 @@
 	'Heiti TC', 'Lihei Pro', 'Microsoft Jhenghei', sans-serif;
 }
 
-table tr th:nth-child(2),
-table tr td:nth-child(2) {  text-align: center;  }
+table.biaodian_lists tr th:nth-child(2),
+table.biaodian_lists tr td:nth-child(2) {  text-align: center;  }
 
 
 table.pro tr th:nth-child(1) {  width: 9em  }
@@ -91,7 +91,7 @@ table.pro .example.cns {
 
 **註：**在_日_{ .pn }文網頁中，僅修正破折號及省略號。
 
-<table>
+<table class="biaodian_lists">
 <thead>
 <tr>
 <th>標點</th>
@@ -142,13 +142,12 @@ table.pro .example.cns {
 
 ### 進階版 { #fuhao_yangshi_shuoming-jinjieban }
 
-++進階版++預設關閉，需要另行啓用。
+++進階版標點符號樣式++包含常見的<em>所有</em>_中_{ .pn }文標點，並再細分為「_台_{ .pn }<wbr>_港_{ .pn }式」與「_中_{ .pn }<wbr>_日_{ .pn }式」二種以地區差異區分的版本。進階版功能*預設關閉*，[需要另行啓用][active]。
 
-進階版<b>標點符號樣式</b>包含常見的<em>所有</em>_中_{ .pn }文標點，並再細分為「_台_{ .pn }<wbr>_港_{ .pn }式」與「_中_{ .pn }<wbr>_日_{ .pn }式」二種以地區差異區分的版本。在萬國碼中同西文共用之字符以高亮背景色凸顯。
+[active]: hanzi_biaozhun_geshi/biaodian_fuhao_yangshi#activation-pro 
 
-**註：**進階版<a href="#qiyong_fangshi-jinjieban">需另行啓用</a>。
 
-<table class="pro" markdown="1">
+<table class="biaodian_lists pro" markdown="1">
 <thead>
 <tr>
 <th>標點</th>
@@ -262,6 +261,7 @@ table.pro .example.cns {
 </tbody>
 </table>
 
+<small>**關於上表：**在萬國碼中同西文共用之標點字符以高亮背景色凸顯。</small>
 
 
 啓用方式 { #activation }
@@ -293,34 +293,27 @@ table.pro .example.cns {
 
 
 
-### 進階版 { #activation-pro }
+### 進階版啓用方式 { #activation-pro }
 
 #### 直接套用於「_漢_{ .pn }字標準格式」定義的元素中
 
-選擇需要的地區標點樣式類別，並插入`html`中。
+選擇需要的地區標點樣式類別，並插入`<html>`標籤中。
 
-1. _台_{ .pn }<wbr>_港_{ .pn }繁體標點  
-   `class="han-biaodian-pro-cns"`
-2. _中_{ .pn }<wbr>_日_{ .pn }式標點  
-   `class="han-biaodian-pro"`
+| 地區 | _台_{ .pn }<wbr>_港_{ .pn }繁體標點 | _中_{ .pn }<wbr>_日_{ .pn }式標點 |
+| --- | --- | --- | 
+| 類別`class` | `han-biaodian-pro-cns` | `han-biaodian-pro`
 
 
-#### 自行套用
+
+#### 自行套用於各元素
 
 在欲套用效果的元素中，宣告下列字體並排序於其他字體前方，請依樣式、字體風格選擇標點字體。
 
-* 無襯線字體標點：
-	1. _台_{ .pn }<wbr>_港_{ .pn }繁體標點  
-	   `'Biaodian Pro Sans CNS'`
-	2. _中_{ .pn }<wbr>_日_{ .pn }式標點  
-	   `'Biaodian Pro Sans'`
 
-
-* 襯線字體標點：
-	1. _台_{ .pn }<wbr>_港_{ .pn }繁體標點  
-	   `'Biaodian Pro Serif CNS'`
-	2. _中_{ .pn }<wbr>_日_{ .pn }式標點  
-	   `'Biaodian Pro Serif'`
+| 種類／地區 | 無襯線字體 | 襯線字體 |
+| --- | --- | --- | 
+| _台_{ .pn }<wbr>_港_{ .pn }繁體標點 | `'Biaodian Pro Sans CNS'` | `'Biaodian Pro Serif CNS'` |
+| _中_{ .pn }<wbr>_日_{ .pn }式標點   | `'Biaodian Pro Sans'` | `'Biaodian Pro Serif'` |
 
 **註：**務必為自行套用標點字體元素下的**非_漢_{ .pn }字子元素**設定跳脫。如：
 
@@ -328,8 +321,8 @@ table.pro .example.cns {
 		font-family: 'Biaodian Pro Sans CNS', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
 
-	div.content.taiwan **:not(:lang(zh))**,
-	html.han-biaodian-pro-cns** div.content.taiwan :not(:lang(zh)) {
+	div.content.taiwan :not(:lang(zh)),
+	html.han-biaodian-pro-cns div.content.taiwan :not(:lang(zh)) {
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
 

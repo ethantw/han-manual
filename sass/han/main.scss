@@ -1,18 +1,31 @@
-@charset 'utf-8';
 
 /* 
- * 漢字標準格式 v2.0.0
+ * 漢字標準格式 v2.1.0
  * 以語言為基礎的元素樣式修正
  * ---
- * Language-based style correction to elements, 
+ * Language-based style correction, 
  * Hanzi-optimised CSS Mode
  *
  *
  *
  * Lisence: MIT Lisence
- * Last Modified: 2013/07/15
+ * Last Modified: 2013/10/5
  *
  */
+
+
+@import 'css3';
+
+
+ /* ---------------------------------------
+    變數設定
+    ---
+    Variables
+    ---------------------------------------
+    顏色
+    Colours
+    --------------------------------------- */
+$lightgrey: lightgrey;
 
 
 
@@ -27,7 +40,7 @@
    --------------------------------------- */
 
 dfn {
-    font-style: normal;
+    font-style: inherit;
     font-weight: bolder;
 }
 
@@ -46,14 +59,34 @@ pre code {
 
 
 /* ---------------------------------------
+   $(selector).charize()
+   --------------------------------------- 
+   避頭尾點
+   Prevents punctuation from stuck in the
+   start/end of a line.
+   --------------------------------------- */
+
+.han-js-charized span.char,
+.han-js-bitouwei-rendered span.bitouwei {
+    display: inline-block;
+    text-indent: 0;
+}
+
+.han-js-charized span.char.space,
+.han-js-charized span.char > span {
+    display: inline;
+}
+
+
+
+/* ---------------------------------------
    底線
    ---
    Underlines
    --------------------------------------- 
-   註記元素（u）及兩相鄰時的顯示方式（u+u）
+   註記元素（u）及兩相鄰時的底線區別（u+u）
    Annotations and adjacent ones
    --------------------------------------- */
-
 :lang(zh) u,
 :lang(ja) u {
     letter-spacing: 0;
@@ -66,30 +99,115 @@ u + u {
     margin-left: .125em;
 }
 
-html.han-js u + u {
+html.han-js-rendered u + u {
     margin-left: 0;
 }
 
-html.han-js u.adjacent {
+html.han-js-rendered u.adjacent {
     margin-left: .125em;
 }
+
+/* 實驗性功能 */
+u.han-js-charized {
+    border-bottom: 0 none;
+    text-decoration: none;
+
+    span.char:not(:first-of-type):not(:last-of-type) span,
+    span.hanla,
+    span.char:first-of-type span:after,
+    span.char:last-of-type span:after {
+        border-bottom: 1px solid;
+        padding-bottom: .125em;
+    }
+
+    span.char:first-of-type span,
+    span.char:last-of-type span {
+        position: relative;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            left: 0;
+            margin-left: 1px;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            @include calc( width, "100% - 1px" );
+        }
+    }
+
+    span.char:last-of-type span:after {
+        margin: 0 1px 0 0;
+    }
+
+    span.char:first-child:last-child span:after {
+        margin: 0 1px 0;
+        @include calc( width, "100% - 2px" );
+    }
+
+    :not(:first-child) span.char:first-of-type span:after,
+    :not(:last-child) span.char:last-of-type span:after,
+    span.char:not(:first-child):first-of-type span:after,
+    span.char:not(:last-child):last-of-type span:after {
+        border-bottom: 0;
+    }
+
+    :not(:first-child) span.char:first-of-type span,
+    :not(:last-child) span.char:last-of-type span,
+    span.char:not(:first-child):first-of-type span,
+    span.char:not(:last-child):last-of-type span {
+        border-bottom: 1px solid;
+        padding-bottom: .125em;
+    }
+
+    span.hanla:first-child,
+    span.hanla:last-child {
+        border: 0 none;
+    }
+
+    :not(:first-child) span.hanla:first-child,
+    :not(:last-child) span.hanla:last-child {
+        border: 1px solid;
+    }
+
+
+
+    /* 若在注音符號`<ruby>`中 */
+    span.han-js-zhuyin-rendered & {
+        border-bottom: 1px solid;
+        padding-bottom: .125em;
+
+        span.char span {
+            border-bottom: 0 none !important;
+        }
+
+        & + u {
+            margin-left: .125em;
+        }
+    }
+}
+
+
+
 
 
 /* 重新定製「連結、插入元素」的樣式
    Re-styles anchors and additions
    --------------------------------------- */
 
-html:lang(zh) a:link,
-html:lang(zh) a:visited,
-html:lang(zh) a:hover,
-html:lang(zh) a:active,
-html:lang(zh) ins {
-    text-decoration: inherit;
-}
+html:lang(zh) {
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    ins {
+        text-decoration: inherit;
+    }
 
-html:lang(zh) ins {
-    border-bottom: 3px double lightgrey;
-    padding-bottom: .05em;
+    ins {
+        border-bottom: 3px double $lightgrey;
+        padding-bottom: .05em;
+    }
 }
 
 
@@ -104,13 +222,15 @@ html:lang(zh) ins {
    Headings of level 4 and 5
    --------------------------------------- */
 
-article h4, article h5 {
+article h4,
+article h5 {
     margin: 1em 0;
 }
 
 article h4 + h5 {
     margin-top: -.5em;
 }
+
 
 
 /* 段落及清單
@@ -121,19 +241,6 @@ article p,
 article li {
     line-height: 2;
     text-align: justify;
-}
-
-article p {
-    margin: 0;
-    text-indent: 2.4em;
-}
-
-article:lang(zh) p {
-    text-indent: 2em;
-}
-
-article:lang(ja) p {
-    text-indent: 1em;
 }
 
 article:lang(zh) p.poem-like,
@@ -158,18 +265,11 @@ article:lang(ja) ol,
 article:lang(ja) ul {
     margin: .5em 0 .5em 0;
     padding: 0;
-}
 
-article:lang(zh) ol > li,
-article:lang(zh) ul > li {
-    margin-left: 2em;
-    padding: 0;
-}
-
-article:lang(ja) ol > li,
-article:lang(ja) ul > li {
-    margin-left: 1em;
-    padding: 0;
+    > li {
+        margin-left: 2em;
+        padding: 0;
+    }
 }
 
 article h4 + ul,
@@ -185,11 +285,10 @@ article:lang(ja) ol,
 article:lang(ja) ul {
     margin-left: 1em;
     padding-left: 1.5em;
-}
 
-article li p:lang(zh),
-article li p:lang(ja) {
-    text-indent: 0;
+  > li {
+      margin-left: 1em;
+  }
 }
 
 
@@ -198,11 +297,7 @@ article li p:lang(ja) {
    漢拉間隙
    ---
    Gaps between Hanzi and Latin letter
-   ---------------------------------------
- *
- * 1. IE hacks.
- *
- */
+   --------------------------------------- */
 
 span.hanla,
 html:not(.han-la) span.hanla {
@@ -212,13 +307,14 @@ html:not(.han-la) span.hanla {
 html.han-la span:lang(zh).hanla,
 html.han-la span:lang(ja).hanla {
     display: inline;
+    position: static;
 }
 
 html.han-la span.hanla:after {
-	content: ' ';
-	display: inline;
+    content: ' ';
+    display: inline;
     font-size: 1ch;
-	font-size: -webkit-calc( .25em );
+    font-size: -webkit-calc( .25em );
 }
 
 html.han-la code span.hanla:after,
@@ -228,20 +324,6 @@ html.han-la samp span.hanla:after,
 html.han-la ol > span.hanla:after,
 html.han-la ul > span.hanla:after {
     display: none;
-}
-
-html.han-la body,
-html.han-la body * {
-    text-autospace: ideograph-alpha; /* 1 */ 
-}
-
-html.han-la code,
-html.han-la pre,
-html.han-la kbd,
-html.han-la samp,
-html.han-la ol,
-html.han-la ul {
-    text-autospace: none; /* 1 */
 }
 
 
@@ -342,8 +424,8 @@ cite.no-cite-mark:after {
     font-style: inherit;
 }
 
-html:not(.han-js) :lang(zh) em,
-html:not(.han-js) :lang(ja) em {
+html:not(.han-js-rendered) :lang(zh) em,
+html:not(.han-js-rendered) :lang(ja) em {
     border-bottom: 2px dotted;
     padding-bottom: .05em;
 }
@@ -393,9 +475,9 @@ html:not(.han-js) :lang(ja) em {
     display: inline-block;
     font-style: normal;
     font-weight: normal;
-    height: .9em; /* 1 */
+    height: 1.9em; /* 1 */
     left: 0;
-    line-height: 1em;
+    line-height: 1.9em;
     margin: .925em 0 0 0;
     overflow: hidden;
     position: absolute;
@@ -452,16 +534,22 @@ html:not(.han-js) :lang(ja) em {
  *
  */
 
+:lang(zh) i,
+:lang(ja) i,
+i:lang(zh),
+i:lang(ja) {
+    font-style: inherit;
+}
+
 i:lang(zh),
 i:lang(ja) {
     font-family: cursive, serif;
-    font-style: inherit;
 }
 
 .no-fontface-kaiti i:lang(zh),
 .no-fontface-kaiti i:lang(ja) /* 1 */ {
     font-family: serif;
-    border-bottom: 3px double lightgrey;
+    border-bottom: 3px double $lightgrey;
     padding-bottom: .05em;
 }
 
@@ -555,18 +643,10 @@ article:lang(ja) blockquote {
 
 article:lang(zh) blockquote blockquote {
     margin: 1em 0 1em 2em;
-    padding-left: 2em;
 }
 
 article:lang(ja) blockquote blockquote {
     margin: 1em 0 1em 1em;
-    padding-left: 1em;
-}
-
-article:lang(zh) blockquote blockquote p,
-article:lang(ja) blockquote blockquote p {
-    margin: 0 0 1em;
-    text-indent: 0;
 }
 
 
@@ -587,7 +667,7 @@ figure:lang(ja) blockquote blockquote {
 
 figure:lang(zh) blockquote:before,
 figure:lang(ja) blockquote:before {
-    color: lightgrey;
+    color: $lightgrey;
     content: '‘';
     display: block;
     float: left;
@@ -600,12 +680,10 @@ figure:lang(ja) blockquote p,
 figure:lang(zh) blockquote blockquote p
 figure:lang(ja) blockquote blockquote p {
     margin: .2em 0;
-    text-align: justify;
-    text-indent: 0;
 }
 
 figure figcaption {
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid $lightgrey;
     clear: both;
     color: #666;
     font: .85em normal sans-serif;
@@ -624,8 +702,8 @@ figure figcaption {
    Romanisation
    --------------------------------------- */
 
-html.han-js ruby rt:before,
-html.han-js ruby rt:after {
+html.han-js-rendered ruby rt:before,
+html.han-js-rendered ruby rt:after {
     content: '';
 }
 
@@ -703,9 +781,6 @@ samp {
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px),
        only screen and (device-aspect-ratio: 2/3),
        only screen and (device-aspect-ratio: 40/71) {
-    article:lang(zh) p {
-        text-indent: 1em;
-    }
 
     article:lang(zh).poem-like p,
     article:lang(zh) .poem-like p,
@@ -714,7 +789,6 @@ samp {
     article:lang(zh) ul > li {
         margin-left: 1em;
         padding: 0;
-        text-indent: 0;
     }
 
     article:lang(zh) blockquote {
@@ -726,5 +800,4 @@ samp {
         padding-left: 1em;
     }
 }
-
 

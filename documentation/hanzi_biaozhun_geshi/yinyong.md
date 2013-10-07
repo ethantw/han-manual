@@ -36,29 +36,6 @@
 行內引言若是詩篇等多行文字範圍時，用斜線「／」來表示斷行。
 
 
-### 覆寫／去除此元素樣式 { #hangnei_yinyan-overwrite }
-
-	q:lang(zh),
-	q:lang(ja),
-	q:lang(zh-CN),
-	q:lang(zh-hans),
-	q:lang(en),
-	q:lang(en-GB) {
-	    quotes: '' '';
-	}
-
-	.no-quotes q:lang(zh):before,
-	.no-quotes q:lang(ja):before,
-	.no-quotes q:lang(zh):after,
-	.no-quotes q:lang(ja):after,
-	.no-quotes q.double:lang(zh):before,
-	.no-quotes q.double:lang(ja):before,
-	.no-quotes q.double:lang(zh):after,
-	.no-quotes q.double:lang(ja):after {
-	    content: '';
-	}
-
-
 
 ### 角引號
 
@@ -78,7 +55,7 @@
 
 ### 文章內的區塊引用 { #wenzhang_nei_de_qukuai_yinyong }
 
-在文章元素`<article>`內的區塊引用向內縮進，窄一般段落或清單項目二字元（行動裝置等螢幕較小的系統上則縮進一字元），並使用「[[楷體]] { .kaiti }」為其內文字體。
+在文章元素`<article>`內的區塊引用向內縮進，較一般段落或清單項目窄二個字元（行動裝置等螢幕較小的系統上則縮進一字元），並使用「[[楷體]] { .kaiti }」為其內文字體。
 
 
 
@@ -97,67 +74,6 @@
 以_德_{.pn}語說出「我是_柏林人_{.pn}」這句子，是_甘迺迪_{.pn}在最後才想到的。他走上_舍嫩貝格市政廳_{.pn}（[[Rathaus Schöneberg]]{ :de }）時，向翻譯員_羅伯特·洛赫納_{.pn}請教這句子的_德_{.pn}語說法，以小紙張標下讀音，並練習了幾次。
 </blockquote>
 <p class="cite" markdown="1"><cite><a href="http://zh.wikipedia.org/wiki/我是柏林人">維基百科·我是柏林人</a></cite></p>
-
-
-
-#### 覆寫／去除此元素樣式 { #wenzhang_nei_de_qukuai_yinyong-overwrite }
-
-覆寫一般系統上的樣式，
-
-	/* 覆寫文章內的區塊引用（blockquote） */
-	article:lang(zh) blockquote,
-	article:lang(ja) blockquote,
-	article blockquote:lang(ja) {
-	    font-family: inherit;
-	    margin: 0;
-	    width: auto;
-	}
-
-	html.han-biaodian-pro article blockquote,
-	html.han-biaodian-pro-cns article blockquote,
-	article:lang(zh) blockquote :not(:lang(zh)),
-	article:lang(ja) blockquote :not(:lang(ja)),
-	html.han-biaodian-pro article blockquote :not(:lang(zh)),
-	html.han-biaodian-pro-cns article blockquote :not(:lang(zh)) {
-	    font-family: inherit;
-	}
-
-
-
-	/* 覆寫引用中的引用 */
-	article:lang(zh) blockquote blockquote,
-	article:lang(ja) blockquote blockquote {
-	    margin: 0;
-	    padding-left: 0;
-	}
-
-	article:lang(zh) blockquote blockquote p,
-	article:lang(ja) blockquote blockquote p {
-	    margin: 0;
-	    text-indent: 2em;
-	}
-
-
-覆寫手持裝置上的微調，
-
-	@media only screen and (min-device-width: 320px) and (max-device-width: 480px),
-	       only screen and (device-aspect-ratio: 2/3),
-	       only screen and (device-aspect-ratio: 40/71) {
-	    article:lang(zh) blockquote {
-	        margin-left: 0;
-	    }
-
-	    article:lang(zh) blockquote blockquote {
-	        margin-left: 0;
-	        padding-left: 0;
-	    }
-
-		article:lang(zh) blockquote blockquote p,
-		article:lang(ja) blockquote blockquote p {
-		    margin: 0;
-		    text-indent: 1em;
-		}
-	}
 
 
 
@@ -207,8 +123,9 @@ article.simulator p.time {
 
 article.simulator figure {
 	float: right;
-	margin: .7em 1em;
-	width: 210px;
+	margin: .5em 1em;
+	min-width: 17em;
+	width: 40%;
 }
 
 article.simulator figure blockquote {
@@ -243,6 +160,8 @@ _吳寶春_{.pn}說，當時想要讀書，只是想要透過學習，獲得管�
 他表示，他從媽媽身上學到的是「從不怨天尤人」，心裡面永遠帶著感恩的心，他很珍惜_台灣_{.pn}給他的一切，也會更加努力付出。
 
 「當我走到生命的最後一天，我是什麼樣的人？」_吳寶春_{.pn}說這是他目前在思考的事，「我會成為什麼樣的人？」他說，在他的生命中，只要是一句話或一個行為改變了他，這個人就是他的貴人，他永遠感激。
+
+<small>**版權宣告：**文章節錄自[中央通訊社](http://www.cna.com.tw/)</small>
 </article>
 
 
@@ -252,7 +171,7 @@ _吳寶春_{.pn}說，當時想要讀書，只是想要透過學習，獲得管�
 	/* 描述元素 */
 	article figure {
 		float: right;       /* 飄浮於文章文字右方 */
-		margin: .7em 1em;   /* 上下、右左方的邊界值，以同文章內文區隔 */
+		margin: .5em 1em;   /* 上下、右左方的邊界值，以同文章內文區隔 */
 		width: 210px;		/* 寬度，最好小於文章區塊的0.5倍 */
 	}
 

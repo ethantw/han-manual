@@ -4,15 +4,12 @@
 
 如你現在所見的這幾段文字——為了提升長篇文章的閱讀效率，並減少閱讀時因文字密度過大所生的疲憊，「_漢_{.pn}字標準格式」將文章元素`<article>`中的文字行高上調至二倍。
 
-在文章裡，「_漢_{.pn}字標準格式」採用「++首行縮進++」的分段方式，以求各段落間的語句緊密相湊、一氣呵成，省去了「空白行間距」分段所需的多餘空間。
 
-**_中_{ .pn }文網頁中，各段落開頭縮進二字元；_日_{ .pn }文網頁，每段落則縮進一字元。**而在手機等手持裝置上，各段落皆縮進一字元，以節省小螢幕的顯示空間。
 
 
 #### 清單 { #qingdan }
 
-
-文章中，清單元素`<ol>`、`<ul>`縮排二字元；於_日_{ .pn }文網頁中則縮排一字元，以對齊段落。
+文章中，清單元素`<ol>`、`<ul>`中的各條目`<li>`縮排二字元；於_日_{ .pn }文網頁中則縮排一字元，以對齊段落。
 
 > <b>[為什麼](http://www.zhihu.com/question/20274713)現代的_印度_{ .pn }音樂仍能保有一種強烈的、一聽就能辨別出來的風格，而_中國_{ .pn }音樂卻不是這樣？</b>
 
@@ -28,14 +25,16 @@
 
 #### 詩篇 { #shipian }
 
-一段落屬於「詩篇」時，各行皆縮排二字元。
+一段落屬於「詩篇」時，各行皆縮排二字元；於_日_{ .pn }文網頁中則縮排一字元。而在手機等手持裝置上，詩篇段落則縮進一字元，以節省小螢幕的顯示空間。
 
 <blockquote class="example poem-like"  markdown="1">
 橫看成嶺側成峰，遠近高低各不同。<br>
 不識_廬山_{ .pn }真面目，只緣身在此山中。
 </blockquote>
 
-<p class="cite"  markdown="1">_蘇軾_{ .pn }<cite class="piece">題西林寺壁</cite></p>
+<p class="cite" markdown="1">_蘇軾_{ .pn }<cite class="piece">題西林寺壁</cite></p>
+
+<small>**提示：**包含此處及《_漢_字標準格式·使用手冊》全網站的範例皆置於「引用元素」`<blockquote>`中，故你在上方範例所見到的詩篇段落共縮進了四個字元（手持裝置及小瀏覽視窗共縮進二字元）。</small>
 
 
 **需在段落元素`<p>`或其父輩元素（如但不限於`<article>`、`<blockquote>`、`<div>`等）中手動套用類別`.poem-like`**（使用前二者將作用於其內<em>所有</em>段落`p`子元素），**再以`<br>`標籤換行。**例如：
@@ -88,10 +87,6 @@
 如，瀏覽器視窗寬度較小時，便可使用一個字元的寬度縮進：
 
     @media screen and (min-width: 320px) and (max-width: 480px) {
-        article:lang(zh) p {
-            text-indent: 1em;
-        }
-
         article:lang(zh) ol > li,
         article:lang(zh) ul > li {
             margin-left: 1em;
@@ -112,58 +107,6 @@
         margin-right: .1em;
     }
 
-    /* 去除首段的文字縮進 */
-    article header:nth-of-type(1) ~ p:nth-of-type(1),
-    article h1:nth-of-type(1) ~ p:nth-of-type(1) {
-        text-indent: 0;
-    }
 
-
-### 覆寫／去除此元素樣式 { #overwrite }
-
-1. 藉由以下代碼，你可以*完整去除*「_漢_{.pn}字標準格式」所定義的「++文章內段落元素++」樣式。
-
-        article p,
-        article li {
-            line-height: inherit;
-            text-align: inherit;
-        }
-
-        article p,
-        article:lang(zh) p,
-        article:lang(ja) p,
-        article:lang(zh) p.poem-like,
-        article:lang(zh).poem-like p,
-        blockquote:lang(zh).poem-like p,
-        article:lang(ja) p.poem-like,
-        article:lang(ja).poem-like p,
-        blockquote:lang(ja).poem-like p {
-            margin: 0;
-            text-indent: inherit;
-        }
-
-2. 也可以將「++文章內段落元素++」的樣式*回復為預設的*「空白行分段」樣式。
-
-        article p,
-        article:lang(zh) p,
-        article:lang(ja) p {
-            margin: 1em 0;
-            text-indent: inherit;
-        }
-
-#### 注意事項 { #attention }
-
-顯示為「行間區塊」的元素（`display: inline-block;`）將繼承其父元素的「縮排」`text-indent`屬性值，*需要另行覆蓋*以正確顯示，
-
-    article:lang(zh) p {
-        text-indent: 2em;
-    }
-
-    article p mark {
-        background-color: green;
-        display: inline-block;
-        padding: 1px 2px;
-        text-indent: 0; /* 否則將繼承`article:lang(zh) p`的`2em` */
-    }
 
 

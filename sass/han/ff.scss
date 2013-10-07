@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
 /* 
- * 漢字標準格式 v2.0.0
+ * 漢字標準格式 v2.1.0
  * @font-face字體設定
  * ---
  * @font-face settings,
@@ -10,7 +10,7 @@
  *
  *
  * Lisence: MIT Lisence
- * Last Modified: 2013/06/15
+ * Last Modified: 2013/10/5
  *
  */
 
@@ -185,18 +185,19 @@
 
 @font-face {
     font-family: 'Han Zhuyin Cursive';
-    src: local('☺'), url(../fonts/zhuyin.eot) format('embedded-opentype')  /* for IE10 */,
+    src: local('☺'),
+         url(../fonts/zhuyin.eot) format('embedded-opentype')  /* for IE10 */,
          url(../fonts/zhuyin.ttf) format('truetype'); 
 }
 
 @font-face {
     font-family: 'Han Zhuyin Sans';
-    src: local('Hiragino Sans GB'); 
+    src: local('Hiragino Sans GB'), local("Microsoft JhengHei"); 
 }
 
 @font-face {
     font-family: 'Han Zhuyin Sans';
-    src: local('Heiti TC'); 
+    src: local('Heiti TC'), local("Microsoft JhengHei"); 
     unicode-range: U+3127, U+02C7, U+02CA-B, U+02D9;
 }
 
@@ -239,7 +240,7 @@
 
 @font-face {
     font-family: 'Biaodian Serif';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(SimSun), /* 2 */
         local(IPAexMincho), local(IPAMincho), local(UMingCN) /* 3 */;
     unicode-range: U+FF0E;
@@ -255,7 +256,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(SimSun), /* 2 */
         local(IPAexMincho), local(IPAMincho), local(UMingCN) /* 3 */;
     unicode-range: U+FF0E;
@@ -271,7 +272,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif CNS';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(SimSun), /* 2 */
         local(IPAexMincho), local(IPAMincho), local(UMingCN) /* 3 */;
     unicode-range: U+FF0E;
@@ -292,7 +293,7 @@
 
 @font-face {
     font-family: 'Biaodian Serif';
-    src: local(STSong), local('Heiti SC'), /* 1 */
+    src: local(STSongti-SC-Regular), local(STSong), local('Heiti SC'), /* 1 */
         local(SimSun), /* 2 */
         local('ARPLMingU20'), local('VL Gothic') /* 3 */;
     unicode-range: U+00B7;
@@ -308,7 +309,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif';
-    src: local(STSong), local('Heiti SC'), /* 1 */
+    src: local(STSongti-SC-Regular), local(STSong), local('Heiti SC'), /* 1 */
         local(SimSun), /* 2 */
         local('ARPLMingU20'), local('VL Gothic') /* 3 */;
     unicode-range: U+00B7;
@@ -324,7 +325,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif CNS';
-    src: local(STSong), local('Heiti SC'), /* 1 */
+    src: local(STSongti-SC-Regular), local(STSong), local('Heiti SC'), /* 1 */
         local(SimSun), /* 2 */
         local('ARPLMingU20'), local('VL Gothic') /* 3 */;
     unicode-range: U+00B7;
@@ -345,7 +346,7 @@
 
 @font-face {
     font-family: 'Biaodian Serif';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local('Microsoft Yahei'), local(SimSun), /* 2 */
         local(IPAexMincho), local(WenQuanYiZenHei), local('VL Gothic') /* 3 */;
     unicode-range: U+2014;
@@ -377,7 +378,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local('Microsoft Yahei'), local(SimSun), /* 2 */
         local(IPAexMincho), local(WenQuanYiZenHei), local('VL Gothic') /* 3 */;
     unicode-range: U+2014;
@@ -393,7 +394,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif CNS';
-    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSong), /* 1 */
+    src: local('Hiragino Mincho ProN'), local('Hiragino Mincho Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local('Microsoft Yahei'), local(SimSun), /* 2 */
         local(IPAexMincho), local(WenQuanYiZenHei), local('VL Gothic') /* 3 */;
     unicode-range: U+2014;
@@ -482,7 +483,7 @@
 
 @font-face {
     font-family: 'Biaodian Serif';
-    src: local('Lisong Pro'), local(STSong), /* 1 */
+    src: local('Lisong Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(STHeiti), local('Heiti SC'),
         local(SimSun), local(PMingLiU), /* 2 */
         local('IPAexMincho'), local(IPAMincho), local('AR PL UMing TW'), local('ARPLMingU20') /* 3 */;
@@ -499,7 +500,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif';
-    src: local('Lisong Pro'), local(STSong), /* 1 */
+    src: local('Lisong Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(STHeiti), local('Heiti SC'),
         local(SimSun), local(PMingLiU), /* 2 */
         local('IPAexMincho'), local(IPAMincho), local('AR PL UMing TW'), local('ARPLMingU20') /* 3 */;
@@ -516,7 +517,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif CNS';
-    src: local('Lisong Pro'), local(STSong), /* 1 */
+    src: local('Lisong Pro'), local(STSongti-SC-Regular), local(STSong), /* 1 */
         local(SimSun), local(PMingLiU), /* 2 */
         local('IPAexMincho'), local(IPAMincho), local('AR PL UMing TW'), local('ARPLMingU20') /* 3 */;
     unicode-range: U+201C-201D, U+2018-2019;
@@ -548,7 +549,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif';
-    src:local('Times New Roman'), /* 3 */, local('Droid Sans Fallback') /* 5 */;
+    src: local('Times New Roman') /* 3 */, local('Droid Sans Fallback') /* 5 */;
     unicode-range: U+25CF;
 }
 
@@ -610,7 +611,7 @@
 
 @font-face {
     font-family: 'Biaodian Pro Serif CNS';
-    src: local('Lisong Pro'), local(LiSungLight), local('Heiti TC'), /* 1 */
+    src: local(STSongti-TC-Regular), local('Lisong Pro'), local(LiSungLight), local('Heiti TC'), /* 1 */
         local(PMingLiU), /* 2 */
         local('IPAexGothic'), local('AR PL UMing TW'), local('ARPLMingU20') /* 3 */;
     unicode-range: U+3002, U+FF0C, U+3001, /* a */

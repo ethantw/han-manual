@@ -1,0 +1,59 @@
+
+
+/* =================================================
+    文章內的表格
+ * ================================================= */
+
+table {
+    font: .8em 'Biaodian Pro Sans', 'Helvetica Neue', Arial, 'Han Heiti', sans-serif;
+    margin: 1em auto 2em;
+    min-width: 355px;
+    width: 100%;
+
+
+    th {  text-align: left;  }
+
+    thead tr th {
+        border-bottom: 2px solid #9e7611;
+        height: 2.5em;
+    }
+
+    th,
+    td {
+        border-bottom: 1px dotted;
+            border-color: #ccc;
+            border-color: rgba(50%, 40%, 20%, 0.15);
+        height: 2em;
+    }
+
+    tr th:first-child {  width: 25%;  }
+    .important {  background-color: #fdf9c5;  }
+
+
+    tbody tr:hover {
+        th, td {
+            background-color: rgba(100%, 100%, 100%, .5);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

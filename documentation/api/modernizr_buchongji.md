@@ -1,5 +1,5 @@
 <style scoped>
-article header:nth-of-type(1) ~ p:nth-of-type(1)::first-letter {
+.manual article header:nth-of-type(1) ~ p:nth-of-type(1)::first-letter {
 	font-size: 3.5em;
 }
 </style>
@@ -21,18 +21,18 @@ article header:nth-of-type(1) ~ p:nth-of-type(1)::first-letter {
 
 #### JavaScript支援與否 { #zhiyuan_javascript_yufou }
 
-「[[Modernizr]]{:en}補充集」需要JavaScript方可運作，設計師可在|CSS|中調用類別「`.han-js`」確知JavaScript及`han.js`是否於用戶的瀏覽器上正常運作、載入。
+「[[Modernizr]]{:en}補充集」需要JavaScript方可運作，設計師可在|CSS|中調用類別「`.han-js-rendered`」確知JavaScript及`han.js`是否於用戶的瀏覽器上正常運作、載入。
 
 支援JavaScript的情況下，
 
-	.han-js div.js-support-msg:after {
+	.han-js-rendered div.js-support-msg:after {
 		content: '你的瀏覽器支援JavaScript並且正確載入了han.js。';
 	}
 
 
 不支援的情況，
 
-	html:not(.han-js) div.js-support-msg:after {
+	html:not(.han-js-rendered) div.js-support-msg:after {
 		content: '你的瀏覽器不支援JavaScript或未正確載入han.js。';
 	}
 
@@ -90,7 +90,7 @@ writing-mode         | `writingmode`
 ---
 
 在JavaScript中，使用全域變數集「`han.support.功能類別名稱`」即可獲得一布林值，`true`表該功能在用戶端可使用，反之，`false`表示不支援。
-。
+
 
 
 ### 特定字體／字體集支援函式
