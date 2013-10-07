@@ -14,6 +14,21 @@
 
 
 
+***
+
+這分使用手冊以修改後的[Markdown Extra]格式撰寫，所有的說明文件皆置於「`documentation`」資料匣內，使用PHP 5.3以上版本，並修改`MODIFY.htaccess`內的路徑，將其重新命名為伺服器支援的「[超文本文件目錄][htaccess]」檔名，方可於瀏覽器上正確瀏覽使用手冊。
+
+[Markdown Extra]: http://michelf.ca/projects/php-markdown/extra
+[htaccess]: https://zh.wikipedia.org/wiki/.htaccess
+
+
+這分使用手冊仍有許多尚稱不足的之處，歡迎你的協作，一同完善這些缺失。
+
+
+
+
+
+
 
 
 
