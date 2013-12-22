@@ -68,7 +68,7 @@
 
 	<ruby class="reading romanization">
 		伊<rt>i</rt>逐工<rt>ta̍k-kang</rt>攏咧<rt>lóng-teh</rt>
-		笑<rt>siàu</rt>電影<rt>tiān-iánn</rt>，<rt></rt>
+		痟<rt>siáu</rt>電影<rt>tiān-iánn</rt>，<rt></rt>
 		聽<rt>thiann</rt>阿啄仔<rt>a-tok-á</rt>的<rt>ê</rt>
 		<abbr lang="en" title="compact disc">CD</abbr>。
 	</ruby>
