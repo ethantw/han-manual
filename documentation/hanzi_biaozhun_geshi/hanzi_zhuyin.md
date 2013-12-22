@@ -60,7 +60,7 @@
 
 	<br>
 	<ruby class="reading romanization">
-		自<rt>tsū</rt>細漢<rt>sè-hàn</rt>著<rt>tio̍h </rt>立志<rt>li̍p-tsì</rt>
+		自<rt>tsū</rt>細漢<rt>sè-hàn</rt>就<rt>tō </rt>立志<rt>li̍p-tsì</rt>
 		講<rt>kóng</rt>欲<rt>beh</rt>寫歌<rt>siá-kua</rt>唱歌<rt>tshiùnn-kua</rt>趁錢<rt>thàn-tsînn</rt>；
 	</ruby>
 
@@ -68,7 +68,7 @@
 
 	<ruby class="reading romanization">
 		伊<rt>i</rt>逐工<rt>ta̍k-kang</rt>攏咧<rt>lóng-teh</rt>
-		痟<rt>siáu</rt>電影<rt>tiān-iánn</rt>，<rt></rt>
+		痟<rt>siáu</rt>電影<rt>tiān-iánn</rt>，<rt></rt>
 		聽<rt>thiann</rt>阿啄仔<rt>a-tok-á</rt>的<rt>ê</rt>
 		<abbr lang="en" title="compact disc">CD</abbr>。
 	</ruby>
