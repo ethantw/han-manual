@@ -39,8 +39,8 @@ nav#sidebar {
     }
 
     & > div > ul > li {
-        letter-spacing: .25em;
         font-size: 1.05em;
+        letter-spacing: .25em;
         margin: 0;
 
 
@@ -57,7 +57,7 @@ nav#sidebar {
         }
 
         & > a:hover,
-        &> a.current {
+        & > a.current {
             background-color: rgba(#ddd, .8);
             box-shadow: inset rgba(#aaa, .3) 1px 3px 7px;
             color: darken(#725530, 15%);
@@ -98,6 +98,7 @@ nav#sidebar {
             border-bottom: 1px dotted #ddd;
             color: #347837;
             display: block;
+            line-height: 1.6;
             padding: .4em .5em .4em 1em;
 
 

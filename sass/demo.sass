@@ -1,0 +1,437 @@
+@charset 'utf-8'
+
+
+// 滙入「漢字標準格式」
+@import '../../sass/han'
+
+
+
+body
+	// posi
+	margin: 0 auto 15em
+	width: 38em
+
+	// typo
+	@include Han-Heiti
+	font-size: 16px
+	line-height: 1.5
+
+	// style
+	background-color: #eee
+
+
+$color_link: #317a9f
+
+a:link
+	color: $color_link
+
+a:visited
+	color: lighten($color_link, 5%)
+
+a:hover
+	color: darken($color_link, 10%)
+
+a:active
+	color: #f3b623
+
+
+pre code 
+	// posi
+	padding: 7px
+
+	// typo
+	font-size: .8em
+	word-wrap: normal
+
+	// style
+	background-color: #ddd
+	border: 1px solid #ccc
+	border-radius: 3px
+	color: #654
+
+
+header
+	margin: .25em 0 3em
+	text-align: center
+
+	h1,
+	h1 a:link,
+	h1 a:visited
+		color: #6f6666
+		font-weight: normal
+		text-shadow: #fff 0 1px 1px
+
+		span
+			color: #26926b
+			font-weight: bolder
+			letter-spacing: .1em
+
+			span
+				display: none
+
+	h1 a:hover
+		color: #655
+
+		span
+			color: lighten(#26926b, 1%)
+
+
+h1, h2, h3, ol#bookmark
+	code
+		font-weight: 700
+		text-transform: uppercase
+
+		&:lang(zh) 
+			font-family: 'Biaodian Pro Sans', 'PT Sans Narrow', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, 'Han Heiti', sans-serif
+
+		&:not(:lang(zh)):not(:lang(ja)),
+		*:not(:lang(zh)):not(:lang(ja))
+			font-family: 'PT Sans Narrow', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, 'Han Heiti', sans-serif
+
+ol#bookmark
+	// posi
+	margin: 0 0 4em
+	padding: 0
+
+	// list
+	counter-reset: article
+	list-style: none
+
+	> li + li
+		margin-top: .75em
+
+	> li a
+		text-shadow: rgba(#fff, .8) 1px 1px 0
+
+	> li > a
+		@include Han-Kaiti
+		color: #965
+		font-size: 1.3em
+
+		&:hover 
+			color: #a55
+
+		&:active
+			color: #433
+
+	ol 
+		// posi
+		margin-top: .3em
+		padding-left: 1em
+
+		// list
+		counter-reset: section
+		list-style: none
+
+		li a:before
+			// posi
+			display: inline-block
+			margin-right: .75em
+
+			// list
+			content: counter(section)
+			counter-increment: section
+
+	> li > ol ol
+		// list
+		counter-reset: section-1
+
+		li a:before
+			// posi
+			display: inline-block
+			margin-right: .75em
+
+			// list
+			content: counter(section) '.' counter(section-1)
+			counter-increment: section-1
+
+
+article
+	// posi
+	margin-bottom: 7em
+
+	// typo
+	line-height: 1.7
+
+	// style
+	color: #333
+
+	h1
+		// posi
+		margin-bottom: 1em
+
+		// typo
+		font-size: 1.75em
+		text-align: center
+
+		// style
+		border-bottom: 2px solid rgba(#958888, .7)
+		color: #6c4a32
+
+	h1, h2
+		@include Han-Songti
+		font-weight: normal
+
+	h3
+		color: #7f6a32
+		font-weight: normal
+
+	h3, h4, h5, h6
+		& + p,
+		& + section
+			margin-top: -1em
+
+	h2
+		& + h3,
+		& + h4,
+		& + p,
+		& + nav + p,
+		& + section
+			margin-top: -1em
+
+	h3 + h4,
+	h3 + h5
+		margin-top: -1em
+
+	hr
+		border: 0 
+		border-bottom: 2px solid rgba(#bbb, .5)
+
+	table
+		margin: 1em auto 2em
+		min-width: 355px
+		width: 100%
+
+		th
+			text-align: left
+
+		thead tr th
+			border-bottom: 2px solid #9e7611
+			height: 2.5em
+
+		th,
+		td
+			border-bottom: 1px dotted
+			border-color: #ccc
+			border-color: rgba(127, 102, 51, 0.15)
+			height: 2em
+
+		tr th:first-child
+			width: 25%
+
+		.important
+			background-color: #fdf9c5
+
+		tbody tr:hover th,
+		tbody tr:hover td
+			background-color: rgba(255, 255, 255, 0.5)
+
+
+
+#unicode-range
+	.example
+		color: #865
+		font-size: 1.5em
+		margin: 1rem 0 -1em
+
+		&.comparison
+			font-family: Arial, 'Droid Sans', sans-serif
+		&.test 
+			font-family: han-unicode-range, serif
+		small
+			@include Han-Heiti
+			color: #333
+			font-size: 1rem
+
+#sida_zitiji
+	position: relative
+
+	u span span
+		&,
+		&:before,
+		&:after 
+			border-color: #de3342
+			border-width: 2px
+
+
+	h2 + nav.variant-toggler
+		// posi
+		left: -2.75em
+		margin-top: -.65em
+		position: absolute
+
+		// size
+		width: 1em
+
+
+		button
+			// posi
+			margin: 0 .25em
+			position: relative
+
+			// size
+			width: 2em
+			height: 2em
+
+			// style
+			background: none
+			border: 0 none
+			outline: none
+
+			&:after
+				// posi
+				content: attr(data-alternative)
+				display: inline-block
+				padding: 0 1px 2px
+				position: absolute
+				left: 0
+				top: 0
+
+				// size
+				height: 1.75em
+				width: 1.75em
+
+				// typo
+				+Han-Heiti
+
+				// style
+				background-color: #32af8a
+				border-radius: 6px
+				box-shadow: lighten(#32af8a, 10%) 2px 2px 0 inset
+				color: #a5f9bc
+
+			&:hover:after
+				background-color: lighten(#32af8a, 6%)
+				color: darken(#a5f9bc, 10%)
+
+			&:active:after
+				background-color: darken(#32af8a, 2%)
+
+
+	.heiti
+		@include Han-Heiti
+
+		&.cns
+			@include Han-Heiti-CNS
+
+		&.gb
+			@include Han-Heiti-GB
+
+	.songti
+		@include Han-Songti
+
+		&.cns
+			@include Han-Songti-CNS
+
+		&.gb
+			@include Han-Songti-GB
+
+	.kaiti
+		@include Han-Kaiti
+
+		&.cns
+			@include Han-Kaiti-CNS
+
+		&.gb
+			@include Han-Kaiti-GB
+
+	.fangsong
+		@include Han-Fangsong
+
+		&.cns
+			@include Han-Fangsong-CNS
+
+		&.gb
+			@include Han-Fangsong-GB
+
+
+#biaodian_fuhao
+	.sans.biaodian
+		@include Han-Heiti
+
+		&.cns
+			@include Han-Heiti-CNS
+
+		&.gb
+			@include Han-Heiti-GB
+
+	.serif.biaodian
+		@include Han-Songti
+
+		&.cns
+			@include Han-Songti-CNS
+
+		&.gb
+			@include Han-Songti-GB
+
+
+
+#teshu_xiwen_ji_shuzi
+	// 西文義大利體
+	.sans.italic
+		font-family: 'Latin Italic Sans', sans-serif
+
+	.serif.italic
+		font-family: 'Latin Italic Serif', serif
+
+	// 數字
+	.sans.numeral-mf
+		font-family: 'Numeral LF Sans', sans-serif
+
+	.serif.numeral-mf
+		font-family: 'Numeral LF Serif', serif
+
+	.sans.numeral-tf
+		font-family: 'Numeral TF Sans', sans-serif
+
+	.serif.numeral-tf
+		font-family: 'Numeral TF Serif', serif
+
+
+#zhuyin_fuhao
+	section.kaiti p
+		font-family: 'Zhuyin Kaiti', cursive, serif
+
+	section.heiti p
+		font-family: 'Zhuyin Heiti', sans-serif
+
+
+// 直排文字
+.writingmode .zhipai
+	// size
+	height: 20em
+	width: 100%
+
+	// typo
+	-webkit-writing-mode: vertical-rl
+
+	p
+		line-height: 2.5em
+
+
+.no-writingmode small.no-writingmode-msg
+	display: block
+
+	// typo
+	+Han-Heiti
+	color: #999
+	font-size: .9rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

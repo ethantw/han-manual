@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html lang="zh-hant" class="han-biaodian-pro han-la han-lab-underline">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Chen Yijun (@ethantw)">
+	<title>漢字標準格式・字體展示</title>
+
+	<link rel="shortcut icon" href="/img/favicon.png">
+	<link rel="stylesheet" href="/demo.css">
+</head>
+
+
+<body class="demo">
+
+<header>
+	<h1>
+		<a href="/demo/fonts.html">
+            漢字標準格式<!--
+         --><span><!--
+             --><span>·</span><!--
+             -->字體展示
+            </span>
+        </a>
+	</h1>
+</header>
+
+<nav>
+	<ol id="bookmark">
+		<li><a href="#unicode-range">一、<code>unicode-range</code>屬性支援偵測</a>
+		<li>
+			<a href="#sida_zitiji">二、四大字體集及地區分類</a>
+			<ol>
+				<li><a href="#sida_zitiji-heiti">黑體</a>
+				<li><a href="#sida_zitiji-songti">宋體</a>
+				<li><a href="#sida_zitiji-kaiti">楷體</a>
+				<li><a href="#sida_zitiji-fangsong">仿宋體</a>
+			</ol>
+		
+		<li>
+			<a href="#biaodian_fuhao">三、標點符號及地區分類</a>
+			<ol>
+				<li><a href="#biaodian_fuhao-sans">無襯線</a>
+				<li><a href="#biaodian_fuhao-serif">襯線</a>
+			</ol>
+
+		<li>
+			<a href="#teshu_xiwen_ji_shuzi">四、特殊西文及數字字體</a>
+			<ol>
+				<li>
+					<a href="#xiwen_italic">西文義大利體</a>
+					<ol>
+						<li><a href="#xiwen_italic-sans">無襯線</a>
+						<li><a href="#xiwen_italic-serif">襯線</a>
+					</ol>
+				<li>
+					<a href="#shuzi">數字</a>
+					<ol>
+						<li><a href="#shuzi-denggao_shuzi">等高數字</a>
+						<li><a href="#shuzi-wenben_shuzi">文本數字</a>
+					</ol>
+			</ol>
+
+		<li>
+			<a href="#zhuyin_fuhao">五、注音符號</a>
+			<ol>
+				<li><a href="#zhuyin_fuhao-kaiti">楷體</a>
+				<li><a href="#zhuyin_fuhao-heiti">黑體</a>
+			</ol>
+	</ol>
+</nav>
+
+
+<article id="unicode-range">
+	<h1><code>unicode-range</code>屬性支援偵測</h1>
+    <p>若你的瀏覽器<em>支援</em><abbr lang="en">CSS3</abbr>@font-face屬性「<code>unicode-range</code>」，以下二組文字字體樣式將<em>完全一致</em>：</p>
+
+	<p lang="en-GB" class="example comparison">Hello, this is my stage! <small lang="zh-Hant">（對照）</small></p> 
+	<p lang="en-GB" class="example test">Hello, this is my stage! <small lang="zh-Hant">（實驗）</small></p>
+</article>
+
+<article id="sida_zitiji">
+	<h1>四大字體集及地區分類</h1>
+
+	<section class="heiti">
+		<h2 id="sida_zitiji-heiti">黑體</h2>
+	
+		<p><u>這</u>是我們學校規定<u>體</u><!--x--><wbr><!--x--><u>育</u>課所着的<u>衣</u><wbr><u>衫</u>，在<u>運</u>動時可以自由伸展，卻不會破壞衣服本身的美感和著裝者的<u>綫</u>條，冬暖而夏涼，據說是花大錢特地請大師維拉·賈扣（Vera Jacob）設計的！</p>
+		<p><b>二<u>〇</u><u>〇</u>九年7月25日</b>，我坐捷運淡信<u>線</u>時想到<u>殖</u>民地時代的榮景和壓抑，如同雷擊中我的<u>骨</u>驅般，下定決心要改變自己。</p>
+		<p><u>直</u>到我<u>啓</u>動了多年沒碰的手機、播打她寫在紙巾上的號碼時，電話那頭響起：「你播打的電話是空號，請<u>查</u>明後再播」——殘念呀，在酒吧裡花的酒錢真是不<u>值</u>得，還不如<u>出</u>去郊遊，爬<u>山</u>玩水或露營，<u>啟</u>發人心多了⋯⋯</p>
+		<p>汪<u>喆</u>和陶釛鋐真是我見過最恩愛的一對戀人，那天在<u>飯</u><u>館</u>遇見他們，居然完全沒有因<u>爲</u>吃了對方的食物而吵架，是否很不可思議？</p>
+	</section>
+
+
+	<section class="songti">
+		<h2 id="sida_zitiji-songti">宋體</h2>
+		
+		<p><u>這</u>是我們學校規定<u>體</u><u>育</u>課所着的<u>衣</u><u>衫</u>，在<u>運</u>動時可以自由伸展，卻不會破壞衣服本身的美感和著裝者的<u>綫</u>條，冬暖而夏涼，據說是花大錢特地請大師維拉·賈扣（Vera Jacob）設計的！</p>
+		<p><b>二<u>〇</u><u>〇</u>九年7月25日</b>，我坐捷運淡信<u>線</u>時想到<u>殖</u>民地時代的榮景和壓抑，如同雷擊中我的<u>骨</u>驅般，下定決心要改變自己。</p>
+		<p><u>直</u>到我<u>啓</u>動了多年沒碰的手機、播打她寫在紙巾上的號碼時，電話那頭響起：「你播打的電話是空號，請<u>查</u>明後再播」——殘念呀，在酒吧裡花的酒錢真是不<u>值</u>得，還不如<u>出</u>去郊遊，爬<u>山</u>玩水或露營，<u>啟</u>發人心多了⋯⋯</p>
+		<p>汪<u>喆</u>和陶釛鋐真是我見過最恩愛的一對戀人，那天在<u>飯</u><u>館</u>遇見他們，居然完全沒有因<u>爲</u>吃了對方的食物而吵架，是否很不可思議？</p>
+	</section>
+
+
+	<section class="kaiti">
+		<h2 id="sida_zitiji-kaiti">楷體</h2>
+		
+		<p><u>這</u>是我們學校規定<u>體</u><u>育</u>課所着的<u>衣</u><u>衫</u>，在<u>運</u>動時可以自由伸展，卻不會破壞衣服本身的美感和著裝者的<u>綫</u>條，冬暖而夏涼，據說是花大錢特地請大師維拉·賈扣（Vera Jacob）設計的！</p>
+		<p><b>二<u>〇</u><u>〇</u>九年7月25日</b>，我坐捷運淡信<u>線</u>時想到<u>殖</u>民地時代的榮景和壓抑，如同雷擊中我的<u>骨</u>驅般，下定決心要改變自己。</p>
+		<p><u>直</u>到我<u>啓</u>動了多年沒碰的手機、播打她寫在紙巾上的號碼時，電話那頭響起：「你播打的電話是空號，請<u>查</u>明後再播」——殘念呀，在酒吧裡花的酒錢真是不<u>值</u>得，還不如<u>出</u>去郊遊，爬<u>山</u>玩水或露營，<u>啟</u>發人心多了⋯⋯</p>
+		<p>汪<u>喆</u>和陶釛鋐真是我見過最恩愛的一對戀人，那天在<u>飯</u><u>館</u>遇見他們，居然完全沒有因<u>爲</u>吃了對方的食物而吵架，是否很不可思議？</p>
+	</section>
+
+
+	<section class="fangsong">
+		<h2 id="sida_zitiji-fangsong">仿宋體</h2>
+		
+		<p><u>這</u>是我們學校規定<u>體</u><u>育</u>課所着的<u>衣</u><u>衫</u>，在<u>運</u>動時可以自由伸展，卻不會破壞衣服本身的美感和著裝者的<u>綫</u>條，冬暖而夏涼，據說是花大錢特地請大師維拉·賈扣（Vera Jacob）設計的！</p>
+		<p><b>二<u>〇</u><u>〇</u>九年7月25日</b>，我坐捷運淡信<u>線</u>時想到<u>殖</u>民地時代的榮景和壓抑，如同雷擊中我的<u>骨</u>驅般，下定決心要改變自己。</p>
+		<p><u>直</u>到我<u>啓</u>動了多年沒碰的手機、播打她寫在紙巾上的號碼時，電話那頭響起：「你播打的電話是空號，請<u>查</u>明後再播」——殘念呀，在酒吧裡花的酒錢真是不<u>值</u>得，還不如<u>出</u>去郊遊，爬<u>山</u>玩水或露營，<u>啟</u>發人心多了⋯⋯</p>
+		<p>汪<u>喆</u>和陶釛鋐真是我見過最恩愛的一對戀人，那天在<u>飯</u><u>館</u>遇見他們，居然完全沒有因<u>爲</u>吃了對方的食物而吵架，是否很不可思議？</p>
+	</section>
+</article>
+
+
+<article id="biaodian_fuhao">
+	<h1>標點符號</h1>
+	<h2 id="biaodian_fuhao-sans">無襯線</h2>
+	<h3>推薦預設樣式</h3>
+	<p class="biaodian sans">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+
+	<h3>台港式</h3>
+	<p class="biaodian sans cns">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+
+	<h3>中式</h3>
+	<p class="biaodian sans gb">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+
+
+	<h2 id="biaodian_fuhao-serif">襯線</h2>
+	<h3>推薦預設樣式</h3>
+	<p class="biaodian serif">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+
+	<h3>台港式</h3>
+	<p class="biaodian serif cns">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+
+	<h3>中式</h3>
+	<p class="biaodian serif gb">
+		字。字．字，字、字；字：字？字！〇－九／或＼<br>
+		「内『內容』容」‘內“內容”容’《內容》〈內容〉（內〔內容〕容）<br>
+		這——那⋯⋯甲·乙
+	</p>
+</article>
+
+
+<article id="teshu_xiwen_ji_shuzi">
+		<h1>特殊西文及數字</h1>
+		<h2 id="xiwen_italic">西文義大利體（斜體）</h2>
+		<h3 id="xiwen_italic-sans">無襯線</h3>
+		<p class="italic sans">
+		The quick brown fox jumps over a lazy dog.<br>
+		0123456789 !§%&/()=?# @©®™ $€£¢ •°-_—<br>
+
+		äöüß æÆ œŒ åÅ øØ çÇ ñÑ<br>
+		ff fl ffl fi ffi st sst<br>
+
+		abcdefghijklmnopqrstuvwxyz<br>
+		ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+		<p class="italic sans" style="font-weight: bolder">
+		The quick brown fox jumps over a lazy dog.<br>
+		0123456789 !§%&/()=?# @©®™ $€£¢ •°-_—<br>
+
+		äöüß æÆ œŒ åÅ øØ çÇ ñÑ<br>
+		ff fl ffl fi ffi st sst<br>
+
+		abcdefghijklmnopqrstuvwxyz<br>
+		ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+
+		<h3 id="xiwen_italic-serif">襯線</h3>
+		<p class="italic serif">
+		The quick brown fox jumps over a lazy dog.<br>
+		0123456789 !§%&/()=?# @©®™ $€£¢ •°-_—<br>
+
+		äöüß æÆ œŒ åÅ øØ çÇ ñÑ<br>
+		ff fl ffl fi ffi st sst<br>
+
+		abcdefghijklmnopqrstuvwxyz<br>
+		ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+		<p class="italic serif" style="font-weight: bolder">
+		The quick brown fox jumps over a lazy dog.<br>
+		0123456789 !§%&/()=?# @©®™ $€£¢ •°-_—<br>
+
+		äöüß æÆ œŒ åÅ øØ çÇ ñÑ<br>
+		ff fl ffl fi ffi st sst<br>
+
+		abcdefghijklmnopqrstuvwxyz<br>
+		ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+
+
+		<hr>
+
+		<h2 id="shuzi">數字</h2>
+		<h3 id="shuzi-denggao_shuzi">等高數字</h3>
+		<p class="numeral-mf sans">
+		1234567890<br>
+		<span style="font-style: italic">1234567890</span><br>
+		<span style="font-weight: bolder">1234567890</span><br>
+		<b><span style="font-style: italic; font-weight: bolder">1234567890</span></b>
+		</p>
+
+		<p class="numeral-mf serif">
+		1234567890<br>
+		<span style="font-style: italic">1234567890</span><br>
+		<span style="font-weight: bolder">1234567890</span><br>
+		<b><span style="font-style: italic; font-weight: bolder">1234567890</span></b>
+		</p>
+
+
+		<h3 id="shuzi-wenben_shuzi">文本數字</h3>
+		<p class="numeral-tf sans">
+		1234567890<br>
+		<span style="font-style: italic">1234567890</span><br>
+		<span style="font-weight: bolder">1234567890</span><br>
+		<b><span style="font-style: italic; font-weight: bolder">1234567890</span></b>
+		</p>
+
+		<p class="numeral-tf serif">
+		1234567890<br>
+		<span style="font-style: italic">1234567890</span><br>
+		<span style="font-weight: bolder">1234567890</span><br>
+		<b><span style="font-style: italic; font-weight: bolder">1234567890</span></b>
+		</p>
+</article>
+
+
+<article id="zhuyin_fuhao">
+	<h1>注音符號</h1>
+
+	<section class="kaiti">
+		<h2 id="zhuyin_fuhao-kaiti">楷體</h2>
+		<p>ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙ<br>
+			ㄧㄨㄩ<br>
+			ㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦ<br>
+			ㄪㄫㄬㄭ<br>
+			ˊˇˋ˙</p>
+		
+
+		<h4>方言音擴充</h4>
+		<p>ㆠㆣㆢㆡㆭ<br>
+		ㆤㆥㆦㆧㆨㆩㆪㆫㆬㆮㆯㆰㆱㆲㆳ<br>
+		ㆴㆵㆶㆷ<br>
+		˪˫</p>
+	</section>
+
+	<section class="heiti">
+		<h2 id="zhuyin_fuhao-heiti">黑體</h2>
+		<p>ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙ<br>
+		ㄧㄨㄩ<br>
+		ㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦ<br>
+		ㄪㄫㄬㄭ<br>
+		ˊˇˋ˙</p>
+		
+
+		<h4>方言音擴充</h4>
+		<p>ㆠㆣㆢㆡㆭ<br>
+		ㆤㆥㆦㆧㆨㆩㆪㆫㆬㆮㆯㆰㆱㆲㆳ<br>
+		ㆴㆵㆶㆷ<br>
+		˪˫</p>
+	</section>
+</article>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/han.js"></script>
+
+<script>
+;(function($){
+
+	var section = $('#sida_zitiji section'),
+		choose = '選擇不同的地區字形變種：',
+
+		variants = {
+			'default': '預設|薦',
+			'cns': '繁體中文|繁',
+			'gb': '中國國標|中'
+		},
+
+		btn = function() {  return $('<button/>')  },
+		btns = $('<nav/>').addClass('variant-toggler')
+
+
+	for ( var clas in variants ) {
+		var v = variants[clas].split('|')
+
+		btns.append( 
+			btn()
+			.text( v[0] )
+			.attr({
+				'title': choose + v[0],
+				'data-alternative': v[1],
+				'data-variant': clas 
+			})
+			.on('click', function(){
+				var clas = $(this).attr('data-variant')
+
+				$(this).parents('section')
+				.removeClass('gb cns')
+				.addClass(clas)
+				.find('p')
+				.fadeOut('fast')
+				.fadeIn('fast')
+			})
+		)
+	}
+
+	 section.find('h2').after( btns )
+
+})(jQuery)
+</script>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-18673404-2']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>
+

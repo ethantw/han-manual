@@ -1,16 +1,17 @@
 
 
-@import './ff';
-
-
 /* ---------------------------------------
    字體、連結文字、清單、代碼⋯⋯等，
    基本元素的樣式及重設
    --------------------------------------- */
 
 html {
-    font: 15px 'Biaodian Sans Pro', 'Helvetica Neue', Helvetica, Arial,
+    font: 15px
+        'Biaodian Sans Pro',
+        'Helvetica Neue', Helvetica, Arial,
         'Han Heiti', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: subpixel-antialiased;
     -webkit-overflow-scrolling: touch;
 }
 

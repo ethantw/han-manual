@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /projects/han-manual/
-RewriteRule (.*) ./index\.php [L]
-</IfModule>

@@ -77,8 +77,9 @@ _漢_ {.pn}字標準格式目前可完整支援++繁體_中_{.pn}文、簡體_�
 #### 使用「_漢_{.pn}字標準格式」的網站
 
 * [萌典](http://moedict.tw/)
+* [零時政府·國會大代誌](http://ly.g0v.tw/)
 <!-- * [核能流言終結者](#) -->
-* [Markdown語法說明（_中_{.pn}文版）](http://markdown.tw/)
+* [Markdown語法說明](http://markdown.tw/)
 
 
 
