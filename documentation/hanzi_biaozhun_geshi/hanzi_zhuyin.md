@@ -60,7 +60,7 @@
 
 	<br>
 	<ruby class="reading romanization">
-		自<rt>tsū</rt>細漢<rt>sè-hàn</rt>就<rt>tō </rt>立志<rt>li̍p-tsì</rt>
+		自<rt>tsū</rt>細漢<rt>sè-hàn</rt>就<rt>tō</rt>立志<rt>li̍p-tsì</rt>
 		講<rt>kóng</rt>欲<rt>beh</rt>寫歌<rt>siá-kua</rt>唱歌<rt>tshiùnn-kua</rt>趁錢<rt>thàn-tsînn</rt>；
 	</ruby>
 
