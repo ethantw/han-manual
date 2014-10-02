@@ -156,8 +156,9 @@ var httpCb = function ( req, res ) {
           parser = new stmd.DocParser()
           renderer = new stmd.HtmlRenderer()
           md2html = renderer.render( parser.parse( mdcode ))
-
           html = html.replace( '<!--!!!MARKDOWN!!!-->', md2html )
+
+          res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
           res.end( html )
         })
       })
