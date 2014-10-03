@@ -115,7 +115,7 @@ var httpCb = function ( req, res ) {
 
     if ( /^\/manual/.test( uri )) {
       filename = root + '/manual.html'
-      mdfilename = root + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/gaishu.md' : uri.replace( /^\/manual/, '' ) + '.md')
+      mdfilename = root + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/conghe_kaishi.md' : uri.replace( /^\/manual/, '' ) + '.md')
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
