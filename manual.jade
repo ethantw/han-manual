@@ -86,10 +86,9 @@ html(lang='zh-Hant').han-init
                 li.hws: a(href='/manual/js#hws') 漢字西文混排間隙
                 li.jiya: a(href='/manual/js#jiya') 標點擠壓
                 li.subst: a(href='/manual/js#subst') 字元的替換
+    // Libraries
     script(src='/lib/han/han.min.js')
-    script(src='/js/manual.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
-    script#main-js.
-      void (function() {
-        hljs.initHighlightingOnLoad()
-      })()
+
+    // app
+    script(src='/js/manual.js')

@@ -117,32 +117,6 @@ var $ = {
     }
   }
 
-var scroller = (function() {
-      var ret
-      body.scrollTop = 1
-      ret = ( body.scrollTop == 1 ) ? body : root
-      ret.scrollTop = 0
-      return ret
-    })()
-
-function scrollTo( to, duration, callback ) {
-  if ( duration <= 0 ) {
-    if ( callback ) {
-      callback()
-    }
-    return
-  }
-
-  var current = scroller.scrollTop,
-      difference = to - current,
-      perTick = difference / duration * 10
-
-  setTimeout( function() {
-    scroller.scrollTop = current + perTick
-    scrollTo( to, duration - 10, callback || null )
-  }, 10 )
-}
-
 /*  Automated ID for headings and info-box
    ---------------------------------------- */
 
@@ -174,7 +148,15 @@ infobox.forEach(function( elem, i ) {
 
 var navBookmark = $.qsa( 'nav.layout ol ol' ),
     duration = 1000,
-    isIndex = new RegExp( '\/manual\/?$', 'i' ).test( location.href.replace( location.hash, '' ))
+    isIndex = new RegExp( '\/manual\/?$', 'i' ).test( location.href.replace( location.hash, '' )),
+
+    scroller = (function() {
+      var ret
+      body.scrollTop = 1
+      ret = ( body.scrollTop == 1 ) ? body : root
+      ret.scrollTop = 0
+      return ret
+    })()
 
 function isSamePage( href ) {
   return new RegExp( '^' + location.href.replace( location.hash, '' ).replace( /\/$/, '' ), 'i' ).test( href )
@@ -196,6 +178,24 @@ function position( hash, executeCb ) {
     100,
     callback
   )
+}
+
+function scrollTo( to, duration, callback ) {
+  if ( duration <= 0 ) {
+    if ( callback ) {
+      callback()
+    }
+    return
+  }
+
+  var current = scroller.scrollTop,
+      difference = to - current,
+      perTick = difference / duration * 10
+
+  setTimeout( function() {
+    scroller.scrollTop = current + perTick
+    scrollTo( to, duration - 10, callback || null )
+  }, 10 )
 }
 
 navBookmark.forEach(function( elem ) {
@@ -261,5 +261,21 @@ win.addEventListener( 'DOMContentLoaded', function() {
   var minHeightForArticle = nav.offsetHeight + 2*16
   manual.style.minHeight = minHeightForArticle + 'px'
 })
+
+/*  Interference-free example boxes
+   --------------------------------- */
+
+var itff = $.qsa( '.interference-free', manual )
+
+itff.forEach( elem, function() {
+  
+})
+
+/*  Highlight.js for codes
+   ------------------------ */
+
+if ( typeof hljs !== undefined ) {
+  hljs.initHighlightingOnLoad()
+}
 
 })( window, window.document )
