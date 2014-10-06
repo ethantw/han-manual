@@ -1,0 +1,29 @@
+
+*,
+*:before,
+*:after
+  box-sizing: border-box
+html
+  // box
+  width: 100%
+  // typo
+  font-size: 16px
+a
+  &:link,
+  &:visited
+    color: #428bca
+  &:hover
+    color: darken(#428bca, 20%)
+  &:active
+    color: #e6b033
+*:not(pre) > code
+  // box
+  padding: 2px 3px
+  // typo
+  font-size: 90%
+  // style
+  background-color: #fcfcf8
+  border-radius: 4px
+  color: #c7254e
+.hljs
+  background: none

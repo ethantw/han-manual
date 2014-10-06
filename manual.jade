@@ -4,18 +4,92 @@ html(lang='zh-Hant').han-init
     meta(charset='utf-8')
     title 漢字標準格式・使用手冊
     link(rel='stylesheet', href='/lib/han/han.min.css')
+    link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/tomorrow.min.css')
     link(rel='stylesheet', href='/style.css')
 
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='description' content='印刷品般的漢字網頁排版框架')
     meta(name='keywords' content='漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography')
-
   body.manual
-    article
+    header.layout
+      div.logo
+        h1: a.index(href='/manual/') 漢字標準格式
+        p.desc 印刷品般的漢字排版框架
+      button(hidden) 繁簡切換
+    article.main-content.layout
       //!!!MARKDOWN!!!
-
-    nav.toc
+      footer.main-content
+        ul
+          li: button#edit-this 修改這分文件
+          li: button#issue-this 提問題
+        ul.share
+          li: button#share2twr 分享至Twitter
+          li: button#share2fb 分享至Facebook
+          li: button#share2wbo 分享至微博
+    nav.layout.toc
       ol
-        li: a(href='') 概述
-
+        li 從何開始
+          ol
+            li.jianjie.index: a(href='/manual') 簡介
+            li.conghe_kaishi.starting: a(href='/manual/anzhuang_yu_qiyong') 安裝與啓用
+        li.jiben_gongneng.basic 基本功能
+          ol
+            li.yangshi_biaozhunhua.normalisation
+              a(href='/manual/yangshi_biaozhunhua') 樣式標準化
+              ol
+                li.gaishu: a(href='/manual/yangshi_biaozhunhua#gaishu') 概述
+                li.quanyu_zitiyangshi: a(href='/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi') 全域字體樣式
+                li.suojin: a(href='/manual/yangshi_biaozhunhua#suojin') 縮進
+                li.lianluozixun_yuansu: a(href='/manual/yangshi_biaozhunhua#lianluozixun_yuansu') 聯絡資訊元素
+                li.geshiyuchuli_yuansu: a(href='/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu') 格式預處理元素
+                li.chaolianjie_yuansu: a(href='/manual/yangshi_biaozhunhua#chaolianjie_yuansu') 超連結元素
+                li.qiangdiao_yu_zhongdian: a(href='/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian') 強調與重點
+                li.qita_cuti_wenben: a(href='/manual/yangshi_biaozhunhua#qita_cuti_wenben') 其他粗體文本
+                li.laiyuan_yu_yinyong_yuansu: a(href='/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu') 來源與引用元素
+                li.jisuanji_xiangguan_wenben: a(href='/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben') 計算機相關文本
+                li.bianyinwenzi_yu_bianshu_yuansu: a(href='/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu') 變音文字與變數元素
+                li.wenzi_zhuangshixian: a(href='/manual/yangshi_biaozhunhua#wenzi_zhuangshixian') 文字裝飾線
+                li.hangjianzhu_yuansu: a(href='/manual/yangshi_biaozhunhua#hangjianzhu_yuansu') 行間注元素
+            li.wenzisheji.typography
+              a(href='/manual/wenzisheji') 文字設計
+              ol
+                li.ziti_huitui_jizhi: a(href='/manual/wenzisheji#ziti_huitui_jizhi') 字體回退機制
+                li.biaodian_yangshi_xiuzheng: a(href='/manual/wenzisheji#biaodian_yangshi_xiuzheng') 標點樣式修正
+                li.yuansu_ziti_de_zhiding: a(href='/manual/wenzisheji#yuansu_ziti_de_zhiding') 元素字體的指定
+                li.butong_qingjing_xia_de_ziti: a(href='/manual/wenzisheji#butong_qingjing_xia_de_ziti') 不同情境下的字體
+            li.zhangjie_de_bianpai.sectional
+              a(href='/manual/zhangjie_de_bianpai') 章節的編排
+              ol
+                li.wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng: a(href='/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng') 文章、章節與內容的邊界調整
+                li.zhangjie_yu_mulu_de_jishu: a(href='/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu') 章節與目錄的計數
+            li.hang_de_zucheng.inline
+              a(href='/manual/hang_de_zucheng') 行的組成
+              ol
+                li.hanzi-xiwen_hunpai_jianxi: a(href='/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi') 漢字西文混排間隙
+                li.biaodian_jiya: a(href='/manual/hang_de_zucheng#biaodian_jiya') 標點擠壓
+                li.ziyuan_de_tihuan: a(href='/manual/hang_de_zucheng#ziyuan_de_tihuan') 字元的替換
+        li.api APIs
+          ol
+            li.sass
+              a(href='/manual/sass') Sass
+              ol
+                li.ziti_yu_zitiji: a(href='/manual/sass#ziti_yu_zitiji') 字體與字體集
+                li.extend: a(href='/manual/sass#extend') @extend
+                li.wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng: a(href='/manual/sass#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng') 文章、章節與內容的邊界調整
+                li.zhangjie_yu_mulu_de_jishu: a(href='/manual/sass#zhangjie_yu_mulu_de_jishu') 章節與目錄的計數
+                li.variable: a(href='/manual/sass#variable') Sass變數彙整
+            li.js
+              a(href='/manual/js') JavaScript腳本
+              ol
+                li.find: a(href='/manual/js#find') 字元査替器
+                li.normalize: a(href='/manual/js#normalize') 樣式標準化
+                li.hws: a(href='/manual/js#hws') 漢字西文混排間隙
+                li.jiya: a(href='/manual/js#jiya') 標點擠壓
+                li.subst: a(href='/manual/js#subst') 字元的替換
     script(src='/lib/han/han.min.js')
+    script(src='/js/manual.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js')
+    script#main-js.
+      void (function() {
+        hljs.initHighlightingOnLoad()
+      })()

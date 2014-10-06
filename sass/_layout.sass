@@ -1,0 +1,61 @@
+
+/*  Manual page styles
+   -------------------- */
+
+body.manual
+  // box
+  padding-top: 2.5em
+  // style
+  background-color: #f6f6f6
+  color: #222
+
+/*  Layout composition
+   -------------------- */
+
+header.layout
+  // posi
+  position: fixed
+  top: 0
+  z-index: 100
+  // box
+  width: 100%
+nav.layout
+  // posi
+  position: absolute
+  left: 50%
+  top: 8em
+  margin-left: -30em + 1em
+  // box
+  width: 16em
+
+  body[data-js-fixed-nav='true'] &
+    // posi
+    position: fixed
+    top: 3.5em
+    // box
+    height: -webkit-calc(100% - 3.5em + 1px)
+    height: -moz-calc(100% - 3.5em + 1px)
+    height: calc(100% - 3.5em + 1px)
+    padding-bottom: 3em
+    overflow: auto
+article.layout
+  // posi
+  position: relative
+  left: 50%
+  margin-left: -8em - 2em
+  margin-top: 2em
+  z-index: 20
+  // box
+  width: 38em
+footer.layout
+  // posi
+  // box
+  // typo
+  // style
+
+/*  Detailed layout styles
+   ------------------------ */
+
+@import layout/header
+@import layout/nav
+@import layout/article
