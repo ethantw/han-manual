@@ -60,7 +60,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ### 圖表與區塊引用元素 <!-- #suojin-tubiao_yu_qukuaiyinyong_yuansu -->
 圖表`figure`、區塊引用`blockquote`等元素包含*二個漢字*寬度（`2em`）的左右邊界（`margin`）縮進，以求文字的高度對齊。
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
 #### 圖表元素
 <figure>
@@ -80,19 +80,19 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </figure>
 ```
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
-### 區塊引用元素
+#### 區塊引用元素
 
-> 「我是柏林人」是1963年6月26日美國總統約翰·甘迺迪在西柏林演講中的一句名言。當時正值冷戰，柏林牆已開始建造，西柏林被東德包圍。 這一部份演說內容及譯文如下：
+「我是柏林人」是1963年6月26日美國總統約翰·甘迺迪在西柏林演講中的一句名言。當時正值冷戰，柏林牆已開始建造，西柏林被東德包圍。 這一部份演說內容及譯文如下：
+
+> <p lang="en">Two thousand years ago the proudest boast was <i lang="la">civis Romanus sum</i>. Today, in the world of freedom, the proudest boast is <i lang="de">‘Ich bin ein Berliner’</i>… All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words <i lang="de">‘Ich bin ein Berliner!’</i>
 >
->> <p lang="en">Two thousand years ago the proudest boast was <i lang="la">civis Romanus sum</i>. Today, in the world of freedom, the proudest boast is <i lang="de">‘Ich bin ein Berliner’</i>… All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words <i lang="de">‘Ich bin ein Berliner!’</i>
->>
->> 兩千年前最自豪的句子是「<i lang="la">civis Romanus sum</i>」（我是羅馬公民）。今天，在自由世界，最自豪的句子是「<i lang="de">Ich bin ein Berliner</i>」（我是柏林人）……所有自由人，無論生活在哪裡，都是柏林的公民。因此，身為自由人，我以「<i lang="de">Ich bin ein Berliner</i>」感到自豪！
->
-> 以德語說出「我是柏林人」這句子，是甘迺迪在最後才想到的。他走上舍嫩貝格市政廳（Rathaus Schöneberg）時，向翻譯員羅伯特·洛赫納請教這句子的德語說法，以小紙張標下讀音，並練習了幾次。
->
-> <footer class="cite">——《維基百科·我是柏林人》</footer>
+> 兩千年前最自豪的句子是「<i lang="la">civis Romanus sum</i>」（我是羅馬公民）。今天，在自由世界，最自豪的句子是「<i lang="de">Ich bin ein Berliner</i>」（我是柏林人）……所有自由人，無論生活在哪裡，都是柏林的公民。因此，身為自由人，我以「<i lang="de">Ich bin ein Berliner</i>」感到自豪！
+
+以德語說出「我是柏林人」這句子，是甘迺迪在最後才想到的。他走上舍嫩貝格市政廳（Rathaus Schöneberg）時，向翻譯員羅伯特·洛赫納請教這句子的德語說法，以小紙張標下讀音，並練習了幾次。
+
+<footer class="cite">——《維基百科·我是柏林人》</footer>
 
 </div>
 
@@ -132,7 +132,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ## 格式預處理元素 <!-- #geshiyuchuli_yuansu -->
 格式預處理`pre`元素跟隨其原始代碼之格式，長文文本寬度大於其容器時仍不斷行，並啓用橫向捲軸。
 
-<div class='example no-interference'>
+<div class='example no-interfere'>
 
 這是一段正常的段落文本。
 
@@ -183,7 +183,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ```
 <div class="example">
 
-### 西文或拼音的着重號形式
+### 西文或拼音的強調形式
 「天下為公」是<em lang="yue-Latn">Sun Yat-sen</em>先生有名的思想理論之一。
 </div>
 
@@ -194,7 +194,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ### 重點 <!-- #qiangdiao_yu_zhongdian-zhongdian -->
 重點`strong`元素以粗於父文本的字重來凸顯其重要性。
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
 希望我們每一個人，都可以**為自己的人生負責、找尋並達成自己設定的目標，**才不枉為人。
 </div>
@@ -231,23 +231,55 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 <div class="example">
 
 《<cite>漢語語音學</cite>》探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
+
+***
+<p lang='en'><cite>Webster Dictionary</cite> defines ‘marriage’ as…
 </div>
 
 ```html
-<p>《<cite>漢語語音學</cite>》探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
+<p>
+  <cite>《漢語語音學》</cite>探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
+
+<p lang='en'>
+  <cite>Webster Dictionary</cite> defines ‘marriage’ as…
 ```
 
 ### 引用元素
 <div class="example">
 
+#### 中文的引號形式
+
 那個清晨漫步在<u class="pn">高雄</u><u class="pn">澄清湖</u>湖畔，忽見<u class="pn">余光中</u>從旁擦身而過，對我吟詩：<q>顯赫的是太陽的金輦／絢爛的是雲旗和霞旌／東經，西經，勾勒的行程／南緯，北緯，架設的驛站／等待絡繹繽紛的隨扈／簇擁著春天的主人……</q>
 
-望着湖水反射急於升起的日頭的淡淡微光，身體的疲憊和內心深處的焦躁不安好像變得沒那麼沉重了。
+***
+<p lang='zh-Hans'>陈丹青曾在其作品《纽约琐记》中这么评论，<q>文艺复兴的重头作品不必在美国找。全美大概仅得一枚芬奇肖像，供在华盛顿国家美术馆，用丝绒绳子拦着。</q>
 </div>
 
 ```html
-<p>那個清晨漫步在<u class="pn">高雄</u><u class="pn">澄清湖</u>湖畔，忽見<u class="pn">余光中</u>從旁擦身而過，對我吟詩：<q>顯赫的是太陽的金輦／絢爛的是雲旗和霞旌／東經，西經，勾勒的行程／南緯，北緯，架設的驛站／等待絡繹繽紛的隨扈／簇擁著春天的主人……</q>
+<p [lang='zh-Hant']>
+  那個清晨漫步在<u class="pn">高雄</u><u class="pn">澄清湖</u>湖畔，忽見<u class="pn">余光中</u>從旁擦身而過，對我吟詩：<q>顯赫的是太陽的金輦／絢爛的是雲旗和霞旌／東經，西經，勾勒的行程／南緯，北緯，架設的驛站／等待絡繹繽紛的隨扈／簇擁著春天的主人……</q>
+
+<p [lang='zh-Hans']>
+  陈丹青曾在其作品《纽约琐记》中这么评论，<q>文艺复兴的重头作品不必在美国找。全美大概仅得一枚芬奇肖像，供在华盛顿国家美术馆，用丝绒绳子拦着。</q>
 ```
+
+<div class="example">
+
+#### 英文的引號形式
+<p lang='en'>Albert Einstein once said: <q>Try not to become a man of success, but rather try to become a man of value.</q>
+
+***
+<p lang='en-GB'><q>Friendship is certainly the finest balm for the pangs of disappointed love,</q> Jane Austen always speaks to my heart.
+</div>
+
+```html
+<p lang='en'>
+  Albert Einstein once said: <q>Try not to become a man of success, but rather try to become a man of value.</q>
+
+<p lang='en-GB'>
+  <q>Friendship is certainly the finest balm for the pangs of disappointed love,</q> Jane Austen always speaks to my heart.
+```
+
 <div class="info tip note">
 
 #### 排版小技巧
@@ -257,7 +289,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 ## 計算機相關文本 <!-- #jisuanji_xiangguan_wenben -->
 計算機相關文本——如代碼`code`、輸入鍵`kbd`及計算機輸出示例`samp`等元素——使用「等寬字體集、無襯線字體集」的字體回退順序，漢字得以使用較清晰的黑體顯示。
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
 #### 代碼
 這是一段包含了`const CODE = "代碼"`的段落`p`元素。
@@ -267,7 +299,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 <p>這是一段包含了<code>const CODE = "代碼"</code>的段落<code>p</code>元素。
 ```
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
 #### 輸入鍵
 ‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
@@ -277,7 +309,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 <p>‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
 ```
 
-<div class="example interference-free">
+<div class="example no-interfere">
 
 #### 計算機輸出示例
 火龍果電腦居然跟我說：<samp>不能在brainstrom接口上插入芝士</samp>。我壓根兒看不懂這是什麼意思。
@@ -343,11 +375,17 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 
 <div class="example">
 
-<u>我們</u><wbr><!--中間可存在不限數量的註解或`wbr`元素--><wbr><ins datetime="2014-08-12">有可能</ins>會去<u class="pn">唐山</u>拜訪您。
+#### 更完整的辨義功能
+<u class="pn">歐洲大陸</u>眾多的西文當中，我最喜歡的語言是隷屬於<u class="pn">羅曼</u>語族的<u class="pn">西</u>文。
+
+***
+「先看完電影，」他說，「<u class="pn">阿呆</u>舉辦的派對我們晚點<u class="typo">在</u>去。」
 </div>
 
 ```html
-<p><u>我們</u><wbr><!--中間可存在不限數量的註解或`wbr`元素--><wbr><ins datetime="2014-08-12">有可能</ins>會去<u class="pn">唐山</u>拜訪您。
+<p><u class="pn">歐洲大陸</u>眾多的<u class="pn">西</u>文當中，我最喜歡的語言是隷屬於<u class="pn">羅曼</u>語族的<u class="pn">西</u>文。
+
+<p>「先看完電影，」他說，「<u class="pn">阿呆</u>舉辦的派對我們晚點<u class="typo">在</u>去。」
 ```
 
 <div class="info note">
@@ -405,12 +443,12 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 
 <div class="example">
 
-#### 羅馬拼音 
+#### 羅馬拼音
 
 <ruby class="reading romanization annotation">
   你<rt>nĭ</rt>瞧<rt>qiáo</rt>！<rt></rt>
   一彎<rt>yìwān</rt>流水<rt>liúshuĭ</rt>架<rt>jià</rt>小橋<rt>xiăoqiáo</rt>，<rt></rt>
-  兩岸<rt>liăng"àn</rt>楊柳<rt>yángliŭ</rt>隨風<rt>suífēng</rt>飄<rt>piāo</rt>。
+  兩岸<rt>liăng'àn</rt>楊柳<rt>yángliŭ</rt>隨風<rt>suífēng</rt>飄<rt>piāo</rt>。
 </ruby>
 </div>
 
@@ -655,5 +693,3 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 </ruby>
 ```
 如上方代碼所示，使用「拼音－注音共同標注」式行間注時，需為`ruby`元素標籤套用類別`complex`或`rightangle`，並依「ruby text container」語法格式書寫。最後，在`rtc`元素標籤上，加入相應的拼音`romanization`或注音`zhuyin`類別。
-
-
