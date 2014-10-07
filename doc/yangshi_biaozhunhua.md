@@ -191,6 +191,10 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <p>「天下為公」是<em lang="yue-Latn">Sun Yat-sen</em>先生有名的思想理論之一。
 ```
 
+更詳盡的範例及測試，請見[程式測試頁·強調元素（着重號）][test-em]。
+
+[test-em]: http://ethantw.github.io/Han/latest/em.html
+
 ### 重點 <!-- #qiangdiao_yu_zhongdian-zhongdian -->
 重點`strong`元素以粗於父文本的字重來凸顯其重要性。
 
@@ -418,6 +422,10 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 
 **提示：**「訛訊`s`元素」用於標明錯誤或不再正確的資訊；而「刪訂`del`元素」表示相應文本在版本修改、刪訂間的記錄。
 </div>
+
+更詳盡的範例及測試，請見[程式測試頁·文字裝飾線][test-deco-line]。
+
+[test-deco-line]: http://ethantw.github.io/Han/latest/deco-line.html
 
 ## 行間注元素 <!-- #hangjianzhu_yuansu -->
 「行間注」包含漢字標音（亦作漢字注音）及雙語對照二大功能，前者更可細分為「羅馬拼音」及「注音符號」。搭配腳本的Hyu模組完整支援行間注的所有功能，按需求加入相應的類別屬性（`class`）即可。
@@ -693,3 +701,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 </ruby>
 ```
 如上方代碼所示，使用「拼音－注音共同標注」式行間注時，需為`ruby`元素標籤套用類別`complex`或`rightangle`，並依「ruby text container」語法格式書寫。最後，在`rtc`元素標籤上，加入相應的拼音`romanization`或注音`zhuyin`類別。
+
+更詳盡的範例及測試，請見[程式測試頁·行間注元素][test-ruby]。
+
+[test-ruby]: http://ethantw.github.io/Han/latest/ruby.html
