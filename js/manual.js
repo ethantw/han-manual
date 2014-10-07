@@ -2,7 +2,8 @@
 void (function( win, doc, undefined ) {
 
 var root = doc.documentElement,
-    body = doc.body
+    body = doc.body,
+    rem = Number( 16 )
 
 var $ = {
     // Simplified query selectors which return the node list
@@ -117,8 +118,8 @@ var $ = {
     }
   }
 
-/*  Automated ID for headings and info-box
-   ---------------------------------------- */
+/*  Automated IDs for headings and info-boxes
+   ------------------------------------------- */
 
 var manual = doc.querySelector( 'body.manual article.main-content' ),
     heading = $.qsa( 'h2, h3, h4, h5, h6', manual ),
@@ -174,7 +175,7 @@ function position( hash, executeCb ) {
   }
 
   scrollTo(
-    target.offsetTop + 1.5*16,
+    target.offsetTop + 1.5*rem,
     100,
     callback
   )
@@ -222,17 +223,20 @@ navBookmark.forEach(function( elem ) {
   }, true )
 })
 
-win.addEventListener( 'DOMContentLoaded', function() {
-  setTimeout( function() {
-    position( location.hash, false )
-  }, 100 )
+void [ 'hashchange', 'DOMContentLoaded' ]
+.forEach(function( event ) {
+  win.addEventListener( event, function() {
+    setTimeout( function() {
+      position( location.hash, false )
+    }, 100 )
+  })
 })
 
 /*  Navi fixation
    --------------- */
 
 var nav = doc.querySelector( 'nav.layout' ),
-    fixedY = 3.5*16
+    fixedY = 3.5*rem
 
 win.addEventListener( 'scroll', function() {
   if (
@@ -258,17 +262,39 @@ void [ 'mousewheel', 'DOMMouseScroll' ]
 // Prevent weird scrolling issue while articles
 // are too short
 win.addEventListener( 'DOMContentLoaded', function() {
-  var minHeightForArticle = nav.offsetHeight + 2*16
+  var minHeightForArticle = nav.offsetHeight + 2*rem
   manual.style.minHeight = minHeightForArticle + 'px'
 })
 
 /*  Interference-free example boxes
    --------------------------------- */
 
-var itff = $.qsa( '.interference-free', manual )
+var itff = $.qsa( '.no-interfere', manual )
 
-itff.forEach( elem, function() {
-  
+itff.forEach(function( elem ) {
+  var html = elem.innerHTML,
+      iframe = $.create( 'iframe' ),
+      ifwin, ifdoc, ifbody, wrapper
+
+  elem.innerHTML = ''
+
+  iframe.setAttribute( 'src', '/itff.html' )
+  elem.appendChild( iframe )
+
+  ifwin = iframe.contentWindow
+  ifwin.addEventListener( 'DOMContentLoaded', function() {
+    ifdoc = iframe.contentDocument
+    ifroot = ifdoc.documentElement
+    ifbody = ifdoc.body
+
+    wrapper = $.create( 'div', 'wrapper' )
+    wrapper.innerHTML = html
+    ifbody.replaceChild( wrapper, $.id( 'replacee', ifdoc ))
+    ifwin.Han.init()
+
+    // ifroot.setAttribute( 'lang', 'zh-Hant' )
+    iframe.style.height = ifbody.offsetHeight + 'px'
+  })
 })
 
 /*  Highlight.js for codes
