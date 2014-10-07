@@ -81,6 +81,9 @@ h6
   margin-top: -.5em
   border-top-left-radius: 0
   border-top-right-radius: 0
+.no-interfere + pre
+  // posi
+  margin-top: -1em
 .example
   pre + &,
   & + &
@@ -106,3 +109,13 @@ blockquote,
     // typo
     font-size: .95em
     text-align: right
+.no-interfere
+  // box
+  padding-bottom: 0
+
+  iframe
+    // box
+    width: 100%
+    overflow: hidden
+    // style
+    border: 0 none
