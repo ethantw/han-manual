@@ -7,7 +7,7 @@ var
   exec = require( 'child_process' ).exec,
   spawn = require( 'child_process' ).spawn,
 
-  stmd = require('./js/stmd'),
+  stmd = require('./src/server/stmd'),
 
   args = {},
   argv = process.argv.slice( 2 )

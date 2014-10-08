@@ -137,6 +137,7 @@ heading.forEach(function( elem, i ) {
     /\s?\#[\w\_\-]+\s?/.test( anchorId )
   ) {
     elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
+    anchor.parentNode.removeChild( anchor )
   }
 })
 
@@ -300,7 +301,7 @@ itff.forEach(function( elem ) {
 /*  Highlight.js for codes
    ------------------------ */
 
-if ( typeof hljs !== undefined ) {
+if ( typeof hljs !== 'undefined' ) {
   hljs.initHighlightingOnLoad()
 }
 
