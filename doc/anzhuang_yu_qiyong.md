@@ -18,8 +18,8 @@
 **註：**「漢字標準格式」自版本v3.0.0起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
 </div>
 
-HTML5文件格式
-------------
+ HTML5文件格式
+--------------
 「漢字標準格式」要求所有網頁使用HTML5標準文件格式或HTML4嚴格模式，並依主要語言及文字變體在根元素中加入相應的語言屬性。
 
 ```html
@@ -38,9 +38,9 @@ HTML5文件格式
 - `zh-Hant-TW`
 - `zh-Hant-HK`
 - `zh-Hans-CN`
-- `zh-cmn-Hans`<small>（現代標準漢語、簡體中文）</small>
+- `zh-cmn-Hans`<small>（現代標準漢語〔國語、普通話〕、簡體中文）</small>
 - `zh-nan-Hant`<small>（閩南語、繁體中文）</small>
-- `zh-yue-Hant`<small>（粵語、繁體中文）</small>
+- `zh-yue-Hant`<small>（廣州話〔粵語〕、繁體中文）</small>
 - `zh-TW`<small>（不建議）</small>
 - `zh-HK`<small>（不建議）</small>
 - `zh-CN`<small>（不建議）</small>
@@ -51,22 +51,25 @@ HTML5文件格式
 - `ja-Latn`<small>（日文羅馬拼音）</small>
 - `cmn-Latn`<small>（現代標準漢語羅馬拼音）</small>
 - `nan-Latn`<small>（閩南語羅馬拼音）</small>
+- `yue-Latn`<small>（廣州話羅馬拼音）</small>
+- `hak-Latn`<small>（客家語羅馬拼音）</small>
+- `wuu-Latn`<small>（吳語羅馬拼音）</small>
 
 <div class='info'>
 
 使用中文漢字的網頁或元素，請務必加入包含`zh`、`Hant`或`Hans`三者任一的語言屬性値；使用羅馬拼音者，其語言屬性則需要包含`Latn`。
 </div>
 
-彈性設計
------------
+ 彈性設計
+--------
 「漢字標準格式」提供專為行動裝置最佳化的彈性設計（<span lang='en'>responsive web design</span>），在`<head>`元素中加入下列viewport元信息元素以啓用。
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-DOM ready腳本渲染
-----------------
+ DOM ready腳本渲染
+------------------
 在網頁根元素上加入類別`han-init`以啓用預設的DOM ready腳本渲染。
 
 ```html
