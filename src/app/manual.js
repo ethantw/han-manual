@@ -142,9 +142,11 @@ $.qsa( 'h2, h3, h4, h5, h6', manual )
   }
 })
 
-$.qsa( 'div.info, .example, pre', manual )
+$.qsa( 'div.info, .example, pre, table', manual )
 .forEach(function( elem, i ) {
-  elem.setAttribute( 'id', 'info-' + i )
+  if ( !elem.getAttribute( 'id' )) {
+    elem.setAttribute( 'id', 'info-' + i )
+  }
 })
 
 /*  Proper positioning for hash anchors
