@@ -411,11 +411,11 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 
 <div class="example">
 
-立法院常設有<del datetime="1992-0-0">一六一</del><del datetime="1998-0-0">二二五</del>一一三位議員。
+立法院常設有<del datetime="1992-0-0">一六一</del><del datetime="1998-0-0">二二五</del><ins datetime="1998-0-0">一一三</ins>位議員。
 </div>
 
 ```html
-<p>立法院常設有<del datetime="1992-0-0">一六一</del><del datetime="1998-0-0">二二五</del>一一三位議員。
+<p>立法院常設有<del datetime="1992-0-0">一六一</del><del datetime="1998-0-0">二二五</del><ins datetime="1998-0-0">一一三</ins>位議員。
 ```
 
 <div class="info note">
@@ -531,7 +531,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
 直接於`ruby`元素標籤上，加入`zhuyin`或`mps`類別即可顯示注音行間注，
 
 ```html
-<ruby class="zhuyin">
+<em><ruby class="zhuyin">
   柴<rt>ㄔㄞˊ</rt>
   米<rt>ㄇㄧ˅</rt>
   油<rt>ㄧㄡˊ</rt>
@@ -539,7 +539,7 @@ Hyu模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的�
   醬<rt>ㄐㄧㄤˋ</rt>
   醋<rt>ㄘㄨˋ</rt>
   茶<rt>ㄔㄚˊ</rt>
-</ruby>
+</ruby></em>
 ```
 
 ### 複合式行間注 <!-- #hangjianzhu_yuansu-fuheshi_hangjianzhu -->
