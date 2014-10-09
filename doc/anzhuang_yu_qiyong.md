@@ -2,7 +2,11 @@
  安裝與啓用
 ==========
 
-這分使用手冊介紹了「漢字標準格式」的基本功能與使用方式。通常，在網頁中需要直接引用二個文件來啓用「漢字標準格式」——`han.min.css`（或使用Sass滙入）及`han.min.js`（或使用JavaScript模組框架），後者（腳本文件）可依網站的需求選用。
+這分使用手冊介紹了「漢字標準格式」（當前版本v3.0.0）的基本功能與使用方式。以下是基本的安裝與啓用步驟。
+
+ 引用文件
+--------
+通常，一般網頁需要引用二個文件來啓用「漢字標準格式」——`han.min.css`（或使用Sass滙入）及`han.min.js`（或使用JavaScript模組框架），後者（腳本文件）可依網站的需求選用。
 
 ```html
 <link rel="stylesheet" href="path/src/css/han.min.css">
@@ -11,12 +15,17 @@
 可依需求選用的腳本文件，
 
 ```html
-<script src="path/src/js/han.min.js">
+<script src="path/src/js/han.min.js"></script>
 ```
 <div class='info'>
 
 **註：**「漢字標準格式」自版本v3.0.0起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
 </div>
+
+### CDN服務
+### 使用模塊管理系統
+- Bower `bower install Han`
+- NPM `npm install Han`
 
  HTML5文件格式
 --------------
@@ -33,12 +42,12 @@
 
 - `zh-Hant`
 - `zh-Hans`
-- `zh`<small>（繁體字優先）</small>
+- `zh`
 - `ja`
 - `zh-Hant-TW`
 - `zh-Hant-HK`
 - `zh-Hans-CN`
-- `zh-cmn-Hans`<small>（現代標準漢語〔國語、普通話〕、簡體中文）</small>
+- `zh-cmn-Hans`<small>（現代標準漢語〔國語／普通話〕、簡體中文）</small>
 - `zh-nan-Hant`<small>（閩南語、繁體中文）</small>
 - `zh-yue-Hant`<small>（廣州話〔粵語〕、繁體中文）</small>
 - `zh-TW`<small>（不建議）</small>
@@ -49,9 +58,9 @@
 
 - `zh-Latn`<small>（中文羅馬拼音）</small>
 - `ja-Latn`<small>（日文羅馬拼音）</small>
-- `cmn-Latn`<small>（現代標準漢語羅馬拼音）</small>
+- `cmn-Latn`<small>（現代標準漢語〔國語／普通話〕羅馬拼音）</small>
 - `nan-Latn`<small>（閩南語羅馬拼音）</small>
-- `yue-Latn`<small>（廣州話羅馬拼音）</small>
+- `yue-Latn`<small>（廣州話〔粵語〕羅馬拼音）</small>
 - `hak-Latn`<small>（客家語羅馬拼音）</small>
 - `wuu-Latn`<small>（吳語羅馬拼音）</small>
 
@@ -70,15 +79,19 @@
 
  DOM ready腳本渲染
 ------------------
+### 以套用類別來啓用
+#### 全頁渲染
 在網頁根元素上加入類別`han-init`以啓用預設的DOM ready腳本渲染。
 
 ```html
 <html lang="ja" class="han-init">
 ```
 
+#### 以指定的單一元素為範圍渲染
 亦可在單一選定範圍元素中，加入類別`han-init-context`以啓用該範圍下的腳本渲染，惟「漢字標準格式」的類Modernizr功能支援偵測類別仍會加入至根元素中。
 
 ```html
+<!DOCTYPE html>
 <html lang="zh-yue-Hant" class="[類Modernizr功能支援偵測]">
 <head>
   …
@@ -98,9 +111,32 @@
     </ul>
   </nav>
 
-  <script src="path/src/js/han.min.js">
+  <script src="path/src/js/han.min.js"></script>
 </body>
 </html>
 ```
 
 以上範例代碼將只對第一個設有`han-init-context`類別的容器（在此為`<article>`元素）進行DOM ready預設腳本渲染，如樣式標準化……等。
+
+### 使用JavaScript來啓用
+#### 全頁渲染
+
+```javascript 
+Han( document.body ).renderRoutine()
+```
+
+或使用全頁渲染（初始化）的簡寫形式，
+
+```javascript 
+Han.init()
+```
+
+#### 以指定的單一元素為範圍渲染
+
+```javascript
+Han( document.getElementById( '#entry' )).renderRoutine()
+```
+更詳盡的說明，請見「[JavaScript腳本·Han構造函數][js-han]」一節。
+
+[js-han]: /manual/js#han
+
