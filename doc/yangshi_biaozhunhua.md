@@ -28,6 +28,12 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ## 全域字體樣式 <!-- #quanyu_ziti_yangshi -->
 各種漢字字體的行高不一，且漢字需要較西文鬆散的行距空間，故全域行高預設使用`1.3em`以求一致，並在瀏覽器及作業系統支援的前提下，啓用亞像素文字渲染。
 
+<div class="info flag related">
+
+#### 不屬於樣式標準化模組的相關情境說明
+網頁根元素`html`係由樣式標準化模組定義了字體基型、後**由文字設計模組[處理其嚴密的字體回退機制](/manual/wenzisheji#yuansu_ziti_de_zhiding-jisuanji_xiangguan_wenben)，方呈現出如此處的字體樣式。**
+</div>
+
 ## 縮進 <!-- #suojin -->
 ### 有序與無序清單 <!-- #suojin-youxu_yu_wuxu_qingdan -->
 有序清單`ol`及無序清單`ul`元素包含*二個漢字*寬度（`2em`）的左間隙（`padding-left`）縮進，以求文字的高度對齊。
@@ -99,7 +105,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <div class="info flag related">
 
 #### 不屬於樣式標準化模組的相關情境說明
-在不同情境下，圖表、區塊元素有[不同的縮進及字體樣式設定](.)，符合既成的閱讀習慣、便於同正文區隔。這些功能由文字設計模組及「漢字標準格式」的進階排版功能提供。
+在不同情境下，圖表、區塊元素有[不同的縮進](/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng)及[字體樣式設定](/manual/wenzisheji#butong_qingjing_xia_de_ziti)，符合既成的閱讀習慣、便於同正文區隔。這些功能由文字設計模組及「漢字標準格式」的進階排版功能提供。
 </div>
 
 ## 聯絡資訊元素 <!-- #lianluozixun_yuansu -->
@@ -229,7 +235,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ```
 
 ## 來源與引用元素 <!-- #laiyuan_yu_yinyong_yuansu -->
-樣式標準化模組移除了隷屬中文及日文語言屬性下，來源`cite`元素的意大利體（斜體）樣式；引用`q`元素則依語言及地區屬性採用相應的內外引號，以突顯引用文本的結構。
+樣式標準化模組移除了隷屬中文及日文語言屬性下、來源`cite`元素的意大利體（斜體）樣式；引用`q`元素則依語言及地區屬性採用相應的內外引號，以突顯引用文本的結構。
 
 ### 來源元素
 <div class="example">
@@ -291,7 +297,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </div>
 
 ## 計算機相關文本 <!-- #jisuanji_xiangguan_wenben -->
-計算機相關文本——如代碼`code`、輸入鍵`kbd`及計算機輸出示例`samp`等元素——使用「等寬字體集、無襯線字體集」的字體回退順序，漢字得以使用較清晰的黑體顯示。
+計算機相關文本——如代碼`code`、輸入鍵`kbd`、計算機輸出示例`samp`及格式預處理`pre`等元素——使用「等寬字體基型、無襯線體基型」的字體回退順序，漢字得以用較清晰的系統預設黑體顯示。
 
 <div class="example no-interfere">
 
@@ -323,8 +329,14 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <p>火龍果電腦居然跟我說：<samp>不能在brainstrom接口上插入芝士</samp>。我壓根兒看不懂這是什麼意思。
 ```
 
+<div class="info flag related">
+
+#### 不屬於樣式標準化模組的相關情境說明
+本節範例中，各計算機相關文本元素的字體樣式，係由樣式標準化模組定義了字體基型、後**由文字設計模組[處理其嚴密的字體回退機制](/manual/wenzisheji#yuansu_ziti_de_zhiding-jisuanji_xiangguan_wenben)，方呈現出如上方的字體樣式。**
+</div>
+
 ## 變音文字與變數元素 <!-- #bianyinwenzi_yu_bianshu_yuansu -->
-變音文字`i`及變數`var`元素，使用「漢字手寫體（楷體）、西文襯線意大利體」的字體回退順序。
+變音文字`i`及變數`var`元素，使用「手寫體基型、襯線體基型」的字體回退順序。
 
 <div class="example">
 
@@ -338,9 +350,9 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <div class="info flag related">
 
 #### 不屬於樣式標準化模組的相關情境說明
-在文章的區塊引用元素下，變音文字及變數元素則使用「漢字黑體、西文無襯線意大利體」的字體回退順序。**這是屬於[文字設計模組下的情境樣式](.)，使用差異於文章區塊引用元素的字體樣式以為區隔。**
+本節範例中，變音文字與變數元素的字體樣式，係由樣式標準化模組定義了字體基型、後**由文字設計模組[處理其嚴密的字體回退機制](/manual/wenzisheji#yuansu_ziti_de_zhiding-bianyinwenzi_yu_bianshu_yuansu)，方呈現出如上方的字體樣式。**在文章的區塊引用元素下，變音文字及變數元素有相反的字體樣式，亦由文字設計模組提供。
 
-在不支援手寫漢字字體的系統中（如多數行動裝置），[變音文字、變數則改以雙灰底線表示](.)。**此為漢字標準格式的進階腳本功能**。
+在不支援手寫漢字字體的系統中（如多數行動裝置），變音文字、變數元素[則改以雙灰底線文本表示](/manual/hang_de_zucheng#字體不支援的文本)。**此為漢字標準格式的進階腳本功能**。
 </div>
 
 ### 船名 <!-- #bianyinwenzi_yu_bianshu_yuansu-chuanming -->
@@ -703,5 +715,11 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 如上方代碼所示，使用「拼音－注音共同標注」式行間注時，需為`ruby`元素標籤套用類別`complex`或`rightangle`，並依「ruby text container」語法格式書寫。最後，在`rtc`元素標籤上，加入相應的拼音`romanization`或注音`zhuyin`類別。
 
 更詳盡的範例及測試，請見[程式測試頁·行間注元素][test-ruby]。
+
+<div class="info flag related">
+
+#### 不屬於樣式標準化模組的相關情境說明
+本節範例中，行間注的字體樣式，係由樣式標準化模組定義了字體基型、後**由文字設計模組[處理其嚴密的字體回退機制](/manual/wenzisheji#yuansu_ziti_de_zhiding-hangjianzhu_yuansu)，方呈現出如上方的字體樣式。**
+</div>
 
 [test-ruby]: http://ethantw.github.io/Han/latest/ruby.html
