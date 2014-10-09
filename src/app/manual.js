@@ -1,9 +1,11 @@
 
 void (function( win, doc, undefined ) {
 
+// const
+var REM = Number( 16 )
+
 var root = doc.documentElement,
-    body = doc.body,
-    rem = Number( 16 )
+    body = doc.body
 
 var $ = {
     // Simplified query selectors which return the node list
@@ -121,11 +123,10 @@ var $ = {
 /*  Automated IDs for headings and info-boxes
    ------------------------------------------- */
 
-var manual = doc.querySelector( 'body.manual article.main-content' ),
-    heading = $.qsa( 'h2, h3, h4, h5, h6', manual ),
-    infobox = $.qsa( 'div.info, .example, pre' )
+var manual = doc.querySelector( 'body.manual article.main-content' )
 
-heading.forEach(function( elem, i ) {
+$.qsa( 'h2, h3, h4, h5, h6', manual )
+.forEach(function( elem, i ) {
   var anchor = elem.lastChild,
       anchorId = anchor.nodeValue
 
@@ -141,7 +142,8 @@ heading.forEach(function( elem, i ) {
   }
 })
 
-infobox.forEach(function( elem, i ) {
+$.qsa( 'div.info, .example, pre', manual )
+.forEach(function( elem, i ) {
   elem.setAttribute( 'id', 'info-' + i )
 })
 
@@ -176,7 +178,7 @@ function position( hash, executeCb ) {
   }
 
   scrollTo(
-    target.offsetTop + 1.5*rem,
+    target.offsetTop + 1.5*REM,
     100,
     callback
   )
@@ -224,8 +226,11 @@ navBookmark.forEach(function( elem ) {
   }, true )
 })
 
-void [ 'hashchange', 'DOMContentLoaded' ]
-.forEach(function( event ) {
+
+void [ 
+  'hashchange',  
+  'iframeLoaded' // triggered only when iframes are loaded
+].forEach(function( event ) {
   win.addEventListener( event, function() {
     setTimeout( function() {
       position( location.hash, false )
@@ -237,7 +242,7 @@ void [ 'hashchange', 'DOMContentLoaded' ]
    --------------- */
 
 var nav = doc.querySelector( 'nav.layout' ),
-    fixedY = 3.5*rem
+    fixedY = 3.5*REM
 
 win.addEventListener( 'scroll', function() {
   if (
@@ -251,8 +256,10 @@ win.addEventListener( 'scroll', function() {
 })
 
 // Prevent the navi scrolling conflict
-void [ 'mousewheel', 'DOMMouseScroll' ]
-.forEach(function( event ) {
+void [
+  'mousewheel',
+  'DOMMouseScroll' 
+].forEach(function( event ) {
   doc.addEventListener( event, function( e ) {
     nav.addEventListener( 'mouseover', function() {
       e.preventDefault()
@@ -263,16 +270,21 @@ void [ 'mousewheel', 'DOMMouseScroll' ]
 // Prevent weird scrolling issue while articles
 // are too short
 win.addEventListener( 'DOMContentLoaded', function() {
-  var minHeightForArticle = nav.offsetHeight + 2*rem
+  var minHeightForArticle = nav.offsetHeight + 2*REM
   manual.style.minHeight = minHeightForArticle + 'px'
 })
 
 /*  Interference-free example boxes
    --------------------------------- */
 
-var itff = $.qsa( '.no-interfere', manual )
+var itff = $.qsa( '.no-interfere', manual ),
+    iframeLoaded = new Event( 'iframeLoaded' )
 
-itff.forEach(function( elem ) {
+if ( itff.length === 0 ) {
+  win.dispatchEvent( iframeLoaded )
+}
+
+itff.forEach(function( elem, i ) {
   var html = elem.innerHTML,
       iframe = $.create( 'iframe' ),
       ifwin, ifdoc, ifbody, wrapper
@@ -295,6 +307,10 @@ itff.forEach(function( elem ) {
 
     // ifroot.setAttribute( 'lang', 'zh-Hant' )
     iframe.style.height = ifbody.offsetHeight + 'px'
+
+    if ( i + 1 === itff.length ) {
+      win.dispatchEvent( iframeLoaded )
+    }
   })
 })
 
