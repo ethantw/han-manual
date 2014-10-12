@@ -22,7 +22,16 @@ html(lang='zh-Hant')
       h4:first-child,
       h5:first-child,
       h6:first-child {
-        margin-top: .5em
+        margin-top: .5em;
+      }
+
+      h1 + p,
+      h2 + p,
+      h3 + p,
+      h4 + p,
+      h5 + p,
+      h6 + p {
+        margin-top: -1em;
       }
   body.example
     div#replacee

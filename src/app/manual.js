@@ -231,7 +231,7 @@ navBookmark.forEach(function( elem ) {
 
 void [ 
   'hashchange',  
-  'iframeLoaded' // triggered only when iframes are loaded
+  'DOMContentLoaded'
 ].forEach(function( event ) {
   win.addEventListener( event, function() {
     setTimeout( function() {
@@ -279,18 +279,14 @@ win.addEventListener( 'DOMContentLoaded', function() {
 /*  Interference-free example boxes
    --------------------------------- */
 
-var itff = $.qsa( '.no-interfere', manual ),
-    iframeLoaded = new Event( 'iframeLoaded' )
-
-if ( itff.length === 0 ) {
-  win.dispatchEvent( iframeLoaded )
-}
+var itff = $.qsa( '.no-interfere, .itff', manual )
 
 itff.forEach(function( elem, i ) {
   var html = elem.innerHTML,
       iframe = $.create( 'iframe' ),
       ifwin, ifdoc, ifbody, wrapper
 
+  elem.style.height = elem.offsetHeight + 'px'
   elem.innerHTML = ''
 
   iframe.setAttribute( 'src', '/itff.html' )
@@ -308,11 +304,6 @@ itff.forEach(function( elem, i ) {
     ifwin.Han.init()
 
     // ifroot.setAttribute( 'lang', 'zh-Hant' )
-    iframe.style.height = ifbody.offsetHeight + 'px'
-
-    if ( i + 1 === itff.length ) {
-      win.dispatchEvent( iframeLoaded )
-    }
   })
 })
 
