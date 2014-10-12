@@ -18,12 +18,13 @@ lib.js ::
 	cd src/lib && cat yijun.js highlight.js/highlight.min.js > ../lib.js
 
 main.js ::
-	grunt uglify
+	cd src/app && cat manual.js > ../main.js
 
 app.js ::
 	make lib.js
 	make main.js
 	cat src/lib.js src/main.js > app.js
+	uglifyjs app.js -o app.js
 
 fa ::
 	rm -r -f src/font
