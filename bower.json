@@ -1,0 +1,25 @@
+{
+  "name": "Han-Manual",
+  "version": "3.0.0",
+  "homepage": "https://github.com/ethantw/Han-Manual",
+  "authors": [
+    "Chen Yijun <ethantw@me.com>"
+  ],
+  "description": "Manual for Han.css",
+  "main": "manual.html",
+  "keywords": [
+    "Han.css",
+    "manual"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0"
+  }
+}
