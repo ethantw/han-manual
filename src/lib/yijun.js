@@ -1,6 +1,6 @@
-void (function( document, undefined ) {
+window.Yijun = (function( document, undefined ) {
 
-var Yijun = {
+return {
   // Simplified query selectors which return the node list
   // in an array
   id: function( selector, context ) {
@@ -112,7 +112,5 @@ var Yijun = {
     return target
   }
 }
-
-window.Yijun = Yijun
 
 })( window.document )
