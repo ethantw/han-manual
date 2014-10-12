@@ -66,7 +66,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ### 圖表與區塊引用元素 <!-- #suojin-tubiao_yu_qukuaiyinyong_yuansu -->
 圖表`figure`、區塊引用`blockquote`等元素包含*二個漢字*寬度（`2em`）的左右邊界（`margin`）縮進，以求文字的高度對齊。
 
-<div class="example no-interfere">
+<div class="example itff">
 
 #### 圖表元素
 <figure>
@@ -86,7 +86,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </figure>
 ```
 
-<div class="example no-interfere">
+<div class="example itff">
 
 #### 區塊引用元素
 
@@ -138,7 +138,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ## 格式預處理元素 <!-- #geshiyuchuli_yuansu -->
 格式預處理`pre`元素跟隨其原始代碼之格式，長文文本寬度大於其容器時仍不斷行，並啓用橫向捲軸。
 
-<div class='example no-interfere'>
+<div class='example itff'>
 
 這是一段正常的段落文本。
 
@@ -204,7 +204,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ### 重點 <!-- #qiangdiao_yu_zhongdian-zhongdian -->
 重點`strong`元素以粗於父文本的字重來凸顯其重要性。
 
-<div class="example no-interfere">
+<div class="example itff">
 
 希望我們每一個人，都可以**為自己的人生負責、找尋並達成自己設定的目標，**才不枉為人。
 </div>
@@ -299,7 +299,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 ## 計算機相關文本 <!-- #jisuanji_xiangguan_wenben -->
 計算機相關文本——如代碼`code`、輸入鍵`kbd`、計算機輸出示例`samp`及格式預處理`pre`等元素——使用「等寬基型、無襯線基型」的字體回退順序，漢字得以用較清晰的系統預設黑體顯示。
 
-<div class="example no-interfere">
+<div class="example itff">
 
 #### 代碼
 這是一段包含了`const CODE = "代碼"`的段落`p`元素。
@@ -309,7 +309,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <p>這是一段包含了<code>const CODE = "代碼"</code>的段落<code>p</code>元素。
 ```
 
-<div class="example no-interfere">
+<div class="example itff">
 
 #### 輸入鍵
 ‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
@@ -319,7 +319,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <p>‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
 ```
 
-<div class="example no-interfere">
+<div class="example itff">
 
 #### 計算機輸出示例
 火龍果電腦居然跟我說：<samp>不能在brainstrom接口上插入芝士</samp>。我壓根兒看不懂這是什麼意思。

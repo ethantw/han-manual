@@ -279,7 +279,7 @@ win.addEventListener( 'DOMContentLoaded', function() {
 /*  Interference-free example boxes
    --------------------------------- */
 
-var itff = $.qsa( '.no-interfere, .itff', manual )
+var itff = $.qsa( '.itff', manual )
 
 itff.forEach(function( elem, i ) {
   var html = elem.innerHTML,
