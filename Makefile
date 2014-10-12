@@ -15,7 +15,7 @@ han ::
 	cp ../han/font/* src/lib/han/font
 
 lib.js ::
-	cd src/lib && cat highlight.js/highlight.min.js > ../lib.js
+	cd src/lib && cat yijun.js highlight.js/highlight.min.js > ../lib.js
 
 main.js ::
 	grunt uglify
