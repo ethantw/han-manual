@@ -25,6 +25,44 @@ article.main-content
     color: #666
   *:not(h1) + h2
     padding-top: 1.5em
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    position: relative
+
+    a.heading-anchor
+      @extend %fa
+      @extend %fa-paperclip
+
+      &:before 
+        color: #999
+        text-shadow: #ddd 1px 1px 0
+
+      // posi
+      position: absolute
+      margin: -.125em 0 0 -.125em
+      // box
+      display: none
+      height: 1.2em 
+      width: 1.2em
+      overflow: hidden
+      // typo
+      font-size: 1em
+      // style 
+      color: transparent
+      cursor: pointer
+    &:target a.heading-anchor,
+    &:hover a.heading-anchor
+      // box
+      display: inline-block
+      // style
+      border: 0 none !important
+  .example,
+  .info
+    a.heading-anchor
+      display: none !important
   hr
     border: 0 none
     border-top: 1px solid #ddd
@@ -120,7 +158,6 @@ blockquote,
     overflow: hidden
     // style
     border: 0 none
-
 article table
   // typo
   font-size: .95em
