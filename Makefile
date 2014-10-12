@@ -1,6 +1,12 @@
 run ::
 	node ./s.js 9999 | jade -Pw *.jade | sass --watch sass:. --style compressed
 
+build :: 
+	bower install
+	sass sass/style.sass:style.css --style compressed
+	make app.js
+	make fa
+
 han ::
 	rm -r -f src/lib/han
 	mkdir src/lib/han src/lib/han/font
