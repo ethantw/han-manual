@@ -128,7 +128,9 @@ var manual = doc.querySelector( 'body.manual article.main-content' )
 $.qsa( 'h2, h3, h4, h5, h6', manual )
 .forEach(function( elem, i ) {
   var anchor = elem.lastChild,
-      anchorId = anchor.nodeValue
+      anchorId = anchor.nodeValue,
+      heading = anchor.parentNode,
+      getter = $.create( 'a', 'heading-anchor' )
 
   elem.setAttribute( 'id', 'sec-' + i )
 
@@ -138,8 +140,16 @@ $.qsa( 'h2, h3, h4, h5, h6', manual )
     /\s?\#[\w\_\-]+\s?/.test( anchorId )
   ) {
     elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
-    anchor.parentNode.removeChild( anchor )
+    $.remove( anchor, heading )
   }
+
+  heading.appendChild( getter )
+  getter.innerHTML = '點此獲取本節網址'
+  $.setAttr( getter, {
+    'hidden': 'hidden',
+    'title': '點此獲取本節網址',
+    'href': '#' + elem.getAttribute( 'id' )
+  })
 })
 
 $.qsa( 'div.info, .example, pre, table', manual )

@@ -18,3 +18,8 @@ app.js ::
 	make lib.js
 	make main.js
 	cat src/lib.js src/main.js > app.js
+
+fa ::
+	rm -r -f src/font
+	mkdir src/font
+	cp bower_components/font-awesome/fonts/* src/font

@@ -22,10 +22,25 @@
 **註：**「漢字標準格式」自版本v3.0.0起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
 </div>
 
-### CDN服務
-### 使用模塊管理系統
+
+### 使用模塊管理系統來安裝
 - Bower `bower install Han`
-- NPM `npm install Han`
+- Component `component install ethantw/Han`
+
+### CDN服務
+若毋須使用Sass變數的定製功能，你也可以直接使用以預設値編譯的CDN外連樣式表、腳本及網頁字體，以求高速下載及快取。[此服務由cdnjs.com提供][cdnjs]。
+
+[cdnjs]: http://cdnjs.com/libraries/han
+
+````html
+<link rel="stylesheet" media="all" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.css">
+````
+
+JavaScript腳本，
+
+````html
+<script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.js"></script>
+````
 
  HTML5文件格式
 --------------
