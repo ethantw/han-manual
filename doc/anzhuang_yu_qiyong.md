@@ -4,7 +4,7 @@
 
 這分使用手冊介紹了「漢字標準格式」（當前版本v3.0.0）的基本功能與使用方式。以下是基本的安裝與啓用步驟。
 
- 引用文件
+ 引用文件 <!-- #yinyong_wenjian -->
 --------
 通常，一般網頁需要引用二個文件來啓用「漢字標準格式」——`han.min.css`（或使用Sass滙入）及`han.min.js`（或使用JavaScript模組框架），後者（腳本文件）可依網站的需求選用。
 
@@ -23,11 +23,11 @@
 </div>
 
 
-### 使用模塊管理系統來安裝
+### 使用模塊管理系統來安裝 <!-- #package-manager -->
 - Bower `bower install Han`
 - Component `component install ethantw/Han`
 
-### CDN服務
+### CDN服務 <!-- #cdn -->
 若毋須使用Sass變數的定製功能，你也可以直接使用以預設値編譯的CDN外連樣式表、腳本及網頁字體，以求高速下載及快取。[此服務由cdnjs.com提供][cdnjs]。
 
 [cdnjs]: http://cdnjs.com/libraries/han
@@ -42,7 +42,7 @@ JavaScript腳本，
 <script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.js"></script>
 ````
 
- HTML5文件格式
+ HTML5文件格式 <!-- #html5_wenjian_geshi -->
 --------------
 「漢字標準格式」要求所有網頁使用HTML5標準文件格式或HTML4嚴格模式，並依主要語言及文字變體在根元素中加入相應的語言屬性。
 
@@ -84,7 +84,7 @@ JavaScript腳本，
 使用中文漢字的網頁或元素，請務必加入包含`zh`、`Hant`或`Hans`三者任一的語言屬性値；使用羅馬拼音者，其語言屬性則需要包含`Latn`。
 </div>
 
- 彈性設計
+ 彈性設計 <!-- #rwd -->
 --------
 「漢字標準格式」提供專為行動裝置最佳化的彈性設計（<span lang='en'>responsive web design</span>），在`<head>`元素中加入下列viewport元信息元素以啓用。
 
@@ -92,7 +92,7 @@ JavaScript腳本，
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
- DOM ready腳本渲染
+ DOM ready腳本渲染 <!-- #dom-ready-js -->
 ------------------
 ### 以套用類別來啓用
 #### 全頁渲染

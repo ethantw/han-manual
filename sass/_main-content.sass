@@ -37,7 +37,7 @@ article.main-content
       @extend %fa-paperclip
 
       &:before 
-        color: #999
+        color: #76a633
         text-shadow: #ddd 1px 1px 0
 
       // posi
@@ -69,6 +69,39 @@ article.main-content
   a:hover
     border-bottom: 1px dotted rgba(#999, .8)
     padding-bottom: .05em
+  .char-display
+    background-color: rgba(90%, 85%, 80%, .4)
+    border-radius: .25em
+    color: #9c8d66
+    padding: 2px 3px
+  table
+    // typo
+    font-size: .95em
+  thead
+    // style
+    border-bottom: 2px solid #e0dfca
+  th,
+  td
+    // typo
+    text-align: left
+    // box
+    padding: .125em .3em
+  th
+    // typo
+    font-weight: normal
+    // style
+    color: #6d5c55
+    
+    small 
+      color: #777
+  tr
+    // style
+    border-bottom: 1px dotted #ddd
+
+    &:first-child td
+      padding-top: .25em
+    &:last-child
+      border: 0
 
 /*  Modules for articles
    ---------------------- */
@@ -158,38 +191,3 @@ blockquote,
     overflow: hidden
     // style
     border: 0 none
-article table
-  // typo
-  font-size: .95em
-
-  thead
-    // style
-    border-bottom: 2px solid #e0dfca
-  th,
-  td
-    // typo
-    text-align: left
-    // box
-    padding: .125em .3em
-  th
-    // typo
-    font-weight: normal
-    // style
-    color: #6d5c55
-    
-    small 
-      color: #777
-  tr
-    // style
-    border-bottom: 1px dotted #ddd
-
-    &:first-child td
-      padding-top: .25em
-    &:last-child
-      border: 0
-
-  .char-display
-    background-color: rgba(90%, 85%, 80%, .4)
-    border-radius: .25em
-    color: #9c8d66
-    padding: 2px 3px
