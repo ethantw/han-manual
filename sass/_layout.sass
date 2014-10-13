@@ -84,8 +84,11 @@ article.layout
     max-width: 29em
 
     a.heading-anchor
+      // posi
       left: auto
       margin-left: .25em
+      // display-as
+      opacity: .3
   @media #{$small-only}
   @media #{$screen} and (min-width: 40em)
     a.heading-anchor
@@ -105,6 +108,9 @@ article.layout
     right: 1.5em
     // box
     width: calc( 100% - 17em - 3em )
+
+    a.heading-anchor
+      opacity: 0
   @media #{$average-only}
   @media #{$large-up}
     // posi
