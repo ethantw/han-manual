@@ -155,7 +155,7 @@ void [
    --------------- */
 
 var nav = doc.querySelector( 'nav.layout' ),
-    fixedY = 3.5*REM
+    fixedY = 4.5*REM
 
 win.addEventListener( 'scroll', function() {
   if (
