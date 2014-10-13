@@ -4,7 +4,7 @@ JS_APP = manual.js
 run ::
 	node ./s.js 9999 | jade -Pw *.jade | sass --watch sass:. --style compressed
 
-build :: 
+build ::
 	bower install
 	make han
 	# make han-dev
@@ -39,6 +39,7 @@ han-dev ::
 	cp ../han/font/* src/lib/han/font
 
 fa ::
-	rm -r -f src/font
-	mkdir src/font
-	cp bower_components/font-awesome/fonts/* src/font
+	rm -r -f src/lib/fa
+	mkdir src/lib/fa
+	cp bower_components/font-awesome/fonts/* src/lib/fa
+	rm src/lib/fa/*.eot && rm src/lib/fa/*.ttf

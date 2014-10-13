@@ -3,5 +3,7 @@ node_modules
 bower_components
 
 src/lib/han
+src/lib/fa
+
 src/lib.js
 src/main.js
