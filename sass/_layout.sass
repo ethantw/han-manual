@@ -82,7 +82,15 @@ article.layout
     margin: 2em auto
     // box
     max-width: 29em
+
+    a.heading-anchor
+      left: auto
+      margin-left: .25em
   @media #{$small-only}
+  @media #{$screen} and (min-width: 40em)
+    a.heading-anchor
+      left: -1em
+      margin-left: auto
   @media #{$medium-up}
     // posi
     position: absolute
