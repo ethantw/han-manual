@@ -37,10 +37,8 @@ article.main-content
 
     &:target a.heading-anchor,
     &:hover a.heading-anchor
-      // box
-      display: inline-block
-      // style
       border: 0 none !important
+      opacity: 1
   .example,
   .info
     a.heading-anchor
@@ -96,7 +94,7 @@ a.heading-anchor
   bottom: .125em
   left: -1em
   // box
-  display: none
+  display: inline-block
   height: 1.2em 
   width: 1.2em
   overflow: hidden
@@ -105,6 +103,7 @@ a.heading-anchor
   // style 
   color: transparent
   cursor: pointer
+  opacity: 0
 
   &:before 
     color: #76a633
