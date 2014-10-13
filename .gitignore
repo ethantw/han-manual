@@ -3,4 +3,5 @@ node_modules
 bower_components
 
 src/lib/han
-doc/#TOC.md
+src/lib.js
+src/main.js

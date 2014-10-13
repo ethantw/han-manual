@@ -1,4 +1,7 @@
 
+/*  Situations in the main article
+   -------------------------------- */
+
 article.main-content
   padding: 0 .5em
 
@@ -32,27 +35,6 @@ article.main-content
   h6
     position: relative
 
-    a.heading-anchor
-      @extend %fa
-      @extend %fa-paperclip
-
-      &:before 
-        color: #76a633
-        text-shadow: #ddd 1px 1px 0
-
-      // posi
-      position: absolute
-      margin: -.125em 0 0 -.125em
-      // box
-      display: none
-      height: 1.2em 
-      width: 1.2em
-      overflow: hidden
-      // typo
-      font-size: 1em
-      // style 
-      color: transparent
-      cursor: pointer
     &:target a.heading-anchor,
     &:hover a.heading-anchor
       // box
@@ -66,14 +48,6 @@ article.main-content
   hr
     border: 0 none
     border-top: 1px solid #ddd
-  a:hover
-    border-bottom: 1px dotted rgba(#999, .8)
-    padding-bottom: .05em
-  .char-display
-    background-color: rgba(90%, 85%, 80%, .4)
-    border-radius: .25em
-    color: #9c8d66
-    padding: 2px 3px
   table
     // typo
     font-size: .95em
@@ -102,9 +76,39 @@ article.main-content
       padding-top: .25em
     &:last-child
       border: 0
+  a:hover
+    border-bottom: 1px dotted rgba(#999, .8)
+    padding-bottom: .05em
+  .char-display
+    background-color: rgba(90%, 85%, 80%, .4)
+    border-radius: .25em
+    color: #9c8d66
+    padding: 2px 3px
 
-/*  Modules for articles
-   ---------------------- */
+/*  Components
+   ------------ */
+
+a.heading-anchor
+  @extend %fa
+  @extend %fa-paperclip
+  // posi
+  position: absolute
+  margin: -.125em 0 0 -.125em
+  // box
+  display: none
+  height: 1.2em 
+  width: 1.2em
+  overflow: hidden
+  // typo
+  font-size: 1em
+  // style 
+  color: transparent
+  cursor: pointer
+
+  &:before 
+    color: #76a633
+    text-shadow: #ddd 1px 1px 0
+
 div.example,
 blockquote.example,
 figure.example,

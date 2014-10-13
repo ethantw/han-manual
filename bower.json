@@ -6,7 +6,7 @@
     "Chen Yijun <ethantw@me.com>"
   ],
   "description": "Manual for Han.css",
-  "main": "manual.html",
+  "main": "doc/*",
   "keywords": [
     "Han.css",
     "manual"
@@ -20,6 +20,7 @@
     "tests"
   ],
   "dependencies": {
+    "han": "~3.0.0",
     "font-awesome": "~4.2.0"
   }
 }
