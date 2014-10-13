@@ -35,7 +35,7 @@
 - [萌典](https://moedict.tw/)
 - [IT公論](http://itgonglun.com/)
 - [g0v零時政府](http://g0v.tw/)
-- [Markdown語法說明](http://markdown.tw/)
+- [Markdown中文語法說明](http://markdown.tw/)
 
 ### 類似的解決方案 <!-- #similar-solutions -->
 - [Entry.css](http://nodejs.in/Entry.css/)

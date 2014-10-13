@@ -15,15 +15,13 @@
 ----------
 文章區塊的行高大於全域行高，預設為1.7em。可經Sass變數`$han-article-line-height`的設定調整，推薦範圍為1.5-2em間。
 
- 文章內的對齊
-------------
-文章區塊預設使用文字左右對齊，可經Sass變數關閉，
+ 文章的對齊 <!-- #wenzhang_de_duiqi -->
+-----------
+文章區塊預設使用齊頭尾文字對齊，可經Sass變數關閉，
 
 ```sass
 $han-article-justify: false
 ```
-
-
 
  文章、章節與內容的邊界調整 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng -->
 -----------------------
@@ -36,15 +34,14 @@ $han-article-justify: false
 ### 段落 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-duanluo -->
 文章中，段落`p`在各級標題後方時，其上邊界對標題收緊。
 
-### 引用區塊 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-yinyongqukuai -->
-文章中，引用區塊`blockquote`在各級標題後方時，上邊界對標題收緊。
+### 區塊引用 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-qukuaiyinyong -->
+文章中，區塊引用`blockquote`在各級標題後方時，上邊界對標題收緊。
 
 ### 清單 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-qingdan -->
 文章中，有序`ol`及無序清單`ul`在各級標題後方時，上邊界對標題收緊。
 
 ### 類詩篇段落或區塊 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-leishipian_duanluo_huo_ququai -->
 在段落`p`或任意元素上套用類別`.poem-like`，其或其下的段落預設縮進二個漢字的寬度。類詩篇段落*不限定*在文章情境中。
-
 
 ### 標題 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-biaoti -->
 
@@ -63,9 +60,19 @@ $han-article-justify: false
 上述群組元素在章節`section`元素內時，不會影響其對上級標題的收緊。
 
 ### 行動裝置上的調整 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-xingdong_zhuangzhi_shang_de_tiaozheng -->
-行動裝置（螢幕寬度在480px以下者）上，文章內所有包含縮進的群組元素，其縮進由二個漢字寬度減為一個漢字寬度。
+在螢幕寬度480px以下的行動裝置上，所有包含縮進的群組元素，其縮進由二個漢字寬度減為一個漢字寬度。
 
-本節所述預設値，可經由Sass變數`$han-mobile-device-width`（行動裝置最大寬度）及`$han-indent-md`（行動裝置縮進値）來調整。
+- 區塊引用`blockquote`
+- 圖表`figure`
+- 類詩篇段落`p.poem-like, .poem-like p`
+- 有序`ol`及無序`ul`清單
+
+本節所述預設値，可經由Sass變數`$han-mobile-device-width`（行動裝置最大寬度）及`$han-indent-md`（行動裝置縮進値）來調整。例如，
+
+```sass
+$han-mobile-device-width: 640px  // 行動裝置最大寬度
+$han-indent-md:           1.5em  // 行動裝置縮進値
+```
 
  章節與目錄的計數 <!-- #zhangjie_yu_mulu_de_jishu -->
 ---------------
