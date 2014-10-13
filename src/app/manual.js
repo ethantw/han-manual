@@ -10,7 +10,7 @@ var root = doc.documentElement,
 /*  Title
    ------- */
 var manual = doc.querySelector( 'body.manual article.main-content' ),
-    
+
     originalTitle = doc.title,
     articleTitle = manual.querySelector('h1').innerHTML
 
@@ -37,13 +37,19 @@ $.qsa( 'h2, h3, h4, h5, h6', manual )
     $.remove( anchor, heading )
   }
 
-  heading.appendChild( getter )
+  anchorId = elem.getAttribute( 'id' )
+
   getter.innerHTML = '點此獲取本節網址'
+  getter.addEventListener( 'click', function( e ) {
+    e.preventDefault()
+    location.hash = anchorId
+  })
   $.setAttr( getter, {
     'hidden': 'hidden',
     'title': '點此獲取本節網址',
-    'href': '#' + elem.getAttribute( 'id' )
+    'href': '#' + anchorId
   })
+  heading.appendChild( getter )
 })
 
 $.qsa( 'div.info, .example, pre, table', manual )
@@ -115,6 +121,7 @@ navBookmark.forEach(function( elem ) {
         ) ? e.target : null
 
     if (
+      !e.metaKey &&
       anchor &&
       !isIndex &&
       isSamePage( anchor.href )
@@ -133,8 +140,8 @@ navBookmark.forEach(function( elem ) {
 })
 
 
-void [ 
-  'hashchange',  
+void [
+  'hashchange',
   'DOMContentLoaded'
 ].forEach(function( event ) {
   win.addEventListener( event, function() {
@@ -164,7 +171,7 @@ win.addEventListener( 'scroll', function() {
 // Prevent the navi scrolling conflict
 void [
   'mousewheel',
-  'DOMMouseScroll' 
+  'DOMMouseScroll'
 ].forEach(function( event ) {
   doc.addEventListener( event, function( e ) {
     nav.addEventListener( 'mouseover', function() {
