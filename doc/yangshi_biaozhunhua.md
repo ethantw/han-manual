@@ -88,7 +88,14 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </figure>
 ```
 
-<div class="example itff">
+<div class="example itff itff-blockquote">
+  <style scoped>
+.itff-blockquote blockquote {
+  line-height: 1.3 !important;
+  margin: 1em 2em !important;
+  text-align: left !important;
+}
+  </style>
 
 #### 區塊引用元素
 
