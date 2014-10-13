@@ -19,15 +19,24 @@ header.layout
   z-index: 100
   // box
   width: 100%
-nav.layout
-  // posi
-  position: absolute
-  left: 50%
-  top: 8em
-  margin-left: -30em + 1em
-  // box
-  width: 16em
 
+  .logo
+    @media #{$small-up}
+      p.desc
+        display: none
+    @media #{$small-only}
+      text-align: center
+    @media #{$medium-up}
+      p.desc
+        display: inline-block
+    @media #{$medium-only}
+    @media #{$large-up}
+      // posi
+      position: relative
+      left: 50%
+      margin-left: -30em
+    @media #{$large-only}
+nav.layout
   body[data-js-fixed-nav='true'] &
     // posi
     position: fixed
@@ -46,15 +55,57 @@ nav.layout
       height: 100%
       overflow-y: auto
       padding: 1em 0 3em
+  @media #{$small-up}
+    // posi
+    position: absolute
+    left: 1em
+    top: 8em
+    // box
+    display: none
+    width: 14em
+  @media #{$small-only}
+  @media #{$medium-up}
+    display: block
+  @media #{$medium-only}
+  @media #{$average-up}
+    // box
+    width: 16em
+  @media #{$average-only}
+  @media #{$large-up}
+    // posi
+    left: 50%
+    margin-left: -30em + 1em
 article.layout
-  // posi
-  position: relative
-  left: 50%
-  margin-left: -8em - 2em
-  margin-top: 2em
-  z-index: 20
-  // box
-  width: 38em
+  @media #{$small-up}
+    // posi
+    position: relative
+    margin: 2em auto
+    // box
+    max-width: 29em
+  @media #{$small-only}
+  @media #{$medium-up}
+    // posi
+    position: absolute
+    margin-left: 16.5em
+    // box
+    max-width: 38em
+    width: calc( 100% - 15em - 3em )
+  @media #{$medium-only}
+  @media #{$average-up}
+    // posi
+    margin-left: 0
+    right: 1.5em
+    // box
+    width: calc( 100% - 17em - 3em )
+  @media #{$average-only}
+  @media #{$large-up}
+    // posi
+    left: 50%
+    margin-left: -8em-2em
+    margin-top: 2em
+    z-index: 20
+    // box
+    width: 38em
 footer.layout
   // posi
   // box
