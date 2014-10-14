@@ -38,13 +38,11 @@ header.layout
     @media #{$large-only}
 nav.layout
   body[data-js-fixed-nav='true'] &
+    +calc( 'height', '100% - 3.5em + 1px' )
     // posi
     position: fixed
     top: 3.5em
     // box
-    height: -webkit-calc(100% - 3.5em + 1px)
-    height: -moz-calc(100% - 3.5em + 1px)
-    height: calc(100% - 3.5em + 1px)
     padding: .5em 0
     overflow: hidden
 
@@ -95,19 +93,18 @@ article.layout
       left: -1em
       margin-left: auto
   @media #{$medium-up}
+    +calc( 'width', '100% - 15em - 3em' )
     // posi
     position: absolute
     margin-left: 16.5em
     // box
     max-width: 38em
-    width: calc( 100% - 15em - 3em )
   @media #{$medium-only}
   @media #{$average-up}
+    +calc( 'width', '100% - 17em - 3em' )
     // posi
     margin-left: 0
     right: 1.5em
-    // box
-    width: calc( 100% - 17em - 3em )
 
     a.heading-anchor
       opacity: 0
