@@ -1,18 +1,16 @@
 
- <span lang='en'>Sass</span>變數彙整
-=====================================
+## <span lang='en'>Sass</span>變數彙整 <!-- #variable -->
+
 以下是「漢字標準格式」Sass樣式表下所有可調控的變數及其預設値。
 
-檔案路徑
--------
+### 檔案路徑
 Web font路徑，
 ```scss
 $han-font-woff: './font/han.woff';
 $han-font-otf:  './font/han.otf';
 ```
 
-元素容器的選用
------------
+### 元素容器的選用
 根元素，依需求可改用`:root`等。
 ```scss
 $han-root: html;
@@ -28,8 +26,7 @@ $han-article: article;
 $han-mobile-device-width: 480px;
 ```
 
-文字樣式
--------
+### 文字樣式
 行高（[全域行高](/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi)、[文章行高](/manual/zhangjie_de_bianpai#wenzhang_de_hanggao)），
 ```scss
 $han-line-height:         1.3;  // 全域行高（設置於根元素）
@@ -81,8 +78,7 @@ $han-text-emphasis-posi-ja:  over;
 $han-text-emphasis-color-ja: inherit;
 ```
 
-文字設計
-------
+### 文字設計
 字集相關設定（[漢字](/manual/wenzisheji#zhongwen_hanzi_zitiji)、[標點](http://localhost:9999/manual/wenzisheji#biaodian_yangshi_xiuzheng-zhongwen_biaodian_liebiao)），
 ```scss
 // 繁體中文字體變體

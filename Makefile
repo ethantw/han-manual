@@ -1,16 +1,21 @@
 JS_LIB = yijun.js hljs.js
 JS_APP = manual.js
+DOC_SASS = header.md variable.md
 
 run ::
 	node ./s.js 9999 | jade -Pw *.jade | sass --watch sass:. --style compressed
 
 build ::
 	bower install
+	make doc
 	make han
 	# make han-dev
 	make fa
 	make app.js
 	sass sass/style.sass:style.css --style compressed
+
+doc ::
+	cd doc/sass && cat $(DOC_SASS) > ../sass.md
 
 lib.js ::
 	cd src/lib && cat $(JS_LIB) > ../lib.js
