@@ -1,6 +1,6 @@
 JS_LIB = yijun.js hljs.js
 JS_APP = manual.js
-DOC_SASS = header.md variable.md
+DOC_SASS = header.md zitijixing_extend.md sectional.md inline.md variable.md
 
 run ::
 	node ./s.js 9999 | jade -Pw *.jade | sass --watch sass:. --style compressed

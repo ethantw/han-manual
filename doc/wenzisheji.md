@@ -90,9 +90,9 @@ code:lang(ja) {
 **提示：**為清楚表述字體回退機制與概念，以上本節節錄的CSS代碼皆經簡化、合併。
 </div>
 
-文字設計模組內建了四個字體回退基型——無襯線（黑體）、襯線（宋體）、手寫體（楷體）、等寬（黑體），使用相應的Sass `@extend`即可在選擇器上套用，並能避免冗餘繁雜的字體宣告，請見使用手冊「[APIs・Sass·字體基型@extend][api-extend]」。
+文字設計模組內建了四個字體回退基型——無襯線（黑體）、襯線（宋體）、手寫體（楷體）、等寬（黑體），使用相應的Sass `@extend`即可在選擇器上套用，並能避免冗餘繁雜的字體宣告，請見使用手冊「[Sass API·字體基型 @extend][api-extend]」。
 
-[api-extend]: /manual/sass#zitijixing_extend
+[api-extend]: /manual/sass#ziti_jixing_extend
 
 
  標點樣式修正 <!-- #biaodian_yangshi_xiuzheng -->
