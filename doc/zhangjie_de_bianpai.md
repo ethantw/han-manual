@@ -35,7 +35,7 @@ $han-article-justify: false
 文章中，段落`p`在各級標題後方時，其上邊界對標題收緊。
 
 ### 區塊引用 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-qukuaiyinyong -->
-文章中，區塊引用`blockquote`在各級標題後方時，上邊界對標題收緊。
+文章中，區塊引用`blockquote`在各級標題後方時，上邊界對標題收緊，並縮進二個漢字的寬度，其下若包含另一個子代區塊引用`blockquote blockquote`，則子區塊引用縮進一個字元。
 
 ### 清單 <!-- #wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng-qingdan -->
 文章中，有序`ol`及無序清單`ul`在各級標題後方時，上邊界對標題收緊。
