@@ -12,7 +12,7 @@ var root = doc.documentElement,
 var manual = doc.querySelector( 'body.manual article.main-content' ),
 
     originalTitle = doc.title,
-    articleTitle = manual.querySelector('h1').innerHTML
+    articleTitle = manual.querySelector('h1').textContent
 
 doc.title = articleTitle + ' — ' + originalTitle
 
