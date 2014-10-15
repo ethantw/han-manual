@@ -133,10 +133,10 @@ code:lang(zh-Hans),
 }
   </style>
   <thead> 
-    <th colspan='2'>字體基型覆蓋順序
+    <th colspan='2'>基型覆蓋優先級
   </thead>
   <tr>
-    <th>先  
+    <th>高  
     <td>西文等寬／黑體
   <tr>
     <th rowspan='5'>
@@ -150,7 +150,7 @@ code:lang(zh-Hans),
   <tr>
     <td>黑體、意大利體
   <tr>
-    <th>後
+    <th>低
     <td>黑體
 </table>
 
