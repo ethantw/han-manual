@@ -1,6 +1,9 @@
 JS_LIB = yijun.js hljs.js
 JS_APP = manual.js
-DOC_SASS = header.md zitijixing_extend.md sectional.md inline.md variable.md
+DOC_SASS = overview.md zitijixing_extend.md sectional.md inline.md variable.md
+DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
+
+a : doc
 
 run ::
 	node ./s.js 9999 | jade -Pw *.jade | sass --watch sass:. --style compressed
@@ -16,6 +19,7 @@ build ::
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
+	cd doc/js && cat $(DOC_JS) > ../js.md
 
 lib.js ::
 	cd src/lib && cat $(JS_LIB) > ../lib.js

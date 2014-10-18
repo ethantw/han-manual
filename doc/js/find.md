@@ -1,124 +1,86 @@
-APIs
-====
 
-Han.Farr()
-----------
-`Han.Farr()`是基於`findAndReplaceDOMText`函式庫的構造函數，用以替換或包裹DOM結構中的文字。將回傳一個`Farr`實例，方便鏈式書寫。
+ 字元査替器 <!-- #find -->
+-----------
+字元査替器是基於[findAndReplaceDOMText庫][fardt]的字元査替方法集合，用以替換或使用元素來包裹DOM結構中的文字。
 
-### 語法
+[fardt]: https://github.com/padolsey/findAndReplaceDOMText
+
+與原生`String.prototype.replace()`等方法不同，字元査替器*支援跨元素邊界的字元査找。*
+
+### Han.fn.replace()
+`Han.fn.replace()`方法會將Han指定範圍中符合`pattern`表達式的文字替換為`newSubStr`。
+
 ```javascript
-Han.Farr( selector, [filter, method, pattern, sub] )
+Han( context ).replace( pattern, newSubStr )
 ```
 
-<div class='info desc'>
+#### 參數說明
+<dl class='parameter'>
+<dt><code>pattern</code></dt>  
+<dd>正則表達式或字串。査找指定範圍內相應的文字。
 
-##### 變數類型
-
-<dl>
-<dt>`selector`
-	<dd>DOM選擇器（見[selector](#)）</dd>
-<dt>`filter`</dt>
-
-<dd>
-
-可選，類型可為：
-
-1. 包含需要過濾的元素名稱的字串，以空格相隔；或，
-2. 自訂過濾規則的函數。每次替換或包裹文字時呼叫。包含一個變數`currentElem`，為當前作用文字節點的父元素節點。
-
-</dd>
-
-<dt>`method`
-	<dd>可選，表示將採用的Far方法，値為`replace`（替換）或`wrap`（包裹）的字串。
-<dt>`pattern`
-	<dd>可選，將被替換或包裹的文字表達式。
-<dt>`sub`
-	<dd>可選，回傳一個被替換的文字或包裹元素的字串或函數。
+<dt><code>newSubStr</code></dt>  
+<dd>字串，目標文字的替換內容。
 </dl>
-</div>
 
-## Han.fn.replace()方法
-`replace()`是基於`Han.Far`的Han方法，它會將選擇器上符合`pattern`表達式的文字替換為`newSubStr`返回値。
+### Han.fn.wrap()
+`Han.fn.wrap()`方法會以`newSubElem`返回的元素包裹Han指定範圍內、符合`pattern`表達式的文字。
 
 ```javascript
-Han( selector ).replace( pattern, newSubStr )
+Han( context ).wrap( pattern, newSubElem )
 ```
 
-第一次呼叫Far方法時，會以當前選擇器新建`Han.Far`對象於`Han`實例中；爾後使用任何Far方法時，將直接査找該對象。
+#### 參數說明
+<dl class='parameter'>
+<dt><code>pattern</code></dt>
+<dd>正則表達式或字串。
 
-<div class='info desc'>
-
-##### 變數類型
-
-<dl>
-	<dt>`pattern`  
-		<dd>正則表達式或字串（不建議）。
-	<dt>`newSubStr`  
-		<dd>一個字串，或返回一個字串的函數。
+<dt><code>newSubElem</code></dt>
+<dd>一個DOM對象或元素名稱字串。
 </dl>
-</div>
 
-## Han.fn.wrap()方法
-`wrap()`是基於`findAndReplaceDOMText`函式庫的Han方法，它會以`newSubElem`返回的元素包裹符合`pattern`表達式的文字。
+### Han.fn.revert()
+`Han.fn.revert()`方法以參數`level`來決定所回退的finder層級，`level`為可選參數，預設回退一級。
 
 ```javascript
-Han( selector ).wrap( pattern, newSubElem )
-```
-
-第一次呼叫Far方法時，會以當前選擇器新建`Han.Far`對象於`Han`實例中；爾後使用任何Far方法時，將直接査找該對象。
-
-<div class='info desc'>
-
-##### 變數類型
-
-<dl>
-	<dt>`pattern`  
-		<dd>正則表達式或字串（不建議）。
-  <dt>`newSubElem`  
-		<dd>一個DOM對象或任一元素名稱的字串，或返回上述二者的函數。
-</dl>
-</div>
-
-## Han.fn.unfarr()方法
-`unfarr`是基於`Han.Farr`函數的Han方法，它以變數`level`來決定所回退`Farr.finder`的層級，`level`為可選變數，未設定時回退一級。
-
-```javascript
-Han( selector )
+Han( context )
 // .replace()
 // .wrap()
 // …
-.unfarr( [level] )
+.revert( [level] )
 ```
+
+#### 參數說明
+<dl class='parameter'>
+<dt><code>level</code>
+<dd>
+
+數字、可轉換為數字的字串或`'all'`，使用`'all'`將回退該Han對象上的所有finder。
+</dl>
 
 範例，
 
 ```javascript
-var $body = Han( document.body )
+var hinst = Han( document.body )
 
-$body.replace( /[紅綠藍]/g, '三原色' )
-
-// some script actions
+hinst
+.replace( /[紅綠藍]/g, '三原色' )
+.wrap( /三原色/g, 'em' )
 // …
 
-$body.unfarr( 'all' )
+hinst.revert( 'all' )
 ```
-
-<div class='info desc'>
-
-##### 變數類型
-
-<dl>
-	<dt>`level`
-		<dd>數字或可轉換為數字的字串，使用`'all'`將回退該Han對象上的所有`Farr.finder`。
-</dl>
-</div>
+網頁中，原本的「紅」「綠」「藍」等字仍顯示為「紅」「綠」或「藍」，而非「三原色」，亦未受強調`em`元素包裹。
 
 
-## Han.fn.jinzify() 方法
-`jinzify()`是基於Han.Farr的Han對象方法，可對Han對象上的DOM元件加入標點禁則處理。
+### Han.fn.jinzify() 
+`Han.fn.jinzify()`方法可對Han對象上的指定範圍加入標點禁則處理。
+
+<div class='info note'>
 
 一般情況下，瀏覽器可以正常套用標點禁則，毋須使用此方法。
+</div>
 
+### Han.fn.charify()
+`Han.fn.charify()`方法可依選項或預設設定為Han對象上的指定範圍進行字元包裹，實現「字級選擇器」。
 
-## Han.fn.charify() 方法
-`jinzify()`是基於Han.Farr的Han對象方法，可依選項或預設的設定為Han對象上的DOM元件進行字元包裹，以實現字級選擇器。
