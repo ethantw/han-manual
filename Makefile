@@ -1,6 +1,6 @@
 JS_LIB = yijun.js hljs.js
 JS_APP = manual.js
-DOC_SASS = overview.md zitijixing_extend.md sectional.md inline.md variable.md
+DOC_SASS = overview.md module.md zitijixing_extend.md sectional.md inline.md variable.md
 DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
 
 a : doc
