@@ -21,13 +21,14 @@ html(lang='zh-Hant').han-init
     article.main-content.layout
       //!!!MARKDOWN!!!
       footer.main-content
-        ul
-          li: button#edit-this 幫助我們妥善這分文件
-          li: button#issue-this 提問題
+        ul.github.
+          <li><a id='edit-this' href='https://github.com/ethantw/Han-Manual/tree/master/doc'>幫助我們妥善這分文件</a>
+          <li><a id='issue-this' href='https://github.com/ethantw/Han/issues'>提問題</a>
         ul.share
-          li: button#share2twr 分享至Twitter
-          li: button#share2fb 分享至Facebook
-          li: button#share2wbo 分享至微博
+          li: button#share2twr(title='分享至Twitter') 分享至Twitter
+          li: button#share2fb(title='分享至Facebook') 分享至Facebook
+          li: button#share2goog(title='分享至Google+') 分享至Google+
+          li: button#share2wbo(title='分享至新浪微博') 分享至新浪微博
     nav.layout.toc
       ol
         li 從何開始

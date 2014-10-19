@@ -17,11 +17,89 @@ footer.main-content
 
     li
       display: inline-block
+  a,
   button
+    @extend %fa
+    // box
+    display: inline-block
+    overflow: hidden
     // typo
-    font-size: .8em
+    font-size: 1em
     // style
     background: none
     border: 1px solid #bbb
-    border-radius: .4em
     color: #999
+    outline: 0
+  ul.share li
+    display: inline-block
+    overflow: hidden
+    height: 2.1rem
+    width: 2.1rem
+  ul.share button
+    // box
+    padding: .33rem .275rem .275rem
+    height: 100%
+    width: 100%
+    // typo
+    font-size: 1.5rem
+    // style
+    background-color: #000
+    border: 0 none
+    border-radius: 2rem
+    color: transparent
+    opacity: .25
+
+    &:before
+      color: #fff
+    &:hover
+      opacity: 1
+  ul.github
+    // posi
+    float: right
+    margin-top: .125em
+
+    li:first-child a
+      // box
+      padding-left: .75em
+      // style
+      border-top-left-radius: 2em
+      border-bottom-left-radius: 2em
+    li:last-child a
+      // posi
+      margin-left: -1px
+      // box
+      padding-right: .75em
+      // style
+      border-top-right-radius: 2em
+      border-bottom-right-radius: 2em
+    a
+      // box
+      padding: .25em .5em
+
+      &:before
+        // posi
+        margin-right: .33em
+        // typo
+        font-size: 1.1em
+      &:hover
+        border-style: dotted
+        color: #555
+      &:hover:before
+        color: #689
+
+#edit-this
+  @extend %fa-github
+#issue-this
+  @extend %fa-exclamation-circle
+#share2twr
+  @extend %fa-twitter
+  background-color: #55acee
+#share2fb
+  @extend %fa-facebook
+  background-color: #3b5998
+#share2goog
+  @extend %fa-google-plus
+  background-color: #d34836
+#share2wbo
+  @extend %fa-weibo
+  background-color: #e6162d
