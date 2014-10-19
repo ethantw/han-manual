@@ -32,12 +32,18 @@ Han( document.querySelector( '.entry' ))
 .substCombLigaWithPUA()
 ```
 
-### 全頁渲染簡寫 <!-- #rendering-shortcut -->
+### 全頁渲染簡寫Han.init() <!-- #rendering-shortcut -->
 
 全頁渲染簡寫方法`Han.init()`，網頁完成DOM載入後可使用乙次，為網頁載入Han渲染機制，並回傳該實例。
 
 ```javascript
 var hinst = Han.init()
+```
+
+等同於，
+
+```javascript
+var hinst = Han( document.body ).render()
 ```
 
 ### 使用類別啓用全頁渲染 <!-- #rendering-shortcut-w-class -->
