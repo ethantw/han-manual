@@ -137,7 +137,7 @@ JavaScript腳本，
 #### 全頁渲染
 
 ```javascript 
-Han( document.body ).renderRoutine()
+Han( document.body ).render()
 ```
 
 或使用全頁渲染（初始化）的簡寫形式，
@@ -149,7 +149,7 @@ Han.init()
 #### 以指定的單一元素為範圍渲染
 
 ```javascript
-Han( document.getElementById( '#entry' )).renderRoutine()
+Han( document.getElementById( '#entry' )).render()
 ```
 更詳盡的說明，請見「[JavaScript腳本·Han構造函數][js-han]」一節。
 

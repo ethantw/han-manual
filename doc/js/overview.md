@@ -39,7 +39,7 @@ require( [ './han.min' ], function( Han ) {
 
 ### CommonJS <!-- #commonjs -->
 ```javascript
-var Han = require('./han.min.js')
+var Han = require( './han.min.js' )
 Han.init()
 ```
 
