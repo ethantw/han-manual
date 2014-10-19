@@ -20,8 +20,10 @@
 ### Han.detectFont( treat[, control, text] ) <!-- #Han-detectFont -->
 函數方法。用於偵測字體是否為使用者作業系統所支援，其回傳値為一布林値。
 
+<div class='info parameter'>
+
 #### 參數說明
-<dl class='parameter'>
+<dl>
 <dt><code>treat</code>
 <dd>
 
@@ -37,7 +39,7 @@
 
 字串，選用。比對二組字體的實驗文字，預設値為包含漢字及拉丁字母的`'辭Q'`。
 </dl>
-
+</div>
 
 <!--
 <script>

@@ -116,24 +116,29 @@
 
 相關說明，請見〈[樣式標準化·文字裝飾線](/manual/yangshi_biaozhunhua#wenzi_zhuangshixian)〉。
 
+<div class='info parameter'>
+
 #### 參數說明
-<dl class='parameter'>
+<dl>
 <dt><code>target</code>
 <dd>
 
 字串，選用。作用的目標元素選擇器，預設値為`'u, ins'`。
 </dl>
+</div>
 
 ### Han.fn.renderEm( [target] ) <!-- #renderEm -->
 修正Han實例範圍內套用着重號樣式的元素，預設為強調`em`元素。需要配合相應的Sass @mixin。
 
 相關說明，請見〈[樣式標準化·強調與重點](/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian)〉。
 
+<div class='info parameter'>
+
 #### 參數說明
-<dl class='parameter'>
+<dl>
 <dt><code>target</code>
 <dd>
 
 字串，選用。作用的目標元素選擇器，預設値為`'em'`。
 </dl>
-
+</div>

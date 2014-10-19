@@ -15,8 +15,9 @@ Han( context, condition )
 .method2()
 …
 ```
+<div class='info parameter'>
 
-#### 變數類型
+#### 參數說明
 <dl>
 <dt><code>context</code></dt>
 <dd>
@@ -29,6 +30,7 @@ Han( context, condition )
 選用。附加信息——如功能、字體支援偵測類別等——的加載環境，預設為根元素`document.documentElement`。
 </dd>
 </dl>
+</div>
 
 ### AMD <!-- #amd -->
 ```javascript
