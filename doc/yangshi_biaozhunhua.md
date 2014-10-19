@@ -35,8 +35,10 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </div>
 
 ## 縮進 <!-- #suojin -->
+多數包含縮進的元素皆改用*二個漢字*（`2em`）的寬度取代UA樣式中預設的縮進寬度（`40px`），以求文字的高度對齊。
+
 ### 有序與無序清單 <!-- #suojin-youxu_yu_wuxu_qingdan -->
-有序清單`ol`及無序清單`ul`元素包含*二個漢字*寬度（`2em`）的左間隙（`padding-left`）縮進，以求文字的高度對齊。
+有序清單`ol`及無序清單`ul`元素的左間隙（`padding-left`）縮進。
 
 <div class="example">
 
@@ -66,7 +68,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </div>
 
 ### 圖表與區塊引用元素 <!-- #suojin-tubiao_yu_qukuaiyinyong_yuansu -->
-圖表`figure`、區塊引用`blockquote`等元素包含*二個漢字*寬度（`2em`）的左右邊界（`margin`）縮進，以求文字的高度對齊。
+圖表`figure`、區塊引用`blockquote`等元素的左右邊界（`margin`）縮進。
 
 <div class="example itff">
 
