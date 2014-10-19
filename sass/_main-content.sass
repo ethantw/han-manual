@@ -201,13 +201,26 @@ blockquote,
     overflow: hidden
     // style
     border: 0 none
-dl
-  h4 + &,
-  h5 + &,
-  h6 + &
-    margin-top: -1.25em
+.info.parameter
+  // box
+  padding: .25em .5em .5em
+  // style
+  border: 1px solid rgba(#986, .3)
+  border-radius: .25em
 
-  p
-    margin: 0 0 .5em
+  h4,
+  h5,
+  h6
+    margin-top: .25em
+  dl
+    margin: -.5em 0 0
+  dl p
+    margin: 0 0
+  dt code
+    // box
+    padding: 0
+    // style
+    background: transparent
+    color: #986
   dd
     margin: 0
