@@ -12,7 +12,6 @@ build ::
 	bower install
 	make doc
 	make han
-	# make han-dev
 	make fa
 	make app.js
 	sass sass/style.sass:style.css --style compressed
