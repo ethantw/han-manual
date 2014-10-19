@@ -12,10 +12,10 @@
 @import 'han/hyu/normalize';
 
 // 樣式標準化模組
-@import 'han/hyu';
+@import 'han/locale';
 
 // 文字設計模組
-@import 'han/mre';
+@import 'han/typography';
 
 // 高級排版功能模組（章節的編排、行的組成）
 @import 'han/typeset';

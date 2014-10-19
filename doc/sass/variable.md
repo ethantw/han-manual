@@ -108,10 +108,10 @@ $han-serif: Georgia, 'Times New Roman';
 $han-mono:  Menlo, Courier;
 ```
 
-中文預設字體（不建議使用），
+中文預設字體，
 ```scss
-$han-sans-zh:    ''
-$han-serif-zh:   ''
-$han-cursive-zh: ''
-$han-mono-zh:    $han-sans-zh
+$han-sans-zh:    '';
+$han-serif-zh:   '';
+$han-cursive-zh: '';
+$han-mono-zh:    $han-sans-zh;
 ```

@@ -3,8 +3,8 @@
 ---------
 Han提供下列多種渲染方法，可依需求選用。
 
-### Han.fn.renderRoutine() <!-- #renderRoutine -->
-在未更動「常規渲染途徑」（`Han.fn.routine`）的情況下，渲染途徑的簡寫方法`renderRoutine()`將依下列清單之順序，依序執行各渲染方法。
+### Han.fn.render() <!-- #render -->
+在未更動「常規渲染途徑」（`Han.fn.routine`）的情況下，渲染途徑的簡寫方法`render()`將依下列清單之順序，依序執行各渲染方法。
 
 - 初始化`initCond()`
 - 字級語意元素樣式標準化`renderElem()`
@@ -17,7 +17,7 @@ Han提供下列多種渲染方法，可依需求選用。
 - 以PUA字元取代合字符`substCombLigaWithPUA()`<small>（瀏覽器不支援時啓用）</small>
 
 ```javascript
-Han( document.querySelector( '.entry' )).renderRoutine()
+Han( document.querySelector( '.entry' )).render()
 ```
 
 上述簡寫同等於，
