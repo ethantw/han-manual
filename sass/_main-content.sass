@@ -211,7 +211,18 @@ blockquote,
   h4,
   h5,
   h6
-    margin-top: .25em
+    // posi
+    margin: .25em 0 1em
+    // typo
+    font-weight: normal
+    // style
+    color: #c27042
+
+    &:lang(zh),
+    *:lang(zh)
+      letter-spacing: .25em
+  h4
+    border-bottom: 1px dotted rgba(#986, .4)
   dl
     margin: -.5em 0 0
   dl p
