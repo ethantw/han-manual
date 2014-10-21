@@ -1,6 +1,8 @@
 .DS_Store
+.sass-cache
 node_modules
 bower_components
+*.css.map
 
 src/lib/han
 src/lib/fa

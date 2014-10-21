@@ -1,9 +1,12 @@
 
 footer.main-content
   // posi
-  margin-top: 2rem
+  position: relative
+  bottom: 0
+  margin-top: 7rem
   // box
-  padding-bottom: 2rem
+  width: 100%
+  padding-bottom: 1rem
   // style
   border-top: 1px dotted #bbb
 
@@ -14,9 +17,13 @@ footer.main-content
     padding: .5em .25em
     // typo
     list-style: none
+    // style
+    opacity: .4
 
     li
       display: inline-block
+  &:hover ul
+    opacity: 1
   a,
   button
     @extend %fa
@@ -27,8 +34,6 @@ footer.main-content
     font-size: 1em
     // style
     background: none
-    border: 1px solid #bbb
-    color: #999
     outline: 0
   ul.share li
     display: inline-block
@@ -37,7 +42,7 @@ footer.main-content
     width: 2.1rem
   ul.share button
     // box
-    padding: .33rem .275rem .275rem
+    padding: 0.38rem 0.35rem
     height: 100%
     width: 100%
     // typo
@@ -47,12 +52,13 @@ footer.main-content
     border: 0 none
     border-radius: 2rem
     color: transparent
-    opacity: .25
 
     &:before
       color: #fff
     &:hover
-      opacity: 1
+      background-color: #000 !important
+    &:active
+      background-color: #777 !important
   ul.github
     // posi
     float: right
@@ -73,22 +79,37 @@ footer.main-content
       border-top-right-radius: 2em
       border-bottom-right-radius: 2em
     a
+      // posi
+      position: relative
+      z-index: 5
       // box
       padding: .25em .5em
+      // style
+      border: 1px solid #999
+      color: #444
 
       &:before
         // posi
         margin-right: .33em
         // typo
         font-size: 1.1em
+        // style
+        color: #d75534
       &:hover
-        border-style: dotted
-        color: #555
-      &:hover:before
-        color: #689
+        // posi
+        z-index: 10
+        // style
+        border: 1px solid lighten(#d75534, 15%)
+        color: darken(#b28f70, 15%)
+        text-shadow: 0 0 3px #f2e9cd
+      &:active
+        color: #333
+      &:hover:before,
+      &:active:before
+        color: darken(#d75534, 15%)
 
 #edit-this
-  @extend %fa-github
+  @extend %fa-code-fork
 #issue-this
   @extend %fa-exclamation-circle
 #share2twr
