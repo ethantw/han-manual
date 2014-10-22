@@ -86,15 +86,15 @@ $han-text-emphasis-color-ja: inherit;
 $han-glyph-set-hant: default;
 
 // 繁體中文標點字體
-// `default` || `Pro` || `CNS` || `GB`
-$han-biaodian-hant: default;
+// `Pro` || `CNS` || `GB` || `simp`
+$han-biaodian-hant: Pro;
 
 // 簡體中文字體變體
 // `default` || `GB`
 $han-glyph-set-hans: GB;
 
 // 簡體中文標點字體
-// `default` || `Pro` || `CNS` || `GB`
+// `Pro` || `CNS` || `GB` || `simp`
 $han-biaodian-hans: GB;
 ```
 
