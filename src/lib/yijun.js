@@ -1,6 +1,6 @@
-window.Yijun = (function( document, undefined ) {
+module.exports = (function( document, undefined ) {
 
-return {
+var Yijun = {
   // Simplified query selectors which return the node list
   // in an array
   id: function( selector, context ) {
@@ -112,5 +112,7 @@ return {
     return target
   }
 }
+
+return Yijun
 
 })( window.document )

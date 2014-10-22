@@ -1,4 +1,7 @@
 
+var hljs = require( 'highlight.js' ),
+    Yijun = require( './lib/yijun.js' )
+
 void (function( win, doc, $, undefined ) {
 
 // const

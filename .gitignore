@@ -1,13 +1,13 @@
 .DS_Store
 .sass-cache
 node_modules
-bower_components
 *.css.map
 
 src/lib/han
 src/lib/fa
-src/lib.js
-src/main.js
+
+style.css
+app.js
 
 doc/sass.md
 doc/js.md
