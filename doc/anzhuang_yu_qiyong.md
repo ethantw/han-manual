@@ -23,7 +23,9 @@
 </div>
 
 
-### 使用模塊管理系統來安裝 <!-- #package-manager -->
+### 套件管理工具 <!-- #package-manager -->
+使用套件管理工具（package manager）來安裝，
+- NPM `npm install Han`
 - Bower `bower install Han`
 - Component `component install ethantw/Han`
 
