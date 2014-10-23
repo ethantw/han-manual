@@ -180,8 +180,8 @@ var httpCb = function ( req, res ) {
 }
 
 // Assign defaults and define the start server action.
-args.port = args.port || 9999
-args.host = args.host || '0.0.0.0'
+args.port = Number(process.env.PORT || 5000)
+args.host = process.env.IP || '0.0.0.0'
 var
   startServer = function () {
     http.createServer( httpCb ).listen( args.port, args.host )
