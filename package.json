@@ -6,6 +6,10 @@
     "type": "git",
     "url": "https://github.com/ethantw/han-manual.git"
   },
+  "main": "s.js",
+  "scripts": {
+    "start": "node s.js"
+  },
   "keywords": [
     "Han",
     "Hanzi",
@@ -23,9 +27,13 @@
     "url": "https://github.com/ethantw/han-manual/issues"
   },
   "dependencies": {
+    "express": "~4.9.x",
     "stmd": "~0.1.0",
     "highlight.js" : "~8.3",
     "font-awesome": "~4.2.0"
+  },
+  "engines": {
+    "node": "0.10.x"
   },
   "devDependencies": {}
 }
