@@ -6,8 +6,8 @@ node_modules
 # src/lib/han
 src/lib/fa
 
-style.css
-app.js
+#style.css
+#app.js
 
 doc/sass.md
 doc/js.md
