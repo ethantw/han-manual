@@ -3,7 +3,7 @@
 node_modules
 *.css.map
 
-src/lib/han
+# src/lib/han
 src/lib/fa
 
 style.css

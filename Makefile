@@ -6,7 +6,7 @@ a ::
 	make app.js
 
 run ::
-	node ./s.js 9999 | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
+	foreman start web | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
 
 build ::
 	npm install

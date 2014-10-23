@@ -8,7 +8,8 @@
   },
   "main": "s.js",
   "scripts": {
-    "start": "node s.js"
+    "start": "node s.js",
+    "postinstall": "make build"
   },
   "keywords": [
     "Han",
