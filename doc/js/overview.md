@@ -39,9 +39,8 @@ require( [ './han.min' ], function( Han ) {
 })
 ```
 
-### CommonJS <!-- #commonjs -->
+### CommonJS（NPM） <!-- #commonjs -->
 ```javascript
-var Han = require( './han.min.js' )
+var Han = require( 'Han' )
 Han.init()
 ```
-
