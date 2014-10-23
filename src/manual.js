@@ -1,14 +1,15 @@
 
-var hljs = require( 'highlight.js' ),
-    Yijun = require( './lib/yijun.js' )
+void (function( win, doc, undefined ) {
 
-void (function( win, doc, $, undefined ) {
-
-// const
+// constants
 var REM = Number( 16 )
 
+// variables
 var root = doc.documentElement,
     body = doc.body
+
+// modules
+var $ = require( './lib/yijun.js' )
 
 /*  Title
    ------- */
@@ -224,8 +225,7 @@ itff.forEach(function( elem, i ) {
 /*  Highlight.js for codes
    ------------------------ */
 
-if ( typeof hljs !== 'undefined' ) {
-  hljs.initHighlightingOnLoad()
-}
+var hljs = require( 'highlight.js' )
+hljs.initHighlightingOnLoad()
 
-})( window, window.document, Yijun )
+})( window, window.document )
