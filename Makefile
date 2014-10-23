@@ -9,7 +9,7 @@ run ::
 	foreman start web | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
 
 build ::
-	npm install
+	#npm install
 	#make han
 	make hljs
 	make fa
