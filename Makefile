@@ -14,7 +14,7 @@ build ::
 	make hljs
 	make fa
 	#sass sass/style.sass:style.css --style compressed
-	#make app.js
+	make app.js
 	make doc
 
 doc ::
@@ -28,9 +28,9 @@ app.js ::
 han ::
 	rm -r -f src/lib/han
 	mkdir src/lib/han src/lib/han/font
-	cp node_modules/han/han.min.css src/lib/han
-	cp node_modules/han/han.min.js src/lib/han
-	cp node_modules/han/font/* src/lib/han/font
+	cp node_modules/han-css/han.min.css src/lib/han
+	cp node_modules/han-css/han.min.js src/lib/han
+	cp node_modules/han-css/font/* src/lib/han/font
 
 han-dev ::
 	rm -r -f src/lib/han
