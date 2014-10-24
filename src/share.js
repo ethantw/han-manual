@@ -7,8 +7,8 @@ var TITLE = document.title,
     URL   = location,
 
     LANG = {
-      via: 'ethantw',
-      desc: '〔分享〕漢字標準格式：印刷品般的漢字排版框架'
+      via: '',
+      desc: ''
     },
 
     PATH = {
@@ -18,10 +18,8 @@ var TITLE = document.title,
       share2wbo:  'http://service.weibo.com/share/share.php?url=%url&title=%desc'
     }
 
-// Variables
-
-document
-  .querySelector( 'footer ul.share' )
+function assignSharingMission( target, lang ) {
+  document.querySelector( target )
   .addEventListener( 'click', function( e ) {
     var name = e.target.nodeName,
         id = e.target.getAttribute( 'id' ),
@@ -30,17 +28,19 @@ document
     if ( name === 'BUTTON' && PATH[ id ] ) {
       url = PATH[ id ]
             .replace( /\%url/g, URL )
-            .replace( '%via', LANG.via )
+            .replace( '%via', lang.via )
             .replace( '%desc', TITLE )
 
       window.open(
-      	url,
-      	'win-share-dialog',
-      	'width=626,height=436,left=120,top=120'
+        url,
+        'win-share-dialog',
+        'width=626,height=436,left=120,top=120'
       )
     }
   })
+}
 
-module.exports = function( lang ) {
-
+module.exports = function( target, lang ) {
+  var lang = $.extend( LANG, lang )
+  assignSharingMission( target, lang )
 }

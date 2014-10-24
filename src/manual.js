@@ -231,10 +231,9 @@ hljs.initHighlightingOnLoad()
 /*  Share buttons
    --------------- */
 
-var share = require( './share.js' )({
-  via: '@ethantw',
-  desc: '〔分享〕漢字標準格式：印刷品般的漢字排版框架'
-})
-
-
+var share = require( './share.js' )(
+  'footer ul.share', {
+    via: 'ethantw',
+    desc: '〔分享〕漢字標準格式：印刷品般的漢字排版框架'
+  })
 })( window, window.document )
