@@ -28,11 +28,12 @@
     "url": "https://github.com/ethantw/han-manual/issues"
   },
   "dependencies": {
-    "logfmt": "~1.1.2",
     "express": "~4.9.x",
-    "stmd": "~0.1.0",
-    "highlight.js" : "~8.3",
-    "font-awesome": "~4.2.0"
+    "font-awesome": "~4.2.0",
+    "han-css": "^3.0.0",
+    "highlight.js": "~8.3",
+    "logfmt": "~1.1.2",
+    "stmd": "~0.1.0"
   },
   "engines": {
     "node": "0.10.x"
