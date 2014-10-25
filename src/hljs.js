@@ -1,5 +1,5 @@
 
-var Highlight = require( './highlight.js'),
+var Highlight = require( './highlight.js' ),
     hljs      = new Highlight()
 
 hljs.registerLanguage('xml', require('./languages/xml'));

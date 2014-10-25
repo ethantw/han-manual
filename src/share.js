@@ -5,6 +5,7 @@ var $ = require( './lib/yijun.js' )
 // Constants
 var TITLE = document.title,
     URL   = location,
+    ENCODED_URL = encodeURIComponent( URL ),
 
     LANG = {
       via: '',
@@ -19,6 +20,8 @@ var TITLE = document.title,
     }
 
 function assignSharingMission( target, lang ) {
+  var lang = $.extend( LANG, lang )
+
   document.querySelector( target )
   .addEventListener( 'click', function( e ) {
     var name = e.target.nodeName,
@@ -27,7 +30,7 @@ function assignSharingMission( target, lang ) {
 
     if ( name === 'BUTTON' && PATH[ id ] ) {
       url = PATH[ id ]
-            .replace( /\%url/g, URL )
+            .replace( /\%url/g, ENCODED_URL )
             .replace( '%via', lang.via )
             .replace( '%desc', TITLE )
 
@@ -40,7 +43,4 @@ function assignSharingMission( target, lang ) {
   })
 }
 
-module.exports = function( target, lang ) {
-  var lang = $.extend( LANG, lang )
-  assignSharingMission( target, lang )
-}
+module.exports = assignSharingMission
