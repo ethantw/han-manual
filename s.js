@@ -8,7 +8,7 @@ var fs = require( 'fs' ),
     exec = require( 'child_process' ).exec,
     spawn = require( 'child_process' ).spawn,
 
-    stmd = require('stmd'),
+    stmd = require( 'stmd' ),
 
     args = {},
     argv = process.argv.slice( 2 )
@@ -165,7 +165,7 @@ var httpCb = function ( req, res ) {
             md2html = renderer.render( parser.parse( mdcode ))
 
             html = html
-                  .replace( '<!--!!!MARKDOWN!!!-->', md2html )
+                  .replace( '{{parsed-article-html}}', md2html )
 
             res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
             res.end( html )
