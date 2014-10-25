@@ -28,7 +28,6 @@
     "url": "https://github.com/ethantw/han-manual/issues"
   },
   "dependencies": {
-    "express": "~4.9.x",
     "font-awesome": "~4.2.0",
     "han-css": "^3.0.0",
     "highlight.js": "~8.3",
