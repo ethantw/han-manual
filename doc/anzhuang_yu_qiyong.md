@@ -25,8 +25,8 @@
 
 ### 套件管理工具 <!-- #package-manager -->
 使用套件管理工具（package manager）來安裝，
-- NPM `npm install Han`
-- Bower `bower install Han`
+- NPM `npm install --save han-css`
+- Bower `bower install --save Han`
 - Component `component install ethantw/Han`
 
 ### CDN服務 <!-- #cdn -->
@@ -138,13 +138,13 @@ JavaScript腳本，
 ### 使用JavaScript來啓用
 #### 全頁渲染
 
-```javascript 
+```javascript
 Han( document.body ).render()
 ```
 
 或使用全頁渲染（初始化）的簡寫形式，
 
-```javascript 
+```javascript
 Han.init()
 ```
 
@@ -156,4 +156,3 @@ Han( document.getElementById( '#entry' )).render()
 更詳盡的說明，請見「[JavaScript腳本·Han構造函數][js-han]」一節。
 
 [js-han]: /manual/js#han
-
