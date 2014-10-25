@@ -1,7 +1,7 @@
 DOC_SASS = overview.md module.md zitijixing_extend.md sectional.md inline.md variable.md
 DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
 
-a ::
+doc-and-appjs ::
 	make doc
 	make app.js
 
@@ -9,8 +9,9 @@ run ::
 	foreman start web | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
 
 build ::
+	# This is supposed to be `post-npm-install`
 	#npm install
-	#make han
+	make han
 	make hljs
 	make fa
 	#sass sass/style.sass:style.css --style compressed
@@ -26,11 +27,13 @@ app.js ::
 	uglifyjs app.js -m -o app.js
 
 han ::
-	rm -r -f src/lib/han
-	mkdir src/lib/han src/lib/han/font
-	cp node_modules/han-css/han.min.css src/lib/han
-	cp node_modules/han-css/han.min.js src/lib/han
-	cp node_modules/han-css/font/* src/lib/han/font
+	rm -r -f latest
+	mkdir latest latest/font
+	cp node_modules/han-css/han.min.css latest/
+	cp node_modules/han-css/han.min.js latest/
+	cp node_modules/han-css/han.css latest/
+	cp node_modules/han-css/han.js latest/
+	cp node_modules/han-css/font/* latest/font
 
 han-dev ::
 	rm -r -f src/lib/han

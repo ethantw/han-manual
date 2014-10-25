@@ -3,11 +3,9 @@ html(lang='zh-Hant').han-init
   head
     meta(charset='utf-8')
     title 漢字標準格式
-    //- Han.js: for dev
-    link(rel='stylesheet', href='/src/lib/han/han.min.css')
-    //- Han.js: for deploy
-    //- script(src='//css.hanzi.co/latest/han.min.css')
-    link(rel='stylesheet', href='/style.css')
+    //- Han.css
+    link(rel='stylesheet', href='{{asset-path}}latest/han.min.css')
+    link(rel='stylesheet', href='{{asset-path}}style.css')
 
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='description' content='印刷品般的漢字網頁排版框架')
@@ -20,12 +18,8 @@ html(lang='zh-Hant').han-init
       // button(hidden) 繁簡切換
     article.main-content.layout
 
-
-
-    //- Han.js: for dev
-    script(src='/src/lib/han/han.min.js')
-    //- Han.js: for deploy
-    //- script(src='//css.hanzi.co/latest/han.min.js')
+    //- Han.js
+    script(src='{{asset-path}}latest/han.min.js')
     script.
       // script for index page
     script.

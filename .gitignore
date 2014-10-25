@@ -3,10 +3,8 @@
 node_modules
 *.css.map
 
-# src/lib/han
+latest
 src/lib/fa
-
-#style.css
 app.js
 
 doc/sass.md

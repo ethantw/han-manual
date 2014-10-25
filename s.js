@@ -1,17 +1,20 @@
-var
-  fs = require( 'fs' ),
-  http = require( 'http' ),
-  path = require( 'path' ),
-  url = require( 'url' ),
-  EventEmitter = require( 'events' ).EventEmitter,
-  exec = require( 'child_process' ).exec,
-  spawn = require( 'child_process' ).spawn,
 
-  stmd = require('stmd'),
+// Modules
+var fs = require( 'fs' ),
+    http = require( 'http' ),
+    path = require( 'path' ),
+    url = require( 'url' ),
+    EventEmitter = require( 'events' ).EventEmitter,
+    exec = require( 'child_process' ).exec,
+    spawn = require( 'child_process' ).spawn,
 
-  args = {},
-  argv = process.argv.slice( 2 )
-;
+    stmd = require('stmd'),
+
+    args = {},
+    argv = process.argv.slice( 2 )
+
+// Constants
+const HEROKU_APP_PATH = '//han-css.herokuapp.com/'
 
 // Guess arguments.
 for ( var i = 0; i < argv.length; i++ ) {
@@ -28,35 +31,33 @@ for ( var i = 0; i < argv.length; i++ ) {
 }
 
 // Emulate mime if it didn't exist.
-var
-  mime
-;
+var mime
+
 try {
   mime = require( 'mime' )
 } catch ( e ) {
   mime = (function () {
-    var
-      CONTENT_TYPES = {
-        'js':   'application/javascript; charset=utf-8',
-        'css':  'text/css; charset=utf-8',
-        'sass': 'text/css; charset=utf-8',
-        'scss': 'text/css; charset=utf-8',
-        'json': 'application/json; charset=utf-8',
-        'html': 'text/html; charset=utf-8',
-        'htm':  'text/html; charset=utf-8',
-        'jpg':  'image/jpeg',
-        'jpeg': 'image/jpeg',
-        'png':  'image/png',
-        'ico':  'image/x-icon',
-        'gif':  'image/gif',
-        'md':   'text/plain; charset=utf-8',
-        'txt':  'text/plain; charset=utf-8',
-        'svg':  'image/svg+xml',
-        'ttf':  'application/x-font-ttf',
-        'woff': 'application/font-woff',
-        'apk':  'application/vnd.android.package-archive'
-      }
-    ;
+    const CONTENT_TYPES = {
+          'js':   'application/javascript; charset=utf-8',
+          'css':  'text/css; charset=utf-8',
+          'sass': 'text/css; charset=utf-8',
+          'scss': 'text/css; charset=utf-8',
+          'json': 'application/json; charset=utf-8',
+          'html': 'text/html; charset=utf-8',
+          'htm':  'text/html; charset=utf-8',
+          'jpg':  'image/jpeg',
+          'jpeg': 'image/jpeg',
+          'png':  'image/png',
+          'ico':  'image/x-icon',
+          'gif':  'image/gif',
+          'md':   'text/plain; charset=utf-8',
+          'txt':  'text/plain; charset=utf-8',
+          'svg':  'image/svg+xml',
+          'ttf':  'application/x-font-ttf',
+          'woff': 'application/font-woff',
+          'apk':  'application/vnd.android.package-archive'
+        }
+
     return {
       lookup: function ( ext ) {
         ext = ext.trim()
@@ -84,17 +85,20 @@ function httpRespond( res, code, data, headers ) {
 }
 
 var httpCb = function ( req, res ) {
-  var
-    uri = url.parse( req.url ).pathname,
-    mdfilename = false,
-    root,
-    filename
-  ;
+  const ASSET_PATH = (function() {
+    return /^localhost/i.test( req.headers.host ) ?
+      '/' : HEROKU_APP_PATH
+  })()
+
+  var uri = url.parse( req.url ).pathname,
+      mdfilename = false,
+      root,
+      filename
 
   try {
-      filename = decodeURIComponent( path.join( process.cwd(), uri ))
+    filename = decodeURIComponent( path.join( process.cwd(), uri ))
   } catch ( e ) {
-      filename = path.join( process.cwd(), uri )
+    filename = path.join( process.cwd(), uri )
   }
 
   root = filename.replace( new RegExp( uri + '$', 'i'), '' )
@@ -135,7 +139,7 @@ var httpCb = function ( req, res ) {
       }
     }
 
-    if ( mdfilename ) {
+    if ( /\.(html|htm)$/i.test( filename )) {
       fs.readFile( filename, 'utf8', function( err, html ) {
         var ext
 
@@ -144,22 +148,32 @@ var httpCb = function ( req, res ) {
           return
         }
 
-        fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
-          var parser, renderer, md2html
+        html = html
+              .replace( /\{\{asset\-path\}\}/gi, ASSET_PATH )
 
-          if ( err ) {
-            httpRespond(res, 500, err + '\n')
-            return
-          }
+        if ( mdfilename ) {
+          fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
+            var parser, renderer, md2html
 
-          parser = new stmd.DocParser()
-          renderer = new stmd.HtmlRenderer()
-          md2html = renderer.render( parser.parse( mdcode ))
-          html = html.replace( '<!--!!!MARKDOWN!!!-->', md2html )
+            if ( err ) {
+              httpRespond(res, 500, err + '\n')
+              return
+            }
 
+            parser = new stmd.DocParser()
+            renderer = new stmd.HtmlRenderer()
+            md2html = renderer.render( parser.parse( mdcode ))
+
+            html = html
+                  .replace( '<!--!!!MARKDOWN!!!-->', md2html )
+
+            res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
+            res.end( html )
+          })
+        } else {
           res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
           res.end( html )
-        })
+        }
       })
     } else {
       fs.readFile( filename, 'binary', function( err, file ) {
@@ -182,27 +196,24 @@ var httpCb = function ( req, res ) {
 // Assign defaults and define the start server action.
 args.port = Number(process.env.PORT || 5000)
 args.host = process.env.IP || '0.0.0.0'
-var
-  startServer = function () {
-    http.createServer( httpCb ).listen( args.port, args.host )
-      console.log(
-        'Serving files from %s at http://%s:%s/',
-        process.cwd(),
-        args.host,
-        args.port
-      )
-  }
-;
+
+var startServer = function () {
+      http.createServer( httpCb ).listen( args.port, args.host )
+        console.log(
+          'Serving files from %s at http://%s:%s/',
+          process.cwd(),
+          args.host,
+          args.port
+        )
+    }
 
 // Watch an array of coffee files.
-var
-  startWatching = function ( files ) {
-    if ( !files.length ) {
-      startServer()
-      return
+var startWatching = function ( files ) {
+      if ( !files.length ) {
+        startServer()
+        return
+      }
     }
-  }
-;
 
 // The coffee feature will take care of starting the server.
 if ( !args.coffee ) {
