@@ -5,7 +5,7 @@ node_modules
 
 latest
 src/lib/fa
-app.js
+#app.js
 
 doc/sass.md
 doc/js.md

@@ -15,7 +15,7 @@ build ::
 	make hljs
 	make fa
 	#sass sass/style.sass:style.css --style compressed
-	make app.js
+	#make app.js
 	make doc
 
 doc ::
