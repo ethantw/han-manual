@@ -6,7 +6,7 @@ doc-and-appjs ::
 	make app.js
 
 run ::
-	foreman start web | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
+	npm start | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
 
 build ::
 	# This is supposed to be `post-npm-install`
