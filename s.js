@@ -42,7 +42,7 @@ args.host = process.env.IP || '0.0.0.0'
 var mime = require( 'mime' )
 
 mime.define({
-  'text/plain': [ 'md' ]
+  'text/x-markdown': [ 'x-md' ]
 })
 
 var httpCb = function ( req, res ) {
