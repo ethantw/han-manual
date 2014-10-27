@@ -12,6 +12,8 @@ var fs = require( 'fs' ),
     exec = require( 'child_process' ).exec,
     spawn = require( 'child_process' ).spawn,
 
+    ETag = require( 'ETag' ),
+
     stmd = require( 'stmd' )
 
 // Variables
@@ -84,18 +86,34 @@ var httpCb = function ( req, res ) {
 
   var uri = url.parse( req.url ).pathname,
       mdfilename = false,
-      filename
+      filename,
+      etag
 
-  function httpRespond( code, data, header ) {
-    var header = header || {}
+  function httpRespond( code, data, headers, binary ) {
+    var headers = headers || {},
+        data = data || ''
 
-    if ( !header[ 'Content-Type' ] ) {
-      header[ 'Content-Type' ] = 'text/plain'
+    if ( !headers[ 'Content-Type' ] ) {
+      headers[ 'Content-Type' ] = 'text/plain'
     }
 
-    data = data || ''
+    if (
+      headers[ 'ETag' ] &&
+      req.headers[ 'if-none-match' ] &&
+      headers[ 'ETag' ] === req.headers[ 'if-none-match' ]
+    ) {
+      res.writeHead( 304 )
+      res.end()
+      return
+    }
 
-    res.writeHead( code, header )
+    res.writeHead( code, headers )
+
+    if ( binary ) {
+      res.write( data, 'binary' )
+      res.end()
+      return
+    }
     res.end( data )
   }
 
@@ -107,6 +125,12 @@ var httpCb = function ( req, res ) {
           'Content-Type': 'text/html'
         }
       )
+    })
+  }
+
+  function getETag( filename ) {
+    return ETag.Calcul({
+      resource: filename
     })
   }
 
@@ -128,6 +152,7 @@ var httpCb = function ( req, res ) {
     if ( /^\/manual/.test( uri )) {
       filename = ROOT + '/manual.html'
       mdfilename = ROOT + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
+      etag = getETag( mdfilename )
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
@@ -153,6 +178,8 @@ var httpCb = function ( req, res ) {
         }
       }
     }
+
+    etag = getETag( filename )
 
     if ( /\.(html|htm)$/i.test( filename )) {
       fs.readFile( filename, 'utf8', function( err, html ) {
@@ -182,12 +209,18 @@ var httpCb = function ( req, res ) {
             html = html
                   .replace( '{{parsed-article-html}}', md2html )
 
-            httpRespond( 200, html, { 'Content-Type': 'text/html; charset=utf-8' })
+            httpRespond( 200, html, {
+              'Content-Type': 'text/html; charset=utf-8',
+              'ETag': etag
+            })
           })
           return
         }
 
-        httpRespond( 200, html, { 'Content-Type': 'text/html; charset=utf-8' })
+        httpRespond( 200, html, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'ETag': etag
+        })
       })
     } else {
       fs.readFile( filename, 'binary', function( err, file ) {
@@ -199,9 +232,11 @@ var httpCb = function ( req, res ) {
         }
 
         ext = path.extname( filename ).slice( 1 )
-        res.writeHead( 200, { 'Content-Type': mime.lookup( ext ) })
-        res.write( file, 'binary' )
-        res.end()
+
+        httpRespond( 200, file, {
+          'Content-Type': mime.lookup( ext ),
+          'ETag': etag
+        }, true )
       })
     }
   })
