@@ -1,6 +1,7 @@
 
 // Constants
-const HEROKU_APP_PATH = '//han-css.herokuapp.com/'
+const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
+      ROOT = process.cwd()
 
 // Modules
 var fs = require( 'fs' ),
@@ -31,6 +32,10 @@ for ( var i = 0; i < argv.length; i++ ) {
   }
 }
 
+// Assign defaults and define the start server action.
+args.port = Number( process.env.PORT || 7788 )
+args.host = process.env.IP || '0.0.0.0'
+
 // Emulate mime if it didn't exist.
 var mime
 
@@ -38,7 +43,7 @@ try {
   mime = require( 'mime' )
 } catch ( e ) {
   mime = (function () {
-    const CONTENT_TYPES = {
+    const CONTENT_TYPE = {
           'js':   'application/javascript; charset=utf-8',
           'css':  'text/css; charset=utf-8',
           'sass': 'text/css; charset=utf-8',
@@ -65,41 +70,40 @@ try {
         if ( ext[ 0 ] === '.' ) {
           ext = ext.slice( 1 )
         }
-        return CONTENT_TYPES[ ext ] || 'application/octet-stream'
+        return CONTENT_TYPE[ ext ] || 'application/octet-stream'
       }
     }
   })()
 }
 
 var httpCb = function ( req, res ) {
-  const ASSET_PATH = (function() {
+  const ROOT_PATH_FOR_ASSET = (function() {
     return /^localhost/i.test( req.headers.host ) ?
       '/' : HEROKU_APP_PATH
   })()
 
   var uri = url.parse( req.url ).pathname,
       mdfilename = false,
-      root,
       filename
 
-  function httpRespond( res, code, data, headers ) {
-    var headers = headers || {}
+  function httpRespond( code, data, header ) {
+    var header = header || {}
 
-    if ( !headers[ 'Content-Type' ] ) {
-      headers[ 'Content-Type' ] = 'text/plain'
+    if ( !header[ 'Content-Type' ] ) {
+      header[ 'Content-Type' ] = 'text/plain'
     }
 
     data = data || ''
 
-    res.writeHead( code, headers )
+    res.writeHead( code, header )
     res.end( data )
   }
 
   function responseWith404() {
     fs.readFile(
-      root + '/404.html',
+      ROOT + '/404.html',
       function( err, data ) {
-        httpRespond( res, 404, data, {
+        httpRespond( 404, data, {
           'Content-Type': 'text/html'
         }
       )
@@ -107,12 +111,10 @@ var httpCb = function ( req, res ) {
   }
 
   try {
-    filename = decodeURIComponent( path.join( process.cwd(), uri ))
+    filename = decodeURIComponent( path.join( ROOT, uri ))
   } catch ( e ) {
-    filename = path.join( process.cwd(), uri )
+    filename = path.join( ROOT, uri )
   }
-
-  root = filename.replace( new RegExp( uri + '$', 'i'), '' )
 
   fs.exists( filename, function( exists ) {
     if (
@@ -124,12 +126,12 @@ var httpCb = function ( req, res ) {
     }
 
     if ( /^\/manual/.test( uri )) {
-      filename = root + '/manual.html'
-      mdfilename = root + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
+      filename = ROOT + '/manual.html'
+      mdfilename = ROOT + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
-          mdfilename = root + '/doc/404.md'
+          mdfilename = ROOT + '/doc/404.md'
         }
       })
     }
@@ -138,14 +140,14 @@ var httpCb = function ( req, res ) {
       if ( filename.slice(-1) !== '/' ) {
         // Directory with out a trailing slash.
         // redirect http://host/directory to http://host/directory/
-        httpRespond( res, 302, 'Location is a folder, redirecting..', {
+        httpRespond( 302, 'Location is a folder, redirecting..', {
           'Location': uri + '/'
         })
         return
       } else {
         filename = path.join( filename, 'index.html' )
 
-        if ( !path.existsSync( filename )) {
+        if ( !fs.existsSync( filename )) {
           responseWith404()
           return
         }
@@ -157,19 +159,19 @@ var httpCb = function ( req, res ) {
         var ext
 
         if ( err ) {
-          httpRespond( res, 500, err + '\n' )
+          httpRespond( 500, err + '\n' )
           return
         }
 
         html = html
-              .replace( /\{\{asset\-path\}\}/gi, ASSET_PATH )
+              .replace( /\{\{asset\-path\}\}/gi, ROOT_PATH_FOR_ASSET )
 
         if ( mdfilename ) {
           fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
             var parser, renderer, md2html
 
             if ( err ) {
-              httpRespond( res, 500, err + '\n' )
+              httpRespond( 500, err + '\n' )
               return
             }
 
@@ -180,20 +182,19 @@ var httpCb = function ( req, res ) {
             html = html
                   .replace( '{{parsed-article-html}}', md2html )
 
-            res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
-            res.end( html )
+            httpRespond( 200, html, { 'Content-Type': 'text/html; charset=utf-8' })
           })
-        } else {
-          res.writeHead( 200, { 'Content-Type': 'text/html; charset=utf-8' })
-          res.end( html )
+          return
         }
+
+        httpRespond( 200, html, { 'Content-Type': 'text/html; charset=utf-8' })
       })
     } else {
       fs.readFile( filename, 'binary', function( err, file ) {
         var ext
 
         if ( err ) {
-          httpRespond( res, 500, err + '\n' )
+          httpRespond( 500, err + '\n' )
           return
         }
 
@@ -206,25 +207,18 @@ var httpCb = function ( req, res ) {
   })
 }
 
-// Assign defaults and define the start server action.
-args.port = Number( process.env.PORT || 7788 )
-args.host = process.env.IP || '0.0.0.0'
-
-var startServer,
-    startWatching
-
-startServer = function () {
+function startServer() {
   http.createServer( httpCb ).listen( args.port, args.host )
     console.log(
       'Serving files from %s at http://%s:%s/',
-      process.cwd(),
+      ROOT,
       args.host,
       args.port
     )
 }
 
 // Watch an array of coffee files.
-startWatching = function ( files ) {
+function startWatching( files ) {
   if ( !files.length ) {
     startServer()
     return
