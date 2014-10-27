@@ -32,6 +32,7 @@
     "font-awesome": "~4.2.0",
     "han-css": "^3.0.0",
     "highlight.js": "~8.3",
+    "mime": "^1.2.11",
     "stmd": "~0.1.0"
   },
   "engines": {

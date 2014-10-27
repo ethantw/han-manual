@@ -39,44 +39,11 @@ args.port = Number( process.env.PORT || 7788 )
 args.host = process.env.IP || '0.0.0.0'
 
 // Emulate mime if it didn't exist.
-var mime
+var mime = require( 'mime' )
 
-try {
-  mime = require( 'mime' )
-} catch ( e ) {
-  mime = (function () {
-    const CONTENT_TYPE = {
-          'js':   'application/javascript; charset=utf-8',
-          'css':  'text/css; charset=utf-8',
-          'sass': 'text/css; charset=utf-8',
-          'scss': 'text/css; charset=utf-8',
-          'json': 'application/json; charset=utf-8',
-          'html': 'text/html; charset=utf-8',
-          'htm':  'text/html; charset=utf-8',
-          'jpg':  'image/jpeg',
-          'jpeg': 'image/jpeg',
-          'png':  'image/png',
-          'ico':  'image/x-icon',
-          'gif':  'image/gif',
-          'md':   'text/plain; charset=utf-8',
-          'txt':  'text/plain; charset=utf-8',
-          'svg':  'image/svg+xml',
-          'ttf':  'application/x-font-ttf',
-          'woff': 'application/font-woff'
-        }
-
-    return {
-      lookup: function ( ext ) {
-        ext = ext.trim()
-
-        if ( ext[ 0 ] === '.' ) {
-          ext = ext.slice( 1 )
-        }
-        return CONTENT_TYPE[ ext ] || 'application/octet-stream'
-      }
-    }
-  })()
-}
+mime.define({
+  'text/plain': [ 'md' ]
+})
 
 var httpCb = function ( req, res ) {
   const ROOT_PATH_FOR_ASSET = (function() {
