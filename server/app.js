@@ -12,7 +12,8 @@ var fs = require( 'fs' ),
     ETag = require( 'ETag' ),
     stmd = require( 'stmd' ),
     parser = new stmd.DocParser(),
-    renderer = new stmd.HtmlRenderer()
+    renderer = new stmd.HtmlRenderer(),
+    jsdom = require( 'jsdom' )
 
 // Constants
 const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
@@ -28,8 +29,15 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
 
       HTML_CNTT = mime.contentType( 'html' )
 
+// Functions
+function makeArray( obj ) {
+  return [].slice.call( obj )
+}
+
+// Start the sever
 http.createServer( function ( req, res ) {
   var uri = url.parse( req.url ).pathname,
+      manualId = false,
       mdfilename = false,
       filename,
       etag
@@ -96,7 +104,8 @@ http.createServer( function ( req, res ) {
 
     if ( /^\/manual/.test( uri )) {
       filename = WWW + '/manual.html'
-      mdfilename = ROOT + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
+      manualId = /^\/manual\/?$/.test( uri ) ? 'jianjie' : uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' )
+      mdfilename = ROOT + '/doc/' + manualId + '.md'
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
@@ -150,13 +159,50 @@ http.createServer( function ( req, res ) {
 
             md2html = renderer.render( parser.parse( mdcode ))
 
-            html = html
-                  .replace( '{{parsed-article-html}}', md2html )
+            jsdom.env(
+              md2html,
+              function ( err, win ) {
+                var doc = win.document,
+                    manualTitle = doc.querySelector( 'h1' ).textContent || ''
 
-            httpRespond( 200, html, {
-              'Content-Type': HTML_CNTT,
-              'ETag': etag
-            })
+                manualTitle = manualTitle ? manualTitle + ' — ' : ''
+
+                makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
+                .forEach(function( elem, i ) {
+                  var anchor = elem.lastChild,
+                      anchorId = anchor.nodeValue,
+                      heading = anchor.parentNode
+
+                  elem.setAttribute( 'id', 'sec-' + i )
+
+                  if (
+                    anchor &&
+                    anchor.nodeType === 8 &&
+                    /\s?\#[\w\_\-]+\s?/.test( anchorId )
+                  ) {
+                    elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
+                    heading.removeChild( anchor )
+                  }
+                })
+
+                makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
+                .forEach(function( elem, i ) {
+                  if ( !elem.getAttribute( 'id' )) {
+                    elem.setAttribute( 'id', 'info-' + i )
+                  }
+                })
+
+                md2html = doc.body.innerHTML
+                html = html
+                      .replace( /\{\{manual\-page\-id\}\}/gi, manualId )
+                      .replace( /\{\{manual\-page\-title\}\}/gi, manualTitle )
+                      .replace( '{{parsed-article-html}}', md2html )
+
+                httpRespond( 200, html, {
+                  'Content-Type': HTML_CNTT,
+                  'ETag': etag
+                })
+              })
           })
           return
         }
