@@ -18,9 +18,10 @@ var $ = require( './lib/yjm' )
 var manual = doc.querySelector( 'article.main-content' )
 
 $.qsa( 'h2, h3, h4, h5, h6', manual )
-.forEach(function( elem, i ) {
-      anchorId = elem.getAttribute( 'id' ),
+.forEach(function( elem ) {
+  var anchorId = elem.getAttribute( 'id' ),
       getter = $.create( 'a', 'heading-anchor' )
+
 
   getter.innerHTML = '點此獲取本節網址'
   getter.addEventListener( 'click', function( e ) {
