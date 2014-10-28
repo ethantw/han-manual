@@ -12,37 +12,15 @@ var win = window,
 // Modules
 var $ = require( './lib/yjm' )
 
-/*  Title
-   ------- */
-var manual = doc.querySelector( 'body.manual article.main-content' ),
-
-    originalTitle = doc.title,
-    articleTitle = manual.querySelector('h1').textContent
-
-doc.title = articleTitle + ' — ' + originalTitle
-
 /*  Automated IDs for headings and info-boxes
    ------------------------------------------- */
 
+var manual = doc.querySelector( 'article.main-content' )
+
 $.qsa( 'h2, h3, h4, h5, h6', manual )
 .forEach(function( elem, i ) {
-  var anchor = elem.lastChild,
-      anchorId = anchor.nodeValue,
-      heading = anchor.parentNode,
+      anchorId = elem.getAttribute( 'id' ),
       getter = $.create( 'a', 'heading-anchor' )
-
-  elem.setAttribute( 'id', 'sec-' + i )
-
-  if (
-    anchor &&
-    anchor.nodeType === Node.COMMENT_NODE &&
-    /\s?\#[\w\_\-]+\s?/.test( anchorId )
-  ) {
-    elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
-    $.remove( anchor, heading )
-  }
-
-  anchorId = elem.getAttribute( 'id' )
 
   getter.innerHTML = '點此獲取本節網址'
   getter.addEventListener( 'click', function( e ) {
@@ -54,14 +32,7 @@ $.qsa( 'h2, h3, h4, h5, h6', manual )
     'title': '點此獲取本節網址',
     'href': '#' + anchorId
   })
-  heading.appendChild( getter )
-})
-
-$.qsa( 'div.info, .example, pre, table', manual )
-.forEach(function( elem, i ) {
-  if ( !elem.getAttribute( 'id' )) {
-    elem.setAttribute( 'id', 'info-' + i )
-  }
+  elem.appendChild( getter )
 })
 
 /*  Proper positioning for hash anchors
