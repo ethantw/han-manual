@@ -34,6 +34,39 @@ function makeArray( obj ) {
   return [].slice.call( obj )
 }
 
+function getManualTitleAndSetAnchor( manualWin ) {
+  var doc = manualWin.document,
+      manualTitle = doc.querySelector( 'h1' ).textContent || ''
+
+  manualTitle = manualTitle ? manualTitle + ' — ' : ''
+
+  makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
+  .forEach(function( elem, i ) {
+    var anchor = elem.lastChild,
+        anchorId = anchor.nodeValue
+
+    elem.setAttribute( 'id', 'sec-' + i )
+
+    if (
+      anchor &&
+      anchor.nodeType === 8 &&
+      /\s?\#[\w\_\-]+\s?/.test( anchorId )
+    ) {
+      elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
+      elem.removeChild( anchor )
+    }
+  })
+
+  makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
+  .forEach(function( elem, i ) {
+    if ( !elem.getAttribute( 'id' )) {
+      elem.setAttribute( 'id', 'info-' + i )
+    }
+  })
+
+  return [ manualTitle, doc.body.innerHTML ]
+}
+
 // Start the sever
 http.createServer( function ( req, res ) {
   var uri = url.parse( req.url ).pathname,
@@ -162,41 +195,17 @@ http.createServer( function ( req, res ) {
             jsdom.env(
               md2html,
               function ( err, win ) {
-                var doc = win.document,
-                    manualTitle = doc.querySelector( 'h1' ).textContent || ''
+                var ret
 
-                manualTitle = manualTitle ? manualTitle + ' — ' : ''
+                if ( err ) {
+                  return
+                }
 
-                makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
-                .forEach(function( elem, i ) {
-                  var anchor = elem.lastChild,
-                      anchorId = anchor.nodeValue,
-                      heading = anchor.parentNode
-
-                  elem.setAttribute( 'id', 'sec-' + i )
-
-                  if (
-                    anchor &&
-                    anchor.nodeType === 8 &&
-                    /\s?\#[\w\_\-]+\s?/.test( anchorId )
-                  ) {
-                    elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
-                    heading.removeChild( anchor )
-                  }
-                })
-
-                makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
-                .forEach(function( elem, i ) {
-                  if ( !elem.getAttribute( 'id' )) {
-                    elem.setAttribute( 'id', 'info-' + i )
-                  }
-                })
-
-                md2html = doc.body.innerHTML
+                ret = getManualTitleAndSetAnchor( win )
                 html = html
                       .replace( /\{\{manual\-page\-id\}\}/gi, manualId )
-                      .replace( /\{\{manual\-page\-title\}\}/gi, manualTitle )
-                      .replace( '{{parsed-article-html}}', md2html )
+                      .replace( /\{\{manual\-page\-title\}\}/gi, ret[0] )
+                      .replace( '{{parsed-article-html}}', ret[1] )
 
                 httpRespond( 200, html, {
                   'Content-Type': HTML_CNTT,
