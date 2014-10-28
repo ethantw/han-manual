@@ -34,6 +34,7 @@
     "han-css": "^3.0.0",
     "highlight.js": "~8.3",
     "jade": "^1.7.0",
+    "jsdom": "^1.0.3",
     "mime-types": "^2.0.2",
     "stmd": "~0.1.0",
     "uglify-js": "^2.4.15"
