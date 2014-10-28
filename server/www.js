@@ -3,7 +3,7 @@
 var fs = require('fs'),
     browserify = require('browserify')(),
     uglify = require( 'uglify-js' ),
-    sass =  require( 'node-sass' ),
+    //sass =  require( 'node-sass' ),
     jade = require( 'jade' )
 
 // Constants
@@ -17,6 +17,7 @@ const APP_JS = './script/main.js',
       ]
 
 // Compile Sass to CSS
+/*
 sass.render({
   file: SASS,
   success: function( src ) {
@@ -31,6 +32,7 @@ sass.render({
   },
   outputStyle: 'compressed'
 })
+*/
 
 // Browerify and Uglify the main.js
 browserify.add( APP_JS ).bundle( function( err, buf ) {

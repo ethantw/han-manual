@@ -35,7 +35,6 @@
     "highlight.js": "~8.3",
     "jade": "^1.7.0",
     "mime-types": "^2.0.2",
-    "node-sass": "^1.0.3",
     "stmd": "~0.1.0",
     "uglify-js": "^2.4.15"
   },

@@ -2,7 +2,7 @@ DOC_SASS = overview.md module.md zitijixing_extend.md sectional.md inline.md var
 DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
 
 run ::
-	npm start | sass --watch --sourcemap=none sass:_public --style compressed
+	npm start | sass --watch --sourcemap=none sass:asset --style compressed
 
 build ::
 		make han
@@ -18,6 +18,7 @@ www ::
 	cp -rf asset/vendor/font/* _public/font
 	#cp -rf asset/font/* _public/font
 	#cp -rf asset/img/* _public/img
+	cp asset/style.css _public
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
