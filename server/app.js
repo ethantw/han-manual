@@ -84,8 +84,7 @@ http.createServer( function ( req, res ) {
     }
 
     if (
-      headers[ 'ETag' ] &&
-      req.headers[ 'if-none-match' ] &&
+      headers[ 'ETag' ] && req.headers[ 'if-none-match' ] &&
       headers[ 'ETag' ] === req.headers[ 'if-none-match' ]
     ) {
       res.writeHead( 304 )
