@@ -9,10 +9,10 @@ run ::
 	npm start | sass --watch --sourcemap=none sass:asset --style compressed
 
 build ::
-	make han
-	make vendor
-	make doc
-	make www
+		make han
+		make vendor
+		make doc
+		make www
 
 www ::
 	rm -rf _public
