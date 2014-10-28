@@ -9,12 +9,11 @@ run ::
 	npm start | sass --watch --sourcemap=none sass:asset --style compressed
 
 build ::
+	node server/www.js
 	make han
 	make vendor
 	make doc
-	#make www
-	make jade
-	make app.js
+	make www
 
 www ::
 	cp -r latest _public
@@ -31,8 +30,8 @@ doc ::
 	cd doc/js && cat $(DOC_JS) > ../js.md
 
 app.js ::
-	./node_modules/.bin/browserify script/main.js -o _public/app.js
-	./node_modules/.bin/uglifyjs _public/app.js -mo _public/app.js
+	browserify script/main.js -o _public/app.js
+	uglifyjs _public/app.js -mo _public/app.js
 
 han ::
 	rm -rf latest
