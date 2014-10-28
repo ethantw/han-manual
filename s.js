@@ -10,41 +10,24 @@ var fs = require( 'fs' ),
     mime = require( 'mime-types' ),
 
     ETag = require( 'ETag' ),
-    stmd = require( 'stmd' )
+    stmd = require( 'stmd' ),
+    parser = new stmd.DocParser(),
+    renderer = new stmd.HtmlRenderer()
 
 // Constants
 const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
+      HOST = process.env.IP || '0.0.0.0',
+      PORT = Number( process.env.PORT || 7788 ),
       ROOT = process.cwd(),
+
+      ROOT_PATH_FOR_ASSET = (function() {
+        return HOST === '0.0.0.0' ?
+          '/' : HEROKU_APP_PATH
+      })(),
+
       HTML_CNTT = mime.contentType( 'html' )
 
-// Variables
-var args = {},
-    argv = process.argv.slice( 2 )
-
-// Guess arguments.
-for ( var i = 0; i < argv.length; i++ ) {
-  arg = argv[i]
-  if ( arg.match( /^\d+$/ )){
-    args.port = arg
-  } else if ( arg === 'coffee' ){
-    args.coffee = true
-  } else if ( arg === 'fix' ){
-    args.fix = true
-  } else {
-    args.host = arg
-  }
-}
-
-// Assign defaults and define the start server action.
-args.port = Number( process.env.PORT || 7788 )
-args.host = process.env.IP || '0.0.0.0'
-
 var httpCb = function ( req, res ) {
-  const ROOT_PATH_FOR_ASSET = (function() {
-    return /^localhost/i.test( req.headers.host ) ?
-      '/' : HEROKU_APP_PATH
-  })()
-
   var uri = url.parse( req.url ).pathname,
       mdfilename = false,
       filename,
@@ -113,7 +96,6 @@ var httpCb = function ( req, res ) {
     if ( /^\/manual/.test( uri )) {
       filename = ROOT + '/manual.html'
       mdfilename = ROOT + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
-      etag = getETag( mdfilename )
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
@@ -155,16 +137,16 @@ var httpCb = function ( req, res ) {
               .replace( /\{\{asset\-path\}\}/gi, ROOT_PATH_FOR_ASSET )
 
         if ( mdfilename ) {
+          etag = getETag( mdfilename )
+
           fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
-            var parser, renderer, md2html
+            var  md2html
 
             if ( err ) {
               httpRespond( 500, err + '\n' )
               return
             }
 
-            parser = new stmd.DocParser()
-            renderer = new stmd.HtmlRenderer()
             md2html = renderer.render( parser.parse( mdcode ))
 
             html = html
@@ -203,10 +185,10 @@ var httpCb = function ( req, res ) {
   })
 }
 
-http.createServer( httpCb ).listen( args.port, args.host )
+http.createServer( httpCb ).listen( PORT, HOST )
 console.log(
   'Serving files from %s at http://%s:%s/',
   ROOT,
-  args.host,
-  args.port
+  HOST,
+  PORT
 )
