@@ -18,11 +18,6 @@ www ::
 	rm -rf _public
 	mkdir _public
 	node server/www.js
-	cp -r latest _public
-	cp -r asset/font _public
-	cp -r asset/img _public
-	cp -r asset/vendor/font/* _public/font
-	cp asset/style.css _public
 
 jade ::
 	./node_modules/.bin/jade template --out _public
