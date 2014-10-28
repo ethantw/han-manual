@@ -28,15 +28,16 @@
     "url": "https://github.com/ethantw/han-manual/issues"
   },
   "dependencies": {
-    "browserify": "^6.2.0",
-    "jade": "^1.7.0",
-    "uglify-js": "^2.4.15",
     "ETag": "~0.0.1",
+    "browserify": "^6.2.0",
     "font-awesome": "~4.2.0",
     "han-css": "^3.0.0",
     "highlight.js": "~8.3",
+    "jade": "^1.7.0",
     "mime-types": "^2.0.2",
-    "stmd": "~0.1.0"
+    "node-sass": "^1.0.3",
+    "stmd": "~0.1.0",
+    "uglify-js": "^2.4.15"
   },
   "engines": {
     "node": "0.10.x"
