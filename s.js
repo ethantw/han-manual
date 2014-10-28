@@ -27,7 +27,8 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
 
       HTML_CNTT = mime.contentType( 'html' )
 
-var httpCb = function ( req, res ) {
+
+http.createServer( function ( req, res ) {
   var uri = url.parse( req.url ).pathname,
       mdfilename = false,
       filename,
@@ -183,9 +184,8 @@ var httpCb = function ( req, res ) {
       })
     }
   })
-}
+}).listen( PORT, HOST )
 
-http.createServer( httpCb ).listen( PORT, HOST )
 console.log(
   'Serving files from %s at http://%s:%s/',
   ROOT,

@@ -27,20 +27,20 @@ app.js ::
 	uglifyjs app.js -m -o app.js
 
 han ::
-	rm -r -f latest
+	rm -rf latest
 	mkdir latest latest/font
-	cp node_modules/han-css/han.min.css latest/
-	cp node_modules/han-css/han.min.js latest/
-	cp node_modules/han-css/han.css latest/
-	cp node_modules/han-css/han.js latest/
+	cp node_modules/han-css/han.min.css latest
+	cp node_modules/han-css/han.min.js latest
+	cp node_modules/han-css/han.css latest
+	cp node_modules/han-css/han.js latest
 	cp node_modules/han-css/font/* latest/font
 
 han-dev ::
-	rm -r -f src/lib/han
-	mkdir src/lib/han src/lib/han/font
-	cp ../han/han.min.css src/lib/han/
-	cp ../han/han.min.js src/lib/han/
-	cp ../han/font/* src/lib/han/font
+	rm -rf latest
+	mkdir latest latest/font
+	cp ../han/han.min.css latest
+	cp ../han/han.min.js latest
+	cp ../han/font/* latest/font
 
 hljs ::
 	cd node_modules/highlight.js/styles && mkdir temp && cp tomorrow.css temp && mv temp/tomorrow.css tomorrow.scss && rm -r -f temp
