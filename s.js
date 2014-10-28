@@ -1,8 +1,4 @@
 
-// Constants
-const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
-      ROOT = process.cwd()
-
 // Modules
 var fs = require( 'fs' ),
     http = require( 'http' ),
@@ -11,10 +7,15 @@ var fs = require( 'fs' ),
     EventEmitter = require( 'events' ).EventEmitter,
     exec = require( 'child_process' ).exec,
     spawn = require( 'child_process' ).spawn,
+    mime = require( 'mime-types' ),
 
     ETag = require( 'ETag' ),
-
     stmd = require( 'stmd' )
+
+// Constants
+const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
+      ROOT = process.cwd(),
+      HTML_CNTT = mime.contentType( 'html' )
 
 // Variables
 var args = {},
@@ -38,13 +39,6 @@ for ( var i = 0; i < argv.length; i++ ) {
 args.port = Number( process.env.PORT || 7788 )
 args.host = process.env.IP || '0.0.0.0'
 
-// Emulate mime if it didn't exist.
-var mime = require( 'mime' )
-
-mime.define({
-  'text/x-markdown': [ 'x-md' ]
-})
-
 var httpCb = function ( req, res ) {
   const ROOT_PATH_FOR_ASSET = (function() {
     return /^localhost/i.test( req.headers.host ) ?
@@ -61,7 +55,7 @@ var httpCb = function ( req, res ) {
         data = data || ''
 
     if ( !headers[ 'Content-Type' ] ) {
-      headers[ 'Content-Type' ] = 'text/plain'
+      headers[ 'Content-Type' ] = 'text/plain; charset=utf-8'
     }
 
     if (
@@ -89,7 +83,7 @@ var httpCb = function ( req, res ) {
       ROOT + '/404.html',
       function( err, data ) {
         httpRespond( 404, data, {
-          'Content-Type': 'text/html'
+          'Content-Type': HTML_CNTT
         }
       )
     })
@@ -177,7 +171,7 @@ var httpCb = function ( req, res ) {
                   .replace( '{{parsed-article-html}}', md2html )
 
             httpRespond( 200, html, {
-              'Content-Type': 'text/html; charset=utf-8',
+              'Content-Type': HTML_CNTT,
               'ETag': etag
             })
           })
@@ -185,7 +179,7 @@ var httpCb = function ( req, res ) {
         }
 
         httpRespond( 200, html, {
-          'Content-Type': 'text/html; charset=utf-8',
+          'Content-Type': HTML_CNTT,
           'ETag': etag
         })
       })
@@ -201,7 +195,7 @@ var httpCb = function ( req, res ) {
         ext = path.extname( filename ).slice( 1 )
 
         httpRespond( 200, file, {
-          'Content-Type': mime.lookup( ext ),
+          'Content-Type': mime.contentType( ext ),
           'ETag': etag
         }, true )
       })
@@ -209,25 +203,10 @@ var httpCb = function ( req, res ) {
   })
 }
 
-function startServer() {
-  http.createServer( httpCb ).listen( args.port, args.host )
-    console.log(
-      'Serving files from %s at http://%s:%s/',
-      ROOT,
-      args.host,
-      args.port
-    )
-}
-
-// Watch an array of coffee files.
-function startWatching( files ) {
-  if ( !files.length ) {
-    startServer()
-    return
-  }
-}
-
-// The coffee feature will take care of starting the server.
-if ( !args.coffee ) {
-  startServer()
-}
+http.createServer( httpCb ).listen( args.port, args.host )
+console.log(
+  'Serving files from %s at http://%s:%s/',
+  ROOT,
+  args.host,
+  args.port
+)
