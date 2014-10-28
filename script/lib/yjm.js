@@ -1,6 +1,8 @@
+/*! YJM: Yijun’s Simplified JS Methods v0.0.1 */
+
 module.exports = (function( document, undefined ) {
 
-var Yijun = {
+var YJM = {
   // Simplified query selectors which return the node list
   // in an array
   id: function( selector, context ) {
@@ -113,6 +115,6 @@ var Yijun = {
   }
 }
 
-return Yijun
+return YJM
 
 })( window.document )

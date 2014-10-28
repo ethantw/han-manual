@@ -1,6 +1,6 @@
 
 // Modules
-var $ = require( './lib/yijun.js' )
+var $ = require( './lib/yjm' )
 
 // Constants
 var TITLE = document.title,

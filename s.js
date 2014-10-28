@@ -19,6 +19,7 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
       HOST = process.env.IP || '0.0.0.0',
       PORT = Number( process.env.PORT || 7788 ),
       ROOT = process.cwd(),
+      WWW = ROOT + '/_public/',
 
       ROOT_PATH_FOR_ASSET = (function() {
         return HOST === '0.0.0.0' ?
@@ -64,7 +65,7 @@ http.createServer( function ( req, res ) {
 
   function responseWith404() {
     fs.readFile(
-      ROOT + '/404.html',
+      WWW + '/404.html',
       function( err, data ) {
         httpRespond( 404, data, {
           'Content-Type': HTML_CNTT
@@ -80,9 +81,9 @@ http.createServer( function ( req, res ) {
   }
 
   try {
-    filename = decodeURIComponent( path.join( ROOT, uri ))
+    filename = decodeURIComponent( path.join( WWW, uri ))
   } catch ( e ) {
-    filename = path.join( ROOT, uri )
+    filename = path.join( WWW, uri )
   }
 
   fs.exists( filename, function( exists ) {
@@ -188,7 +189,7 @@ http.createServer( function ( req, res ) {
 
 console.log(
   'Serving files from %s at http://%s:%s/',
-  ROOT,
+  WWW,
   HOST,
   PORT
 )

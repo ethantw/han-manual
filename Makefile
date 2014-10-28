@@ -6,25 +6,30 @@ doc-and-appjs ::
 	make app.js
 
 run ::
-	npm start | jade -Pw *.jade | sass --watch --sourcemap=none sass:. --style compressed
+	npm start | jade -Pw *.jade | sass --watch --sourcemap=none sass:asset --style compressed
 
 build ::
-	# This is supposed to be `post-npm-install`
-	#npm install
 	make han
-	make hljs
-	make fa
-	#sass sass/style.sass:style.css --style compressed
-	#make app.js
+	make vendor
 	make doc
+	make www
+
+www ::
+	cp -r latest _public
+	cp -r asset/font _public
+	cp -r asset/img _public
+	cp -r asset/vendor/font/* _public/font
+	cp asset/app.js _public
+	cp asset/style.css _public
+	cp *.html _public
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
 	cd doc/js && cat $(DOC_JS) > ../js.md
 
 app.js ::
-	browserify src/manual.js -o app.js
-	uglifyjs app.js -m -o app.js
+	browserify script/main.js -o asset/app.js
+	uglifyjs asset/app.js -mo asset/app.js
 
 han ::
 	rm -rf latest
@@ -42,13 +47,16 @@ han-dev ::
 	cp ../han/han.min.js latest
 	cp ../han/font/* latest/font
 
+vendor ::
+	rm -rf asset/vendor
+	mkdir asset/vendor asset/vendor/css asset/vendor/font
+	make hljs
+	make fa
+
 hljs ::
-	cd node_modules/highlight.js/styles && mkdir temp && cp tomorrow.css temp && mv temp/tomorrow.css tomorrow.scss && rm -r -f temp
-	cp src/hljs.js node_modules/highlight.js/lib
-	cd node_modules/highlight.js/lib && mv hljs.js index.js
+	cp node_modules/highlight.js/styles/tomorrow.css asset/vendor/css
+	cd asset/vendor/css && cat * > hljs.tomorrow.scss
 
 fa ::
-	rm -r -f src/lib/fa
-	mkdir src/lib/fa
-	cp node_modules/font-awesome/fonts/* src/lib/fa
-	rm src/lib/fa/*.eot && rm src/lib/fa/*.ttf
+	cp node_modules/font-awesome/fonts/* asset/vendor/font
+	cd asset/vendor/font && rm *.eot && rm *.ttf

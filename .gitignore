@@ -3,9 +3,9 @@
 node_modules
 *.css.map
 
+_public
 latest
-src/lib/fa
-#app.js
+asset/vendor
 
 doc/sass.md
 doc/js.md

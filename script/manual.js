@@ -1,15 +1,15 @@
 
-void (function( win, doc, undefined ) {
+module.export = function() {
 
-// constants
+// Constants
 var REM = Number( 16 )
 
-// variables
+// Variables
 var root = doc.documentElement,
     body = doc.body
 
-// modules
-var $ = require( './lib/yijun.js' )
+// Modules
+var $ = require( './lib/yjm' )
 
 /*  Title
    ------- */
@@ -221,19 +221,4 @@ itff.forEach(function( elem, i ) {
     // ifroot.setAttribute( 'lang', 'zh-Hant' )
   })
 })
-
-/*  Highlight.js for codes
-   ------------------------ */
-
-var hljs = require( 'highlight.js' )
-hljs.initHighlightingOnLoad()
-
-/*  Share buttons
-   --------------- */
-
-var share = require( './share.js' )(
-  'footer ul.share', {
-    via: 'ethantw',
-    desc: '〔分享〕漢字標準格式：印刷品般的漢字排版框架'
-  })
-})( window, window.document )
+}
