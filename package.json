@@ -38,5 +38,7 @@
   "engines": {
     "node": "0.10.x"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jade": "^1.7.0"
+  }
 }

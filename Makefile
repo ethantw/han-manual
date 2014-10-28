@@ -6,13 +6,14 @@ doc-and-appjs ::
 	make app.js
 
 run ::
-	npm start | jade -Pw *.jade | sass --watch --sourcemap=none sass:asset --style compressed
+	npm start | sass --watch --sourcemap=none sass:asset --style compressed
 
 build ::
 	make han
 	make vendor
 	make doc
 	make www
+	make jade
 
 www ::
 	cp -r latest _public
@@ -21,7 +22,9 @@ www ::
 	cp -r asset/vendor/font/* _public/font
 	cp asset/app.js _public
 	cp asset/style.css _public
-	cp *.html _public
+
+jade ::
+	./node_modules/.bin/jade template --out _public
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
