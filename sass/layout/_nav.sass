@@ -1,4 +1,16 @@
 
+// Situations
+nav.layout ol ol ol
+  display: none
+
+.yangshi_biaozhunhua .yangshi_biaozhunhua ol,
+.wenzisheji .wenzisheji ol,
+.zhangjie_de_bianpai .zhangjie_de_bianpai ol,
+.hang_de_zucheng .hang_de_zucheng ol,
+.sass .sass ol,
+.js .js ol
+  display: block
+
 nav.layout
   // box
   padding: 0
@@ -7,7 +19,7 @@ nav.layout
   border: 1px solid lighten(#dddbce, 5%)
   border-radius: .5em
 
-  body[data-js-fixed-nav='true'] &
+  body.fixed-nav &
     // style
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0

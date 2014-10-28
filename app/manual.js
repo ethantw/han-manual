@@ -133,17 +133,22 @@ void [
 var nav = doc.querySelector( 'nav.layout' ),
     fixedY = 4.5*REM
 
-win.addEventListener( 'scroll', function() {
-  var clazz = body.classList
+void [
+  'scroll',
+  'DOMContentLoaded'
+].forEach(function( event ) {
+  win.addEventListener( event, function() {
+    var clazz = body.classList
 
-  if (
-    scroller.scrollTop >= fixedY &&
-    !clazz.contains( 'fixed-nav' )
-  ) {
-    clazz.add( 'fixed-nav' )
-  } else if ( scroller.scrollTop < fixedY ) {
-    clazz.remove( 'fixed-nav' )
-  }
+    if (
+      scroller.scrollTop >= fixedY &&
+      !clazz.contains( 'fixed-nav' )
+    ) {
+      clazz.add( 'fixed-nav' )
+    } else if ( scroller.scrollTop < fixedY ) {
+      clazz.remove( 'fixed-nav' )
+    }
+  })
 })
 
 // Prevent the navi scrolling conflict
