@@ -16,11 +16,11 @@ build ::
 
 www ::
 	rm -rf _public
-	mkdir _public
+	mkdir _public _public/font _public/img
 	node server/www.js
 	cp -rf latest _public
-	cp -rf asset/font _public
-	cp -rf asset/img _public
+	#cp -rf asset/font/* _public/font
+	#cp -rf asset/img/* _public/img
 	cp -rf asset/vendor/font/* _public/font
 	cp asset/style.css _public
 
