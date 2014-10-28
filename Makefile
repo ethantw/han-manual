@@ -18,17 +18,15 @@ www ::
 	rm -rf _public
 	mkdir _public
 	node server/www.js
-
-jade ::
-	./node_modules/.bin/jade template --out _public
+	cp -rf latest _public
+	cp -rf asset/font _public
+	cp -rf asset/img _public
+	cp -rf asset/vendor/font/* _public/font
+	cp asset/style.css _public
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
 	cd doc/js && cat $(DOC_JS) > ../js.md
-
-app.js ::
-	browserify script/main.js -o _public/app.js
-	uglifyjs _public/app.js -mo _public/app.js
 
 han ::
 	rm -rf latest
