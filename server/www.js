@@ -3,7 +3,6 @@
 var fs = require('fs'),
     browserify = require('browserify')(),
     uglify = require( 'uglify-js' ),
-    //sass =  require( 'node-sass' ),
     jade = require( 'jade' )
 
 // Constants
@@ -17,22 +16,22 @@ const APP_JS = './script/main.js',
       ]
 
 // Compile Sass to CSS
-/*
-sass.render({
-  file: SASS,
-  success: function( src ) {
-    fs.writeFile(
-      '_public/style.css',
-      src,
-      function( err ) {
-        if ( err ) {
-          console.log( err )
-        }
-      })
-  },
-  outputStyle: 'compressed'
-})
-*/
+try {
+  require( 'node-sass' ).render({
+    file: SASS,
+    success: function( src ) {
+      fs.writeFile(
+        '_public/style.css',
+        src,
+        function( err ) {
+          if ( err ) {
+            console.log( err )
+          }
+        })
+    },
+    outputStyle: 'compressed'
+  })
+} catch ( e ) {}
 
 // Browerify and Uglify the main.js
 browserify.add( APP_JS ).bundle( function( err, buf ) {
