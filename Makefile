@@ -13,7 +13,7 @@ build ::
 	make han
 	make vendor
 	make doc
-	make www
+	#make www
 
 www ::
 	cp -r latest _public
