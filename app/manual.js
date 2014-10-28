@@ -116,7 +116,6 @@ navBookmark.forEach(function( elem ) {
   }, true )
 })
 
-
 void [
   'hashchange',
   'DOMContentLoaded'
@@ -135,13 +134,15 @@ var nav = doc.querySelector( 'nav.layout' ),
     fixedY = 4.5*REM
 
 win.addEventListener( 'scroll', function() {
+  var clazz = body.classList
+
   if (
     scroller.scrollTop >= fixedY &&
-    body.getAttribute( 'data-js-fixed-nav' ) !== true
+    !clazz.contains( 'fixed-nav' )
   ) {
-    body.setAttribute( 'data-js-fixed-nav', true )
-  } else {
-    body.removeAttribute( 'data-js-fixed-nav' )
+    clazz.add( 'fixed-nav' )
+  } else if ( scroller.scrollTop < fixedY ) {
+    clazz.remove( 'fixed-nav' )
   }
 })
 
@@ -190,8 +191,6 @@ itff.forEach(function( elem, i ) {
     wrapper.innerHTML = html
     ifbody.replaceChild( wrapper, $.id( 'replacee', ifdoc ))
     ifwin.Han.init()
-
-    // ifroot.setAttribute( 'lang', 'zh-Hant' )
   })
 })
 }
