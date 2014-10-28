@@ -13,7 +13,7 @@ build ::
 www ::
 	rm -rf _public
 	mkdir _public _public/font _public/img
-	node server/www.js
+	node server/compile.js
 	cp -rf latest _public
 	cp -rf asset/vendor/font/* _public/font
 	#cp -rf asset/font/* _public/font

@@ -6,7 +6,7 @@ var fs = require('fs'),
     jade = require( 'jade' )
 
 // Constants
-const APP_JS = './script/main.js',
+const APP_JS = './app/main.js',
       SASS = './sass/style.sass',
       TEMPLATE = [
         '404',
