@@ -20,14 +20,8 @@ try {
   require( 'node-sass' ).render({
     file: SASS,
     success: function( src ) {
-      fs.writeFile(
-        '_public/style.css',
-        src,
-        function( err ) {
-          if ( err ) {
-            console.log( err )
-          }
-        })
+      fs.writeFile( 'asset/style.css', src )
+      fs.writeFile( '_public/style.css', src )
     },
     outputStyle: 'compressed'
   })
