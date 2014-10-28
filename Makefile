@@ -13,8 +13,8 @@ build ::
 	make vendor
 	make doc
 	#make www
-	#make jade
-	#make app.js
+	make jade
+	make app.js
 
 www ::
 	cp -r latest _public
