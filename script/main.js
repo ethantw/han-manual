@@ -2,7 +2,7 @@ void (function( win, doc, undefined ) {
 
 /*  Main manual
    ------------- */
-require( './manual' )
+require( './manual' )()
 
 /*  Highlight.js
    -------------- */

@@ -1,11 +1,12 @@
 
-module.export = function() {
-
+module.exports = function() {
 // Constants
 var REM = Number( 16 )
 
 // Variables
-var root = doc.documentElement,
+var win = window,
+    doc = win.document,
+    root = doc.documentElement,
     body = doc.body
 
 // Modules

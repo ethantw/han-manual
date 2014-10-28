@@ -12,15 +12,15 @@ build ::
 	make han
 	make vendor
 	make doc
-	make www
-	make jade
+	#make www
+	#make jade
+	#make app.js
 
 www ::
 	cp -r latest _public
 	cp -r asset/font _public
 	cp -r asset/img _public
 	cp -r asset/vendor/font/* _public/font
-	cp asset/app.js _public
 	cp asset/style.css _public
 
 jade ::
@@ -31,8 +31,8 @@ doc ::
 	cd doc/js && cat $(DOC_JS) > ../js.md
 
 app.js ::
-	browserify script/main.js -o asset/app.js
-	uglifyjs asset/app.js -mo asset/app.js
+	./node_modules/.bin/browserify script/main.js -o _public/app.js
+	./node_modules/.bin/uglifyjs _public/app.js -mo _public/app.js
 
 han ::
 	rm -rf latest

@@ -96,7 +96,7 @@ http.createServer( function ( req, res ) {
     }
 
     if ( /^\/manual/.test( uri )) {
-      filename = ROOT + '/manual.html'
+      filename = WWW + '/manual.html'
       mdfilename = ROOT + '/doc' + (/^\/manual\/?$/.test( uri ) ? '/jianjie.md' : uri.replace( /^\/manual/, '' ).replace( /\/$/, '' ) + '.md')
 
       fs.exists( mdfilename, function ( mdexists ) {
