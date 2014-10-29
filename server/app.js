@@ -138,6 +138,11 @@ http.createServer( function ( req, res ) {
   }
 
   fs.exists( filename, function( exists ) {
+    if ( /\/favicon.ico$/.test( filename )) {
+      exists = true
+      filename = WWW + '/img/favicon.png'
+    }
+
     if (
       ( !exists || /manifest.appcache/.test( filename )) &&
       ( !exists && !/^\/manual(\/.*)?$/.test( uri ))
