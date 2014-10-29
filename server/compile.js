@@ -9,7 +9,7 @@ var fs = require('fs'),
 const APP_JS = './app/main.js',
       SASS = './sass/style.sass',
       TEMPLATE = [
-        '404',
+        'error',
         'index',
         'itff',
         'manual'

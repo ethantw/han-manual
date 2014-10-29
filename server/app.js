@@ -27,7 +27,14 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
           '/' : HEROKU_APP_PATH
       })(),
 
-      HTML_CNTT = mime.contentType( 'html' )
+      HTML_CNTT = mime.contentType( 'html' ),
+
+      LANG = {
+        error: {
+          '404': '找不到所請求的頁面',
+          '500': '伺服器出現錯誤'
+        }
+      }
 
 // Functions
 function makeArray( obj ) {
@@ -102,11 +109,16 @@ http.createServer( function ( req, res ) {
     res.end( data )
   }
 
-  function responseWith404() {
+  function responseWithError( code ) {
     fs.readFile(
-      WWW + '/404.html',
-      function( err, data ) {
-        httpRespond( 404, data, {
+      WWW + '/error.html',
+      'utf8',
+      function( err, html ) {
+        html = html
+               .replace( /\{\{error\-code\}\}/gi, code )
+               .replace( /\{\{error\-msg\}\}/gi, LANG.error[ code ] )
+
+        httpRespond( code, html, {
           'Content-Type': HTML_CNTT
         }
       )
@@ -130,7 +142,7 @@ http.createServer( function ( req, res ) {
       ( !exists || /manifest.appcache/.test( filename )) &&
       ( !exists && !/^\/manual(\/.*)?$/.test( uri ))
     ) {
-      responseWith404()
+      responseWithError( 404 )
       return
     }
 
@@ -158,7 +170,7 @@ http.createServer( function ( req, res ) {
         filename = path.join( filename, 'index.html' )
 
         if ( !fs.existsSync( filename )) {
-          responseWith404()
+          responseWithError( 404 )
           return
         }
       }
@@ -171,7 +183,7 @@ http.createServer( function ( req, res ) {
         var ext
 
         if ( err ) {
-          httpRespond( 500, err + '\n' )
+          responseWithError( 500 )
           return
         }
 
@@ -185,7 +197,7 @@ http.createServer( function ( req, res ) {
             var  md2html
 
             if ( err ) {
-              httpRespond( 500, err + '\n' )
+              responseWithError( 500 )
               return
             }
 
@@ -225,7 +237,7 @@ http.createServer( function ( req, res ) {
         var ext
 
         if ( err ) {
-          httpRespond( 500, err + '\n' )
+          responseWithError( 500 )
           return
         }
 
