@@ -1,4 +1,240 @@
 
+article.main-content
+  padding: 0 .5em
+
+  h1,
+  h2
+    // typo
+    font-weight: normal
+  h1
+    // typo
+    font-family: 'Biaodian Pro Serif', Georgia, 'Kozuka Mincho Pr6N', 'Kozuka Mincho Pro', YuMincho, 'Hiragino Mincho ProN', 'Songti SC', 'Songti TC', 'Han Heiti', sans-serif
+    letter-spacing: .125em
+    // style
+    color: #6f6359
+    text-shadow: 1px 1px 1px #d5d2d2
+
+    &:not(:lang(zh)):not(:lang(ja)),
+    *:not(:lang(zh)):not(:lang(ja))
+      font-family: Optima, 'Avenir Next', Avenir, Georgia, serif
+      letter-spacing: 0
+    hws
+      font-size: .25em
+  h2
+    // posi
+    margin-bottom: 1em
+    // style
+    border-bottom: 1px solid #dcd6ca
+    color: #666
+  *:not(h1) + h2
+    padding-top: 1.5em
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    position: relative
+
+    &:target a.heading-anchor,
+    &:hover a.heading-anchor
+      border: 0 none !important
+      opacity: 1
+  .example,
+  .info
+    a.heading-anchor
+      display: none !important
+  hr
+    border: 0 none
+    border-top: 1px solid #ddd
+  table
+    // typo
+    font-size: .95em
+
+    &.wider
+      // box
+      width: 130%
+  thead
+    // style
+    border-bottom: 2px solid #e0dfca
+  th,
+  td
+    // typo
+    text-align: left
+    // box
+    padding: .125em .3em
+  th
+    // typo
+    font-weight: normal
+    // style
+    color: #6d5c55
+
+    small
+      color: #777
+  tr
+    // style
+    border-bottom: 1px dotted #ddd
+
+    &:first-child td
+      padding-top: .25em
+    &:last-child
+      border: 0
+  a:hover
+    border-bottom: 1px dotted rgba(#999, .8)
+    padding-bottom: .05em
+  .char-display
+    background-color: rgba(90%, 85%, 80%, .4)
+    border-radius: .25em
+    color: #9c8d66
+    padding: 2px 3px
+
+/*  Components
+   ------------ */
+
+a.heading-anchor
+  @extend %fa
+  @extend %fa-paperclip
+  // posi
+  position: absolute
+  bottom: .125em
+  // box
+  display: inline-block
+  height: 1.2em
+  width: 1.2em
+  overflow: hidden
+  // typo
+  font-size: 1em
+  // style
+  color: transparent
+  cursor: pointer
+  opacity: 0
+
+  &:before
+    // posi
+    position: absolute
+    // style
+    color: #76a633
+    text-shadow: #ddd 1px 1px 0
+
+div.example,
+blockquote.example,
+figure.example,
+pre
+  // posi
+  margin: 0 auto
+  // box
+  display: block
+  //width: 98%
+  padding: .5em .75em
+  // style
+  border: 1px solid #dbdbdb
+  border-radius: .25em
+
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul,
+  figure,
+  blockquote,
+  footer.cite p
+    &:first-child
+      margin-top: .25em
+    &:last-child
+      margin-bottom: .5em
+  figure:last-child
+    margin-bottom: .75em
+pre
+  // typo
+  font-size: .9em
+  // style
+  background-color: #eeedeb
+h3,
+h4,
+h5,
+h6
+  & + pre,
+  & + .example
+    margin-top: -.5em
+.example + pre
+  // posi
+  margin-top: -.5em
+  border-top-left-radius: 0
+  border-top-right-radius: 0
+.itff + pre
+  // posi
+  margin-top: -1em
+.example
+  pre + &,
+  & + &
+    // posi
+    margin-top: 1em
+div.info
+  // posi
+  margin: 1.75em 0
+  // typo
+  font-size: .85em
+  // style
+  border-top: 1px solid #eee
+  color: #333
+
+  h4,
+  h5,
+  p
+    margin: .6em 0
+blockquote,
+.example
+  footer.cite,
+  footer.cite p
+    // typo
+    font-size: .95em
+    text-align: right
+.itff
+  // box
+  padding-bottom: 0
+
+  iframe
+    // box
+    height: 100%
+    width: 100%
+    overflow: hidden
+    // style
+    border: 0 none
+.info.parameter
+  // box
+  padding: .25em .5em .5em
+  // style
+  border: 1px solid rgba(#986, .3)
+  border-radius: .25em
+
+  h4,
+  h5,
+  h6
+    // posi
+    margin: .25em 0 1em
+    // typo
+    font-weight: normal
+    // style
+    color: #c27042
+
+    &:lang(zh),
+    *:lang(zh)
+      letter-spacing: .25em
+  h4
+    border-bottom: 1px dotted rgba(#986, .4)
+  dl
+    margin: -.5em 0 0
+  dl p
+    margin: 0 0
+  dt code
+    // box
+    padding: 0
+    // style
+    background: transparent
+    color: #986
+  dd
+    margin: 0
 footer.main-content
   // posi
   position: relative

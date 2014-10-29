@@ -1,0 +1,66 @@
+/*
+ * This is the Sass file to which `error.html`
+ * corresponds.
+ *
+ * Compile and minify this and add to `error.jade`
+ * manually.
+ *
+ * GitHub styleguide for error pages:
+ * https://github.com/styleguide/templates/2.0
+ */
+
+*,
+*:before,
+*:after
+  box-sizing: border-box
+html
+  font-size: 16px
+body
+  // box
+  padding-top: 7em
+  // typo
+  text-align: center
+  // style
+  background-color: #d7d5b5
+h1
+  // posi
+  margin: 0
+  // typo
+  font-family: Georgia, 'Kozuka Mincho Pr6N', 'Kozuka Mincho Pro', YuMincho, 'Hiragino Mincho ProN', 'Songti SC', 'Songti TC', 'Microsoft Yahei', sans-serif
+  font-weight: 200
+  letter-spacing: .1em
+
+  .code
+    // box
+    display: block
+    // typo
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-weight: 100
+    font-size: 1.6em
+    letter-spacing: 0
+    // style
+    text-shadow: 1px 1px 1px #ebeddc
+ul
+  // box
+  padding: 0
+  list-style: none
+
+  li
+    // box
+    display: inline-block
+  li:not(:last-child)
+    margin-right: .5em
+a:link,
+a:visited
+  // box
+  display: inline-block
+  padding: .25em .5em
+  // typo
+  text-decoration: none
+  // style
+  background-color: #6fb217
+  border-radius: .5em/.55em
+  color: #d9f8aa
+a:hover
+  background-color: lighten(#6fb217, 5%)
+  color: lighten(#d9f8aa, 7%)
