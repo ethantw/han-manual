@@ -198,4 +198,17 @@ itff.forEach(function( elem, i ) {
     ifwin.Han.init()
   })
 })
+
+/* GitHub Fork
+  -------------  */
+var GITHUB_BLOB_URL = 'https://github.com/ethantw/Han-Manual/blob/master/doc/',
+    GITHUB_TREE_URL = 'https://github.com/ethantw/Han-Manual/tree/master/doc/'
+
+var manualId = body.getAttribute( 'data-chap' ),
+    url = /^(sass|js)$/i.test( manualId ) ?
+      GITHUB_TREE_URL + manualId :
+      GITHUB_BLOB_URL + manualId + '.md'
+
+$.id( 'edit-this' ).setAttribute( 'href', url )
+
 }
