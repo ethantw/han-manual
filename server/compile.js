@@ -16,6 +16,7 @@ const APP_JS = './app/main.js',
       ]
 
 // Compile Sass to CSS
+/*
 try {
   require( 'node-sass' ).render({
     file: SASS,
@@ -26,6 +27,7 @@ try {
     outputStyle: 'compressed'
   })
 } catch ( e ) {}
+*/
 
 // Browerify and Uglify the main.js
 browserify.add( APP_JS ).bundle( function( err, buf ) {
