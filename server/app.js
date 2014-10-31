@@ -22,10 +22,8 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
       ROOT = process.cwd(),
       WWW = ROOT + '/_public/',
 
-      ROOT_PATH_FOR_ASSET = (function() {
-        return HOST === '0.0.0.0' ?
-          '/' : HEROKU_APP_PATH
-      })(),
+      ROOT_PATH_FOR_ASSET = HOST === '0.0.0.0' ?
+        '/' : HEROKU_APP_PATH,
 
       HTML_CNTT = mime.contentType( 'html' ),
 
@@ -34,15 +32,17 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
           '404': '找不到所請求的頁面',
           '500': '伺服器出現錯誤'
         }
-      }
+      },
+
+      REDIR = JSON.parse( fs.readFileSync( ROOT + '/server/redir.json' ))
 
 // Functions
 function makeArray( obj ) {
   return [].slice.call( obj )
 }
 
-function getManualTitleAndSetAnchor( manualWin ) {
-  var doc = manualWin.document,
+function getManualTitleAndSetAnchor( win ) {
+  var doc = win.document,
       manualTitle = doc.querySelector( 'h1' ).textContent || ''
 
   manualTitle = manualTitle ? manualTitle + ' — ' : ''
@@ -138,39 +138,47 @@ http.createServer( function ( req, res ) {
   }
 
   fs.exists( filename, function( exists ) {
+    // rewrite favicon
     if ( /\/favicon.ico$/.test( filename )) {
-      exists = true
       filename = WWW + '/img/favicon.png'
-    }
 
-    if (
-      ( !exists || /manifest.appcache/.test( filename )) &&
-      ( !exists && !/^\/manual(\/.*)?$/.test( uri ))
-    ) {
-      responseWithError( 404 )
-      return
-    }
-
-    if ( /^\/manual/.test( uri )) {
+    // check for manual files
+    } else if ( /^\/manual/.test( uri )) {
       filename = WWW + '/manual.html'
       manualId = /^\/manual\/?$/.test( uri ) ? 'jianjie' : uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' )
       mdfilename = ROOT + '/doc/' + manualId + '.md'
+
+      // redirect old manual URLs from Han.css v2.x.x
+      if ( REDIR[ manualId ] ) {
+        httpRespond( 302, 'This is an old path, redirecting…', {
+          'Location': '/manual/' + REDIR[ manualId ]
+        })
+        return
+      }
 
       fs.exists( mdfilename, function ( mdexists ) {
         if ( !mdexists ) {
           mdfilename = ROOT + '/doc/404.md'
         }
       })
-    }
 
-    if ( fs.statSync( filename ).isDirectory()) {
+    // check for file existence
+    } else if (
+      ( !exists || /manifest.appcache/.test( filename )) &&
+      ( !exists && !/^\/manual(\/.*)?$/.test( uri ))
+    ) {
+      responseWithError( 404 )
+      return
+
+    // redirect directories (without a trailing slash)
+    } else if ( fs.statSync( filename ).isDirectory()) {
       if ( filename.slice(-1) !== '/' ) {
-        // Directory with out a trailing slash.
-        // redirect http://host/directory to http://host/directory/
-        httpRespond( 302, 'Location is a folder, redirecting..', {
+        httpRespond( 302, 'This is a folder, redirecting…', {
           'Location': uri + '/'
         })
         return
+
+      // rewrite indices
       } else {
         filename = path.join( filename, 'index.html' )
 
@@ -185,8 +193,6 @@ http.createServer( function ( req, res ) {
 
     if ( /\.(html|htm)$/i.test( filename )) {
       fs.readFile( filename, 'utf8', function( err, html ) {
-        var ext
-
         if ( err ) {
           responseWithError( 500 )
           return
@@ -214,6 +220,7 @@ http.createServer( function ( req, res ) {
                 var ret
 
                 if ( err ) {
+                  responseWithError( 500 )
                   return
                 }
 
