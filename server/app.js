@@ -22,7 +22,10 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
       ROOT = process.cwd(),
       WWW = ROOT + '/_public/',
 
-      ROOT_PATH_FOR_ASSET = process.env.IP,
+      ROOT_PATH_FOR_ASSET = (function() {
+        return HOST === '0.0.0.0' ?
+          '/' : HEROKU_APP_PATH
+      })(),
 
       HTML_CNTT = mime.contentType( 'html' ),
 
