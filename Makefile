@@ -12,12 +12,13 @@ build ::
 
 www ::
 	rm -rf _public
-	mkdir _public _public/font _public/img
+	mkdir _public _public/font _public/img _public/data
 	node server/compile.js
 	cp -rf latest _public
 	cp -rf asset/vendor/font/* _public/font
 	#cp -rf asset/font/* _public/font
 	cp -rf asset/img/* _public/img
+	cp -rf asset/data/* _public/data
 	cp asset/style.css _public
 
 doc ::
