@@ -22,8 +22,7 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
       ROOT = process.cwd(),
       WWW = ROOT + '/_public/',
 
-      ROOT_PATH_FOR_ASSET = HOST === '0.0.0.0' ?
-        '/' : HEROKU_APP_PATH,
+      ROOT_PATH_FOR_ASSET = HOST,
 
       HTML_CNTT = mime.contentType( 'html' ),
 
@@ -178,7 +177,7 @@ http.createServer( function ( req, res ) {
         })
         return
 
-      // rewrite indices
+      // rewrite directories to their indices
       } else {
         filename = path.join( filename, 'index.html' )
 
