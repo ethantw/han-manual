@@ -30,7 +30,6 @@
   "dependencies": {
     "ETag": "~0.0.1",
     "browserify": "^6.2.0",
-    "csv-parse": "0.0.6",
     "font-awesome": "~4.2.0",
     "han-css": "^3.0.0",
     "highlight.js": "~8.3",

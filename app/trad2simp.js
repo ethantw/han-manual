@@ -2,62 +2,66 @@
 module.exports = function() {
 
 // Modules
-var $ = require( './lib/yjm' ),
-    CSVParser = require( 'csv-parse' )
+var $ = require( './lib/yjm' )
 
 // Variables
 var win = window,
     doc = win.document,
     root = doc.documentElement,
     body = doc.body,
-    rHanzi = Han.TYPESET.char.cjk.individual
 
-// AJAX
+    // Do not use `Han.init` here, for trad2simp
+    // converting could be controversial.
+    hinst = Han.find( body )
+
+hinst.filteredElemList += ' h1'
+
 win
 .addEventListener( 'DOMContentLoaded', function() {
   // Get the trad2simp data asynchronously
   $.xhr( '/data/trad2simp.csv', function( data ) {
-    var trad2simp = {}
+    var trad2simp = {},
+        tradblob = '',
+        rTrad
 
-
-    CSVParser( data, function( err, output ) {
-      output.forEach(function( zi ) {
-        var tradzi = zi[1].split('')
-
-        if ( tradzi.length === 1 ) {
-          trad2simp[ zi[1] ] = zi[0]
-        } else {
-          tradzi.forEach(function( i ) {
-            trad2simp[i] = zi[0]
-          })
+    data.split( '\n' )
+    .forEach(function( row ){
+      row.replace(
+        /(.),(.+)/g,
+        function( match, trad, simp ) {
+          trad2simp[ trad ] = simp.split('')[0]
+          tradblob += trad
         }
-      })
+      )
+    })
 
-      // Assign button click event
-      $.id( 'trad2simp' )
-      .addEventListener( 'click', function() {
-        var state = root.getAttribute( 'lang' ),
-            hinst = Han.init
+    rTrad = new RegExp( '[' + tradblob + ']', 'g' )
 
-        switch ( state ) {
-          case 'zh-Hant':
-            hinst
-            .replace( rHanzi, function( portion, match ) {
-              if ( trad2simp[ match[0] ] ) {
+    // Assign button click event
+    $.id( 'trad2simp' )
+    .addEventListener( 'click', function() {
+      var state = root.getAttribute( 'lang' )
+
+      switch ( state ) {
+        case 'zh-Hant':
+          hinst
+          .replace(
+            rTrad,
+            function( portion, match ) {
+              try {
                 return trad2simp[ match[0] ]
+              } catch (e) {
+                return match[0]
               }
-
-              return match[0]
-            })
-
-            root.setAttribute( 'lang', 'zh-Hans' )
-            break
-          case 'zh-Hans':
-            hinst.revert()
-            root.setAttribute( 'lang', 'zh-Hant' )
-            break
-        }
-      })
+            }
+          )
+          root.setAttribute( 'lang', 'zh-Hans' )
+          break
+        case 'zh-Hans':
+          hinst.revert()
+          root.setAttribute( 'lang', 'zh-Hant' )
+          break
+      }
     })
   })
 })

@@ -1,6 +1,9 @@
 DOC_SASS = overview.md module.md zitijixing_extend.md sectional.md inline.md variable.md
 DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
 
+a ::
+	make www
+
 run ::
 	npm start | sass --watch --sourcemap=none sass:asset --style compressed
 
