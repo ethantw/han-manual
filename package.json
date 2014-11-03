@@ -6,22 +6,10 @@
     "type": "git",
     "url": "https://github.com/ethantw/han-manual.git"
   },
-  "main": "s.js",
   "scripts": {
     "start": "node server/app.js",
     "postinstall": "make build"
   },
-  "keywords": [
-    "Han",
-    "Hanzi",
-    "CJK",
-    "CSS",
-    "normalize",
-    "typography",
-    "typeface",
-    "font",
-    "typesetting"
-  ],
   "author": "Chen Yijun (@ethantw)",
   "license": "MIT License",
   "bugs": {
