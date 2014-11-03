@@ -28,6 +28,13 @@
 #### 以設計語言、而非像素呈現 <!-- #non-pixel-design -->
 「漢字標準格式」重視語意、設計流線和彈性，所有樣式的呈現皆避免以像素為單位的靜態設計。
 
+ 瀏覽器支援 <!-- #browser-support -->
+----------
+- Google Chrome（最新版）
+- Mozilla Firefox（最新版）
+- Opera Next（最新版）
+- Apple Safari 7+
+- Internet Explorer 10+
 
  參閱 <!-- #canyue -->
 ------
