@@ -1,52 +1,21 @@
 
  辭彙表
 =======
-## 漢字標準格式
-<table class='glossary'>
-  <thead>
-    <th>名稱
-    <th>原文／譯文
-    <th>定義
-  </thead>
-  <tr>
-    <td>標式標準化或本地化
-    <td>normalize or localise
-    <td>為各種語言、文字變體或地區分別提供相應的元素基礎樣式，係可獨立的模組。
-  <tr>
-    <td>文字設計
-    <td>typography
-    <td>又作字體排印，原指集合了字體設計與排版的各種技術。「漢字標準格式」中，特指在不同元素情境下設定的不同字體、字體集及基型，係可獨立的模組。
-  <tr>
-    <td>章節的編排
-    <td>sectional arrangements (sectional)
-    <td>「漢字標準格式」的高級排版功能。為章節情境提供相對位置及樣式的編排等。
-  <tr>
-    <td>行的組成
-    <td>line composition (inline)
-    <td>「漢字標準格式」的高級排版功能。用於處理行內文字或元素的排列或分布等。
-  <tr>
-    <td>類詩篇段落
-    <td>character-level selector (charify)
-    <td>「漢字標準格式」專有的語意類別，指詩篇或類似詩篇的文字段落，可用於文章元素、區塊引用元素、段落元素……等。
-  <tr>
-    <td>字級選擇器
-    <td>character-level selector (charify)
-    <td>「漢字標準格式」腳本實作的功能，實現「以字元為單元的選擇器」，提供多項變數方便按需操作。
-  <tr>
-    <td>漢字西文混排間隙
-    <td>Hanzi-Western script spacing, HWS
-    <td>「漢字標準格式」腳本實作的功能，在漢字同西文（拉丁字母及數字、希臘字母、西里爾字母等）混排的情況下，加入合適的間隙，以求平滑的視覺過渡。
-  <tr>
-    <td>回退
-    <td>fallback
-    <td>遇指定的方案不支援使用者當前環境時，系統或瀏覽器提供的向後降級處理，以求相對完整的資訊展示或功能實現。如為求最大支援程度，而排序多個字體的字體設定，即為回退的一種常見形式。
-  <tr>
-    <td>專名
-    <td>proper noun, PN
-    <td>專有名詞。
-</table>
-
-## HTML
+## HTML <!-- #html -->
+<style scoped>
+table.glossary {
+  font-size: .85em !important;
+}
+table.glossary thead th:nth-child(1) {
+  width: 7em;
+}
+table.glossary thead th:nth-child(2) {
+  width: 7em;
+}
+table.glossary td:nth-child(2) {
+  font-size: .9em;
+}
+</style>
 <table class='glossary'>
   <thead>
     <th>名稱
@@ -111,7 +80,52 @@
     <td>置於長字詞的各音節間，提示排版引擎可在需要時斷行之所在，避免文本超出或異常斷行，相應的元素為<code>wbr</code>，屬字級語意元素。
 </table>
 
-## CSS
+## 漢字標準格式 <!-- #han-css -->
+<table class='glossary'>
+  <thead>
+    <th>名稱
+    <th>原文／譯文
+    <th>定義
+  </thead>
+  <tr>
+    <td>標式標準化或本地化
+    <td>normalize or localise
+    <td>為各種語言、文字變體或地區分別提供相應的元素基礎樣式，係可獨立的模組。
+  <tr>
+    <td>文字設計
+    <td>typography
+    <td>又作字體排印，原指集合了字體設計與排版的各種技術。「漢字標準格式」中，特指在不同元素情境下設定的不同字體、字體集及基型，係可獨立的模組。
+  <tr>
+    <td>章節的編排
+    <td>sectional arrangements (sectional)
+    <td>「漢字標準格式」的高級排版功能。為章節情境提供相對位置及樣式的編排等。
+  <tr>
+    <td>行的組成
+    <td>line composition (inline)
+    <td>「漢字標準格式」的高級排版功能。用於處理行內文字或元素的排列或分布等。
+  <tr>
+    <td>類詩篇段落
+    <td>poem-like paragraph
+    <td>「漢字標準格式」專有的語意類別，指詩篇或類似詩篇的文字段落，可用於文章元素、區塊引用元素、段落元素……等。
+  <tr>
+    <td>字級選擇器
+    <td>character-level selector (charify)
+    <td>「漢字標準格式」腳本實作的功能，實現「以字元為單元的選擇器」，提供多項變數方便按需操作。
+  <tr>
+    <td>漢字西文混排間隙
+    <td>Hanzi-Western script mixed spacing, HWS
+    <td>「漢字標準格式」腳本實作的功能，在漢字同西文（拉丁字母及數字、希臘字母、西里爾字母等）混排的情況下，加入合適的間隙，以求平滑的視覺過渡。
+  <tr>
+    <td>回退
+    <td>fallback
+    <td>遇指定的方案不支援使用者當前環境時，系統或瀏覽器提供的向後降級處理，以求相對完整的資訊展示或功能實現。如為求最大支援程度，而排序多個字體的字體設定，即為回退的一種常見形式。
+  <tr>
+    <td>專名
+    <td>proper noun, PN
+    <td>專有名詞。
+</table>
+
+## 文字設計 <!-- #typography -->
 <table class='glossary'>
   <thead>
     <th>名稱
@@ -129,5 +143,5 @@
   <tr>
     <td>四大字體集
     <td>the Four Typefaces
-    <td>「黑」「宋」「楷」「仿宋」中文四大印刷字體的總稱。
+    <td>「黑」「宋」「楷」「仿宋」四大中文印刷體的總稱。
 </table>
