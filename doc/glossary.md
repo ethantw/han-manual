@@ -88,7 +88,7 @@ table.glossary td:nth-child(2) {
     <th>定義
   </thead>
   <tr>
-    <td>標式標準化或本地化
+    <td>樣式標準化或本地化
     <td>normalize or localise
     <td>為各種語言、文字變體或地區分別提供相應的元素基礎樣式，係可獨立的模組。
   <tr>
