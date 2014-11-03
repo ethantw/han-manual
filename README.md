@@ -10,10 +10,10 @@ Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark]
 ## How to use
 ### Requirements
 
-* Node.js 0.10.x
-    * Jade
-* Ruby
-    * Sass 3.4.5
+- Node.js 0.10.x
+    - Jade
+- Ruby
+    - Sass 3.4.5
 
 ### Module dependencies
 ```
