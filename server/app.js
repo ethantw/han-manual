@@ -151,7 +151,7 @@ http.createServer( function ( req, res ) {
       // redirect old manual URLs from Han.css v2.x.x
       if ( REDIR[ manualId ] ) {
         httpRespond( 302, 'This is an old path, redirecting…', {
-          'Location': '/manual/' + REDIR[ manualId ]
+          'Location': '/manual' + REDIR[ manualId ]
         })
         return
       }
