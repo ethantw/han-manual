@@ -14,7 +14,19 @@ var win = window,
 
     // Do not use `Han.init` here, for trad2simp
     // converting could be controversial.
-    hinst = Han.find( body )
+    hinst = Han.find( body ),
+
+    userPref
+
+function getState() {
+  return root.getAttribute( 'lang' )
+}
+
+try {
+  userPref = localStorage.getItem( 'hanst' )
+} catch(e) {
+  userPref = null
+}
 
 hinst.filterElem = function( currentElem ) {
   if ( $.matches( currentElem, FILTER_OUT )) {
@@ -28,8 +40,7 @@ win
   // Get the trad2simp data asynchronously
   $.xhr( '/data/trad2simp.csv', function( data ) {
     var trad2simp = {},
-        tradblob = '',
-        rTrad
+        tradblob = ''
 
     data.split( '\n' )
     .forEach(function( row ){
@@ -42,18 +53,16 @@ win
       )
     })
 
-    rTrad = new RegExp( '[' + tradblob + ']', 'g' )
-
     // Assign button click event
     $.id( 'trad2simp' )
     .addEventListener( 'click', function() {
-      var state = root.getAttribute( 'lang' )
+      var state = getState()
 
       switch ( state ) {
         case 'zh-Hant':
           hinst
           .replace(
-            rTrad,
+            new RegExp( '[' + tradblob + ']', 'g' ),
             function( portion, match ) {
               try {
                 return trad2simp[ match[0] ]
@@ -69,7 +78,16 @@ win
           root.setAttribute( 'lang', 'zh-Hant' )
           break
       }
+      try {
+        localStorage.setItem( 'hanst', getState())
+      } catch(e) {}
     })
+
+    // Trigger the converting if the preference
+    // is stored
+    if ( userPref !== getState()) {
+      $.id( 'trad2simp' ).click()
+    }
   })
 })
 }
