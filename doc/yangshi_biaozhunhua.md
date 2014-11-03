@@ -323,11 +323,11 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 <div class="example itff">
 
 #### 輸入鍵
-‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
+‘<kbd>command</kbd> + <kbd>P</kbd> makes the picture walk, walk, walk,’ sang Phil.
 </div>
 
 ```html
-<p>‘<kbd>command</kbd> + <kbd>P</kbd> makes it print, print, print,’ sang Phil.
+<p>‘<kbd>command</kbd> + <kbd>P</kbd> makes the picture walk, walk, walk,’ sang Phil.
 ```
 
 <div class="example itff">
