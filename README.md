@@ -24,8 +24,7 @@ npm install
 ```
 make run
 ```
-Open <http://localhost:7788/> or <http://localhost:7788/manual> to see if it runs properly. 
-
+Open <http://localhost:7788/> or <http://localhost:7788/manual> to see if it runs properly. Or use the command `npm start` if Sass is not installed.
 
 ### Compile the modification
 ```
