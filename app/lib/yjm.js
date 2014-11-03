@@ -21,6 +21,17 @@ var YJM = {
     )
   },
 
+  matches: function( elem, query ) {
+    var Efn = Element.prototype,
+        matches = Efn.matches || Efn.mozMatchesSelector || Efn.msMatchesSelector || Efn.webkitMatchesSelector
+
+    try {
+      return matches.call( elem, query )
+    } catch(e) {
+      return false
+    }
+  },
+
   // Create a document fragment, a text node with text
   // or an element with/without classes
   create: function( elem, clazz ) {

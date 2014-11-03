@@ -4,6 +4,8 @@ module.exports = function() {
 // Modules
 var $ = require( './lib/yjm' )
 
+var FILTER_OUT = 'style, script, *:not(:lang(zh)), h1, div.example, pre, code, textarea'
+
 // Variables
 var win = window,
     doc = win.document,
@@ -14,7 +16,12 @@ var win = window,
     // converting could be controversial.
     hinst = Han.find( body )
 
-hinst.filteredElemList += ' h1'
+hinst.filterElem = function( currentElem ) {
+  if ( $.matches( currentElem, FILTER_OUT )) {
+    return false
+  }
+  return true
+}
 
 win
 .addEventListener( 'DOMContentLoaded', function() {
