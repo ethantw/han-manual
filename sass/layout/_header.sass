@@ -34,3 +34,31 @@ header.layout
     letter-spacing: .1em
     // style
     color: #878064
+
+#trad2simp
+  // posi
+  position: absolute
+  top: .4em
+  right: 3em
+  // box (48x24px)
+  width: 3em
+  height: 1.5em
+  // style
+  background: url(img/trad2simp.png) no-repeat
+  background-size: 100%
+  border: 0
+  color: transparent
+
+  html:lang(zh-Hans) &
+    background-position: 0 100%
+
+  .arrow
+    @extend %fa
+    @extend %fa-arrow-right
+    // posi
+    position: absolute
+    left: 1.2rem
+    top: .27rem
+    // typo
+    font-size: .8rem
+    color: #c0bd79

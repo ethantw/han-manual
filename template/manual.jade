@@ -15,10 +15,12 @@ html(lang='zh-Hant').han-init
     link(rel='apple-touch-icon' href='{{asset-path}}img/apple-touch-icon.png')
   body(class='manual chap-{{manual-page-id}}' data-chap='{{manual-page-id}}')
     header.layout
-      div.logo
+      div
         h1: a.index(href='/manual/') 漢字標準格式
         p.desc 印刷品般的漢字排版框架
-      button#trad2simp 繁簡切換
+        button#trad2simp
+          | 繁簡切換
+          span.arrow
     article.main-content.layout
       | {{parsed-article-html}}
       footer.main-content

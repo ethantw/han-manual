@@ -20,7 +20,7 @@ header.layout
   // box
   width: 100%
 
-  .logo
+  > div
     @media #{$small-up}
       p.desc
         display: none
@@ -35,6 +35,8 @@ header.layout
       position: relative
       left: 50%
       margin-left: -30em
+      // box
+      width: 60em
     @media #{$large-only}
 nav.layout
   body.fixed-nav &
