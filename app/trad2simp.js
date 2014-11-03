@@ -85,7 +85,7 @@ win
 
     // Trigger the converting if the preference
     // is stored
-    if ( userPref !== getState()) {
+    if ( userPref && userPref !== getState()) {
       $.id( 'trad2simp' ).click()
     }
   })
