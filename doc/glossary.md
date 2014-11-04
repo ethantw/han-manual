@@ -13,6 +13,7 @@ table.glossary thead th:nth-child(2) {
   width: 7em;
 }
 table.glossary td:nth-child(2) {
+  line-height: 1.4;
   font-size: .9em;
 }
 </style>
