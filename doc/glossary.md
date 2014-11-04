@@ -16,6 +16,7 @@ table.glossary td:nth-child(2) {
   font-size: .9em;
 }
 </style>
+
 <table class='glossary'>
   <thead>
     <th>名稱
@@ -73,11 +74,11 @@ table.glossary td:nth-child(2) {
   <tr>
     <td>行間注
     <td>interlinear annotation (ruby)
-    <td>為正文文本標注細部說明的排版方式，相應的元素為<code>ruby</code>，屬字級語意元素。有「漢字標音」及「雙語對照」二大分類。
+    <td>標注於正文文本行間的說明，相應的元素為<code>ruby</code>，屬字級語意元素。有「漢字標音」及「雙語對照」二大類。
   <tr>
     <td>斷行機會元素
     <td>line break opportunity
-    <td>置於長字詞的各音節間，提示排版引擎可在需要時斷行之所在，避免文本超出或異常斷行，相應的元素為<code>wbr</code>，屬字級語意元素。
+    <td>置於長字詞的各音節間，提示排版引擎可在需要時斷行之所在，避免文本超出容器或異常斷行，相應的元素為<code>wbr</code>，屬字級語意元素。
 </table>
 
 ## 漢字標準格式 <!-- #han-css -->
