@@ -50,6 +50,8 @@
 
  授權方式 <!-- #license -->
 ---------
+「漢字標準格式」採用MIT License授權。
+
 ```
 http://css.hanzi.co/LICENSE.md
 ```
