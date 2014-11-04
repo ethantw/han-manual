@@ -43,9 +43,11 @@ function makeArray( obj ) {
 
 function getManualTitleAndSetAnchor( win ) {
   var doc = win.document,
-      manualTitle = doc.querySelector( 'h1' ).textContent || ''
+      manualTitle = ''
 
-  manualTitle = manualTitle ? manualTitle + ' — ' : ''
+  try {
+    manualTitle = doc.querySelector( 'h1' ).textContent + ' — '
+  } catch(e) {}
 
   makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
   .forEach(function( elem, i ) {
