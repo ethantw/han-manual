@@ -23,6 +23,7 @@ www ::
 	cp -rf asset/img/* _public/img
 	cp -rf asset/data/* _public/data
 	cp asset/style.css _public
+	cp LICENSE.md _public
 
 doc ::
 	cd doc/sass && cat $(DOC_SASS) > ../sass.md
