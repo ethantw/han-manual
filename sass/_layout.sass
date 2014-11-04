@@ -26,6 +26,9 @@ header.layout
         display: none
     @media #{$small-only}
       text-align: center
+
+      #github-repo
+        display: none
     @media #{$medium-up}
       p.desc
         display: inline-block
@@ -37,11 +40,13 @@ header.layout
       margin-left: -30em
       // box
       width: 60em
-    @media #{$large-only}
 
-  #trad2simp
-    @media #{$large-up}
-      right: 3em
+      #github-repo
+        right: 7em
+      #trad2simp
+        right: 3em
+    @media #{$large-only}
+@media #{$medium-only}
 nav.layout
   body.fixed-nav &
     +calc( 'height', '100% - 3.5em + 1px' )

@@ -35,10 +35,37 @@ header.layout
     // style
     color: #878064
 
+#github-repo
+  @extend %fa
+  @extend %fa-github
+  // posi
+  position: absolute
+  top: .5rem
+  right: 3rem
+  // box
+  height: 1.5rem
+  width: 7.5rem
+  // typo
+  font-family: 'Helvetica Neue', Helvetica, 'Avenir Next', Avenir, Arial, sans-serif
+  font-size: .75rem
+  font-weight: 200
+  // style
+  color: #000
+
+  &:hover
+    color: #666
+  &:active
+    color: #a92828
+  &:before
+    // box
+    margin-right: .25rem
+    // typo
+    font-size: 1.5rem
+    vertical-align: -.225rem
 #trad2simp
   // posi
   position: absolute
-  top: .4em
+  top: .43em
   right: 1em
   // box (48x24px)
   width: 3em
