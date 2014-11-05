@@ -37,8 +37,8 @@
 [jiya]: /manual/hang_de_zucheng#biaodian_jiya
 [well-knit]: /manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng
 
-#### 以設計語言、而非像素呈現 <!-- #non-pixel-design -->
-「漢字標準格式」重視語意、設計流線和彈性，所有樣式的呈現皆避免以像素為單位的靜態設計。
+#### 以設計流線、而非像素呈現 <!-- #non-pixel-design -->
+「漢字標準格式」重視語意、設計流線和彈性，所有樣式的呈現皆避免了以像素為單位的靜態設計。
 
  瀏覽器支援 <!-- #browser-support -->
 ----------
