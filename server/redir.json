@@ -17,17 +17,19 @@
 
   "hanzi_biaozhun_geshi/biaodian_fuhao_yangshi": "/wenzisheji#biaodian_yangshi_xiuzheng",
   "hanzi_biaozhun_geshi/wenzhang_nei_zhongdian": "/wenzisheji#butong_qingjing_xia_de_ziti",
-  "api/gelei_ziti_yu_zitiji": "/sass#ziti_jixing_extend",
+  "api/gelei_ziti_yu_zitiji": "/sass-api#ziti_jixing_extend",
 
   "hanzi_biaozhun_geshi/wenzhang_nei_duanluo": "/zhangjie_de_bianpai",
 
   "hanzi_biaozhun_geshi/han-la_jianxi": "/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi",
 
-  "api": "/js",
-  "api/modernizr_buchongji": "/js#init-cond",
-  "api/javascript_jiekou": "/js",
-  "api/javascript_jiekou-jquery.charize": "/js#charify",
-  "api/javascript_jiekou-han.support.feature": "/js#support",
-  "api/javascript_jiekou-han.support.font": "/js#support",
-  "api/javascript_jiekou-han.unicode": "/js#unicode"
+  "sass": "/sass-api",
+  "js": "/js-api",
+  "api": "/js-api",
+  "api/modernizr_buchongji": "/js-api#init-cond",
+  "api/javascript_jiekou": "/js-api",
+  "api/javascript_jiekou-jquery.charize": "/js-api#charify",
+  "api/javascript_jiekou-han.support.feature": "/js-api#support",
+  "api/javascript_jiekou-han.support.font": "/js-api#support",
+  "api/javascript_jiekou-han.unicode": "/js-api#unicode"
 }

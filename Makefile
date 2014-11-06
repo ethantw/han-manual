@@ -2,6 +2,7 @@ DOC_SASS = overview.md module.md zitijixing_extend.md sectional.md inline.md var
 DOC_JS   = overview.md rendering.md normalize.md inline.md support.md find.md unicode.md
 
 a ::
+	make doc
 	make www
 
 run ::
@@ -26,8 +27,8 @@ www ::
 	cp LICENSE.md _public
 
 doc ::
-	cd doc/sass && cat $(DOC_SASS) > ../sass.md
-	cd doc/js && cat $(DOC_JS) > ../js.md
+	cd doc/sass-api && cat $(DOC_SASS) > ../sass-api.md
+	cd doc/js-api && cat $(DOC_JS) > ../js-api.md
 
 han ::
 	rm -rf latest
