@@ -20,6 +20,26 @@ a
     color: darken(#428bca, 20%)
   &:active
     color: #e6b033
+%github-repo
+  @extend %fa
+  @extend %fa-github
+  // typo
+  font-family: 'Helvetica Neue', Helvetica, 'Avenir Next', Avenir, Arial, sans-serif
+  font-size: .75rem
+  font-weight: 200
+  // style
+  color: #000
+
+  &:hover
+    color: #a92828
+  &:active
+    color: #655
+  &:before
+    // box
+    margin-right: .25rem
+    // typo
+    font-size: 1.5rem
+    vertical-align: -.225rem
 *:not(pre) > code
   // box
   padding: 2px 3px
@@ -33,3 +53,42 @@ a
   background: none
 .hljs-title
   color: inherit
+.logo
+  h1
+    // typo
+    font-family: 'Kozuka Mincho Pr6N', 'Kozuka Mincho Pro', 'Han Songti', serif
+    font-size: 1.2em
+    font-weight: 400
+    letter-spacing: .2em
+    // style
+    text-shadow: #999 1px 1px 3px
+  h1 a
+    // style
+    color: #069460
+  p
+    // typo
+    font-size: .8em
+    letter-spacing: .1em
+    // style
+    color: #878064
+#tweets-about-han,
+p[data-twttr-id]
+  // posi
+  margin: 2em 0 1.5em
+  // typo
+  text-align: center
+
+  > a
+    // posi
+    margin: 0 auto
+    // box
+    display: block
+    width: 90%
+    padding: .25em 0
+    // style
+    border: 1px solid
+    border-radius: .25em
+    color: #aaa
+
+    &:hover
+      color: #50d094

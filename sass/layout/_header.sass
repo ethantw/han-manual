@@ -1,43 +1,26 @@
 
 header.layout
-  // box
-  padding: .125em .5em .25em
-  // style
-  background-color: #e1e0d7
-  border-bottom: 1px solid #dddbce
-  box-shadow: 0 -1px 1px #e1e0d7 inset, 0 -.5em 1.25em rgba(#cbcbbf, .3) inset, 0 1px 0 rgba(#f0ebd2, 0.5)
-
+  .manual &
+    // box
+    padding: .125em .5em .25em
+    // style
+    background-color: #e1e0d7
+    border-bottom: 1px solid #dddbce
+    box-shadow: 0 -1px 1px #e1e0d7 inset, 0 -.5em 1.25em rgba(#cbcbbf, .3) inset, 0 1px 0 rgba(#f0ebd2, 0.5)
   h1,
   p
     // posi
     margin: .25em auto
     // box
     display: inline-block
-  a.index
-    // style
-    color: #069460
   h1
     // box
     padding-left: .55em
-    // typo
-    font-family: 'Kozuka Mincho Pr6N', 'Kozuka Mincho Pro', 'Han Songti', serif
-    font-size: 1.2em
-    font-weight: 400
-    letter-spacing: .2em
-    // style
-    text-shadow: #999 1px 1px 3px
   p.desc
     // posi
     margin-top: -.25em
-    // typo
-    font-size: .8em
-    letter-spacing: .1em
-    // style
-    color: #878064
-
 #github-repo
-  @extend %fa
-  @extend %fa-github
+  @extend %github-repo
   // posi
   position: absolute
   top: .5rem
@@ -45,31 +28,25 @@ header.layout
   // box
   height: 1.5rem
   width: 7.5rem
-  // typo
-  font-family: 'Helvetica Neue', Helvetica, 'Avenir Next', Avenir, Arial, sans-serif
-  font-size: .75rem
-  font-weight: 200
-  // style
-  color: #000
-
-  &:hover
-    color: #a92828
-  &:active
-    color: #655
-  &:before
-    // box
-    margin-right: .25rem
-    // typo
-    font-size: 1.5rem
-    vertical-align: -.225rem
 #trad2simp
+  @extend %fa
+  @extend %fa-arrow-right
+
+  &:before
+    // posi
+    position: absolute
+    left: 1.2rem
+    top: .27rem
+    // typo
+    font-size: .8rem
+    color: #c0bd79
   // posi
   position: absolute
-  top: .43em
-  right: 1em
+  top: .43rem
+  right: 1rem
   // box (48x24px)
-  width: 3em
-  height: 1.5em
+  width: 3rem
+  height: 1.5rem
   // style
   background: url(img/trad2simp.png) no-repeat
   background-size: 100%
@@ -78,17 +55,5 @@ header.layout
   outline: 0
 
   html:lang(zh-Hans) &
+    @extend %fa-arrow-left
     background-position: 0 100%
-  .arrow
-    @extend %fa
-    @extend %fa-arrow-right
-    // posi
-    position: absolute
-    left: 1.2rem
-    top: .27rem
-    // typo
-    font-size: .8rem
-    color: #c0bd79
-
-    html:lang(zh-Hans) &
-      @extend %fa-arrow-left

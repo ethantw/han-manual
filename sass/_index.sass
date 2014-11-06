@@ -1,0 +1,102 @@
+
+body.index
+  // typo
+  font-size: 20px
+
+body.index .logo
+  margin-bottom: 2.5em
+
+  &,
+  & p
+    // typo
+    text-align: center
+  h1
+    // style
+    text-shadow: 1px 1px 3px #e7f5dd, 1px 1px 0 #eee
+body.index header.layout
+  // posi
+  position: relative
+  height: 3rem
+  > div
+    // posi
+    margin-top: .5rem
+section.index
+  // posi
+  position: relative
+  // box
+  padding: 2.5em 0 4em
+
+  &:before
+    // posi
+    position: absolute
+    left: 0
+    top: 0
+    z-index: -5
+    // box
+    content: ''
+    display: block
+    height: 100%
+    width: 100%
+    // style
+    background-color: #eaeadf
+    background-image: -moz-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%)
+    background-image: -ms-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%)
+    background-image: -webkit-radial-gradient(50% 50%, circle cover, #ddd, #e1eab1 60%)
+    background-image: radial-gradient(50% 50%, circle cover, white, #d2dea2 60%)
+    opacity: .7
+
+  article
+    // posi
+    margin: 0 auto
+    // box
+    max-width: 30em
+    padding: 0 .5em
+  ul
+    // posi
+    margin-top: 3em
+    // box
+    padding: 0
+    // typo
+    list-style: none
+    text-align: center
+
+    li
+      display: inline-block
+    a
+      // posi
+      margin: 0 .4em
+      // style
+      border: 1px solid
+      border-radius: .3em
+      color: #000
+    .github a
+      @extend %github-repo
+      // box
+      padding: .5em .75em
+
+      &:hover
+        background-color: #a92828
+        border-color: #a92828
+        box-shadow: 0 3px 0 #e8d3d3
+        color: #ffe0e0
+    .manual a
+      @extend %fa
+      @extend %fa-book
+      // box
+      padding: .5em .75em
+      // typo
+      font-size: 1rem
+      // style
+      color: #1e7f0b
+
+      &:before
+        // posi
+        margin-right: .2em
+        // typo
+        font-size: 1.3em
+        vertical-align: -.07em
+      &:hover
+        background-color: #329419
+        border-color: #329419
+        border-bottom: 3px solid #75bf5b
+        color: #d5ffc0
