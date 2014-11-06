@@ -8,5 +8,5 @@ _public
 latest
 asset/vendor
 
-doc/sass.md
-doc/js.md
+doc/sass-api.md
+doc/js-api.md
