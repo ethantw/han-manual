@@ -27,8 +27,13 @@ var aLeft   = (aWidth - DIALOG_WIDTH)/2
 
 function assignSharingMission( target, lang ) {
   var lang = $.extend( LANG, lang )
+  var $target = document.querySelector( target )
 
-  document.querySelector( target )
+  if ( !$target ) {
+    return
+  }
+
+  $target
   .addEventListener( 'click', function( e ) {
     var name = e.target.nodeName
     var id = e.target.getAttribute( 'id' )

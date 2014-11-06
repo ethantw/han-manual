@@ -12,6 +12,10 @@ var win = window,
 // Modules
 var $ = require( './lib/yjm' )
 
+if ( !doc.querySelector( 'body.manual' )) {
+  return
+}
+
 /*  Automated IDs for headings and info-boxes
    ------------------------------------------- */
 
@@ -210,5 +214,4 @@ var manualId = body.getAttribute( 'data-chap' ),
       GITHUB_BLOB_URL + manualId + '.md'
 
 $.id( 'edit-this' ).setAttribute( 'href', url )
-
 }
