@@ -34,7 +34,7 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
         }
       },
 
-      REDIR = JSON.parse( fs.readFileSync( ROOT + '/server/redir.json' ))
+      REDIR = require( './redir.js' ).PATH
 
 // Functions
 function makeArray( obj ) {
@@ -43,37 +43,38 @@ function makeArray( obj ) {
 
 function getManualTitleAndSetAnchor( win ) {
   var doc = win.document,
-      manualTitle = ''
+      manualTitle = '',
+      manualHTML = ''
 
   try {
+    makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
+    .forEach(function( elem, i ) {
+      var anchor = elem.lastChild,
+          anchorId = anchor.nodeValue
+
+      elem.setAttribute( 'id', 'sec-' + i )
+
+      if (
+        anchor &&
+        anchor.nodeType === 8 &&
+        /\s?\#[\w\_\-]+\s?/.test( anchorId )
+      ) {
+        elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
+        elem.removeChild( anchor )
+      }
+    })
+
+    makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
+    .forEach(function( elem, i ) {
+      if ( !elem.getAttribute( 'id' )) {
+        elem.setAttribute( 'id', 'info-' + i )
+      }
+    })
+
     manualTitle = doc.querySelector( 'h1' ).textContent + ' — '
+    manualHTML = doc.body.innerHTML
   } catch(e) {}
-
-  makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
-  .forEach(function( elem, i ) {
-    var anchor = elem.lastChild,
-        anchorId = anchor.nodeValue
-
-    elem.setAttribute( 'id', 'sec-' + i )
-
-    if (
-      anchor &&
-      anchor.nodeType === 8 &&
-      /\s?\#[\w\_\-]+\s?/.test( anchorId )
-    ) {
-      elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
-      elem.removeChild( anchor )
-    }
-  })
-
-  makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
-  .forEach(function( elem, i ) {
-    if ( !elem.getAttribute( 'id' )) {
-      elem.setAttribute( 'id', 'info-' + i )
-    }
-  })
-
-  return [ manualTitle, doc.body.innerHTML ]
+  return [ manualTitle, manualHTML ]
 }
 
 // Start the sever

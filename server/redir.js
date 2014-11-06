@@ -1,4 +1,5 @@
-{
+
+exports.PATH = {
   "download": "/anzhuang_yu_qiyong",
   "browser-support": "/#browser-support",
   "license": "/",
