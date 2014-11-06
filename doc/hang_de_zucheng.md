@@ -41,7 +41,7 @@
 
 ```css
 .warning hws {
-	display: none;
+  display: none;
 }
 ```
 
