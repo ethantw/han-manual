@@ -3,6 +3,12 @@ body.index
   // typo
   font-size: 20px
 
+  h1,
+  h2,
+  h3
+    // typo
+    font-weight: normal
+    text-align: center
 body.index .logo
   margin-bottom: 2.5em
 
@@ -20,7 +26,7 @@ body.index header.layout
   > div
     // posi
     margin-top: .5rem
-section.index
+section#index
   // posi
   position: relative
   // box
@@ -38,11 +44,11 @@ section.index
     height: 100%
     width: 100%
     // style
-    background-color: #eaeadf
-    background-image: -moz-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%)
-    background-image: -ms-radial-gradient(50% 50%, circle cover, white, #d9dbd1 60%)
+    background-color: #e1eab1
+    background-image: -moz-radial-gradient(50% 50%, circle cover, #ddd, #e1eab1 60%)
+    background-image: -ms-radial-gradient(50% 50%, circle cover, #ddd, #e1eab1 60%)
     background-image: -webkit-radial-gradient(50% 50%, circle cover, #ddd, #e1eab1 60%)
-    background-image: radial-gradient(50% 50%, circle cover, white, #d2dea2 60%)
+    background-image: radial-gradient(50% 50%, circle cover, #ddd, #e1eab1 60%)
     opacity: .7
 
   article
@@ -100,3 +106,33 @@ section.index
         border-color: #329419
         border-bottom: 3px solid #75bf5b
         color: #d5ffc0
+section#featuring
+  article
+    // posi
+    margin: 0 auto
+    // box
+    max-width: 28em
+    padding: 1em 0 2em
+section#used-by
+  // box
+  padding: 3em 0 2em
+  // style
+  background-color: #d2f5dd
+
+  > div
+    // posi
+    margin: 0 auto
+    // box
+    max-width: 26em
+  h2 + #tweets-about-han
+    margin-top: -.5em
+  ul
+    @extend %fa-ul
+    // posi
+    margin-left: -1em
+    // box
+    padding: 0
+
+    li
+      @extend %fa
+      @extend %fa-check

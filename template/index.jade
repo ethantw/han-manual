@@ -19,7 +19,7 @@ html(lang='zh-Hant').han-init
         a#github-repo(href='https://github.com/ethantw/Han') GitHub Project
         button#trad2simp 繁簡切換
     main
-      section.index: article
+      section#index: article
         .logo
           h1: a(href='/') 漢字標準格式
           p.desc 印刷品般的漢字排版框架
@@ -42,8 +42,8 @@ html(lang='zh-Hant').han-init
               rt(rbspan='2') hànzì
               rt(rbspan='2') biāoyīn
           | 、<!--
-          | -->標點符號修正、四大中文字體、章節邊界調整、<!--
-          | -->漢字－西文script混排間隙、「標點『擠壓』」……
+          | -->標點符號修正、中文四大印刷體、章節邊界調整、<!--
+          | -->「標點『擠壓』」、漢字－西文script混排間隙……
         p 
           | 集成「
           a(href='/manual/yangshi_biaozhunhua') 語意樣式標準化
@@ -56,6 +56,32 @@ html(lang='zh-Hant').han-init
         ul
           li.github: a(href='https://github.com/ethantw/Han') GitHub Project
           li.manual: a(href='/manual') 使用手冊
+    section#featuring
+      article
+        h2 用途與特色
+        h3 完全相容HTML5，簡潔而不冗餘
+        p 「漢字標準格式」嚴格遵守HTML5各種元素的語意，不使用冗餘繁雜的展示性類別（presentational classes），將元素的預設樣式重新定製、標準化，更適合漢字的書寫排印習慣。
+
+        h3 不同文字、不同字體
+        p 配合精細而完整的字體回退機制，「漢字標準格式」得以依據不同的語言、文字，以字元為單位，套用其最合適的字體。從此標點符號不再混亂，漢字、西文、數字各得其所。
+
+        h3 專為「舒適閱讀」打造
+        p 諸多高級排版功能——如「漢字－西文混排間隙」「標點擠壓」「章節邊界調整」……等——皆為舒適閱讀打造，體驗如若印刷品般的螢幕閱讀。
+
+        h3 以設計流線、而非像素呈現
+        p 「漢字標準格式」重視語意、設計流線和彈性，所有樣式的呈現皆避免了以像素為單位的靜態設計。
+    section#used-by
+      .used-by
+        h2 使用「漢字標準格式」的網站
+        ul
+          li: a(href='https://moedict.tw/') 萌典
+          li: a(href='http://itgonglun.com/') IT公論
+          li: a(href='http://g0v.tw/') g0v零時政府
+          li: a(href='http://markdown.tw/') Markdown中文語法說明
+      .tweet
+        <h2>推文</h2>
+        <p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
     //- Han.js
     script(src='{{asset-path}}latest/han.min.js')
