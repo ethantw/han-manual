@@ -108,13 +108,63 @@ section#featuring
     // posi
     margin: 0 auto
     // box
-    max-width: 28em
+    max-width: 25em
     padding: 1em 0 2em
+  p
+    // box
+    width: 90%
+  section
+    // posi
+    margin-bottom: 3em
+    position: relative
+
+    h3
+      text-align: left
+  section:nth-of-type(even)
+    h3,
+    p
+      // posi
+      margin-left: auto
+      // typo
+      text-align: right
+  img
+    position: absolute
+#featuring-html5
+  img
+    // posi
+    left: -10em
+    top: -4em
+    // box
+    width: 11em
+#featuring-typefaces
+  img
+    // posi
+    right: -11em
+    bottom: 0
+    // box
+    width: 10em
+#featuring-typeset
+  img
+    // posi
+    left: -23em
+    top: -10em
+    // box
+    width: 23em
+#featuring-em-based
+  img
+    // posi
+    right: -15em
+    bottom: -1em
+    // box
+    width: 14em
+    // style
+    background-color: rgba(#e4dab4, 0.4)
+    border-radius: .25rem
 section#used-by
   // box
-  padding: 3em 0 2em
+  padding: 1em 0 2em
   // style
-  background-color: #d2f5dd
+  border-top: 1px solid #ccc
 
   > div
     // posi
@@ -132,4 +182,21 @@ section#used-by
 
     li
       @extend %fa
-      @extend %fa-check
+      @extend %fa-at
+    li:before
+      font-size: .9em
+body.index footer.layout
+  // box
+  height: 3em
+  // style
+  background-color: #ecf2c0
+  box-shadow: 0 1px .25em darken(#ecf2c0, 15%) inset
+p.signature:lang(cmn)
+  // typo
+  text-align: center
+
+  a
+    // typo
+    font-family: Zapfino, cursive, serif
+    // style
+    color: hsl(152, 34%, 40%)
