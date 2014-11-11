@@ -30,3 +30,8 @@ Open <http://localhost:7788/> or <http://localhost:7788/manual> to see if it run
 ```
 make
 ```
+
+## License
+All files and documents of the manual are licensed under [Creative Commons BY-3.0][cc-by]
+
+[cc-by]: https://creativecommons.org/licenses/by/3.0/
