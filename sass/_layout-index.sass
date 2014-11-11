@@ -1,0 +1,55 @@
+
+section#featuring
+  @media #{$small-up}
+  @media #{$small-only}
+  @media #{$medium-up}
+  @media #{$medium-only}
+  @media #{$large-up}
+    article
+      width: 60rem
+    h3,
+    p
+      // box
+      width: 28rem
+    img
+      // posi
+      position: absolute
+      left: 0
+      top: -1.5em
+      // box
+      width: 16rem
+    section
+      // posi
+      margin-bottom: 5em
+      position: relative
+      // box
+      min-height: 17rem
+      padding-left: 17rem
+    section:nth-of-type(even)
+      padding: 0
+
+      img
+        left: auto
+        right: 0
+      h3,
+      p
+        margin: 0 17rem 0 auto
+        text-align: right
+    #featuring-typeset
+      // posi
+      position: static
+      // box
+      padding-left: 44%
+
+      img
+        // posi
+        left: -6%
+        top: auto
+        margin-top: -30%
+        z-index: -5
+        // box
+        width: 50%
+      h3
+        // posi
+        margin-left: -1em
+  @media #{$large-only}
