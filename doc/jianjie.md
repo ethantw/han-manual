@@ -8,6 +8,12 @@
 
 「漢字標準格式」支援繁體中文、簡體中文及日文等三個採用漢字的語言文字。
 
+- [GitHub Project](https://github.com/ethantw/Han)
+- [範例測試頁](//ethantw.github.io/Han/latest)
+- [提issue](https://github.com/ethantw/Han/issues)
+- [常見問題](/manual/faq)
+- [辭彙表](/manual/glossary)
+
  用途與特色 <!-- #featuring -->
 ----------
 #### 完全相容HTML5，簡潔而不冗餘 <!-- #html5-ready -->
