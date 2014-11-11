@@ -55,6 +55,11 @@ html(lang='zh-Hant').han-init
           li.github: a(href='https://github.com/ethantw/Han') GitHub Project
           li.manual: a(href='/manual') 使用手冊
         p.version 當前版本：<span>v3.0.0</span>
+        footer.main-content: ul.share
+          li: button#share2twr(title='分享至Twitter') 分享至Twitter
+          li: button#share2fb(title='分享至Facebook') 分享至Facebook
+          li: button#share2goog(title='分享至Google+') 分享至Google+
+          li: button#share2wbo(title='分享至新浪微博') 分享至新浪微博
     section#featuring
       article
         // h2 印刷品般的漢字排版框架
@@ -95,7 +100,17 @@ html(lang='zh-Hant').han-init
         <p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     footer.layout
-      p.signature(lang='cmn-Latn'): a(href='http://yijun.me/') Chen Yijun
+      p.signature(lang='cmn-Latn'): a(href='https://twitter.com/ethantw') Chen Yijun
+      p 「漢字標準格式」使用「
+        a(href='/LICENSE.md') MIT License
+        | 」授權，使用手冊則以「
+        a(href='https://creativecommons.org/licenses/by/3.0/tw/') 創用CC－姓名標示
+        | 」釋出。
+      ul
+        li.version 當前版本：v3.0.0
+        li: a(href='https://github.com/ethantw/Han') GitHub Project
+        li: a(href='//ethantw.github.io/Han/latest') 範例測試頁
+        li: a(href='https://github.com/ethantw/Han/issues') 提問題
     //- Han.js
     script(src='{{asset-path}}latest/han.min.js')
     script(src='{{asset-path}}app.js')

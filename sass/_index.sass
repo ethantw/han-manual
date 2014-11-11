@@ -38,6 +38,22 @@ section#index
     // box
     max-width: 30em
     padding: 0 .5em
+  a
+    color: darken(#40bb6d, 7%)
+  a:hover
+    // box
+    padding-bottom: .05em
+    // style
+    border-bottom: 1px dotted #bbb
+    color: darken(#40bb6d, 10%)
+  footer.main-content
+    // posi
+    margin-top: -2em
+
+    ul
+      opacity: .5
+    ul:hover
+      opacity: 1
   .version
     // posi
     margin: -.5em 0 0
@@ -124,7 +140,6 @@ section#used-by
   ul
     @extend %fa-ul
     // posi
-    margin-left: -1em
     // box
     padding: 0
 
@@ -132,20 +147,45 @@ section#used-by
       @extend %fa
       @extend %fa-at
     li:before
-      font-size: .9em
+      // posi
+      margin-right: .25em
+      // typo
+      font-size: .85em
+      // style
+      color: #bd7d0e
+      text-shadow: 1px 1px 0 #eaeaea
 body.index footer.layout
+  // typo
+  font-size: .9rem
   // box
-  padding: .5em 0
+  padding: .5em 0 1.5em
   // style
   background-color: #ecf2c0
   box-shadow: 0 1px .25em darken(#ecf2c0, 15%) inset
+  color: #666
+
+  p,
+  ul
+    // posi
+    margin: 0 0 .25em
+    // typo
+    text-align: center
+  ul
+    // typo
+    list-style: none
+  li
+    // box
+    display: inline-block
+  li:not(:last-child):after
+    content: '·'
+    color: #999
 p.signature:lang(cmn)
-  // typo
-  text-align: center
+  margin: .5em 0 1em !important
 
   a
     // typo
     font-family: Zapfino, cursive, serif
+    font-size: 1.5em
     // style
     color: darken(#40bb6d, 7%)
     text-shadow: 1px 1px 0 #ecf2c0, 2px 2px 0 rgba(238, 255, 209, 0.9)
