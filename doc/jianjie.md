@@ -8,18 +8,6 @@
 
 「漢字標準格式」支援繁體中文、簡體中文及日文等三個採用漢字的語言文字。
 
-<p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-### 使用「漢字標準格式」的網站 <!-- #used-by -->
-- [萌典](https://moedict.tw/)
-- [IT公論](http://itgonglun.com/)
-- [g0v零時政府](http://g0v.tw/)
-- [Markdown中文語法說明](http://markdown.tw/)
-
-### 類似的解決方案 <!-- #similar-solutions -->
-- [Entry.css](http://nodejs.in/Entry.css/)
-
  用途與特色 <!-- #featuring -->
 ----------
 #### 完全相容HTML5，簡潔而不冗餘 <!-- #html5-ready -->
@@ -55,3 +43,16 @@
 ```
 http://css.hanzi.co/LICENSE.md
 ```
+
+## 參閱 <!-- #reference -->
+### 使用「漢字標準格式」的網站 <!-- #used-by -->
+- [萌典](https://moedict.tw/)
+- [IT公論](http://itgonglun.com/)
+- [g0v零時政府](http://g0v.tw/)
+- [Markdown中文語法說明](http://markdown.tw/)
+
+### 類似的解決方案 <!-- #similar-solutions -->
+- [Entry.css](http://nodejs.in/Entry.css/)
+
+<p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
