@@ -8,7 +8,9 @@ header.layout
   top: 0
   z-index: 100
   // box
+  height: 3rem
   width: 100%
+  padding: .35em .5em .25em
 
   > div
     @media #{$small-up}
@@ -36,6 +38,18 @@ header.layout
       #trad2simp
         right: 3rem
     @media #{$large-only}
+#github-repo
+  top: .75rem
+#trad2simp
+  top: .68rem
+.fixed-nav header.layout
+  height: auto
+  padding: .125em .5em .25em
+
+  #github-repo
+    top: .5rem
+  #trad2simp
+    top: .43rem
 nav.layout
   body.fixed-nav &
     +calc( 'height', '100% - 3.5em + 1px' )
