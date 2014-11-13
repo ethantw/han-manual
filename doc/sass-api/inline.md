@@ -74,6 +74,9 @@ Han( context ).renderEm( selector )
 </dl>
 </div>
 
+示例請見[測試範例頁·強調元素（着重號）][em]。
+
+[em]: http://ethantw.github.io/Han/latest/em.html
 
 ### 啓用web font合字功能 <!-- #inline-ligature -->
 在需要啓用web font合字（ligature）功能的選擇器上引用如下 @extend。
