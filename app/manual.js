@@ -7,14 +7,40 @@ var REM = Number( 16 )
 var win = window,
     doc = win.document,
     root = doc.documentElement,
-    body = doc.body
+    body = doc.body,
+    bodyClass = body.classList
 
 // Modules
 var $ = require( './lib/yjm' )
 
-if ( !doc.querySelector( 'body.manual' )) {
+if ( !bodyClass.contains( 'manual' )) {
   return
 }
+
+/*  Toggle button for navi
+   ------------------------ */
+
+var btnToggleNav = $.id( 'toggle-nav' )
+var nav = doc.querySelector( 'nav.layout' )
+
+btnToggleNav.addEventListener( 'click', function() {
+  var on = !!nav.classList.contains( 'on' ) || false
+
+  if ( on ) {
+    nav.classList.remove( 'on' )
+  } else {
+    nav.classList.add( 'on' )
+  }
+})
+
+win.addEventListener( 'resize', function() {
+  if (
+    win.outerWidth > 40*REM &&
+    nav.classList.contains( 'on' )
+  ) {
+    nav.classList.remove( 'on' )
+  }
+})
 
 /*  Automated IDs for headings and info-boxes
    ------------------------------------------- */
@@ -142,15 +168,13 @@ void [
   'DOMContentLoaded'
 ].forEach(function( event ) {
   win.addEventListener( event, function() {
-    var clazz = body.classList
-
     if (
       scroller.scrollTop >= fixedY &&
-      !clazz.contains( 'fixed-nav' )
+      !bodyClass.contains( 'fixed-nav' )
     ) {
-      clazz.add( 'fixed-nav' )
+      bodyClass.add( 'fixed-nav' )
     } else if ( scroller.scrollTop < fixedY ) {
-      clazz.remove( 'fixed-nav' )
+      bodyClass.remove( 'fixed-nav' )
     }
   })
 })
