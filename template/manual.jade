@@ -28,6 +28,7 @@ html(lang='zh-Hant').han-init
           p.desc 印刷品般的漢字排版框架
         a#github-repo(href='https://github.com/ethantw/Han') GitHub Project
         button#trad2simp 繁簡切換
+        button#toggle-nav(hidden) 選單開關
     article.main-content.layout
       | {{parsed-article-html}}
       footer.main-content
@@ -40,7 +41,6 @@ html(lang='zh-Hant').han-init
           li: button#share2goog(title='分享至Google+') 分享至Google+
           li: button#share2wbo(title='分享至新浪微博') 分享至新浪微博
     nav.layout.toc
-      button#toggle-nav(hidden) 開／關
       ol
         li.conghe_kaishi.starting 從何開始
           ol
