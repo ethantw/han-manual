@@ -1,5 +1,14 @@
 
-exports.PATH = {
+exports.MAIN = {
+  "license.md": "/LICENSE.md",
+  "license": "/LICENSE.md",
+  "LICENSE": "/LICENSE.md",
+  "demo": "http://ethantw.github.io/Han/latest/",
+  "demo/fonts.html": "http://ethantw.github.io/Han/latest/four.html",
+  "demo/ruby.html": "http://ethantw.github.io/Han/latest/ruby.html"
+}
+
+exports.MANUAL = {
   "download": "/anzhuang_yu_qiyong",
   "browser-support": "/#browser-support",
   "license": "/",

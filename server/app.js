@@ -1,40 +1,41 @@
 
 // Modules
-var fs = require( 'fs' ),
-    http = require( 'http' ),
-    path = require( 'path' ),
-    url = require( 'url' ),
-    EventEmitter = require( 'events' ).EventEmitter,
-    exec = require( 'child_process' ).exec,
-    spawn = require( 'child_process' ).spawn,
-    mime = require( 'mime-types' ),
+var fs = require( 'fs' )
+var http = require( 'http' )
+var path = require( 'path' )
+var url = require( 'url' )
+var EventEmitter = require( 'events' ).EventEmitter
+var exec = require( 'child_process' ).exec
+var spawn = require( 'child_process' ).spawn
+var mime = require( 'mime-types' )
 
-    ETag = require( 'ETag' ),
-    stmd = require( 'stmd' ),
-    parser = new stmd.DocParser(),
-    renderer = new stmd.HtmlRenderer(),
-    jsdom = require( 'jsdom' )
+var ETag = require( 'ETag' )
+var stmd = require( 'stmd' )
+var parser = new stmd.DocParser()
+var renderer = new stmd.HtmlRenderer()
+var jsdom = require( 'jsdom' )
 
 // Constants
-const HEROKU_APP_PATH = '//han-css.herokuapp.com/',
-      HOST = process.env.IP || '0.0.0.0',
-      PORT = Number( process.env.PORT || 7788 ),
-      ROOT = process.cwd(),
-      WWW = ROOT + '/_public/',
+const HEROKU_APP_PATH = '//han-css.herokuapp.com/'
+const HOST = process.env.IP || '0.0.0.0'
+const PORT = Number( process.env.PORT || 7788 )
+const ROOT = process.cwd()
+const WWW = ROOT + '/_public/'
 
-      ROOT_PATH_FOR_ASSET = PORT === 7788 ?
-          '/' : HEROKU_APP_PATH,
+const ROOT_PATH_FOR_ASSET = PORT === 7788 ?
+          '/' : HEROKU_APP_PATH
 
-      HTML_CNTT = mime.contentType( 'html' ),
+const HTML_CNTT = mime.contentType( 'html' )
 
-      LANG = {
+const LANG = {
         error: {
           '404': '找不到所請求的頁面',
           '500': '伺服器出現錯誤'
         }
-      },
+      }
 
-      REDIR = require( './redir.js' ).PATH
+const REDIR_MAIN = require( './redir.js' ).MAIN
+const REDIR_MANUAL = require( './redir.js' ).MANUAL
 
 // Functions
 function makeArray( obj ) {
@@ -80,6 +81,7 @@ function getManualTitleAndSetAnchor( win ) {
 // Start the sever
 http.createServer( function ( req, res ) {
   var uri = url.parse( req.url ).pathname,
+      slashless = uri.replace( /^\/(.*)\/?$/ig, '$1' ),
       manualId = false,
       mdfilename = false,
       filename,
@@ -145,6 +147,12 @@ http.createServer( function ( req, res ) {
     if ( /\/favicon.ico$/.test( filename )) {
       filename = WWW + '/img/favicon.png'
 
+    // redir
+    } else if ( REDIR_MAIN[ slashless ] ) {
+      httpRespond( 302, 'This is an old path, redirecting…', {
+        'Location': REDIR_MAIN[ slashless ]
+      })
+      return
     // check for manual files
     } else if ( /^\/manual/.test( uri )) {
       filename = WWW + '/manual.html'
@@ -152,9 +160,9 @@ http.createServer( function ( req, res ) {
       mdfilename = ROOT + '/doc/' + manualId + '.md'
 
       // redirect old manual URLs from Han.css v2.x.x
-      if ( REDIR[ manualId ] ) {
+      if ( REDIR_MANUAL[ manualId ] ) {
         httpRespond( 302, 'This is an old path, redirecting…', {
-          'Location': '/manual' + REDIR[ manualId ]
+          'Location': '/manual' + REDIR_MANUAL[ manualId ]
         })
         return
       }
