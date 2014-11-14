@@ -13,7 +13,7 @@ html(lang='zh-Hant').han-init
   
     link(rel='shortcut icon' href='/img/favicon.png')
     link(rel='apple-touch-icon' href='{{asset-path}}img/apple-touch-icon.png')
-  body(class='manual chap-{{manual-page-id}}' data-chap='{{manual-page-id}}')
+  body(class='manual {{manual-page-id}}' data-chap='{{manual-page-id}}')
     header.layout
       div
         .logo
@@ -35,10 +35,10 @@ html(lang='zh-Hant').han-init
     nav.layout.toc
       button#toggle-nav(hidden) 開／關
       ol
-        li 從何開始
+        li.conghe_kaishi.starting 從何開始
           ol
             li.jianjie.index: a(href='/manual') 簡介
-            li.conghe_kaishi.starting: a(href='/manual/anzhuang_yu_qiyong') 安裝與啓用
+            li.install.anzhuang_yu_qiyong: a(href='/manual/anzhuang_yu_qiyong') 安裝與啓用
             li.faq: a(href='/manual/faq') 常見問題
             li.glossary: a(href='/manual/glossary') 辭彙表
         li.jiben_gongneng.basic 基本功能

@@ -11,11 +11,10 @@ nav.layout
     // style
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0
-
   ol,
   a:link,
   a:visited
-    color: #8e8c8b
+    color: #918267
   ol
     // box
     padding-left: 0
@@ -32,7 +31,7 @@ nav.layout
     // typo
     font-weight: bolder
     // style
-    color: lighten(#8e8c8b, 5%)
+    color: #c8be9a
 
     & > ol > li
       // posi
@@ -43,14 +42,12 @@ nav.layout
         display: block
         padding: .2em 0 .25em 5px
       a:hover
-        background-color: #e4e5d9
-        border-top-left-radius: 2px
-        border-bottom-left-radius: 2px
-        color: darken(#8e8c8b, 10%)
+        @extend %nav-active
       ol a
         padding: .125em 0 .25em 5px
       ol a:hover
-        background-color: #eee
+        background-color: lighten(#edebcd, 5%)
+        color: #a79469
   ol ol ol
     // posi
     margin-bottom: 1.5em
@@ -60,4 +57,4 @@ nav.layout
 
     a:link,
     a:visited
-      color: lighten(#8e8c8b, 12%)
+      color: #aaa398

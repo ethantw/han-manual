@@ -159,20 +159,38 @@ footer.layout
 
 /* Navi situations
   ----------------- */
+%nav-active
+  background-color: #edebcd
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  color: #9b7e12
 
-.chap-yangshi_biaozhunhua,
-.chap-wenzisheji,
-.chap-zhangjie_de_bianpai,
-.chap-hang_de_zucheng,
-.chap-sass-api,
-.chap-js-api
+.yangshi_biaozhunhua,
+.wenzisheji,
+.zhangjie_de_bianpai,
+.hang_de_zucheng,
+.sass-api,
+.js-api
   nav.layout ol ol ol
     display: none
-.chap-yangshi_biaozhunhua .yangshi_biaozhunhua,
-.chap-wenzisheji .wenzisheji,
-.chap-zhangjie_de_bianpai .zhangjie_de_bianpai,
-.chap-hang_de_zucheng .hang_de_zucheng,
-.chap-sass-api .sass-api,
-.chap-js-api .js-api
+.yangshi_biaozhunhua nav .yangshi_biaozhunhua,
+.wenzisheji nav .wenzisheji,
+.zhangjie_de_bianpai nav .zhangjie_de_bianpai,
+.hang_de_zucheng nav .hang_de_zucheng,
+.sass-api nav .sass-api,
+.js-api nav .js-api
   ol
     display: block !important
+.jianjie nav .jianjie,
+.anzhuang_yu_qiyong nav .anzhuang_yu_qiyong,
+.faq nav .faq,
+.glossary nav .glossary,
+.yangshi_biaozhunhua nav .yangshi_biaozhunhua,
+.wenzisheji nav .wenzisheji,
+.zhangjie_de_bianpai nav .zhangjie_de_bianpai,
+.hang_de_zucheng nav .hang_de_zucheng,
+.sass-api nav .sass-api,
+.js-api nav .js-api
+  > a:link,
+  > a:visited
+    @extend %nav-active
