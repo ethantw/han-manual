@@ -170,19 +170,6 @@ h6
   & + &
     // posi
     margin-top: 1em
-div.info
-  // posi
-  margin: 1.75em 0
-  // typo
-  font-size: .85em
-  // style
-  border-top: 1px solid #eee
-  color: #333
-
-  h4,
-  h5,
-  p
-    margin: .6em 0
 blockquote,
 .example
   footer.cite,
@@ -201,10 +188,74 @@ blockquote,
     overflow: hidden
     // style
     border: 0 none
-.info.parameter
+div.info
+  // posi
+  margin: 1.75em 0
+  // box
+  padding: .25em 1em
+  // typo
+  font-size: .85em
   // style
-  border: 1px solid rgba(#986, .3)
+  color: #444
+  // style
   border-radius: .25em
+
+  h4,
+  h5,
+  p
+    margin: .25em 0
+
+  $note-color: #dff0d8
+  $info-color: #d9edf7
+  $warning-color: #fcf8e3
+  $important-color: #f2dede
+
+  &
+    @extend %fa
+    @extend %fa-info-circle
+    &:before
+      // posi
+      position: absolute
+      left: 0
+      // box
+      height: 100%
+      padding: .125em .25em
+      // typo
+      font-size: 3.5em
+      // style
+      color: darken($info-color, 25%)
+    // posi
+    position: relative
+    // box
+    min-height: 4.7em
+    padding-left: 4.7em
+    // style
+    background-color: $info-color
+  &.note
+    @extend %fa-check
+    &:before
+      // style
+      color: darken($note-color, 25%)
+    background-color: $note-color
+  &.important
+    @extend %fa-exclamation-circle
+    &:before
+      // style
+      color: darken($important-color, 25%)
+    background-color: $important-color
+  &.warning,
+  &.parameter
+    background-color: $warning-color
+  &.parameter
+    border: 1px solid darken($warning-color, 20%)
+
+    &:before
+      content: none
+    h4
+      border-bottom: 1px solid darken($warning-color, 15%)
+.info.parameter
+  // box
+  padding: 0
 
   h4,
   h5,
@@ -224,7 +275,6 @@ blockquote,
       letter-spacing: .25em
   h4
     background-color: rgba(#fefff8, .5)
-    border-bottom: 1px solid rgba(#986, .4)
     border-top-left-radius: .25em
     border-top-right-radius: .25em
   dl
