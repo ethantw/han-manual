@@ -112,7 +112,7 @@
 相關說明，請見〈[樣式標準化·行間注元素](/manual/yangshi_biaozhunhua#hangjianzhu_yuansu)〉。
 
 ### Han.fn.renderDecoLine( [target] ) <!-- #renderDecoLine -->
-修正Han實例範圍內包含文字裝飾線的相鄰元素，預設為註記`u`與增訂`ins`元素。需要配合相應的Sass @mixin。
+修正Han實例範圍內包含文字裝飾線的相鄰元素，預設為註記`u`與增訂`ins`元素。<!--需要配合相應的Sass @mixin。-->
 
 相關說明，請見〈[樣式標準化·文字裝飾線](/manual/yangshi_biaozhunhua#wenzi_zhuangshixian)〉。
 
