@@ -27,9 +27,10 @@
 **註：**西文等寬基型 @extend不提供意大利體。
 </div>
 
-或參見下表，
+或參見以下二表，
 
-<table id='generics-extend' class='wider'>
+### 漢字字體基型
+<table id='generics-extend'>
   <style scoped>
 #generics-extend {
   font-size: .8em;
@@ -46,49 +47,81 @@
     <th>繁體中文
     <th>簡體中文
     <th>日文
-    <th>西文
   </thead>
   <tr>
     <th>黑體
     <td><code>%han-sans-hant</code>
     <td><code>%han-sans-hans</code>
     <td><code>%han-sans-ja</code>
-    <td><code>%han-sans</code>
   <tr>
     <th>黑體、<br>意大利體
     <td><code>%han-sans-italic-hant</code>
     <td><code>%han-sans-italic-hans</code>
     <td><code>%han-sans-italic-ja</code>
-    <td><code>%han-sans-italic</code>
   <tr>
     <th>宋體
     <td><code>%han-serif-hant</code>
     <td><code>%han-serif-hans</code>
     <td><code>%han-serif-ja</code>
-    <td><code>%han-serif</code>
   <tr>
     <th>宋體、<br>意大利體
     <td><code>%han-serif-italic-hant</code>
     <td><code>%han-serif-italic-hans</code>
     <td><code>%han-serif-italic-ja</code>
-    <td><code>%han-serif-italic</code>
   <tr>
     <th>楷體
     <td><code>%han-cursive-hant</code>
     <td><code>%han-cursive-hans</code>
     <td><code>%han-cursive-ja</code>
-    <td><code>%han-cursive</code>
   <tr>
     <th>楷體、<br>意大利體
     <td><code>%han-cursive-italic-hant</code>
     <td><code>%han-cursive-italic-hans</code>
     <td><code>%han-cursive-italic-ja</code>
-    <td><code>%han-cursive-italic</code>
   <tr>
     <th>西文等寬／<br>黑體
     <td><code>%han-mono-hant</code>
     <td><code>%han-mono-hans</code>
     <td><code>%han-mono-ja</code>
+</table>
+
+### 西文字體基型
+<table id='generics-extend-western'>
+  <style scoped>
+#generics-extend-western {
+  font-size: .8em;
+}
+#generics-extend-western thead th:first-child {
+  width: 10em;
+}
+#generics-extend-western tbody th {
+  height: 3em;
+}
+  </style>
+  <thead>
+    <th>基型
+    <th>西文字體
+  </thead>
+  <tr>
+    <th>無襯線
+    <td><code>%han-sans</code>
+  <tr>
+    <th>無襯線意大利體
+    <td><code>%han-sans-italic</code>
+  <tr>
+    <th>襯線
+    <td><code>%han-serif</code>
+  <tr>
+    <th>襯線意大利體
+    <td><code>%han-serif-italic</code>
+  <tr>
+    <th>手寫
+    <td><code>%han-cursive</code>
+  <tr>
+    <th>手寫意大利體
+    <td><code>%han-cursive-italic</code>
+  <tr>
+    <th>等寬
     <td><code>%han-mono</code>
 </table>
 
