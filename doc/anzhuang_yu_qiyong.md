@@ -151,7 +151,7 @@ Han.init()
 #### 以指定的單一元素為範圍渲染
 
 ```javascript
-Han( document.getElementById( '#entry' )).render()
+Han( document.getElementById( 'entry' )).render()
 ```
 更詳盡的說明，請見「[JavaScript腳本·Han構造函數][js-han]」一節。
 
