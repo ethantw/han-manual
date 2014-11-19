@@ -59,7 +59,7 @@ http://css.hanzi.co/LICENSE.md
 - [免費資源網路社群](http://free.com.tw/)
 
 ### 類似的解決方案 <!-- #similar-solutions -->
-- [Entry.css](http://nodejs.in/Entry.css/)
+- [Entry.css](http://zencode.in/Entry.css/)
 
 <p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
