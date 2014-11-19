@@ -267,7 +267,8 @@ http.createServer( function ( req, res ) {
         ext = path.extname( filename ).slice( 1 )
 
         httpRespond( 200, file, {
-          'Content-Type': mime.contentType( ext ),
+          'Access-Control-Allow-Origin': '*',
+	  'Content-Type': mime.contentType( ext ),
           'ETag': etag
         }, true )
       })
