@@ -4,8 +4,8 @@ html(lang='zh-Hant').han-init
     meta(charset='utf-8')
     title {{manual-page-title}}漢字標準格式・使用手冊
     //- Han.css
-    link(rel='stylesheet', href='{{asset-path}}latest/han.min.css')
-    link(rel='stylesheet', href='/style.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.css')
+    link(rel='stylesheet', href='{{asset-path}}style.css')
 
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='description' content='印刷品般的漢字網頁排版框架')
@@ -114,7 +114,7 @@ html(lang='zh-Hant').han-init
                 li.find: a(href='/manual/js-api#find') 字元査替器
                 li.unicode: a(href='/manual/js-api#unicode') 萬國碼區段及正則表達式
     //- Han.js
-    script(src='{{asset-path}}latest/han.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.js')
     //- Other libraries & main app
     script(src='{{asset-path}}app.js')
 
