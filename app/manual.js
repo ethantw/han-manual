@@ -231,9 +231,8 @@ itff.forEach(function( elem, i ) {
   -------------  */
 var GITHUB_BLOB_URL = 'https://github.com/ethantw/Han-Manual/blob/master/doc/',
     GITHUB_TREE_URL = 'https://github.com/ethantw/Han-Manual/tree/master/doc/'
-
 var manualId = body.getAttribute( 'data-chap' ),
-    url = /^(sass|js)$/i.test( manualId ) ?
+    url = /^(sass|js)\-api$/i.test( manualId ) ?
       GITHUB_TREE_URL + manualId :
       GITHUB_BLOB_URL + manualId + '.md'
 
