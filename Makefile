@@ -16,13 +16,14 @@ build ::
 
 www ::
 	rm -rf _public
-	mkdir _public _public/font _public/img _public/data
+	mkdir _public _public/font _public/img _public/data _public/test
 	node server/compile.js
 	cp -rf latest _public
 	cp -rf asset/vendor/font/* _public/font
 	#cp -rf asset/font/* _public/font
 	cp -rf asset/img/* _public/img
 	cp -rf asset/data/* _public/data
+	cp -rf asset/test/* _public/test
 	cp asset/style.css _public
 	cp LICENSE.md _public
 

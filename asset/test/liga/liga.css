@@ -1,0 +1,34 @@
+
+@font-face {
+  font-family: MOEDICT;
+  src: 
+    url('./MOEDICT.woff') format( 'woff' ),
+    url( './MOEDICT.otf' ) format( 'opentype' ),
+    url( './MOEDICT.ttf' ) format( 'truetype' )
+  ;
+}
+
+@font-face {
+  font-family: MOEDICT-ttf;
+  src: 
+    url( './MOEDICT.ttf' ) format( 'truetype' )
+  ;
+}
+
+html, 
+body {
+  font-family: MOEDICT, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+}
+
+.ttf {
+  font-family: MOEDICT-ttf, Georgia, 'Times New Roman', serif;
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+}
+
