@@ -3,6 +3,7 @@ html(lang='zh-Hant')
   head
     meta(charset='utf-8')
     title 萌典字體連字測試
+    link(rel='stylesheet' href='//css.hanzi.co/latest/han.min.css')
     link(rel='stylesheet' href='liga.css')
   body
     h1 萌典字體連字測試
@@ -25,3 +26,7 @@ html(lang='zh-Hant')
       | &#xF6102;&#xF6502;&#xF6902;&#xF6F02;&#xF7502;<br>
       | &#xF0061;&#xF0065;&#xF0069;&#xF006F;&#xF0075;<br>
       | &#xF31B4;&#xF31B5;&#xF31B6;&#xF31B7;
+    script(src='//css.hanzi.co/latest/han.min.js')
+    script.
+      console.log( Han.isCombLigaNormal )
+
