@@ -9,6 +9,7 @@ var exec = require( 'child_process' ).exec
 var spawn = require( 'child_process' ).spawn
 var mime = require( 'mime-types' )
 
+var zlib = require( 'zlib')
 var ETag = require( 'ETag' )
 var stmd = require( 'stmd' )
 var parser = new stmd.DocParser()
@@ -81,8 +82,18 @@ http.createServer( function ( req, res ) {
   var slashless = uri.replace( /^\/(.*)\/?$/ig, '$1' )
   var manualId = false
   var mdfilename = false
+  var acceptGzip = /\bgzip\b/i.test( req.headers[ 'accept-encoding' ]) ? true : false
   var filename
   var etag
+
+  function resWrite( data, binary ) {
+    if ( binary ) {
+      res.write( data, 'binary' )
+      res.end()
+      return
+    }
+    res.end( data )
+  }
 
   function httpRespond( code, data, headers, binary ) {
     var headers = headers || {}
@@ -101,14 +112,20 @@ http.createServer( function ( req, res ) {
       return
     }
 
-    res.writeHead( code, headers )
-
-    if ( binary ) {
-      res.write( data, 'binary' )
-      res.end()
+    if ( acceptGzip ) {
+      headers[ 'Content-Encoding' ] = 'gzip'
+      zlib.gzip( new Buffer( data, binary ? 'binary' : 'utf-8' ), function( err, data ) {
+        if ( err ) {
+          responseWithError( 500 )
+          return
+        } 
+        res.writeHead( code, headers )
+        resWrite( data, binary )
+      })
       return
     }
-    res.end( data )
+    res.writeHead( code, headers )
+    resWrite( data, binary )
   }
 
   function responseWithError( code ) {
@@ -171,10 +188,7 @@ http.createServer( function ( req, res ) {
       })
 
     // check for file existence
-    } else if (
-      ( !exists || /manifest.appcache/.test( filename )) &&
-      ( !exists && !/^\/manual(\/.*)?$/.test( uri ))
-    ) {
+    } else if ( !exists && !/^\/manual(\/.*)?$/.test( uri )) {
       responseWithError( 404 )
       return
 
@@ -237,8 +251,8 @@ http.createServer( function ( req, res ) {
                 html = html
                       .replace( /\{\{manual\-page\-id\}\}/gi, manualId )
                       .replace( /\{\{manual\-page\-title\}\}/gi, ret[0] )
-                      .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
                       .replace( '{{parsed-article-html}}', ret[1] )
+                      .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
 
                 httpRespond( 200, html, {
                   'Content-Type': HTML_CNTT,
@@ -257,17 +271,14 @@ http.createServer( function ( req, res ) {
     } else {
       fs.readFile( filename, 'binary', function( err, file ) {
         var ext
-
         if ( err ) {
           responseWithError( 500 )
           return
         }
-
         ext = path.extname( filename ).slice( 1 )
-
         httpRespond( 200, file, {
           'Access-Control-Allow-Origin': '*',
-	  'Content-Type': mime.contentType( ext ),
+          'Content-Type': mime.contentType( ext ),
           'ETag': etag
         }, true )
       })
