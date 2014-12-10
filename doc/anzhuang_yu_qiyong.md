@@ -153,6 +153,13 @@ Han.init()
 ```javascript
 Han( document.getElementById( 'entry' )).render()
 ```
+
+##### 搭配jQuery的元素選擇器
+```javascript
+Han( jQuery( '#entry' )[0] ) .render()
+Han( $( '#entry' )[0] ) .render()
+```
+
 更詳盡的說明，請見「[JavaScript腳本·Han構造函數][js-han]」一節。
 
 [js-han]: /manual/js-api#han
