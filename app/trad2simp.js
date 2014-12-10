@@ -28,12 +28,7 @@ try {
   userPref = null
 }
 
-hinst.filterElem = function( currentElem ) {
-  if ( $.matches( currentElem, FILTER_OUT )) {
-    return false
-  }
-  return true
-}
+hinst.filterOut( FILTER_OUT )
 
 win
 .addEventListener( 'DOMContentLoaded', function() {
