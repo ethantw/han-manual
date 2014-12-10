@@ -2,7 +2,7 @@
  安裝與啓用
 ==========
 
-這分使用手冊介紹了「漢字標準格式」（當前版本v3.0.0）的基本功能與使用方式。以下是基本的安裝與啓用步驟。
+這分使用手冊介紹了「漢字標準格式」（當前版本v{{han-version}}）的基本功能與使用方式。以下是基本的安裝與啓用步驟。
 
  引用文件 <!-- #yinyong_wenjian -->
 --------
@@ -19,7 +19,7 @@
 ```
 <div class='info'>
 
-**註：**「漢字標準格式」自版本v3.0.0起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
+**註：**「漢字標準格式」自版本v{{han-version}}起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
 </div>
 
 
@@ -35,13 +35,13 @@
 [cdnjs]: http://cdnjs.com/libraries/han
 
 ````html
-<link rel="stylesheet" media="all" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.css">
+<link rel="stylesheet" media="all" href="//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css">
 ````
 
 JavaScript腳本，
 
 ````html
-<script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.0.0/han.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.js"></script>
 ````
 
  HTML5文件格式 <!-- #html5_wenjian_geshi -->

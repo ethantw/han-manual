@@ -28,11 +28,12 @@ const ROOT_PATH_FOR_ASSET = PORT === 7788 ?
 const HTML_CNTT = mime.contentType( 'html' )
 
 const LANG = {
-        error: {
-          '404': '找不到所請求的頁面',
-          '500': '伺服器出現錯誤'
-        }
-      }
+  'han-version': '3.0.2',
+  error: {
+    '404': '找不到所請求的頁面',
+    '500': '伺服器出現錯誤'
+  }
+}
 
 const REDIR_MAIN = require( './redir.js' ).MAIN
 const REDIR_MANUAL = require( './redir.js' ).MANUAL
@@ -43,23 +44,19 @@ function makeArray( obj ) {
 }
 
 function getManualTitleAndSetAnchor( win ) {
-  var doc = win.document,
-      manualTitle = '',
-      manualHTML = ''
+  var doc = win.document
+  var manualTitle = ''
+  var manualHTML = ''
 
   try {
     makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
     .forEach(function( elem, i ) {
-      var anchor = elem.lastChild,
-          anchorId = anchor.nodeValue
+      var anchor = elem.lastChild
+      var anchorId = anchor.nodeValue
 
       elem.setAttribute( 'id', 'sec-' + i )
 
-      if (
-        anchor &&
-        anchor.nodeType === 8 &&
-        /\s?\#[\w\_\-]+\s?/.test( anchorId )
-      ) {
+      if ( anchor && anchor.nodeType === 8 && /\s?\#[\w\_\-]+\s?/.test( anchorId )) {
         elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
         elem.removeChild( anchor )
       }
@@ -80,16 +77,16 @@ function getManualTitleAndSetAnchor( win ) {
 
 // Start the sever
 http.createServer( function ( req, res ) {
-  var uri = url.parse( req.url ).pathname,
-      slashless = uri.replace( /^\/(.*)\/?$/ig, '$1' ),
-      manualId = false,
-      mdfilename = false,
-      filename,
-      etag
+  var uri = url.parse( req.url ).pathname
+  var slashless = uri.replace( /^\/(.*)\/?$/ig, '$1' )
+  var manualId = false
+  var mdfilename = false
+  var filename
+  var etag
 
   function httpRespond( code, data, headers, binary ) {
-    var headers = headers || {},
-        data = data || ''
+    var headers = headers || {}
+    var data = data || ''
 
     if ( !headers[ 'Content-Type' ] ) {
       headers[ 'Content-Type' ] = 'text/plain; charset=utf-8'
@@ -211,6 +208,7 @@ http.createServer( function ( req, res ) {
 
         html = html
               .replace( /\{\{asset\-path\}\}/gi, ROOT_PATH_FOR_ASSET )
+              .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
 
         if ( mdfilename ) {
           etag = getETag( mdfilename )
@@ -239,6 +237,7 @@ http.createServer( function ( req, res ) {
                 html = html
                       .replace( /\{\{manual\-page\-id\}\}/gi, manualId )
                       .replace( /\{\{manual\-page\-title\}\}/gi, ret[0] )
+                      .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
                       .replace( '{{parsed-article-html}}', ret[1] )
 
                 httpRespond( 200, html, {
