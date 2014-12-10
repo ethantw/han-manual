@@ -19,7 +19,7 @@
     "ETag": "~0.0.1",
     "browserify": "^6.2.0",
     "font-awesome": "~4.2.0",
-    "han-css": "^3.0.0",
+    "han-css": "^3.0.2",
     "highlight.js": "~8.3",
     "jade": "^1.7.0",
     "jsdom": "^1.0.3",
