@@ -614,15 +614,6 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
     <rt>i
     <rt rbspan="2">tsin-ū
     <rt rbspan="2">tsì-khì
-    <rt>tsū
-    <rt rbspan="2">sè-hàn
-    <rt>tō
-    <rt rbspan="2">li̍p-tsì
-    <rt>kóng
-    <rt>beh
-    <rt rbspan="2">siá-kua
-    <rt rbspan="2">tshiùnn-kua
-    <rt rbspan="2">thàn-tsînn
   </rtc>
   <rtc class="reading zhuyin">
     <rt>ㆣㄨㄚˋ</rt>
@@ -636,6 +627,7 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
     <rt>ㄨ˫</rt>
     <rt>ㄐㄧ˪</rt>
     <rt>ㄎㄧ˪</rt>
+  </rtc>
 </ruby><br>
 <ruby class="rightangle">
   <rb>自</rb><rb>細</rb><rb>漢</rb><rb>就</rb><rb>立</rb><rb>志</rb><rb>講</rb><rb>欲</rb><rb>寫</rb><rb>歌</rb>、<rb>唱</rb><rb>歌</rb><rb>趁</rb><rb>錢</rb>，
@@ -724,6 +716,112 @@ Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準�
 </ruby>
 ```
 如上方代碼所示，使用「拼音－注音共同標注」式行間注時，需為`ruby`元素標籤套用類別`complex`或`rightangle`，並依「ruby text container」語法格式書寫。最後，在`rtc`元素標籤上，加入相應的拼音`romanization`或注音`zhuyin`類別。
+
+#### 示例：注音及雙行拼音共同標注 <!-- #hangjianzhu_yuansu-pinyin-zhuyin_gongtong_biaozhu-shili-triaxial_ruby -->
+
+<div lang="zh-nan-Hant" class="example">
+<ruby class="complex">
+  <rb>一</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>一</rb>
+  <rb>樣</rb>，
+  <rb>無</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>親</rb>
+  <rb>像</rb>。
+
+  <rtc class="zhuyin">
+    <rt>ㄐㄧㆵ͘</rt>
+    <rt>ㄌㄤˊ</rt>
+    <rt>ㄏㄨㄢˊ</rt>
+    <rt>ㄌㄜˋ</rt>
+    <rt>ㄐㄧㆵ͘</rt>
+    <rt>ㄧㆫ˫</rt>
+    <rt>ㆠㄜˊ</rt>
+    <rt>ㄌㄤˊ</rt>
+    <rt>ㄏㄨㄢˊ</rt>
+    <rt>ㄌㄜˋ</rt>
+    <rt>ㄑㄧㄣ</rt>
+    <rt>ㄑㄧㆫ˫</rt>
+  </rtc>
+  <rtc class="romanization">
+    <rt>Tsi̍t</rt>
+    <rt>lâng</rt>
+    <rt rbspan="2">hoân‑ló</rt>
+    <rt>chi̍t</rt>
+    <rt>iūⁿ</rt>
+    <rt rbspan="2">bô‑lâng</rt>
+    <rt rbspan="2">hoân‑ló</rt>
+    <rt rbspan="2">chhin‑chhiūⁿ</rt>
+  </rtc>
+  <rtc class="romanization">
+    <rt>Tsi̍t</rt>
+    <rt>lâng</rt>
+    <rt rbspan="2">huân-ló</rt>
+    <rt>tsi̍t</rt>
+    <rt>iūnn</rt>
+    <rt rbspan="2">bô-lâng</rt>
+    <rt rbspan="2">huân-ló</rt>
+    <rt rbspan="2">tshin-tshiūnn</rt>
+  </rtc>
+</ruby>
+</div>
+
+```html
+<ruby class="complex">
+  <rb>一</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>一</rb>
+  <rb>樣</rb>，
+  <rb>無</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>親</rb>
+  <rb>像</rb>。
+
+  <rtc class="zhuyin">
+    <rt>ㄐㄧㆵ͘</rt>
+    <rt>ㄌㄤˊ</rt>
+    <rt>ㄏㄨㄢˊ</rt>
+    <rt>ㄌㄜˋ</rt>
+    <rt>ㄐㄧㆵ͘</rt>
+    <rt>ㄧㆫ˫</rt>
+    <rt>ㆠㄜˊ</rt>
+    <rt>ㄌㄤˊ</rt>
+    <rt>ㄏㄨㄢˊ</rt>
+    <rt>ㄌㄜˋ</rt>
+    <rt>ㄑㄧㄣ</rt>
+    <rt>ㄑㄧㆫ˫</rt>
+  </rtc>
+  <rtc class="romanization">
+    <rt>Tsi̍t</rt>
+    <rt>lâng</rt>
+    <rt rbspan="2">hoân‑ló</rt>
+    <rt>chi̍t</rt>
+    <rt>iūⁿ</rt>
+    <rt rbspan="2">bô‑lâng</rt>
+    <rt rbspan="2">hoân‑ló</rt>
+    <rt rbspan="2">chhin‑chhiūⁿ</rt>
+  </rtc>
+  <rtc class="romanization">
+    <rt>Tsi̍t</rt>
+    <rt>lâng</rt>
+    <rt rbspan="2">huân-ló</rt>
+    <rt>tsi̍t</rt>
+    <rt>iūnn</rt>
+    <rt rbspan="2">bô-lâng</rt>
+    <rt rbspan="2">huân-ló</rt>
+    <rt rbspan="2">tshin-tshiūnn</rt>
+  </rtc>
+</ruby>
+```
 
 更詳盡的範例及測試，請見[程式測試頁·行間注元素][test-ruby]。
 
