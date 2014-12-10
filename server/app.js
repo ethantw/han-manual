@@ -211,7 +211,7 @@ http.createServer( function ( req, res ) {
               .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
 
         if ( mdfilename ) {
-          etag = getETag( mdfilename )
+          etag += getETag( mdfilename )
 
           fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
             var  md2html
