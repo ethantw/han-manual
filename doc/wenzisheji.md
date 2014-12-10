@@ -142,7 +142,7 @@ code:lang(ja) {
       Biaodian Pro Serif
   </tr>
   <tr>
-    <th>台灣教育部式<br><small>適用繁體中文</small>
+    <th>台灣教育部式<br><small>繁體中文預設</small>
     <td>
       Biaodian Pro Sans CNS
     <td>
@@ -273,11 +273,15 @@ code:lang(ja) {
   <tr>
     <th>破折號
     <td>2014
-    <td colspan='3'>兩相連時無間隔<span class='char-display'>——</span>
+    <td colspan='3'>
+      兩相連時無間隔<span class='char-display'>——</span>；<br>
+      單獨存在時兩側不連字<span class='char-display'>—</span>
   <tr>
     <th>刪節號
     <td>2026
-    <td colspan='3'>兩相連時居中<span class='char-display'>……</span>
+    <td colspan='3'>
+      兩相連時居中<span class='char-display'>……</span>；<br>
+      單獨存在時沉底<span class='char-display'>…</span>
   <tr>
     <th>連接號
     <td>FF0D
@@ -328,11 +332,15 @@ code:lang(ja) {
   <tr>
     <th>破折號
     <td>2014
-    <td>兩相連時無間隔<span class='char-display'>——</span>
+    <td>
+      兩相連時無間隔<span class='char-display'>——</span>；<br>
+      單獨存在時兩側不連字<span class='char-display'>—</span>
   <tr>
     <th>刪節號
     <td>2026
-    <td>兩相連時居中<span class='char-display'>……</span>
+    <td>
+      兩相連時居中<span class='char-display'>……</span>；<br>
+      單獨存在時沉底<span class='char-display'>…</span>
 </table>
 
 #### 示例 
@@ -351,9 +359,9 @@ code:lang(ja) {
 <div class='example'> 
 
 #### 推薦標點<small>（適用繁、簡中文）</small>
-《源氏物語》（成書在長保三年至寬弘五年〔西元1001年至1008年〕間）在日本開啟了「物哀」的時代——「物哀」即見物而生悲哀之情——此後日本的小說中明顯帶有一種淡淡的悲傷！而「物哀」也成為日本一種全國性的民族意識，隨着一代又一代的詩人、散文家、物語作者流傳了下來……
+<p style='font-family: "Biaodian Pro Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti", sans-serif'>《源氏物語》（成書在長保三年至寬弘五年〔西元1001年至1008年〕間）在日本開啟了「物哀」的時代——「物哀」即見物而生悲哀之情——此後日本的小說中明顯帶有一種淡淡的悲傷！而「物哀」也成為日本一種全國性的民族意識，隨着一代又一代的詩人、散文家、物語作者流傳了下來……
 
-《源氏物语》（成书在长保三年至宽弘五年〔西元1001年至1008年〕间）在日本开启了「物哀」的时代——「物哀」即见物而生悲哀之情——此后日本的小说中明显带有一种淡淡的悲伤！而「物哀」也成为日本一种全国性的民族意识，随着一代又一代的诗人、散文家、物语作者流传了下来……
+<p lang='zh-Hans' style='font-family: "Biaodian Pro Sans", "Helvetica Neue", Helvetica, Arial, "Han Heiti GB", sans-serif'>《源氏物语》（成书在长保三年至宽弘五年〔西元1001年至1008年〕间）在日本开启了「物哀」的时代——「物哀」即见物而生悲哀之情——此后日本的小说中明显带有一种淡淡的悲伤！而「物哀」也成为日本一种全国性的民族意识，随着一代又一代的诗人、散文家、物语作者流传了下来……
 
 ***
 #### 台灣教育部式
@@ -414,11 +422,15 @@ code:lang(ja) {
   <tr>
     <th>破折號
     <td>2014
-    <td>兩相連時無間隔<span class='char-display'>——</span>
+    <td>
+      兩相連時無間隔<span class='char-display'>——</span>；<br>
+      單獨存在時兩側不連字<span class='char-display'>—</span>
   <tr>
     <th>刪節號
     <td>2026
-    <td>兩相連時居中<span class='char-display'>……</span>
+    <td>
+      兩相連時居中<span class='char-display'>……</span>；<br>
+      單獨存在時沉底<span class='char-display'>…</span>
 </table>
 
 #### 示例 
