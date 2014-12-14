@@ -91,8 +91,7 @@ article.main-content
    ------------ */
 
 a.heading-anchor
-  @extend %fa
-  @extend %fa-paperclip
+  +fh( paperclip )
   // posi
   position: absolute
   bottom: .125em
@@ -211,8 +210,7 @@ div.info
   $important-color: #f2dede
 
   &
-    @extend %fa
-    @extend %fa-info-circle
+    +fh( info-circle )
     &:before
       // posi
       position: absolute
@@ -232,13 +230,13 @@ div.info
     // style
     background-color: $info-color
   &.note
-    @extend %fa-check
+    @extend %fh-check
     &:before
       // style
       color: darken($note-color, 25%)
     background-color: $note-color
   &.important
-    @extend %fa-exclamation-circle
+    @extend %fh-exclamation-circle
     &:before
       // style
       color: darken($important-color, 25%)
@@ -319,7 +317,7 @@ footer.main-content
     opacity: 1
   a,
   button
-    @extend %fa
+    @extend %fh
     // box
     display: inline-block
     overflow: hidden
@@ -417,18 +415,18 @@ footer.main-content
         color: darken(#d75534, 15%)
 
 #edit-this
-  @extend %fa-code-fork
+  @extend %fh-code-fork
 #issue-this
-  @extend %fa-exclamation-circle
+  @extend %fh-exclamation-circle
 #share2twr
-  @extend %fa-twitter
+  @extend %fh-twitter
   background-color: #55acee
 #share2fb
-  @extend %fa-facebook
+  @extend %fh-facebook
   background-color: #3b5998
 #share2goog
-  @extend %fa-google-plus
+  @extend %fh-google-plus
   background-color: #d34836
 #share2wbo
-  @extend %fa-weibo
+  @extend %fh-weibo
   background-color: #e6162d

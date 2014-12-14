@@ -90,8 +90,8 @@ section#index
         box-shadow: 0 3px 0 #e8d3d3
         color: #ffe0e0
     .manual a
-      @extend %fa
-      @extend %fa-book
+      @extend %fh
+      @extend %fh-book
       // box
       padding: .5em .75em
       // typo
@@ -135,21 +135,18 @@ section#used-by
   h2 + #tweets-about-han
     margin-top: -.5em
   ul
-    @extend %fa-ul
+    +fh-ul( at, #bd7d0e )
     // posi
     // box
     padding: 0
 
-    li
-      @extend %fa
-      @extend %fa-at
     li:before
       // posi
-      margin-right: .25em
+      left: -1.9em
+      top: .25em
       // typo
       font-size: .85em
       // style
-      color: #bd7d0e
       text-shadow: 1px 1px 0 #eaeaea
 body.index footer.layout
   // typo
