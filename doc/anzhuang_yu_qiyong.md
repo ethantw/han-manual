@@ -19,7 +19,7 @@
 ```
 <div class='info'>
 
-**註：**「漢字標準格式」自版本v{{han-version}}起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
+**註：**「漢字標準格式」自版本v3.0.0起，不再依賴jQuery庫，得以更快速完成DOM ready渲染。
 </div>
 
 
