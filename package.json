@@ -32,6 +32,9 @@
     "node": "0.10.x"
   },
   "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jade": "^0.10.0",
+    "gulp-sass": "^1.2.4",
     "node-sass": "^1.0.3"
   }
 }
