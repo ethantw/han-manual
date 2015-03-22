@@ -29,7 +29,7 @@ const ROOT_PATH_FOR_ASSET = PORT === 7788 ?
 const HTML_CNTT = mime.contentType( 'html' )
 
 const LANG = {
-  'han-version': '3.0.2',
+  'han-version': '3.1.1',
   error: {
     '404': '找不到所請求的頁面',
     '500': '伺服器出現錯誤'

@@ -1,6 +1,6 @@
 {
   "name": "han-manual",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "description": "Manual for Han.css",
   "repository": {
     "type": "git",
@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "postinstall": "make build"
+    "postinstall": "gulp www",
+    "watch": "gulp dev",
+    "dev": "npm run watch & npm start"
   },
   "author": "Chen Yijun (@ethantw)",
   "license": "MIT License",
@@ -17,24 +19,31 @@
   },
   "dependencies": {
     "ETag": "~0.0.1",
-    "browserify": "^6.2.0",
-    "font-awesome": "~4.2.0",
-    "font-handsome": "^0.1.0",
-    "han-css": "^3.0.2",
+    "font-handsome": "~0.2.0",
+    "han-css": "^3.1.1",
     "highlight.js": "~8.3",
-    "jade": "^1.7.0",
-    "jsdom": "^1.0.3",
     "mime-types": "^2.0.2",
-    "stmd": "~0.1.0",
-    "uglify-js": "^2.4.15"
+    "stmd": "~0.1.0"
   },
   "engines": {
     "node": "0.10.x"
   },
   "devDependencies": {
-    "gulp": "^3.8.10",
+    "LiveScript": "~1.3.1",
+    "browserify": "^9.0.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat-util": "^0.5.1",
+    "gulp-cssmin": "^0.1.6",
     "gulp-jade": "^0.10.0",
+    "gulp-livescript": "^2.3.0",
     "gulp-sass": "^1.2.4",
-    "node-sass": "^1.0.3"
+    "gulp-symlink": "^2.1.0",
+    "gulp-uglifyjs": "^0.6.1",
+    "gulp-watch": "^3.0.0",
+    "jsdom": "^1.0.3",
+    "vinyl-paths": "^1.0.0",
+    "vinyl-transform": "^1.0.0"
   }
 }
