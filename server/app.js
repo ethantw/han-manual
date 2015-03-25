@@ -171,39 +171,20 @@ http.createServer( function ( req, res ) {
       }
     }
 
-    etag = getETag( filename )
-
-    if ( /\.(html|htm)$/i.test( filename )) {
-      fs.readFile( filename, 'utf8', function( err, html ) {
-        if ( err ) {
-          responseWithError( 500 )
-          return
-        }
-
-        html = html
-              .replace( /\{\{asset\-path\}\}/gi, ROOT_PATH_FOR_ASSET )
-              .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
-
-        httpRespond( 200, html, {
-          'Content-Type': HTML_CNTT,
-          'ETag': etag
-        })
-      })
-    } else {
-      fs.readFile( filename, 'binary', function( err, file ) {
-        var ext
-        if ( err ) {
-          responseWithError( 500 )
-          return
-        }
-        ext = path.extname( filename ).slice( 1 )
-        httpRespond( 200, file, {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': mime.contentType( ext ),
-          'ETag': etag
-        }, true )
-      })
-    }
+    fs.readFile( filename, 'binary', function( err, file ) {
+      var ext
+      if ( err ) {
+        responseWithError( 500 )
+        return
+      }
+      etag = getETag( filename )
+      ext = path.extname( filename ).slice( 1 )
+      httpRespond( 200, file, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': mime.contentType( ext ),
+        'ETag': etag
+      }, true )
+    })
   })
 }).listen( PORT, HOST )
 

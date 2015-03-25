@@ -8,7 +8,6 @@ require! {
   del
   gulp
   \gulp-cssmin
-  \gulp-browserify
   \gulp-uglifyjs
   \gulp-symlink
   \gulp-livescript
@@ -21,10 +20,13 @@ require! {
 
 const doc-sass = <[ overview.md module.md zitijixing_extend.md sectional.md inline.md variable.md ]>
 const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support.md find.md unicode.md ]>
-const config =
+
+config =
   han-version: \3.1.1
   production: yes
-  heroku-path: \//han-css.herokuapp.com
+  heroku-path: \//han-css.herokuapp.com/
+
+config.asset-path = config.heroku-path
 
 src  = gulp.src
 dest = gulp.dest
@@ -33,9 +35,6 @@ make-array = ( obj ) -> Array.prototype.slice.call obj
 jsdom.defaultDocumentFeatures = ProcessExternalResources: no
 jsdom = jsdom.jsdom
 
-browserified = vinyl-transform ( file ) ->
-  b = browserify file
-  b.bundle!
 
 gulp.task \han ->
   src \./node_modules/han-css/dist/**/*
@@ -54,16 +53,22 @@ gulp.task \vendor:fa ->
     .pipe dest \./asset/font
 
 gulp.task \jade ->
-  #src './template/{index,itff}.jade'
   src './template/*.jade'
-    .pipe jade!
-    .pipe dest \./_public
-  src './template/{manual,error}.jade'
     .pipe jade!
     .pipe dest \./template/html
 
+gulp.task \static <[ jade ]> ->
+  <[ index itff ]>.for-each ( page ) !->
+    src "./template/html/#{page}.html"
+      .pipe concat "#{page}.html", {
+        process: ( src ) ->
+          src
+            .replace /\{\{asset\-path\}\}/gi, config.asset-path
+            .replace /\{\{han\-version\}\}/gi, config.han-version
+      }
+      .pipe dest \./_public
+
 gulp.task \md2html <[ jade ]> ->
-  asset-path = if config.production then config.heroku-path else \/
   try
     manual-html = fs.readFileSync \./template/html/manual.html, encoding: \utf-8
     manual-html .= split '{{parsed-article-html}}'
@@ -73,7 +78,7 @@ gulp.task \md2html <[ jade ]> ->
     all-doc = []
     return
 
-  all-doc.forEach ( file ) ->
+  all-doc.for-each ( file ) !->
     page-id = file - /\.md$/
     dot-html = page-id + \.html
 
@@ -83,33 +88,33 @@ gulp.task \md2html <[ jade ]> ->
       .pipe concat.footer manual-html.1
       .pipe concat dot-html, {
         process: ( src ) ->
-          doc = jsdom src
-          title = doc.query-selector 'article h1' .text-content + ' — '
+            doc = jsdom src
+            title = doc.query-selector 'article h1' .text-content + ' — '
 
-          try
-            make-array( doc.query-selector-all 'h2, h3, h4, h5, h6' )
-            .for-each ( elem, i ) !->
-              anchor = elem.last-child
-              anchor-id = anchor.node-value
+            try
+              make-array( doc.query-selector-all 'h2, h3, h4, h5, h6' )
+              .for-each ( elem, i ) !->
+                anchor = elem.last-child
+                anchor-id = anchor.node-value
 
-              elem.set-attribute \id, "sec-#{i}"
+                elem.set-attribute \id, "sec-#{i}"
 
-              if anchor and anchor.node-type == 8 and /\s?\#[\w\_\-]+\s?/.test anchor-id
-                elem.set-attribute \id, anchor-id.replace( /\s?\#([\w\_\-]+)\s?/i, \$1 )
-                elem.remove-child anchor
-            make-array( doc.query-selector-all 'div.info, .example, pre, table' )
-            .for-each ( elem, i ) !->
-              unless elem.get-attribute \id
-                elem.set-attribute \id, "info-#{i}"
-            src = doc.document-element.outerHTML
+                if anchor and anchor.node-type == 8 and /\s?\#[\w\_\-]+\s?/.test anchor-id
+                  elem.set-attribute \id, anchor-id.replace( /\s?\#([\w\_\-]+)\s?/i, \$1 )
+                  elem.remove-child anchor
+              make-array( doc.query-selector-all 'div.info, .example, pre, table' )
+              .for-each ( elem, i ) !->
+                unless elem.get-attribute \id
+                  elem.set-attribute \id, "info-#{i}"
+              src = doc.document-element.outerHTML
 
-          src
-            .replace /\{\{asset\-path\}\}/gi, asset-path
-            .replace /\{\{manual\-page\-id\}\}/gi, page-id
-            .replace /\{\{manual\-page\-title\}\}/gi, title
-            .replace /\{\{han\-version\}\}/gi, config.han-version
-      }
-      .pipe dest \_public/manual
+            src
+              .replace /\{\{asset\-path\}\}/gi, config.asset-path
+              .replace /\{\{han\-version\}\}/gi, config.han-version
+              .replace /\{\{manual\-page\-id\}\}/gi, page-id
+              .replace /\{\{manual\-page\-title\}\}/gi, title
+        }
+        .pipe dest \_public/manual
 
 gulp.task \sass ->
   src \./sass/style.scss
@@ -128,9 +133,11 @@ gulp.task \app:lsc <[ app:clean ]> ->
     .pipe dest \./tmp
 
 gulp.task \app:main <[ app:lsc ]> ->
+  browserified = vinyl-transform ( file ) ->
+    b = browserify file
+    b.bundle!
   src \./tmp/main.js
-    #.pipe browserified
-    .pipe gulp-browserify!
+    .pipe browserified
     .pipe gulp-uglifyjs \app.js {
       output: { +ascii_only }
     }
@@ -139,7 +146,7 @@ gulp.task \app:main <[ app:lsc ]> ->
 gulp.task \app:clean ->
   src \./tmp .pipe vinyl-paths del
 
-gulp.task \www <[ vendor md2html jade sass app ]> ->
+gulp.task \www <[ vendor md2html static sass app ]> ->
   src <[ \./LICENSE.md \./asset/** ]>
     .pipe dest \./_public
 
@@ -148,7 +155,6 @@ gulp.task \clean ->
 
 gulp.task \doc ->
   add-path = ( path, array ) -> array.map ( elem ) -> path + \/ + elem
-
   src add-path \./doc/sass-api doc-sass
     .pipe concat \sass-api.md
     .pipe dest \./doc
@@ -157,11 +163,14 @@ gulp.task \doc ->
     .pipe dest \./doc
   gulp.start <[ md2html ]>
 
-gulp.task \dev <[ default ]> ->
+gulp.task \set-dev ->
   config.production = no
+  config.asset-path = \/
+
+gulp.task \dev <[ set-dev default ]> ->
   gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
   gulp.watch \./doc/**/*.md <[ md2html ]>
-  gulp.watch \./template/**/*.jade <[ jade ]>
+  gulp.watch \./template/**/*.jade <[ static ]>
   gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>
 
