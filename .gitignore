@@ -9,6 +9,7 @@ _public
 latest
 asset/font
 asset/vendor
+template/html
 
 doc/sass-api.md
 doc/js-api.md

@@ -11,10 +11,6 @@ var mime = require( 'mime-types' )
 
 var zlib = require( 'zlib')
 var ETag = require( 'ETag' )
-var stmd = require( 'stmd' )
-var parser = new stmd.DocParser()
-var renderer = new stmd.HtmlRenderer()
-var jsdom = require( 'jsdom' )
 
 // Constants
 const HEROKU_APP_PATH = '//han-css.herokuapp.com/'
@@ -23,8 +19,7 @@ const PORT = Number( process.env.PORT || 7788 )
 const ROOT = process.cwd()
 const WWW = ROOT + '/_public/'
 
-const ROOT_PATH_FOR_ASSET = PORT === 7788 ?
-          '/' : HEROKU_APP_PATH
+const ROOT_PATH_FOR_ASSET = PORT === 7788 ? '/' : HEROKU_APP_PATH
 
 const HTML_CNTT = mime.contentType( 'html' )
 
@@ -39,51 +34,13 @@ const LANG = {
 const REDIR_MAIN = require( './redir.js' ).MAIN
 const REDIR_MANUAL = require( './redir.js' ).MANUAL
 
-// Functions
-function makeArray( obj ) {
-  return [].slice.call( obj )
-}
-
-function getManualTitleAndSetAnchor( win ) {
-  var doc = win.document
-  var manualTitle = ''
-  var manualHTML = ''
-
-  try {
-    makeArray(doc.querySelectorAll( 'h2, h3, h4, h5, h6' ))
-    .forEach(function( elem, i ) {
-      var anchor = elem.lastChild
-      var anchorId = anchor.nodeValue
-
-      elem.setAttribute( 'id', 'sec-' + i )
-
-      if ( anchor && anchor.nodeType === 8 && /\s?\#[\w\_\-]+\s?/.test( anchorId )) {
-        elem.setAttribute( 'id', anchorId.replace( /\s?\#([\w\_\-]+)\s?/i, '$1' ))
-        elem.removeChild( anchor )
-      }
-    })
-
-    makeArray(doc.querySelectorAll( 'div.info, .example, pre, table' ))
-    .forEach(function( elem, i ) {
-      if ( !elem.getAttribute( 'id' )) {
-        elem.setAttribute( 'id', 'info-' + i )
-      }
-    })
-
-    manualTitle = doc.querySelector( 'h1' ).textContent + ' — '
-    manualHTML = doc.body.innerHTML
-  } catch(e) {}
-  return [ manualTitle, manualHTML ]
-}
-
 // Start the sever
 http.createServer( function ( req, res ) {
   var uri = url.parse( req.url ).pathname
   var slashless = uri.replace( /^\/(.*)\/?$/ig, '$1' )
-  var manualId = false
-  var mdfilename = false
   var acceptGzip = /\bgzip\b/i.test( req.headers[ 'accept-encoding' ]) ? true : false
   var filename
+  var manualId
   var etag
 
   function resWrite( data, binary ) {
@@ -168,10 +125,10 @@ http.createServer( function ( req, res ) {
       })
       return
     // check for manual files
-    } else if ( /^\/manual/.test( uri )) {
-      filename = WWW + '/manual.html'
-      manualId = /^\/manual\/?$/.test( uri ) ? 'jianjie' : uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' )
-      mdfilename = ROOT + '/doc/' + manualId + '.md'
+    } else if ( /^\/manual/.test( uri ) && !/.html?$/.test( uri )) {
+      isJianjie = !!/^\/manual\/?$/.test( uri )
+      filename += isJianjie ? '/jianjie.html' : '.html'
+      manualId = uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' )
 
       // redirect old manual URLs from Han.css v2.x.x
       if ( REDIR_MANUAL[ manualId ] ) {
@@ -181,11 +138,14 @@ http.createServer( function ( req, res ) {
         return
       }
 
-      fs.exists( mdfilename, function ( mdexists ) {
-        if ( !mdexists ) {
-          mdfilename = ROOT + '/doc/404.md'
-        }
-      })
+      if ( !fs.existsSync( filename )) {
+        fs.readFile( WWW + '/manual/404.html', function ( err, html ) {
+          httpRespond( 404, html, {
+            'Content-Type': HTML_CNTT
+          })
+        })
+        return
+      }
 
     // check for file existence
     } else if ( !exists && !/^\/manual(\/.*)?$/.test( uri )) {
@@ -223,45 +183,6 @@ http.createServer( function ( req, res ) {
         html = html
               .replace( /\{\{asset\-path\}\}/gi, ROOT_PATH_FOR_ASSET )
               .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
-
-        if ( mdfilename ) {
-          etag += getETag( mdfilename )
-
-          fs.readFile( mdfilename, 'utf8', function( err, mdcode ) {
-            var  md2html
-
-            if ( err ) {
-              responseWithError( 500 )
-              return
-            }
-
-            md2html = renderer.render( parser.parse( mdcode ))
-
-            jsdom.env(
-              md2html,
-              function ( err, win ) {
-                var ret
-
-                if ( err ) {
-                  responseWithError( 500 )
-                  return
-                }
-
-                ret = getManualTitleAndSetAnchor( win )
-                html = html
-                      .replace( /\{\{manual\-page\-id\}\}/gi, manualId )
-                      .replace( /\{\{manual\-page\-title\}\}/gi, ret[0] )
-                      .replace( '{{parsed-article-html}}', ret[1] )
-                      .replace( /\{\{han\-version\}\}/gi, LANG['han-version'] )
-
-                httpRespond( 200, html, {
-                  'Content-Type': HTML_CNTT,
-                  'ETag': etag
-                })
-              })
-          })
-          return
-        }
 
         httpRespond( 200, html, {
           'Content-Type': HTML_CNTT,

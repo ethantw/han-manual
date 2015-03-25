@@ -20,6 +20,7 @@
   "dependencies": {
     "ETag": "~0.0.1",
     "font-handsome": "~0.2.0",
+    "gulp-remarkable": "^1.1.2",
     "han-css": "^3.1.1",
     "highlight.js": "~8.3",
     "mime-types": "^2.0.2",
