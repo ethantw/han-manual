@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server/app.js",
-    "postinstall": "gulp www",
+    "postinstall": "gulp",
     "watch": "gulp dev",
     "dev": "npm run watch & npm start"
   },
