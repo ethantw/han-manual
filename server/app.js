@@ -86,8 +86,10 @@ http.createServer( function ( req, res ) {
   }
 
   function responseWithError( code ) {
+    var code = code || 500
+
     fs.readFile(
-      WWW + '/error.html',
+      ROOT + '/template/html/error.html',
       'utf8',
       function( err, html ) {
         html = html
