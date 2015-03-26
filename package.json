@@ -24,13 +24,7 @@
     "gulp-remarkable": "^1.1.2",
     "han-css": "^3.1.1",
     "highlight.js": "~8.3",
-    "mime-types": "^2.0.2"
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
-  "devDependencies": {
-    "LiveScript": "~1.3.1",
+    "mime-types": "^2.0.2",
     "browserify": "^9.0.3",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
@@ -45,5 +39,11 @@
     "jsdom": "^1.0.3",
     "vinyl-paths": "^1.0.0",
     "vinyl-transform": "^1.0.0"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "devDependencies": {
+    "LiveScript": "~1.3.1"
   }
 }
