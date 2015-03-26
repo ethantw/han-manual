@@ -4,7 +4,7 @@
 
 概述 <!-- #gaishu -->
 -------------
-「漢字標準格式」使用由Nicolas Gallagher及Jonathan Neal主導開發的[Normalize.css]來增進各瀏覽器間樣式的一致性，並以此框架為基礎，延伸了專為各漢字語言及地區開發的本地樣式標準化模組——Hyu。下文將詳細介紹其功能。
+「漢字標準格式」使用由Nicolas Gallagher及Jonathan Neal主導開發的[Normalize.css]來增進各瀏覽器間樣式的一致性，並以此框架為基礎，延伸了專為各漢字語言及地區開發的本地樣式標準化模組。下文將詳細介紹其功能。
 
 <div class="info note">
 
@@ -18,8 +18,8 @@
 [about-normalize]: http://nicolasgallagher.com/about-normalize-css/
 [reset-or-normalize]: https://the-pastry-box-project.net/oli-studholme/2013-june-3
 
-### Hyu <!-- #hyu -->
-Hyu是本地化（locale）的樣式標準化模組，內建於「漢字標準格式」中。這個模組在[Normalize.css]的基礎上，提供了漢字地區的本地化樣式，*根據元素語言屬性的語言、文字變體或地區等元信息，*配適相應而合理的樣式。
+### 本地樣式標準化 <!-- #locale -->
+「漢字標準格式」內建本地化（locale）的樣式標準化模組。這個模組在[Normalize.css]的基礎上，提供了漢字地區的本地化樣式，*根據元素語言屬性的語言、文字變體或地區等元信息，*配適相應而合理的樣式。
 
 ```html
 <* lang="[巨集]-[語言]-[文字及變體]-[地區]">

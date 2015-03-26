@@ -16,6 +16,9 @@
 #init-cond-class th:nth-child(2) {
   width: 11em;
 }
+#init-cond-class tr:first-of-type th {
+  padding: .5em 0;
+}
   </style>
   <thead>
     <th>分類
@@ -23,13 +26,9 @@
     <th>說明
   </thead>
   <tr>
-    <th rowspan='2'>渲染
+    <th>渲染
     <td><code>han-js-rendered</code>
     <td>已完成「漢字標準格式」的腳本渲染。
-  </tr>
-  <tr>
-    <td><code>hyu-js-rendered</code>
-    <td>已完成「樣式標準化」的腳本渲染。
   </tr>
   <tr>
     <th rowspan='6'>功能
