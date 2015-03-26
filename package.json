@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "ETag": "~0.0.1",
+    "font-awesome": "^4.3.0",
     "font-handsome": "~0.2.0",
     "gulp-remarkable": "^1.1.2",
     "han-css": "^3.1.1",
     "highlight.js": "~8.3",
-    "mime-types": "^2.0.2",
-    "stmd": "~0.1.0"
+    "mime-types": "^2.0.2"
   },
   "engines": {
     "node": "0.10.x"
@@ -34,7 +34,6 @@
     "browserify": "^9.0.3",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
-    "gulp-browserify": "^0.5.1",
     "gulp-concat-util": "^0.5.1",
     "gulp-cssmin": "^0.1.6",
     "gulp-jade": "^0.10.0",
