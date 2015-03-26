@@ -1,6 +1,6 @@
 
 # Han-Manual
-This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.0.0.
+This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.1.1.
 
 Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark][stmd] format.
 
@@ -11,24 +11,27 @@ Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark]
 ### Requirements
 
 - Node.js 0.10.x
-    - Jade
-- Ruby
-    - Sass 3.4.5
+    - LiveScript 1.3.1
 
-### Module dependencies
+### Install dependencies
 ```
-npm install
+sudo npm install
 ```
 
-### Run locally and Sass watch
+### Run
 ```
-make run
+npm start
 ```
-Open <http://localhost:7788/> or <http://localhost:7788/manual> to see if it runs properly. Or use the command `npm start` if Sass is not installed.
 
-### Compile the modification
+### Run the dev locally and watch files
 ```
-make
+npm run dev
+```
+Open <http://localhost:7788/> or <http://localhost:7788/manual> to see if it runs properly.
+
+### Compile all files
+```
+gulp www
 ```
 
 ## License
