@@ -127,10 +127,13 @@ http.createServer( function ( req, res ) {
       })
       return
     // check for manual files
-    } else if ( /^\/manual/.test( uri ) && !/.html?$/.test( uri )) {
+    } else if ( /^\/manual/.test( uri )) {
       isJianjie = !!/^\/manual\/?$/.test( uri )
-      filename += isJianjie ? '/jianjie.html' : '.html'
-      manualId = uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' )
+      manualId = uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' ).replace( /\.html?$/, '' )
+
+      if ( !/\.html?$/.test( uri )) {
+        filename += isJianjie ? '/jianjie.html' : '.html'
+      }
 
       // redirect old manual URLs from Han.css v2.x.x
       if ( REDIR_MANUAL[ manualId ] ) {
