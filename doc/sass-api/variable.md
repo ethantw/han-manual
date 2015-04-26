@@ -4,10 +4,9 @@
 以下是「漢字標準格式」Sass樣式表下所有可調控的變數及其預設値。最佳實踐方式係在引用`_han.sass`前，為需要更動的變數賦値。
 
 ### 檔案路徑
-Web font路徑，
+Web fonts所在路徑，
 ```scss
-$han-font-woff: './font/han.woff';
-$han-font-otf:  './font/han.otf';
+$han-font-path: './font/';
 ```
 
 ### 元素容器的選用
@@ -114,4 +113,16 @@ $han-sans-zh:    '';
 $han-serif-zh:   '';
 $han-cursive-zh: '';
 $han-mono-zh:    $han-sans-zh;
+```
+
+### 行的組成
+各語言文字的[行尾點號懸掛](/manual/hang_de_zucheng#hangwei_dianhao_xuangua)啓用與否，
+
+```scss
+// 繁體中文
+$han-hanging-hant: false;
+// 簡體中文
+$han-hanging-hans: true;
+// 日語
+$han-hanging-ja:   true;
 ```
