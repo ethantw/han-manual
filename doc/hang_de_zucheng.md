@@ -40,7 +40,7 @@
 以下示例使用CSS將類別為`.warning`的容器下的漢字－西文混排間隙隱藏。
 
 ```css
-.warning hws {
+.warning hws[hidden] {
   display: none;
 }
 ```
@@ -64,6 +64,7 @@ ahws
 Han()
 .initCond()
 .renderElem()
+.renderHanging()
 .renderJiya()
 //.renderHWS()
 .correctBasicBD()
@@ -74,7 +75,7 @@ Han()
 
 ```javascript
 Han().setRoutine([
-  'initCond', 'renderElem', 'renderJiya',
+  'initCond', 'renderElem', 'renderHanging', 'renderJiya',
   // 'renderHWS',
   'correctBasicBD', 'substCombLigaWithPUA'
 ]).render()
@@ -82,13 +83,14 @@ Han().setRoutine([
 
  標點擠壓 <!-- #biaodian_jiya -->
 --------- 
-漢字排版中，幾乎所有的標點符號皆佔一個漢字的空間，其中，日式點號、括號等符號位在靠近受標漢字一側，保留了半個漢字寬度的空白空間，連續使用多個符號時，字與字間將出現一個漢字寬度的空隙，不甚美觀。「漢字標準格式」提供「標點擠壓」功能（需配合JavaScript腳本），妥善縮減連續標點的多餘空間。
+漢字排版中，幾乎所有的標點符號皆佔一個漢字的空間，其中，日式點號、括號等符號位在靠近受注漢字一側，保留了半個漢字寬度的空白空間，連續使用多個符號時，字與字間將出現一個漢字寬度的空隙，不甚美觀。「漢字標準格式」提供「標點擠壓」功能（需配合JavaScript腳本），妥善縮減連續標點及行首／行尾標點的多餘空間。
 
 <div class='example'>
 <style scoped>
-.reset char {
-letter-spacing: normal !important;
-margin-left: 0 !important;
+.reset h-char h-cs,
+.han-space .reset h-hangable h-char h-cs:lang(zh) {
+  display: inline-block !important;
+  width: .5em;
 }
 </style>
 
@@ -96,16 +98,18 @@ margin-left: 0 !important;
 
 #### 調整前
 何謂「標點『擠壓』」呢？  
-讓我來告訴你何謂「『標點』擠壓」。
+讓我來告訴你何謂「『標點』擠壓」。  
+「『漢字』標準格式」
 </div>
 
 ***
 #### 調整後
 何謂「標點『擠壓』」呢？  
-讓我來告訴你何謂「『標點』擠壓」。
+讓我來告訴你何謂「『標點』擠壓」。  
+「『漢字』標準格式」
 </div> 
 
-關於本節的詳盡示例，請見[測試範例頁·標點擠壓][jiya]。
+關於本節的詳盡示例，請見[測試範例頁·標點擠壓及懸掛][jiya]。
 
 [jiya]: http://ethantw.github.io/Han/latest/jiya.html
 
@@ -117,6 +121,7 @@ margin-left: 0 !important;
 Han()
 .initCond()
 .renderElem()
+.renderHanging()
 //.renderJiya()
 .renderHWS()
 .correctBasicBD()
@@ -127,11 +132,96 @@ Han()
 
 ```javascript
 Han().setRoutine([
-  'initCond', 'renderElem', 
+  'initCond', 'renderElem', 'renderHanging',
   // 'renderJiya',
   'renderHWS', 'correctBasicBD', 'substCombLigaWithPUA'
 ]).render()
 ```
+
+ 行尾點號懸掛 <!-- #hangwei_dianhao_xuangua -->
+------------
+行尾點號懸掛功能是「標點禁則」與「標點擠壓」的延伸，將點號懸掛出版心，避免標點禁則影響頭尾對齊或行尾的空間。目前「漢字標準格式」支援頓號、逗號、句號、全形西文句號<code lang='zh-Hans'>、，。．</code>四個點號的行尾懸掛。
+
+<div class="info note">
+
+**提示：**此功能新增自v3.2.0。
+</div>
+
+<div class="info flag related">
+
+**提示：**使用繁體中文的網頁或元素預設不使用標點懸掛，可透過相應的Sass變數`$han-hanging-hant: true;`啓用。
+</div>
+
+<div class='example'>
+<style scoped>
+.narrow {
+	width: 16em;
+	border-right: 1px solid #ddd;
+}
+</style>
+
+<div class='narrow'>
+<div lang='zh-Hant'>
+
+### 調整前
+
+请你们告诉我这是怎么一回事……。
+
+把示例给看清楚了，这是一种点号、「开引号」的组合也可以标点悬挂的概念。
+</div>
+</div>
+
+***
+
+<div class='narrow'>
+<div lang='zh-Hans'>
+
+### 調整後
+
+请你们告诉我这是怎么一回事……。
+
+把示例给看清楚了，这是一种点号、「开引号」的组合也可以标点悬挂的概念。
+</div>
+</div> 
+</div> 
+
+關於本節的詳盡示例，請見[測試範例頁·標點擠壓及懸掛][jiya]。
+
+### 停用方式 <!-- #hangwei_dianhao_xuangua-tingyong_fangshi -->
+#### 使用Sass變數關閉行尾點號懸掛
+
+```scss
+$han-hanging-hant: false; // 繁體中文
+$han-hanging-hans: false; // 簡體中文
+$han-hanging-ja:   false; // 日語
+```
+
+#### 停用JS腳本內的.renderHanging()渲染
+
+目前`han.js`尚未提供定義預設渲染途徑的方法，通過規避`renderHanging()`，即可停用標點擠壓功能。
+
+```javascript
+Han()
+.initCond()
+.renderElem()
+//.renderHanging()
+.renderJiya()
+.renderHWS()
+.correctBasicBD()
+.substCombLigaWithPUA()
+```
+
+或，
+
+```javascript
+Han().setRoutine([
+  'initCond', 'renderElem', 
+  // 'renderHanging',
+  'renderJiya', 'renderHWS', 'correctBasicBD', 'substCombLigaWithPUA'
+]).render()
+```
+
+
 
  字元的替換 <!-- #ziyuan_de_tihuan --> 
 ----------
