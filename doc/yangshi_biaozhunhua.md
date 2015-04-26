@@ -103,9 +103,11 @@
 
 「我是柏林人」是1963年6月26日美國總統約翰·甘迺迪在西柏林演講中的一句名言。當時正值冷戰，柏林牆已開始建造，西柏林被東德包圍。 這一部份演說內容及譯文如下：
 
-> <p lang="en">Two thousand years ago the proudest boast was <i lang="la">civis Romanus sum</i>. Today, in the world of freedom, the proudest boast is <i lang="de">‘Ich bin ein Berliner’</i>… All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words <i lang="de">‘Ich bin ein Berliner!’</i>
->
-> 兩千年前最自豪的句子是「<i lang="la">civis Romanus sum</i>」（我是羅馬公民）。今天，在自由世界，最自豪的句子是「<i lang="de">Ich bin ein Berliner</i>」（我是柏林人）……所有自由人，無論生活在哪裡，都是柏林的公民。因此，身為自由人，我以「<i lang="de">Ich bin ein Berliner</i>」感到自豪！
+<blockquote>
+<p lang="en">Two thousand years ago the proudest boast was <i lang="la">civis Romanus sum</i>. Today, in the world of freedom, the proudest boast is <i lang="de">‘Ich bin ein Berliner’</i>… All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words <i lang="de">‘Ich bin ein Berliner!’</i></p>
+
+兩千年前最自豪的句子是「<i lang="la">civis Romanus sum</i>」（我是羅馬公民）。今天，在自由世界，最自豪的句子是「<i lang="de">Ich bin ein Berliner</i>」（我是柏林人）……所有自由人，無論生活在哪裡，都是柏林的公民。因此，身為自由人，我以「<i lang="de">Ich bin ein Berliner</i>」感到自豪！
+</blockquote>
 
 以德語說出「我是柏林人」這句子，是甘迺迪在最後才想到的。他走上舍嫩貝格市政廳（Rathaus Schöneberg）時，向翻譯員羅伯特·洛赫納請教這句子的德語說法，以小紙張標下讀音，並練習了幾次。
 
