@@ -65,7 +65,7 @@ header.layout
     top: .42rem
   #trad2simp
     top: .5rem
-nav.layout
+#sidebar.layout
   body.fixed-nav &
     +calc( 'height', '100% - 3.5em + 1px' )
     // posi
@@ -102,7 +102,7 @@ nav.layout
     left: 50%
     margin-left: -30em + 1em
 // nav on mobile devices
-nav.layout.on
+#sidebar.layout.on
   display: block !important
 article.layout
   @media #{$small-up}
@@ -180,26 +180,26 @@ footer.layout
 .hang_de_zucheng,
 .sass-api,
 .js-api
-  nav.layout ol ol ol
+  #sidebar.layout ol ol ol
     display: none
-.yangshi_biaozhunhua nav .yangshi_biaozhunhua,
-.wenzisheji nav .wenzisheji,
-.zhangjie_de_bianpai nav .zhangjie_de_bianpai,
-.hang_de_zucheng nav .hang_de_zucheng,
-.sass-api nav .sass-api,
-.js-api nav .js-api
+.yangshi_biaozhunhua #sidebar .yangshi_biaozhunhua,
+.wenzisheji #sidebar .wenzisheji,
+.zhangjie_de_bianpai #sidebar .zhangjie_de_bianpai,
+.hang_de_zucheng #sidebar .hang_de_zucheng,
+.sass-api #sidebar .sass-api,
+.js-api #sidebar .js-api
   ol
     display: block !important
-.jianjie nav .jianjie,
-.anzhuang_yu_qiyong nav .anzhuang_yu_qiyong,
-.faq nav .faq,
-.glossary nav .glossary,
-.yangshi_biaozhunhua nav .yangshi_biaozhunhua,
-.wenzisheji nav .wenzisheji,
-.zhangjie_de_bianpai nav .zhangjie_de_bianpai,
-.hang_de_zucheng nav .hang_de_zucheng,
-.sass-api nav .sass-api,
-.js-api nav .js-api
+.jianjie #sidebar .jianjie,
+.anzhuang_yu_qiyong #sidebar.anzhuang_yu_qiyong,
+.faq #sidebar .faq,
+.glossary #sidebar .glossary,
+.yangshi_biaozhunhua #sidebar .yangshi_biaozhunhua,
+.wenzisheji #sidebar .wenzisheji,
+.zhangjie_de_bianpai #sidebar .zhangjie_de_bianpai,
+.hang_de_zucheng #sidebar .hang_de_zucheng,
+.sass-api #sidebar .sass-api,
+.js-api #sidebar .js-api
   > a:link,
   > a:visited
     @extend %nav-active

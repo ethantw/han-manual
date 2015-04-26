@@ -146,9 +146,11 @@ gulp.task \app:main <[ app:lsc ]> ->
 gulp.task \app:clean ->
   src \./tmp .pipe vinyl-paths del
 
-gulp.task \www <[ vendor md2html static sass app ]> ->
+gulp.task \asset ->
   src <[ \./LICENSE.md \./asset/** ]>
     .pipe dest \./_public
+
+gulp.task \www <[ vendor md2html static sass app asset ]> ->
 
 gulp.task \clean ->
   src \./_public .pipe vinyl-paths del

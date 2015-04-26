@@ -21,7 +21,7 @@ if ( !bodyClass.contains( 'manual' )) {
    ------------------------ */
 
 var btnToggleNav = $.id( 'toggle-nav' )
-var nav = doc.querySelector( 'nav.layout' )
+var nav = doc.querySelector( '#sidebar' )
 
 btnToggleNav.addEventListener( 'click', function() {
   var on = !!nav.classList.contains( 'on' ) || false
@@ -69,7 +69,7 @@ $.qsa( 'h2, h3, h4, h5, h6', manual )
 /*  Proper positioning for hash anchors
    ------------------------------------- */
 
-var navBookmark = $.qsa( 'nav.layout ol ol' ),
+var navBookmark = $.qsa( '#sidebar ol ol' ),
     duration = 1000,
     isIndex = new RegExp( '\/manual\/?$', 'i' ).test( location.href.replace( location.hash, '' )),
 
@@ -160,7 +160,7 @@ void [
 /*  Navi fixation
    --------------- */
 
-var nav = doc.querySelector( 'nav.layout' ),
+var nav = doc.querySelector( '#sidebar' ),
     fixedY = 4.5*REM
 
 void [
