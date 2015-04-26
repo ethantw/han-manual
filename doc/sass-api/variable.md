@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
 ## <span lang='en'>Sass</span>變數彙整 <!-- #variable -->
 
 以下是「漢字標準格式」Sass樣式表下所有可調控的變數及其預設値。最佳實踐方式係在引用`_han.sass`前，為需要更動的變數賦値。
@@ -126,3 +128,5 @@ $han-hanging-hans: true;
 // 日語
 $han-hanging-ja:   true;
 ```
+
+</section>

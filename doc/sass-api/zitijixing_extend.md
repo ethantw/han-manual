@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  字體基型 @extend <!-- #ziti_jixing_extend -->
 ---------
 字體基型 @extend以精良的[字體回退機制](/manual/wenzisheji#ziti_huitui_jizhi)處理字體的套用，「[文字設計模組](/manual/wenzisheji)」中，多數元素及情境的字體樣式由字體基型 @extend提供，相關調用的字體亦請見該頁各小節的說明。
@@ -245,3 +247,5 @@ code:lang(zh-Hans),
   }
 }
 ```
+
+</section>

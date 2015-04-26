@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  環境初始化 <!-- #init-cond -->
 ----------
 
@@ -99,6 +101,9 @@
     <td>瀏覽器是否正確加載空格字體（用於行尾點號懸掛）。
   </tr>
 </table>
+</section>
+
+<section class='self-contained'>
 
  樣式標準化 <!-- #normalize -->
 ----------
@@ -151,3 +156,4 @@
 字串，選用。作用的目標元素選擇器，預設値為`'em'`。
 </dl>
 </div>
+</section>

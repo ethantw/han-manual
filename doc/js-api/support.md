@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  功能與字體支援偵測 <!-- #support -->
 -----------------
 ### Han.support <!-- #Han-support -->
@@ -51,3 +53,5 @@ window.addEventListener( 'DOMContentLoaded', function() {
   }
 })
 </script>-->
+
+</section>

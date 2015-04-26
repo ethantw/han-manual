@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  行的組成 <!-- #inline -->
 ---------
 
@@ -87,3 +89,4 @@ Han( context ).renderEm( selector )
 ### 行尾點號懸掛 <!-- #inline-hanging_biaodian -->
 見[Sass變數彙整下的相應小節](/manual/sass-api#sec-26)。
 
+</section>

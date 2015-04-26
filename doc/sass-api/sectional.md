@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  章節的編排 <!-- #sectional -->
 ----------
 ### 章節的計數 <!-- #sectional-counter -->
@@ -23,3 +25,5 @@
 示例請見[測試範例頁·章節與目錄的計數][counter]。
 
 [counter]: http://ethantw.github.io/Han/latest/counter.html
+
+</section>

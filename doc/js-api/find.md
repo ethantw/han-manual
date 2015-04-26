@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  字元査替器 <!-- #find -->
 -----------
 字元査替器是基於[findAndReplaceDOMText庫][fardt]的字元査替方法集合，用以替換或使用元素來包裹DOM結構中的文字。
@@ -82,3 +84,5 @@ window.addEventListener( 'DOMContentLoaded', function() {
 })
 ```
 網頁中的「詞匯」「詞會」「詞惠」等字樣將替換成「辭彙」，並為強調`em`元素所包裹。網頁在DOM載入完成事件觸發後5秒，受替換的文字將自動回退至先前的「詞匯」「詞會」或「詞惠」等，包裹的強調元素亦會移除。
+
+</section>

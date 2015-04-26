@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  詞組、字級選擇器 <!-- #selector -->
 ---------------
 
@@ -138,7 +140,7 @@ Han( document.getElementById( 'example' )).jinzify()
 ##### 禁則處理後
 ```html
 <div id="example">
-  <p><h-jinze class="middle">林·菲</jinze>利認<h-jinze class="wei">為，</jinze>身為一個<h-jinze class="tou">「航</jinze>海<h-jinze class="wei">家」，</jinze>這是不可寬恕的過<h-jinze class="wei">錯。</jinze></p>
+  <p><h-jinze class="middle">林·菲</h-jinze>利認<h-jinze class="wei">為，</h-jinze>身為一個<h-jinze class="tou">「航</h-jinze>海<h-jinze class="wei">家」，</h-jinze>這是不可寬恕的過<h-jinze class="wei">錯。</h-jinze></p>
 </div>
 ```
 
@@ -150,3 +152,5 @@ h-jinze {
   text-indent: 0
 }
 ```
+
+</section>

@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  行的組成 <!-- #inline -->
 ---------
 
@@ -58,3 +60,5 @@
 
 ### Han.fn.revertCombLigaWithPUA() <!-- #revertCombLigaWithPUA -->
 回退Han實例範圍內，修正變音組字符前的DOM結構。
+
+</section>

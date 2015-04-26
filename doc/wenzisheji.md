@@ -676,6 +676,8 @@ code:lang(ja) {
 </table>
 
 
+<section class='self-contained'>
+
  元素字體的指定 <!-- #yuansu_ziti_de_zhiding -->
 --------------
 在「漢字標準格式」中，不同的元素依據其功能、語意及「語言、文字變體、地區」等元信息，套用相應合適的字體樣式。
@@ -754,6 +756,9 @@ code:lang(ja) {
 **說明：**如上方範例所示，在文章內區塊引用元素下的行間注，注音符號注文使用了配合其父元素的注音楷體；而羅馬拼音注文則使用Romanization Sans及西文無襯線字體。
 </div>
 
+</section>
+<section class='self-contained'>
+
  不同情境下的字體 <!-- #butong_qingjing_xia_de_ziti -->
 ---------------
 ### 文章下的重點情境 <!-- #butong_qingjing_xia_de_ziti-wenzhang_xia_de_zhongdian_qingjing -->
@@ -807,4 +812,5 @@ code:lang(ja) {
   <figcaption>面對記者的採訪，吳寶春如是說，話語更顯其從容自若的氣質。</figcaption>
 </figure>
 </div>
+</section>
 

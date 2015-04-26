@@ -1,4 +1,6 @@
 
+<section class='self-contained'>
+
  渲染機制 <!-- #rendering -->
 ---------
 Han提供下列多種渲染方法，可依需求選用。
@@ -96,3 +98,5 @@ Han.init().replace( /IE\s?[6-8]/gi, 'IE11' )
 </dd>
 </dl>
 -->
+
+</section>
