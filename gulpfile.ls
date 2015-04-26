@@ -19,7 +19,7 @@ require! {
 }
 
 const doc-sass = <[ overview.md module.md zitijixing_extend.md sectional.md inline.md variable.md ]>
-const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support.md find.md unicode.md ]>
+const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support.md find.md selector.md unicode.md ]>
 
 config =
   han-version: \3.2.0
