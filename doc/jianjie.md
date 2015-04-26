@@ -53,6 +53,7 @@ http://css.hanzi.co/LICENSE.md
 ## 參閱 <!-- #reference -->
 ### 使用「漢字標準格式」的網站 <!-- #used-by -->
 - [萌典](https://moedict.tw/)
+- [Type is Beautiful](http://www.typeisbeautiful.com/psa/gutenberg-in-shanghai/)
 - [IT公論](http://itgonglun.com/)
 - [g0v零時政府](http://g0v.tw/)
 - [Markdown中文語法說明](http://markdown.tw/)
