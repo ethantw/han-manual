@@ -25,10 +25,11 @@
 [fallback]: /manual/wenzisheji#ziti_huitui_jizhi
 
 #### 專為「舒適閱讀」打造 <!-- #readability -->
-諸多高級排版功能——如「[漢字－西文混排間隙][hws]」「[標點擠壓][jiya]」「[章節邊界調整][well-knit]」……等——皆為舒適閱讀打造，體驗如若印刷品般的螢幕閱讀。
+諸多高級排版功能——如「[漢字－西文混排間隙][hws]」「[標點擠壓][jiya]」「[行尾點號懸掛][hanging]」「[章節邊界調整][well-knit]」等等——皆為舒適閱讀打造，體驗如若印刷品般的螢幕閱讀。
 
 [hws]: /manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi
 [jiya]: /manual/hang_de_zucheng#biaodian_jiya
+[hanging]: /manual/hang_de_zucheng#hangwei_dianhao_xuangua
 [well-knit]: /manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng
 
 #### 以設計流線、而非像素呈現 <!-- #non-pixel-design -->

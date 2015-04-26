@@ -144,12 +144,12 @@ Han().setRoutine([
 
 <div class="info note">
 
-**提示：**此功能新增自v3.2.0。
+**提示：**此功能新增自v3.2.0，並需搭配空格字體`han-space.woff`方可正常使用。
 </div>
 
 <div class="info flag related">
 
-**提示：**使用繁體中文的網頁或元素預設不使用標點懸掛，可透過相應的Sass變數`$han-hanging-hant: true;`啓用。
+**提示：**使用繁體中文的網頁或元素預設不使用行尾點號懸掛，可透過相應的Sass變數`$han-hanging-hant: true;`啓用。
 </div>
 
 <div class='example'>
