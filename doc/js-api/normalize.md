@@ -31,7 +31,7 @@
     <td>已完成「漢字標準格式」的腳本渲染。
   </tr>
   <tr>
-    <th rowspan='6'>功能
+    <th rowspan='7'>功能
     <td><code>[no-]ruby</code>
     <td>
 
@@ -68,7 +68,13 @@
 瀏覽器是否支援CSS的書寫模式（文字直排等）功能。
   </tr>
   <tr>
-    <th rowspan='5'>字體
+    <td><code>[no-]pseudo-element-clipboard</code>
+    <td>
+
+偽元素內容是否會為瀏覽器的剪貼簿行為所拷貝。
+  </tr>
+  <tr>
+    <th rowspan='6'>字體
     <td><code>[no-]songti</code>
     <td>作業系統是否支援宋體（Han Songti等）。
   </tr>
@@ -87,6 +93,10 @@
   <tr>
     <td><code>heiti</code>
     <td>假定所有作業系統皆支援黑體（Han Heiti等）。
+  </tr>
+  <tr>
+    <td><code>[no-]han-space</code>
+    <td>瀏覽器是否正確加載空格字體（用於行尾點號懸掛）。
   </tr>
 </table>
 

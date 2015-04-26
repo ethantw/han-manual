@@ -11,6 +11,7 @@ Han提供下列多種渲染方法，可依需求選用。
   * 渲染行間注元素`renderRuby()`
   * 渲染文字裝飾線元素`renderDecoLine()`
   * 渲染強調元素`renderEm()`
+- 渲染行尾點號懸掛`renderHanging()`
 - 渲染標點擠壓`renderJiya()`
 - 渲染漢字西文混排間隙`renderHWS()`
 - 修正基本標點符號`correctBasicBD()`<small>（瀏覽器不支援時啓用）</small>
@@ -26,6 +27,7 @@ Han( document.querySelector( '.entry' )).render()
 Han( document.querySelector( '.entry' ))
 .initCond()
 .renderElem()
+.renderHanging()
 .renderJiya()
 .renderHWS()
 .correctBasicBD()

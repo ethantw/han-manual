@@ -2,6 +2,12 @@
  行的組成 <!-- #inline -->
 ---------
 
+### Han.fn.renderHanging() <!-- #renderHanging -->
+處理Han實例範圍內的「[行尾點號懸掛](/manual/hang_de_zucheng#hangwei_dianhao_xuangua)」。
+
+### Han.fn.revertHanging() <!-- #revertHanging -->
+回退Han實例範圍內，行尾點號懸掛修正前的DOM結構。
+
 ### Han.fn.renderJiya() <!-- #renderJiya -->
 處理Han實例範圍內的「[標點擠壓](/manual/hang_de_zucheng#biaodian_jiya)」。
 
