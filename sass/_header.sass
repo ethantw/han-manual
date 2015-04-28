@@ -1,27 +1,49 @@
 
+.manual header.layout
+  // style
+  background-color: lighten(#e1eab1, 8%)
+  border-bottom: 1px solid darken(#e1eab1, 3%)
+  box-shadow: 0 -.5em 1.25em rgba(#ded684, 0.3) inset, 0 1px 0 rgba(#eeffde, 0.5)
+  
 header.layout
-  .manual &
-    // style
-    background-color: lighten(#e1eab1, 8%)
-    border-bottom: 1px solid darken(#e1eab1, 3%)
-    box-shadow: 0 -.5em 1.25em rgba(#ded684, 0.3) inset, 0 1px 0 rgba(#eeffde, 0.5)
-  h1,
-  p
+  // box
+  height: 3rem
+  line-height: 3rem
+
+  .logo
+    padding-left: .55rem
+  .logo,
+  .logo h1,
+  .logo p
     // box
     display: inline-block
-  h1
-    // box
-    padding-left: .55em
-  p.desc
+    margin: 0
+  ul
     // posi
-    margin-top: -.25em
-header.layout > div
-  > a,
-  > button
+    margin: 0 .5rem 0 0
+    float: right
+    vertical-align: top
+    // box
+    display: inline-block
+    height: 100%
+    padding: 0
+    text-align: right
+    // style
+    list-style: none
+  ul li
+    // posi
+    margin-right: .5rem
+    // box
+    display: inline-block
+    vertical-align: middle
+    padding: 0
+  ul a,
+  button
     @extend %fh
     // posi
-    position: absolute
+    position: relative
     // box
+    display: block
     overflow: hidden
     // style
     background: none
@@ -30,10 +52,9 @@ header.layout > div
     outline: 0
 #toggle-nav
   @extend %fh-navicon
-
   &:before
     // posi
-    position: absolute
+    position: absolute !important
     left: 50%
     top: 50%
     margin: -.5em 0 0 -.5em
@@ -46,8 +67,11 @@ header.layout > div
     text-align: center
     // style
     color: #a9a471
+
   // posi
+  position: absolute
   left: 0
+  top: 0
   // box
   height: 100%
   width: 3rem
@@ -59,15 +83,10 @@ header.layout > div
   border-radius: .125em
 #github-repo
   @extend %github-repo
-  // posi
-  right: 3rem
   // box
-  height: 1.5rem
   width: 7.5rem
-  overflow: hidden
 #trad2simp
   @extend %fh-arrow-right
-
   &:before
     // posi
     position: absolute
@@ -76,15 +95,16 @@ header.layout > div
     // typo
     font-size: .8rem
     color: #c0bd79
-  // posi
-  right: 1rem
-  // box (48x24px)
+
+  // box
+  height: 1.6rem
   width: 3rem
-  height: 1.5rem
+  padding: 0
   // style
   background: url(img/trad2simp.png) no-repeat
   background-size: 100%
+  border: 0
 
   html:lang(zh-Hans) &
     @extend %fh-arrow-left
-    background-position: 0 100%
+    background-position: 0 110%

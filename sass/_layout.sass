@@ -2,22 +2,16 @@
 body.manual
   // box
   padding-top: 2.5em
+
 header.layout
   // posi
   position: fixed
   top: 0
   z-index: 100
   // box
-  height: 3rem
   width: 100%
-  padding: 0 .5em .25em
 
   > div
-    h1,
-    p
-      // posi
-      margin: .55em auto
-
     @media #{$small-up}
       p.desc
         display: none
@@ -26,7 +20,7 @@ header.layout
     @media #{$small-only}
       text-align: center
 
-      #github-repo
+      .logo
         display: none
     @media #{$medium-up}
       p.desc
@@ -41,30 +35,10 @@ header.layout
       margin-left: -30rem
       // box
       width: 60rem
-
-      #github-repo
-        right: 5.2rem
-      #trad2simp
-        right: 3rem
     @media #{$large-only}
-#toggle-nav
-  top: 0
-#github-repo
-  top: .7rem
-#trad2simp
-  top: .75rem
 .fixed-nav header.layout
-  height: auto
-  padding: .125em .5em .25em
-
-  > div
-    h1,
-    p
-      margin: .25em auto
-  #github-repo
-    top: .42rem
-  #trad2simp
-    top: .5rem
+  height: 2.5rem
+  line-height: 2.5rem
 #sidebar.layout
   body.fixed-nav &
     +calc( 'height', '100% - 3.5em + 1px' )
