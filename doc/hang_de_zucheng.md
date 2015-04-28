@@ -198,7 +198,7 @@ $han-hanging-ja:   false; // 日語
 
 #### 停用JS腳本內的.renderHanging()渲染
 
-目前`han.js`尚未提供定義預設渲染途徑的方法，通過規避`renderHanging()`，即可停用標點擠壓功能。
+目前`han.js`尚未提供定義預設渲染途徑的方法，通過規避`renderHanging()`，即可停用行尾點號懸掛功能。
 
 ```javascript
 Han()
