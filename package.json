@@ -1,6 +1,6 @@
 {
   "name": "han-manual",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Manual for Han.css",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "font-awesome": "^4.3.0",
     "font-handsome": "~0.2.0",
     "gulp-remarkable": "^1.1.2",
-    "han-css": "^3.1.1",
+    "han-css": "^3.2.0",
     "highlight.js": "~8.3",
     "mime-types": "^2.0.2",
     "browserify": "^9.0.3",
