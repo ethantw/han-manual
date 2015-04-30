@@ -22,7 +22,7 @@ const doc-sass = <[ overview.md module.md zitijixing_extend.md sectional.md inli
 const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support.md find.md selector.md unicode.md ]>
 
 config =
-  han-version: \3.2.0
+  han-version: \3.2.1
   production: yes
   heroku-path: \//han-css.herokuapp.com/
 
