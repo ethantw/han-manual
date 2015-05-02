@@ -4,7 +4,7 @@ module.exports = function() {
 // Modules
 var $ = require( './lib/yjm' )
 
-var FILTER_OUT = 'style, script, *:not(:lang(zh)), h1, div.example, pre, code, textarea'
+var AVOID = 'style, script, *:not(:lang(zh)), h1, [lang^="zh"]'
 
 // Variables
 var win = window,
@@ -28,7 +28,7 @@ try {
   userPref = null
 }
 
-hinst.filterOut( FILTER_OUT )
+hinst.avoid( AVOID )
 
 win
 .addEventListener( 'DOMContentLoaded', function() {
