@@ -109,7 +109,7 @@ Han().setRoutine([
 「『漢字』標準格式」
 </div> 
 
-關於本節的詳盡示例，請見[測試範例頁·標點擠壓及懸掛][jiya]。
+關於本節的詳盡示例，請見[測試範例頁·標點擠壓][jiya]。
 
 [jiya]: http://ethantw.github.io/Han/latest/jiya.html
 
@@ -185,7 +185,9 @@ Han().setRoutine([
 </div> 
 </div> 
 
-關於本節的詳盡示例，請見[測試範例頁·標點擠壓及懸掛][jiya]。
+關於本節的詳盡示例，請見[測試範例頁·行尾點號懸掛][hanging]。
+
+[hanging]: http://ethantw.github.io/Han/latest/hanging.html
 
 ### 停用方式 <!-- #hangwei_dianhao_xuangua-tingyong_fangshi -->
 #### 使用Sass變數關閉行尾點號懸掛
