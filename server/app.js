@@ -132,6 +132,7 @@ http.createServer( function ( req, res ) {
       manualId = uri.replace( /^\/manual\/?/, '' ).replace( /\/$/, '' ).replace( /\.html?$/, '' )
 
       if ( !/\.html?$/.test( uri )) {
+        filename = filename.replace( /\/$/, '' )
         filename += isJianjie ? '/jianjie.html' : '.html'
       }
 
