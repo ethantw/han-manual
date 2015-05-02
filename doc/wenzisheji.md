@@ -27,6 +27,8 @@
 <div class='info important note'>
 
 **注意：**截至2014年十月，Mozilla Firefox仍不支援回退機制中部分依萬國碼區段定義的字體集。而當前版本的Safari、Chrome、Opera及IE皆已完整支援。
+
+又因Firefox 36起更改了 @font-face選用策略，在部分情況下無法處理回退字體。為正確顯示「西文等寬字體」，漢字標準格式自v3.2.1起*暫時*去除計算機相關元素（如代碼`code`）下的漢字標點字體。
 </div>
 
 ### 示例及相關代碼

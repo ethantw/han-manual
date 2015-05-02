@@ -87,6 +87,12 @@
     <td><code>%han-mono-ja</code>
 </table>
 
+<div class="info important note">
+
+
+因Firefox 36起更改了 @font-face選用策略，在部分情況下無法處理回退字體。為正確顯示「西文等寬字體」，漢字標準格式自v3.2.1起*暫時*去除等寬漢字字體基型下的漢字標點字體。
+</div>
+
 ### 西文字體基型
 <table id='generics-extend-western'>
   <style scoped>
