@@ -200,100 +200,100 @@ code:lang(ja) {
   <tr>
     <th>句號
     <td>3002
-    <td>注字後下<span class='char-display'>。</span>
-    <td>居中<span class='char-display cns'>。</span>
-    <td>注字後下<span class='char-display gb'>。</span>
+    <td>注字後下<code class='char-display'>。</code>
+    <td>居中<code class='char-display cns'>。</code>
+    <td>注字後下<code class='char-display gb'>。</code>
   <tr>
     <th>單點全形句號
     <td>FF0E
-    <td colspan='3'>注字後下<span class='char-display'>．</span>
+    <td colspan='3'>注字後下<code class='char-display'>．</code>
   <tr>
     <th>逗號
     <td>FF0C
-    <td>注字後下<span class='char-display'>，</span>
-    <td>居中<span class='char-display cns'>，</span>
-    <td>注字後下<span class='char-display gb'>，</span>
+    <td>注字後下<code class='char-display'>，</code>
+    <td>居中<code class='char-display cns'>，</code>
+    <td>注字後下<code class='char-display gb'>，</code>
   <tr>
     <th>頓號
     <td>3001
-    <td>注字後下<span class='char-display'>、</span>
-    <td>居中<span class='char-display cns'>、</span>
-    <td>注字後下<span class='char-display gb'>、</span>
+    <td>注字後下<code class='char-display'>、</code>
+    <td>居中<code class='char-display cns'>、</code>
+    <td>注字後下<code class='char-display gb'>、</code>
   <tr>
     <th>分號
     <td>FF1B
-    <td colspan='2'>居中<span class='char-display'>；</span>
-    <td>注字後下<span class='char-display gb'>；</span>
+    <td colspan='2'>居中<code class='char-display'>；</code>
+    <td>注字後下<code class='char-display gb'>；</code>
   <tr>
     <th>冒號
     <td>FF1A
-    <td colspan='2'>居中<span class='char-display'>：</span>
-    <td>注字後下<span class='char-display gb'>：</span>
+    <td colspan='2'>居中<code class='char-display'>：</code>
+    <td>注字後下<code class='char-display gb'>：</code>
   <tr>
     <th>問號
     <td>FF1F
-    <td colspan='2'>居中<span class='char-display'>？</span>
-    <td>注字後下<span class='char-display gb'>？</span>
+    <td colspan='2'>居中<code class='char-display'>？</code>
+    <td>注字後下<code class='char-display gb'>？</code>
   <tr>
     <th>驚嘆號
     <td>FF01
-    <td colspan='2'>居中<span class='char-display'>！</span>
-    <td>注字後下<span class='char-display gb'>！</span>
+    <td colspan='2'>居中<code class='char-display'>！</code>
+    <td>注字後下<code class='char-display gb'>！</code>
   <tr>
     <th>間隔號
     <td>00B7
     <td colspan='3'>
     佔一漢字寬度，居中<br>
-    <span class='char-display'>莫那·魯道</span>
+    <code class='char-display'>莫那·魯道</code>
   <tr>
     <th>引號
     <td>300C<br>300D<br>300E<br>300F
     <td colspan='3'>
       佔一漢字寬度，緊靠其內容<br>
-      <span class='char-display'>「內『內容』容」</span>
+      <code class='char-display'>「內『內容』容」</code>
   <tr>
     <th>彎引號
     <td>201C<br>201D<br>2018<br>2019
     <td colspan='2'>
       不修正<br>
-      <span class='char-display'>‘內“內容”容’</span>
+      <code class='char-display'>‘內“內容”容’</code>
     <td>
       佔一漢字寬度，<br>緊靠其內容<br>
-      <span class='char-display gb'>“內‘內容’容”</span>
+      <code class='char-display gb'>“內‘內容’容”</code>
   <tr>
     <th>書名號
     <td>300A<br>300B<br>3008<br>3009
-    <td colspan='3'>佔一漢字寬度，緊靠其內容<br><span class='char-display'>《書名》〈篇名〉</span>
+    <td colspan='3'>佔一漢字寬度，緊靠其內容<br><code class='char-display'>《書名》〈篇名〉</code>
   <tr>
     <th>括號
     <td>FF08<br>FF09<br>3014<br>3015
     <td colspan='3'>
       佔一漢字寬度，緊靠其內容<br>
-      <span class='char-display'>（內〔內容〕容）</span>
+      <code class='char-display'>（內〔內容〕容）</code>
   <tr>
     <th>破折號
     <td>2014
     <td colspan='3'>
-      兩相連時無間隔<span class='char-display'>——</span>；<br>
-      單獨存在時兩側不連字<span class='char-display'>—</span>
+      兩相連時無間隔<code class='char-display'>——</code>；<br>
+      單獨存在時兩側不連字<code class='char-display'>—</code>
   <tr>
     <th>刪節號
     <td>2026
     <td colspan='3'>
-      兩相連時居中<span class='char-display'>……</span>；<br>
-      單獨存在時沉底<span class='char-display'>…</span>
+      兩相連時居中<code class='char-display'>……</code>；<br>
+      單獨存在時沉底<code class='char-display'>…</code>
   <tr>
     <th>連接號
     <td>FF0D
     <td colspan='3'>
       佔一漢字寬度，居中<br>
-      <span class='char-display'>二〇〇六年－二〇三六年</span>
+      <code class='char-display'>二〇〇六年－二〇三六年</code>
   <tr>
     <th>斜線
     <td>FF0F<br>FF3C
     <td colspan='3'>
       佔一漢字寬度，居中<br>
-      <span class='char-display'>／＼</span>
+      <code class='char-display'>／＼</code>
 </table>
 
 #### 簡易修正標點列表
@@ -322,25 +322,25 @@ code:lang(ja) {
   <tr>
     <th>單點全形句號
     <td>FF0E
-    <td>注字後下<span class='char-display'>．</span>
+    <td>注字後下<code class='char-display'>．</code>
   <tr>
     <th>間隔號
     <td>00B7
     <td>
     佔一漢字寬度，居中<br>
-    <span class='char-display'>莫那·魯道</span>
+    <code class='char-display'>莫那·魯道</code>
   <tr>
     <th>破折號
     <td>2014
     <td>
-      兩相連時無間隔<span class='char-display'>——</span>；<br>
-      單獨存在時兩側不連字<span class='char-display'>—</span>
+      兩相連時無間隔<code class='char-display'>——</code>；<br>
+      單獨存在時兩側不連字<code class='char-display'>—</code>
   <tr>
     <th>刪節號
     <td>2026
     <td>
-      兩相連時居中<span class='char-display'>……</span>；<br>
-      單獨存在時沉底<span class='char-display'>…</span>
+      兩相連時居中<code class='char-display'>……</code>；<br>
+      單獨存在時沉底<code class='char-display'>…</code>
 </table>
 
 #### 示例 
@@ -423,14 +423,14 @@ code:lang(ja) {
     <th>破折號
     <td>2014
     <td>
-      兩相連時無間隔<span class='char-display'>——</span>；<br>
-      單獨存在時兩側不連字<span class='char-display'>—</span>
+      兩相連時無間隔<code class='char-display'>——</code>；<br>
+      單獨存在時兩側不連字<code class='char-display'>—</code>
   <tr>
     <th>刪節號
     <td>2026
     <td>
-      兩相連時居中<span class='char-display'>……</span>；<br>
-      單獨存在時沉底<span class='char-display'>…</span>
+      兩相連時居中<code class='char-display'>……</code>；<br>
+      單獨存在時沉底<code class='char-display'>…</code>
 </table>
 
 #### 示例 
