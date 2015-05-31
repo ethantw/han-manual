@@ -3,6 +3,10 @@ html(lang='zh-Hant')
   head
     meta(charset='utf-8')
     title 漢字標準格式・無干擾範例預覽頁面
+
+    script.
+      void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+
     //- Han.css
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
