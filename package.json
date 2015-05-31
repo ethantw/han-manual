@@ -39,7 +39,8 @@
     "jsdom": "^5.4.3",
     "mime-types": "^2.0.2",
     "vinyl-paths": "^1.0.0",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "engines": {
     "iojs": "2.1.x"

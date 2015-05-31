@@ -5,6 +5,7 @@ require! {
   #\cheerio : $
   browserify
   \vinyl-transform
+  \vinyl-source-stream : source
   \vinyl-paths
   del
   gulp
@@ -134,7 +135,23 @@ gulp.task \app:lsc <[ app:clean ]> ->
   src \./app/**/*.js
     .pipe dest \./tmp
 
-gulp.task \app:main <[ app:lsc ]> ->
+gulp.task \app:bundle -> #<[ app:lsc ]> ->
+  browserify {
+    entries: \./app/main.js
+    debug: no
+  }
+    .bundle!
+    .pipe source \app.js
+    .pipe dest \./_public
+
+gulp.task \app:main <[ app:bundle]> ->
+  src \./_public/app.js
+    .pipe gulp-uglifyjs {
+      output: { +ascii_only }
+    }
+    .pipe dest \./_public
+
+/*
   browserified = vinyl-transform ( file ) ->
     b = browserify file
     b.bundle!
@@ -144,6 +161,7 @@ gulp.task \app:main <[ app:lsc ]> ->
       output: { +ascii_only }
     }
     .pipe dest \./_public
+*/
 
 gulp.task \app:clean ->
   src \./tmp .pipe vinyl-paths del
