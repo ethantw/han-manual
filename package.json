@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "iojs server/app.js",
-    "postinstall": "gulp && sass",
+    "postinstall": "gulp",
     "watch": "gulp dev",
     "dev": "npm run watch & npm start"
   },
