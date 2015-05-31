@@ -1,14 +1,14 @@
 {
   "name": "han-manual",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Manual for Han.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/ethantw/han-manual.git"
   },
   "scripts": {
-    "start": "node server/app.js",
-    "postinstall": "gulp",
+    "start": "iojs server/app.js",
+    "postinstall": "gulp && sass",
     "watch": "gulp dev",
     "dev": "npm run watch & npm start"
   },
@@ -20,6 +20,7 @@
   "dependencies": {
     "ETag": "~0.0.1",
     "browserify": "^9.0.3",
+    "cheerio": "^0.19.0",
     "del": "^1.1.1",
     "font-awesome": "^4.3.0",
     "font-handsome": "~0.2.0",
@@ -29,21 +30,21 @@
     "gulp-jade": "^0.10.0",
     "gulp-livescript": "^2.3.0",
     "gulp-remarkable": "^1.1.2",
-    "gulp-sass": "^1.2.4",
+    "gulp-ruby-sass": "^1.0.5",
     "gulp-symlink": "^2.1.0",
     "gulp-uglifyjs": "^0.6.1",
     "gulp-watch": "^3.0.0",
     "han-css": "^3.2.1",
     "highlight.js": "~8.3",
-    "jsdom": "^1.0.3",
+    "jsdom": "^5.4.3",
     "mime-types": "^2.0.2",
     "vinyl-paths": "^1.0.0",
     "vinyl-transform": "^1.0.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "iojs": "2.1.x"
   },
   "devDependencies": {
-    "LiveScript": "~1.3.1"
+    "livescript": "^1.4.0"
   }
 }

@@ -2,6 +2,7 @@
 require! {
   fs
   jsdom
+  #\cheerio : $
   browserify
   \vinyl-transform
   \vinyl-paths
@@ -13,7 +14,8 @@ require! {
   \gulp-livescript
   \gulp-remarkable
   \gulp-watch
-  \gulp-sass : sass
+  #\gulp-sass : sass
+  \gulp-ruby-sass
   \gulp-jade : jade
   \gulp-concat-util : concat
 }
@@ -34,7 +36,6 @@ dest = gulp.dest
 make-array = ( obj ) -> Array.prototype.slice.call obj
 jsdom.defaultDocumentFeatures = ProcessExternalResources: no
 jsdom = jsdom.jsdom
-
 
 gulp.task \han ->
   src \./node_modules/han-css/dist/**/*
@@ -117,8 +118,7 @@ gulp.task \md2html <[ doc jade ]> ->
         .pipe dest \_public/manual
 
 gulp.task \sass ->
-  src \./sass/style.scss
-    .pipe sass!
+  gulp-ruby-sass \./sass/style.scss
     .pipe gulp-cssmin { keepSpecialComments: 0 }
     .pipe dest \./_public
 
@@ -169,11 +169,12 @@ gulp.task \set-dev ->
   config.asset-path = \/
 
 gulp.task \dev <[ set-dev default ]> ->
-  gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
-  gulp.watch \./doc/**/*.md <[ md2html ]>
+  #gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
+  #gulp.watch \./doc/**/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
   gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>
 
 gulp.task \default <[ clean ]> ->
   gulp.start \www
+
