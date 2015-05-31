@@ -15,7 +15,7 @@ require! {
   \gulp-remarkable
   \gulp-watch
   #\gulp-sass : sass
-  \gulp-ruby-sass
+  #\gulp-ruby-sass
   \gulp-jade : jade
   \gulp-concat-util : concat
 }
@@ -117,10 +117,12 @@ gulp.task \md2html <[ doc jade ]> ->
         }
         .pipe dest \_public/manual
 
+/*
 gulp.task \sass ->
   gulp-ruby-sass \./sass/style.scss
     .pipe gulp-cssmin { keepSpecialComments: 0 }
     .pipe dest \./_public
+*/
 
 gulp.task \app <[ app:main ]> ->
   gulp.start \app:clean
@@ -147,10 +149,10 @@ gulp.task \app:clean ->
   src \./tmp .pipe vinyl-paths del
 
 gulp.task \asset ->
-  src <[ \./LICENSE.md \./asset/** ]>
+  src <[ \./LICENSE.md \./asset/** \./asset/style.css ]>
     .pipe dest \./_public
 
-gulp.task \www <[ vendor md2html static sass app asset ]> ->
+gulp.task \www <[ vendor md2html static app asset ]>
 
 gulp.task \clean ->
   src \./_public .pipe vinyl-paths del
@@ -172,7 +174,7 @@ gulp.task \dev <[ set-dev default ]> ->
   #gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
   #gulp.watch \./doc/**/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
-  gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
+  #gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>
 
 gulp.task \default <[ clean ]> ->
