@@ -144,7 +144,7 @@ gulp.task \app:bundle -> #<[ app:lsc ]> ->
     .pipe source \app.js
     .pipe dest \./_public
 
-gulp.task \app:main <[ app:bundle]> ->
+gulp.task \app:main <[ app:bundle ]> ->
   src \./_public/app.js
     .pipe gulp-uglifyjs {
       output: { +ascii_only }
