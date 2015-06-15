@@ -189,8 +189,8 @@ gulp.task \set-dev ->
   config.asset-path = \/
 
 gulp.task \dev <[ set-dev default ]> ->
-  #gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
-  #gulp.watch \./doc/**/*.md <[ md2html ]>
+  gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
+  gulp.watch \./doc/**/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
   #gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>

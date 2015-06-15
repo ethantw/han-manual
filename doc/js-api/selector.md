@@ -17,12 +17,18 @@
 {
   // 漢字標點（以`h-char-group`元素包裹）
   biaodian: false,
+
   // 漢字（包含假名，以`h-char-group`元素包裹）
+  // 或使用鍵名`cjk`
   hanzi: false,
+
   // 假名（以`h-char-group`元素包裹）
   kana: false,
+
   // 諺文（詞組，以`h-word`元素包裹）
+  // 或使用鍵名`hangul`
   eonmun: false,
+
   // 西文詞（詞組，以`h-word`元素包裹）
   // 包含拉丁字母、希臘字母、西里爾字母及西文標點組成的詞組
   western: false
@@ -74,19 +80,30 @@ Han( document.getElementById( 'example' ))
 {
   // 漢字標點
   biaodian: false,
+
   // 西文標點
   punct: false,
+
   // 漢字（包含假名）
+  // 或使用鍵名`cjk`
   hanzi: false,
+
   // 拉丁字母
   latin: false,
+
   // 希臘字母 
+  // 或使用鍵名`greek`
   ellinika: false,
+
   // 西里爾字母
+  // 或使用鍵名`cyrillic`
   kirillica: false,
+
   // 假名
   kana: false,
+
   // 諺文
+  // 或使用鍵名`hangul`
   eonmun: false
 }
 ```
