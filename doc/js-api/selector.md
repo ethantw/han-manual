@@ -62,7 +62,7 @@ Han( document.getElementById( 'example' ))
 ```html
 <div id="example">
   <p>「<h-char-group class="hanzi cjk">你好</h-char-group><h-char-group class="biaodian cjk">」！</h-char-group>
-  <p>「<h-char-group class="hanzi cjk">こんにちは</h-char-group><h-char-group class="biaodian cjk">」、</h-char-group><h-word class="western">"</h-word><h-word class="eonmun hangul">안녕하세요</h-word><h-word class="western">."</h-word></p>
+  <p>「<h-char-group class="hanzi cjk">こんにちは</h-char-group><h-char-group class="biaodian cjk">」、</h-char-group><h-word class="eonmun hangul">"안녕하세요."</h-word></p>
   <p><h-word class="western">‘Hello</h-word> <h-word class="western">World’,</h-word> <h-word class="western">«Γειά</h-word> <h-word class="western">Σου</h-word> <h-word class="western">Κόσμε»,</h-word> <h-word class="western">'привет</h-word> <h-word class="western">мир'</h-word></p>
 </div>
 ```
