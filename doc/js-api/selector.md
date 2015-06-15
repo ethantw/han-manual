@@ -9,7 +9,7 @@
 
 <div class='info note'>
 
-若需同時調用，方法`groupify()`應調用於方法`charify()`*之前*，有較佳效果。
+若需同時調用，方法`groupify()`應調用於方法`charify()`*之前*，方能取得預期結果。
 </div>
 
 #### option及其預設値 <!-- #charify-option -->
