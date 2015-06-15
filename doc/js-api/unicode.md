@@ -161,7 +161,7 @@ Han包含二類萬國碼區段表達式常量——以字串集合而成的`Han.
 
 #### 聲調
 - 平上去聲：`Han.UNICODE.zhuyin.tone`（包含國語四聲及輕聲）
-- 入聲：`Han.UNICODE.zhuyin.ruyun`
+- 入聲：`Han.UNICODE.zhuyin.checked`
 
 #### 注音拼式表達式
 - 整體：`Han.TYPESET.zhuyin.form`
