@@ -33,7 +33,7 @@
     <td>已完成「漢字標準格式」的腳本渲染。
   </tr>
   <tr>
-    <th rowspan='7'>功能
+    <th rowspan='6'>功能
     <td><code>[no-]ruby</code>
     <td>
 
@@ -68,12 +68,6 @@
     <td>
 
 瀏覽器是否支援CSS的書寫模式（文字直排等）功能。
-  </tr>
-  <tr>
-    <td><code>[no-]pseudo-element-clipboard</code>
-    <td>
-
-偽元素內容是否會為瀏覽器的剪貼簿行為所拷貝。
   </tr>
   <tr>
     <th rowspan='6'>字體
