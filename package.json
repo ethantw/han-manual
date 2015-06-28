@@ -1,6 +1,6 @@
 {
   "name": "han-manual",
-  "version": "3.2.2",
+  "version": "3.2.4",
   "description": "Manual for Han.css",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "dev": "npm run watch & npm start"
   },
   "author": "Chen Yijun (@ethantw)",
-  "license": "MIT License",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ethantw/han-manual/issues"
   },
@@ -34,7 +34,7 @@
     "gulp-symlink": "^2.1.0",
     "gulp-uglifyjs": "^0.6.1",
     "gulp-watch": "^3.0.0",
-    "han-css": "^3.2.2",
+    "han-css": "^3.2.4",
     "highlight.js": "~8.3",
     "jsdom": "^5.4.3",
     "mime-types": "^2.0.2",
