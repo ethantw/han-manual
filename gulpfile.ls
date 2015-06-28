@@ -1,5 +1,6 @@
 
 require! {
+  \./package.json : pkg
   fs
   jsdom
   #\cheerio : $
@@ -16,7 +17,7 @@ require! {
   \gulp-remarkable
   \gulp-watch
   #\gulp-sass : sass
-  #\gulp-ruby-sass
+  \gulp-ruby-sass
   \gulp-jade : jade
   \gulp-concat-util : concat
 }
@@ -25,7 +26,7 @@ const doc-sass = <[ overview.md module.md zitijixing_extend.md sectional.md inli
 const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support.md find.md selector.md unicode.md ]>
 
 config =
-  han-version: \3.2.2
+  han-version: pkg.dependencies['han-css'].replace( /^[\^\~]/, '' )
   production: yes
   heroku-path: \//han-css.herokuapp.com/
 
@@ -118,12 +119,14 @@ gulp.task \md2html <[ doc jade ]> ->
         }
         .pipe dest \_public/manual
 
-/*
 gulp.task \sass ->
   gulp-ruby-sass \./sass/style.scss
     .pipe gulp-cssmin { keepSpecialComments: 0 }
     .pipe dest \./_public
-*/
+
+gulp.task \sass:deploy ->
+  src \./_public/style.css
+    .pipe dest \./asset
 
 gulp.task \app <[ app:main ]> ->
   gulp.start \app:clean
@@ -189,12 +192,13 @@ gulp.task \set-dev ->
   config.asset-path = \/
 
 gulp.task \dev <[ set-dev default ]> ->
-  gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
   gulp.watch \./doc/**/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
-  #gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
+  gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>
 
 gulp.task \default <[ clean ]> ->
   gulp.start \www
+  gulp.start \sass:deploy
+
 
