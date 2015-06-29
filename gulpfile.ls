@@ -71,7 +71,7 @@ gulp.task \static <[ jade ]> ->
       }
       .pipe dest \./_public
 
-gulp.task \md2html <[ doc jade ]> ->
+gulp.task \md2html <[ jade ]> ->
   try
     manual-html = fs.readFileSync \./template/html/manual.html, encoding: \utf-8
     manual-html .= split '{{parsed-article-html}}'
@@ -192,7 +192,8 @@ gulp.task \set-dev ->
   config.asset-path = \/
 
 gulp.task \dev <[ set-dev default ]> ->
-  gulp.watch \./doc/**/*.md <[ md2html ]>
+  gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
+  gulp.watch \./doc/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
   gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>

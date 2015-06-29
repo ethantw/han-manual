@@ -34,7 +34,7 @@
     "gulp-symlink": "^2.1.0",
     "gulp-uglifyjs": "^0.6.1",
     "gulp-watch": "^3.0.0",
-    "han-css": "^3.2.4",
+    "han-css": "^3.2.5",
     "highlight.js": "~8.3",
     "jsdom": "^5.4.3",
     "mime-types": "^2.0.2",
