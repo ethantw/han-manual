@@ -200,6 +200,4 @@ gulp.task \dev <[ set-dev default ]> ->
 
 gulp.task \default <[ clean ]> ->
   gulp.start \www
-  gulp.start \sass:deploy
-
 
