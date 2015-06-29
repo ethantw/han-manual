@@ -8,7 +8,8 @@ html(lang='zh-Hant').han-init
       void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
 
     //- Han.css
-    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css')
+    //link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css')
+    link(rel='stylesheet', href='/latest/han.min.css')
     link(rel='stylesheet', href='{{asset-path}}style.css')
 
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
@@ -111,6 +112,7 @@ html(lang='zh-Hant').han-init
           li: a(href='http://itgonglun.com/') IT公論
           li: a(href='http://g0v.tw/') g0v零時政府
           li: a(href='http://markdown.tw/') Markdown中文語法說明
+        p.more-used-by: a(href='/manual/used-by') ……更多
       .tweet
         <h2>推文</h2>
         <p id='tweets-about-han'><a class="twitter-timeline" href="https://twitter.com/ethantw/timelines/419245224007696385" data-widget-id="529469943549419521">關於「漢字標準格式」的回響及推文</a>
@@ -128,7 +130,8 @@ html(lang='zh-Hant').han-init
         li: a(href='//ethantw.github.io/Han/latest') 範例測試頁
         li: a(href='https://github.com/ethantw/Han/issues') 提問題
     //- Han.js
-    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.js')
+    //script(src='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.js')
+    script(src='/latest/han.min.js')
     script(src='{{asset-path}}app.js')
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -8,7 +8,8 @@ html(lang='zh-Hant').han-init
       void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
 
     //- Han.css
-    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css')
+    //link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.css')
+    link(rel='stylesheet', href='/latest/han.min.css')
     link(rel='stylesheet', href='{{asset-path}}style.css')
 
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
@@ -53,6 +54,7 @@ html(lang='zh-Hant').han-init
             li.install.anzhuang_yu_qiyong: a(href='/manual/anzhuang_yu_qiyong') 安裝與啓用
             li.faq: a(href='/manual/faq') 常見問題
             li.glossary: a(href='/manual/glossary') 辭彙表
+            li.used-by: a(href='/manual/used-by') 使用漢字標準格式的網站
         li.jiben_gongneng.basic 基本功能
           ol
             li.yangshi_biaozhunhua.normalisation
@@ -123,7 +125,8 @@ html(lang='zh-Hant').han-init
                 li.selector: a(href='/manual/js-api#selector') 詞級、字級選擇器
                 li.unicode: a(href='/manual/js-api#unicode') 萬國碼區段及正則表達式
     //- Han.js
-    script(src='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.js')
+    //script(src='//cdnjs.cloudflare.com/ajax/libs/Han/{{han-version}}/han.min.js')
+    script(src='/latest/han.min.js')
     //- Other libraries & main app
     script(src='{{asset-path}}app.js')
 
@@ -135,3 +138,4 @@ html(lang='zh-Hant').han-init
 
       ga('create', 'UA-18673404-2', 'auto');
       ga('send', 'pageview');
+
