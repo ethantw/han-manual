@@ -38,7 +38,7 @@
  瀏覽器支援 <!-- #browser-support -->
 ----------
 - Google Chrome（最新版）
-- Mozilla Firefox（最新版）
+- Mozilla Firefox（ESR+）
 - Opera Next（最新版）
 - Apple Safari 7+
 - Internet Explorer 10+
