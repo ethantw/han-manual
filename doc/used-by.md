@@ -14,6 +14,7 @@
 - [G. T. WANG](http://blog.gtwang.org)
 - [au](http://audrey.nu)
 - [林杰](http://linjiex.com)
+- [Zhibin Cai’s snippet](http://caizhibin.com/blog/)
 
 歡迎[加上您的網站](https://github.com/ethantw/Han-Manual/blob/master/doc/used-by.md)。
 
