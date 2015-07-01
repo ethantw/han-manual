@@ -460,6 +460,11 @@
 **注意：**除基本行間注外，包含注音、複合式行間注及拼－注音共同標注功能皆需配合JavaScript腳本方可正常顯示。
 </div>
 
+<div class='info related'>
+
+小工具「[az](https://az.hanzi.co/)」可*半自動*為漢字標注符合HTML5標準的現代標準漢語（國語／普通話）發音，並可設定代碼格式及標音系統。
+</div>
+
 ### 基本行間注 <!-- #hangjianzhu_yuansu-jiben_hangjianzhu -->
 基本行間注的形式係「注文」位「基文」上方居中，適用雙語對照、羅馬拼音等。
 
