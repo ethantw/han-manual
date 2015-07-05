@@ -1,6 +1,6 @@
 
 # Han-Manual
-This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.1.1.
+This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.2.5.
 
 Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark][stmd] format.
 
@@ -10,12 +10,12 @@ Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark]
 ## How to use
 ### Requirements
 
-- Node.js 0.10.x
-    - LiveScript 1.3.1
+- Node/io.js
+    - LiveScript 1.4.0
 
 ### Install dependencies
 ```
-sudo npm install
+npm install
 ```
 
 ### Run
@@ -38,3 +38,4 @@ gulp www
 All files and documents of the manual are licensed under [Creative Commons BY-3.0][cc-by].
 
 [cc-by]: https://creativecommons.org/licenses/by/3.0/
+
