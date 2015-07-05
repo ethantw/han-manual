@@ -71,7 +71,7 @@ gulp.task \static <[ jade ]> ->
       }
       .pipe dest \./_public
 
-gulp.task \md2html <[ jade ]> ->
+gulp.task \md2html <[ jade doc ]> ->
   try
     manual-html = fs.readFileSync \./template/html/manual.html, encoding: \utf-8
     manual-html .= split '{{parsed-article-html}}'
