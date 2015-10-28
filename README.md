@@ -1,6 +1,6 @@
 
 # Han-Manual
-This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.2.5.
+This is the API manual for [Han.css][han-css]. Hosted on <http://css.hanzi.co/>. The manual currently corresponds to Han.css v3.2.7.
 
 Documents of the manual, located in `doc/`, are written in Markdown/[CommonMark][stmd] format.
 
