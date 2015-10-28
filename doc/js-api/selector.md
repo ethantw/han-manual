@@ -61,9 +61,9 @@ Han( document.getElementById( 'example' ))
 詞組選擇器處理後，
 ```html
 <div id="example">
-  <p>「<h-char-group class="hanzi cjk">你好</h-char-group><h-char-group class="biaodian cjk">」！</h-char-group>
-  <p>「<h-char-group class="hanzi cjk">こんにちは</h-char-group><h-char-group class="biaodian cjk">」、</h-char-group><h-word class="eonmun hangul">"안녕하세요."</h-word></p>
-  <p><h-word class="western">‘Hello</h-word> <h-word class="western">World’,</h-word> <h-word class="western">«Γειά</h-word> <h-word class="western">Σου</h-word> <h-word class="western">Κόσμε»,</h-word> <h-word class="western">'привет</h-word> <h-word class="western">мир'</h-word></p>
+  <p>「<h-char-group class="hanzi cjk">你好</h-char-group><h-char-group class="biaodian cjk">」！</h-char-group></p>
+  <p>「<h-char-group class="hanzi cjk">こんにちは</h-char-group><h-char-group class="biaodian cjk">」、</h-char-group><h-word class="western">"</h-word><h-word class="eonmun hangul">안녕하세요</h-word><h-word class="western">."</h-word></p>
+  <p><h-word class="western">‘Hello</h-word> <h-word class="western">World’,</h-word> <h-word class="western">«Γειά</h-word> <h-word class="western">Σου</h-word> <h-word class="western">Κόσμε»,</h-word> <h-word class="western">'привет</h-word> <h-word class="western">мир'.</h-word></p>
 </div>
 ```
 
@@ -120,17 +120,26 @@ Han( document.getElementById( 'example' ))
 
 JavaScript腳本，
 ```javascript
-Han( document.getElementById( 'char-level-selector' ))
-.charify()
+Han( document.getElementById( 'example' ))
+.charify({
+  biaodian: true,
+  punct: true,
+  hanzi: true,
+  latin: true,
+  ellinika: true,
+  kirillica: true,
+  kana: true,
+  eonmun: true
+})
 ```
 
 ##### 字級選擇器處理後
 ```html
 <div id="example">
-  <p><h-char unicode="300c" class="biaodian cjk open">「</h-char><h-char class="hanzi cjk">你</h-char><h-char class="hanzi cjk">好</h-char><h-char unicode="300d" class="biaodian cjk close end">」</h-char><h-char unicode="ff0c" class="biaodian cjk end">！</h-char>
-  <p><h-char unicode="300c" class="biaodian cjk open">「</h-char><h-char class="hanzi cjk">こ</h-char><h-char class="hanzi cjk">ん</h-char><h-char class="hanzi cjk">に</h-char><h-char class="hanzi cjk">ち</h-char><h-char class="hanzi cjk">は</h-char><h-char unicode="300d" class="biaodian cjk close end">」</h-char><h-char unicode="3001" class="biaodian cjk end">、</h-char><h-char class="punct">"</h-char><h-char class="eonmun hangul">안</h-char><h-char class="eonmun hangul">녕</h-char><h-char class="eonmun hangul">하</h-char><h-char class="eonmun hangul">세</h-char><h-char class="eonmun hangul">요</h-char><h-char class="punct">.</h-char><h-char class="punct">"</h-char></p>
+  <p><h-char unicode="300c" class="biaodian cjk bd-open">「</h-char><h-char class="hanzi cjk">你</h-char><h-char class="hanzi cjk">好</h-char><h-char unicode="300d" class="biaodian cjk bd-close bd-end">」</h-char><h-char unicode="ff01" class="biaodian cjk bd-end">！</h-char></p>
+  <p><h-char unicode="300c" class="biaodian cjk bd-open">「</h-char><h-char class="hanzi cjk">こ</h-char><h-char class="hanzi cjk">ん</h-char><h-char class="hanzi cjk">に</h-char><h-char class="hanzi cjk">ち</h-char><h-char class="hanzi cjk">は</h-char><h-char unicode="300d" class="biaodian cjk bd-close bd-end">」</h-char><h-char unicode="3001" class="biaodian cjk bd-end">、</h-char><h-char class="punct">"</h-char><h-char class="eonmun hangul">안</h-char><h-char class="eonmun hangul">녕</h-char><h-char class="eonmun hangul">하</h-char><h-char class="eonmun hangul">세</h-char><h-char class="eonmun hangul">요</h-char><h-char class="punct">.</h-char><h-char class="punct">"</h-char></p>
   <p><h-char class="punct">‘</h-char><h-char class="alphabet latin">H</h-char><h-char class="alphabet latin">e</h-char><h-char class="alphabet latin">l</h-char><h-char class="alphabet latin">l</h-char><h-char class="alphabet latin">o</h-char> <h-char class="alphabet latin">W</h-char><h-char class="alphabet latin">o</h-char><h-char class="alphabet latin">r</h-char><h-char class="alphabet latin">l</h-char><h-char class="alphabet latin">d</h-char><h-char class="punct">’</h-char><h-char class="punct">,</h-char> <h-char class="punct">«</h-char><h-char class="alphabet ellinika greek">Γ</h-char><h-char class="alphabet ellinika greek">ει</h-char><h-char class="alphabet ellinika greek">ά</h-char> <h-char class="alphabet ellinika greek">Σ</h-char><h-char class="alphabet ellinika greek">ο</h-char><h-char class="alphabet ellinika greek">υ</h-char> <h-char class="alphabet ellinika greek">Κ</h-char><h-char class="alphabet ellinika greek">ό</h-char><h-char class="alphabet ellinika greek">σ</h-char><h-char class="alphabet ellinika greek">μ</h-char><h-char class="alphabet ellinika greek">ε</h-char><h-char class="punct">»</h-char><h-char class="punct">,</h-char> <h-char class="punct">'</h-char><h-char class="alphabet kirillica cyrillic">п</h-char><h-char class="alphabet kirillica cyrillic">р</h-char><h-char class="alphabet kirillica cyrillic">и</h-char><h-char class="alphabet kirillica cyrillic">в</h-char><h-char class="alphabet kirillica cyrillic">е</h-char><h-char class="alphabet kirillica cyrillic">т</h-char> <h-char class="alphabet kirillica cyrillic">м</h-char><h-char class="alphabet kirillica cyrillic">и</h-char><h-char class="alphabet kirillica cyrillic">р</h-char><h-char class="punct">'</h-char><h-char class="punct">.</h-char></p>
-</div>
+ </div>
 ```
 
 ### Han.fn.jinzify() <!-- #jinzify -->
