@@ -33,11 +33,23 @@
     <td>已完成「漢字標準格式」的腳本渲染。
   </tr>
   <tr>
-    <th rowspan='6'>功能
+    <th rowspan='8'>功能
     <td><code>[no-]ruby</code>
     <td>
 
 瀏覽器是否支援HTML的基本行間注功能。
+  </tr>
+  <tr>
+    <td><code>[no-]ruby-display</code>
+    <td>
+
+瀏覽器是否支援CSS行間注`ruby-display`屬性。
+  </tr>
+  <tr>
+    <td><code>[no-]ruby-interchar</code>
+    <td>
+
+瀏覽器是否支援CSS行間注`ruby-position`屬性的`inter-character`値。
   </tr>
   <tr>
     <td><code>[no-]fontface</code>
