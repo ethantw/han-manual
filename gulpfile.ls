@@ -16,8 +16,8 @@ require! {
   \gulp-livescript
   \gulp-remarkable
   \gulp-watch
-  #\gulp-sass : sass
-  \gulp-ruby-sass
+  \gulp-sass : sass
+  #\gulp-ruby-sass
   \gulp-jade : jade
   \gulp-concat-util : concat
 }
@@ -120,7 +120,8 @@ gulp.task \md2html <[ jade doc ]> ->
         .pipe dest \_public/manual
 
 gulp.task \sass ->
-  gulp-ruby-sass \./sass/style.scss
+  # gulp-ruby-sass \./sass/style.scss
+  sass \./sass/style.scss
     .pipe gulp-cssmin { keepSpecialComments: 0 }
     .pipe dest \./_public
 
@@ -192,8 +193,8 @@ gulp.task \set-dev ->
   config.asset-path = \/
 
 gulp.task \dev <[ set-dev default ]> ->
-  gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
-  gulp.watch \./doc/*.md <[ md2html ]>
+  # gulp.watch './doc/{sass,js}-api/*.md' <[ doc ]>
+  gulp.watch \./doc/**/*.md <[ md2html ]>
   gulp.watch \./template/**/*.jade <[ static ]>
   gulp.watch './sass/**/*.{sass,scss}' <[ sass ]>
   gulp.watch './app/**/*.{ls,js}' <[ app:main ]>
