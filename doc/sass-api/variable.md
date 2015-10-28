@@ -79,6 +79,12 @@ $han-text-emphasis-posi-ja:  over;
 $han-text-emphasis-color-ja: inherit;
 ```
 
+行間注元素中，[注音符號](/manual/yangshi_biaozhunhua#hangjianzhu_yuansu-zhuyin_hangjianzhu)的字體大小（單位：em），
+
+```scss
+$han-zhuyin-size: .5;
+```
+
 ### 文字設計
 字集相關設定（[漢字](/manual/wenzisheji#zhongwen_hanzi_zitiji)、[標點](http://localhost:9999/manual/wenzisheji#biaodian_yangshi_xiuzheng-zhongwen_biaodian_liebiao)），
 ```scss

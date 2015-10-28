@@ -89,4 +89,12 @@ Han( context ).renderEm( selector )
 ### 行尾點號懸掛 <!-- #inline-hanging_biaodian -->
 見[Sass變數彙整下的相應小節](/manual/sass-api#sec-26)。
 
+
+### 直式注音符號 <!-- #inline-vertical_zhuyin -->
+非行間注元素下、符合han.js渲染的注音符號格式之容器可以引用直式注音符號樣式 @extend。
+
+```scss
+@extend %han-zhuyin;
+```
+
 </section>
