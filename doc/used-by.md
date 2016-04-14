@@ -16,6 +16,7 @@
 - [林杰](http://linjiex.com)
 - <span lang='en'>[Zhibin Cai’s snippet](http://caizhibin.com/blog/)</span>
 - [深藏若虛](http://blog.fntsr.tw)
+- [冉.MOE](http://ran.moe)
 
 歡迎[加上您的網站](https://github.com/ethantw/Han-Manual/blob/master/doc/used-by.md)。
 
