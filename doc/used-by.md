@@ -1,7 +1,7 @@
 
  使用漢字標準格式的網站
 ========================
-
+- [字典百科](https://zh.dictpedia.org/)
 - [萌典](https://moedict.tw/)
 - [Type is Beautiful](http://www.typeisbeautiful.com/psa/gutenberg-in-shanghai/)
 - [IT公論](http://itgonglun.com/)
