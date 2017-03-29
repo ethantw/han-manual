@@ -8,6 +8,7 @@
 - [g0v零時政府](http://g0v.tw/)
 - [Markdown中文語法說明](http://markdown.tw/)
 - [免費資源網路社群](http://free.com.tw/)
+- [字典百科](https://zh.dictpedia.org/)
 
 ### 個人部落格 <!-- #blog -->
 - <span lang='ja'>[ニシの雑記帳](http://westantennanote.tumblr.com/)</span>
