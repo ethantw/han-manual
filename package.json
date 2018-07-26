@@ -11,8 +11,8 @@
     "postinstall": "gulp",
     "watch": "gulp dev",
     "www": "gulp www",
-    "deploy": "gh-pages -d _www_",
-    "dev": "npm run watch & npm start"
+    "deploy": "yarn www && gh-pages -d _www_",
+    "dev": "yarn watch & yarn start"
   },
   "author": "Chen Yijun (@ethantw)",
   "license": "MIT",
