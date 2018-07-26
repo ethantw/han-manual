@@ -28,9 +28,8 @@ const doc-js = <[ overview.md han.md rendering.md normalize.md inline.md support
 config =
   han-version: pkg.dependencies['han-css'].replace( /^[\^\~]/, '' )
   production: yes
-  heroku-path: \//han-css.herokuapp.com/
 
-config.asset-path = config.heroku-path
+config.asset-path = '/' 
 
 src  = gulp.src
 dest = gulp.dest
@@ -41,7 +40,7 @@ jsdom = jsdom.jsdom
 
 gulp.task \han ->
   src \./node_modules/han-css/dist/**/*
-    .pipe dest \./_public/latest
+    .pipe dest \./_www_/latest
 
 gulp.task \vendor <[ han vendor:hljs vendor:fa ]>
 
@@ -69,7 +68,7 @@ gulp.task \static <[ jade ]> ->
             .replace /\{\{asset\-path\}\}/gi, config.asset-path
             .replace /\{\{han\-version\}\}/gi, config.han-version
       }
-      .pipe dest \./_public
+      .pipe dest \./_www_
 
 gulp.task \md2html <[ jade doc ]> ->
   try
@@ -117,16 +116,16 @@ gulp.task \md2html <[ jade doc ]> ->
               .replace /\{\{manual\-page\-id\}\}/gi, page-id
               .replace /\{\{manual\-page\-title\}\}/gi, title
         }
-        .pipe dest \_public/manual
+        .pipe dest \_www_/manual
 
 gulp.task \sass ->
   # gulp-ruby-sass \./sass/style.scss
   sass \./sass/style.scss
     .pipe gulp-cssmin { keepSpecialComments: 0 }
-    .pipe dest \./_public
+    .pipe dest \./_www_
 
 gulp.task \sass:deploy ->
-  src \./_public/style.css
+  src \./_www_/style.css
     .pipe dest \./asset
 
 gulp.task \app <[ app:main ]> ->
@@ -146,14 +145,14 @@ gulp.task \app:bundle -> #<[ app:lsc ]> ->
   }
     .bundle!
     .pipe source \app.js
-    .pipe dest \./_public
+    .pipe dest \./_www_
 
 gulp.task \app:main <[ app:bundle ]> ->
-  src \./_public/app.js
+  src \./_www_/app.js
     .pipe gulp-uglifyjs {
       output: { +ascii_only }
     }
-    .pipe dest \./_public
+    .pipe dest \./_www_
 
 /*
   browserified = vinyl-transform ( file ) ->
@@ -164,7 +163,7 @@ gulp.task \app:main <[ app:bundle ]> ->
     .pipe gulp-uglifyjs \app.js {
       output: { +ascii_only }
     }
-    .pipe dest \./_public
+    .pipe dest \./_www_
 */
 
 gulp.task \app:clean ->
@@ -172,12 +171,12 @@ gulp.task \app:clean ->
 
 gulp.task \asset ->
   src <[ \./LICENSE.md \./asset/** \./asset/style.css ]>
-    .pipe dest \./_public
+    .pipe dest \./_www_
 
 gulp.task \www <[ vendor md2html static app asset ]>
 
 gulp.task \clean ->
-  src \./_public .pipe vinyl-paths del
+  src \./_www_ .pipe vinyl-paths del
 
 gulp.task \doc ->
   add-path = ( path, array ) -> array.map ( elem ) -> path + \/ + elem

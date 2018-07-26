@@ -17,7 +17,7 @@ const HEROKU_APP_PATH = '//han-css.herokuapp.com/'
 const HOST = process.env.IP || '0.0.0.0'
 const PORT = Number( process.env.PORT || 7788 )
 const ROOT = process.cwd()
-const WWW = ROOT + '/_public/'
+const WWW = ROOT + '/_www_/'
 
 const ROOT_PATH_FOR_ASSET = PORT === 7788 ? '/' : HEROKU_APP_PATH
 

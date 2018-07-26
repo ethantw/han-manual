@@ -5,7 +5,7 @@ npm-debug.log
 *.swp
 *.css.map
 
-_public
+_www_
 latest
 asset/font
 asset/vendor

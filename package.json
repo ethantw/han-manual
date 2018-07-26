@@ -7,9 +7,11 @@
     "url": "https://github.com/ethantw/han-manual.git"
   },
   "scripts": {
-    "start": "iojs server/app.js",
+    "start": "node server/app.js",
     "postinstall": "gulp",
     "watch": "gulp dev",
+    "www": "gulp www",
+    "deploy": "gh-pages -d _www_",
     "dev": "npm run watch & npm start"
   },
   "author": "Chen Yijun (@ethantw)",
@@ -24,7 +26,8 @@
     "del": "^1.2.1",
     "font-awesome": "^4.4.0",
     "font-handsome": "~0.2.0",
-    "gulp": "^3.9.0",
+    "gh-pages": "^1.2.0",
+    "gulp": "^3.9.1",
     "gulp-concat-util": "^0.5.4",
     "gulp-cssmin": "^0.1.7",
     "gulp-jade": "^0.10.0",
@@ -42,9 +45,6 @@
     "vinyl-paths": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0"
-  },
-  "engines": {
-    "iojs": "2.1.x"
   },
   "devDependencies": {
     "livescript": "^1.4.0"
