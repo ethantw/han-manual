@@ -1,0 +1,443 @@
+<html lang="zh-Hant" class="han-init"><head><meta charset="utf-8"><title>Sass API — 漢字標準格式・使用手冊</title><script>void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css"><!--link(rel='stylesheet', href='/latest/han.min.css')--><link rel="stylesheet" href="/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="印刷品般的漢字網頁排版框架"><meta name="keywords" content="漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography"><link rel="shortcut icon" href="/img/favicon.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><meta property="og:title" content="Sass API — 漢字標準格式・使用手冊"><meta property="og:description" content="「漢字標準格式」是一套集成「語意樣式標準化」「文字設計」「高級排版功能」三大模組，完整支援繁簡中文與日文的排版框架，係萬維網時代的漢字問題解決之道。"><meta property="og:image" content="http://css.hanzi.co/img/typeset.png"><meta property="og:image" content="http://css.hanzi.co/img/em-based.png"><meta property="og:image" content="http://css.hanzi.co/img/typefaces.png"><link rel="image_src" href="http://css.hanzi.co/img/typeset.png"></head><body data-chap="sass-api" class="manual sass-api"><header class="layout"><div><div class="logo"><h1><a href="/manual/">漢字標準格式</a></h1><p class="desc">印刷品般的漢字排版框架</p></div><ul><li><a id="github-repo" href="https://github.com/ethantw/Han">GitHub Project</a></li><li><button id="trad2simp">繁簡切換</button></li></ul><button id="toggle-nav" hidden="">選單開關</button></div></header><article class="main-content layout"><h1><span lang="en">Sass API</span></h1>
+<h2 id="gaishu">概述 </h2>
+<p>「漢字標準格式」提供Sass選擇器擴展 @extend、代碼混用 @mixin、函數 @function及變數等接口，用以簡化樣式表的複雜度並避免重覆的樣式宣告。</p>
+<h2 id="module">模組 </h2>
+<p>一般情況下，直接在Sass樣式表中匯入<code>han-css/index.scss</code>即可使用「漢字標準格式」的所有功能；然而，亦可依據網站需求，載入需要的Sass模組。</p>
+<p>直接匯入「漢字標準格式」所有模組，</p>
+<pre id="info-0"><code class="language-scss">@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/index'</span>;
+</code></pre>
+<p>匯入需要的Sass模組，</p>
+<pre id="info-1"><code class="language-scss"><span class="hljs-comment">// 「漢字標準格式」必要檔案</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/var'</span>;
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/api'</span>;
+
+<span class="hljs-comment">// Normalize.css</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/locale/normalize'</span>;
+
+<span class="hljs-comment">// 本地樣式標準化模組</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/locale'</span>;
+
+<span class="hljs-comment">// 文字設計模組</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/typography'</span>;
+
+<span class="hljs-comment">// 高級排版功能模組（章節的編排、行的組成）</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'[node_modules]/han-css/src/sass/typeset'</span>;
+</code></pre>
+<section class="self-contained">
+<h2 id="ziti_jixing_extend">字體基型 @extend </h2>
+<p>字體基型 @extend以精良的<a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a>處理字體的套用，「<a href="/manual/wenzisheji">文字設計模組</a>」中，多數元素及情境的字體樣式由字體基型 @extend提供，相關調用的字體亦請見該頁各小節的說明。</p>
+<p>據CSS3標準，字體基型（<span lang="en">typeface generics</span>）共分為「無襯線」「襯線」「手寫」「等寬」「裝飾」五種。目前「漢字標準格式」提供前述四種字體基型及相應意大利體的選擇器擴展。為選擇器加入所需的字體基型 @extend，選擇器便可套用相應的字體樣式，避免樣式的重覆宣告。</p>
+<div id="generics" class="info note">
+<p><strong>註：</strong>文字設計中，「generics」一詞應作「通用字體」；本使用手冊為明顯區分「字體」與「通用字體」，遂將後者統一稱作「基型」或「字體基型」，以為差異。</p>
+</div>
+<p>一般字體基型 @extend的調用形式為，</p>
+<pre id="info-3"><code class="language-scss">@<span class="hljs-keyword">extend</span> %han-[基型]-[語言文字變體];
+</code></pre>
+<p>搭配西文意大利體的字體基型 @extend調用形式為，</p>
+<pre id="info-4"><code class="language-scss">@<span class="hljs-keyword">extend</span> %han-[基型]-italic-[語言文字變體];
+</code></pre>
+<div class="info note" id="info-5">
+<p><strong>註：</strong>西文等寬基型 @extend不提供意大利體。</p>
+</div>
+<p>或參見以下二表，</p>
+<h3 id="sec-3">漢字字體基型</h3>
+<table id="generics-extend">
+  <style scoped="">
+#generics-extend {
+  font-size: .8em;
+}
+#generics-extend thead th:first-child {
+  width: 6em;
+}
+#generics-extend tbody th {
+  height: 3em;
+}
+  </style>
+  <thead>
+    <tr><th>基型
+    </th><th>繁體中文
+    </th><th>簡體中文
+    </th><th>日文
+  </th></tr></thead>
+  <tbody><tr>
+    <th>黑體
+    </th><td><code>%han-sans-hant</code>
+    </td><td><code>%han-sans-hans</code>
+    </td><td><code>%han-sans-ja</code>
+  </td></tr><tr>
+    <th>黑體、<br>意大利體
+    </th><td><code>%han-sans-italic-hant</code>
+    </td><td><code>%han-sans-italic-hans</code>
+    </td><td><code>%han-sans-italic-ja</code>
+  </td></tr><tr>
+    <th>宋體
+    </th><td><code>%han-serif-hant</code>
+    </td><td><code>%han-serif-hans</code>
+    </td><td><code>%han-serif-ja</code>
+  </td></tr><tr>
+    <th>宋體、<br>意大利體
+    </th><td><code>%han-serif-italic-hant</code>
+    </td><td><code>%han-serif-italic-hans</code>
+    </td><td><code>%han-serif-italic-ja</code>
+  </td></tr><tr>
+    <th>楷體
+    </th><td><code>%han-cursive-hant</code>
+    </td><td><code>%han-cursive-hans</code>
+    </td><td><code>%han-cursive-ja</code>
+  </td></tr><tr>
+    <th>楷體、<br>意大利體
+    </th><td><code>%han-cursive-italic-hant</code>
+    </td><td><code>%han-cursive-italic-hans</code>
+    </td><td><code>%han-cursive-italic-ja</code>
+  </td></tr><tr>
+    <th>西文等寬／<br>黑體
+    </th><td><code>%han-mono-hant</code>
+    </td><td><code>%han-mono-hans</code>
+    </td><td><code>%han-mono-ja</code>
+</td></tr></tbody></table>
+<div class="info important note" id="info-7">
+<p>因Firefox 36起更改了 @font-face選用策略，在部分情況下無法處理回退字體。為正確顯示「西文等寬字體」，漢字標準格式自v3.2.1起<em>暫時</em>去除等寬漢字字體基型下的漢字標點字體。</p>
+</div>
+<h3 id="sec-4">西文字體基型</h3>
+<table id="generics-extend-western">
+  <style scoped="">
+#generics-extend-western {
+  font-size: .8em;
+}
+#generics-extend-western thead th:first-child {
+  width: 10em;
+}
+#generics-extend-western tbody th {
+  height: 3em;
+}
+  </style>
+  <thead>
+    <tr><th>基型
+    </th><th>西文字體
+  </th></tr></thead>
+  <tbody><tr>
+    <th>無襯線
+    </th><td><code>%han-sans</code>
+  </td></tr><tr>
+    <th>無襯線意大利體
+    </th><td><code>%han-sans-italic</code>
+  </td></tr><tr>
+    <th>襯線
+    </th><td><code>%han-serif</code>
+  </td></tr><tr>
+    <th>襯線意大利體
+    </th><td><code>%han-serif-italic</code>
+  </td></tr><tr>
+    <th>手寫
+    </th><td><code>%han-cursive</code>
+  </td></tr><tr>
+    <th>手寫意大利體
+    </th><td><code>%han-cursive-italic</code>
+  </td></tr><tr>
+    <th>等寬
+    </th><td><code>%han-mono</code>
+</td></tr></tbody></table>
+<h4 id="sec-5">代碼示例</h4>
+<pre id="info-9"><code class="language-scss"><span class="hljs-selector-class">.box</span> {
+  @<span class="hljs-keyword">extend</span> %han-mono-hans;
+}
+</code></pre>
+<p>上方的Sass代碼會將選擇器<code>.box</code>擴展至佔用符<code>%han-mono-hans</code>上。樣式表輸出結果將類似於，</p>
+<pre id="info-10"><code class="language-css"><span class="hljs-selector-attr">[%han-mono-hans]</span>,
+<span class="hljs-selector-tag">code</span><span class="hljs-selector-pseudo">:lang(zh-Hans)</span>,
+<span class="hljs-selector-attr">[……]</span>,
+<span class="hljs-selector-class">.box</span> {
+  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Biaodian Pro Sans GB"</span>, Menlo, Courier, <span class="hljs-string">"Han Heiti GB"</span>, monospace, monospace, sans-serif
+}
+</code></pre>
+<h3 id="ziti_jixing_extend-fugai_shunxu">覆蓋順序 </h3>
+<p>在擁有相同繼承權重的同一選擇器上套用二個以上的字體基型 @extend時，字體樣式<em>不為</em>基型 @extend宣告順序所決定，相關覆蓋順序規則見下表，</p>
+<table id="generic-extend-order">
+  <style scoped="">
+#generic-extend-order {
+  width: 13em;
+}
+#generic-extend-order tr {
+  border-bottom: 0 !important;
+}
+#generic-extend-order tr th {
+  text-align: right;
+  padding-right: .75em;
+  width: 3em;
+}
+#generic-extend-order thead th:only-child {
+  text-align: center;
+}
+  </style>
+  <thead> 
+    <tr><th colspan="2">基型覆蓋優先級
+  </th></tr></thead>
+  <tbody><tr>
+    <th>高  
+    </th><td>西文等寬／黑體
+  </td></tr><tr>
+    <th rowspan="5">
+    </th><td>楷體、意大利體
+  </td></tr><tr>
+    <td>楷體
+  </td></tr><tr>
+    <td>宋體、意大利體
+  </td></tr><tr>
+    <td>宋體
+  </td></tr><tr>
+    <td>黑體、意大利體
+  </td></tr><tr>
+    <th>低
+    </th><td>黑體
+</td></tr></tbody></table>
+<h4 id="sec-7">代碼示例</h4>
+<pre id="info-12"><code class="language-scss"><span class="hljs-selector-class">.some-container</span> {
+  @<span class="hljs-keyword">extend</span> %han-cursive-italic-hant;
+  @<span class="hljs-keyword">extend</span> %han-sans-hant;
+}
+
+<span class="hljs-selector-class">.some-container-2</span> {
+  @<span class="hljs-keyword">extend</span> %han-sans-hant;
+  @<span class="hljs-keyword">extend</span> %han-cursive-italic-hant;
+}
+</code></pre>
+<p>上述代碼中，容器<code>.some-container</code>及<code>.some-container-2</code>的最終字體樣式<strong>皆應為「楷體（繁體）、西文意大利體」</strong>，而非「黑體（繁體）」，意即覆蓋規則<em>與宣告順序無關</em>。</p>
+<h3 id="ziti_jixing_extend-xiangying_de_mixin">相應的 @mixin </h3>
+<p>使用字體基型 @mixin <code>han-typeface-by-lang</code>可為選擇器加入所有地區變體之字體樣式的擴展，其調用形式為，</p>
+<pre id="info-13"><code class="language-scss">@<span class="hljs-keyword">include</span> han-typeface-by-lang( <span class="hljs-variable">$typeface</span>: [基型] );
+<span class="hljs-comment">// 意大利體</span>
+@<span class="hljs-keyword">include</span> han-typeface-by-lang( <span class="hljs-variable">$typeface</span>: [基型]-italic );
+</code></pre>
+<h4 id="sec-9">代碼示例</h4>
+<pre id="info-14"><code class="language-scss"><span class="hljs-selector-class">.entry</span> {
+  @<span class="hljs-keyword">include</span> han-typeface-by-lang( <span class="hljs-variable">$typeface</span>: cursive );
+}
+</code></pre>
+<p>上方代碼同等於，</p>
+<pre id="info-15"><code class="language-scss"><span class="hljs-selector-class">.entry</span> {
+  &amp;:lang(zh),
+  &amp;:lang(zh-Hant) {
+    @<span class="hljs-keyword">extend</span> %han-cursive-hant;
+  }
+
+  &amp;:lang(zh-Hans),
+  &amp;:lang(zh-CN) {
+    @<span class="hljs-keyword">extend</span> %han-cursive-hans;
+  }
+
+  &amp;:lang(ja) {
+    @<span class="hljs-keyword">extend</span> %han-cursive-ja;
+  }
+
+  &amp;:lang(zh-Latn),
+  &amp;:lang(ja-Latn),
+  &amp;:not(:lang(zh)):not(:lang(ja)),
+  *:lang(zh-Latn),
+  *:lang(ja-Latn),
+  *:not(:lang(zh)):not(:lang(ja)) {
+    @<span class="hljs-keyword">extend</span> %han-cursive;
+  }
+}
+</code></pre>
+</section>
+<section class="self-contained">
+<h2 id="sectional">章節的編排 </h2>
+<h3 id="sectional-counter">章節的計數 </h3>
+<p>若欲在非「文章區塊容器」（預設為文章<code>article</code>元素）中使用章節的計數功能，直接混用<code>han-section-counter</code>即可。套用後，容器內二至四級標題將自動納入計數，二級標題使用漢字數字（一二三……）標示，三、四級標題則使用「1.1」「1.2.1」數字形式，適合用於技術文獻或長篇文章。</p>
+<pre id="info-16"><code class="language-scss">@<span class="hljs-keyword">include</span> han-section-counter( <span class="hljs-variable">$toc</span>: false );
+</code></pre>
+<div class="info parameter" id="info-17">
+<h4 id="sec-12">參數說明</h4>
+<dl>
+<dt><code>$toc</code></dt>
+<dd>
+<p>使用目錄清單與否，預設關閉。開啓後，容器下類別為<code>.toc</code>的有序清單<code>ol</code>元素即作為該容器的目錄，其後每增加一子清單元素，即為下一級的標題名稱容器，可置於長篇文章頂部，方便跳轉及査閱。</p>
+</dd>
+</dl>
+</div>
+<p>示例請見<a href="http://ethantw.github.io/Han/latest/counter.html">測試範例頁·章節與目錄的計數</a>。</p>
+</section>
+<section class="self-contained">
+<h2 id="inline">行的組成 </h2>
+<h3 id="inline-emphasis-mark">着重號 </h3>
+<p>強調<code>em</code>元素預設使用着重號樣式，「漢字標準格式」提供接口方便其他選擇器使用相同的CSS3 <code>text-emphasis</code>屬性的polyfill。包含Sass及JavaScript二部分，後者可依需求選用。</p>
+<h4 id="sec-15">Sass</h4>
+<pre id="info-18"><code>@include han-text-emphasis( 
+<span class="hljs-meta">  $</span><span class="bash">posi: under,</span>
+<span class="hljs-meta">  $</span><span class="bash">mark: circle,</span>
+<span class="hljs-meta">  $</span><span class="bash">shape: filled,</span>
+<span class="hljs-meta">  $</span><span class="bash">color: inherit,</span>
+<span class="hljs-meta">  $</span><span class="bash">skip: <span class="hljs-literal">true</span>,</span>
+<span class="hljs-meta">  $</span><span class="bash">extend: <span class="hljs-literal">true</span></span>
+);
+</code></pre>
+<div class="info parameter" id="info-19">
+<h4 id="sec-16">參數說明</h4>
+<dl>
+<dt><code>$posi</code></dt>
+<dd>
+<p>着重號的位置，可為字下<code>under</code>或字上<code>over</code>。</p>
+</dd>
+<dt><code>$mark</code></dt>
+<dd>
+<p>着重號符號，選項有圈<code>circle</code>、點<code>dot</code>、雙圈<code>double-circle</code>、三角形<code>triangle</code>、芝麻點<code>sesame</code>或其他字符<code>&lt;string&gt;</code>。</p>
+</dd>
+<dt><code>$shape</code></dt>
+<dd>
+<p>着重號形狀，填滿<code>filled</code>、空心<code>open、無</code>none`。</p>
+</dd>
+<dt><code>$color</code></dt>
+<dd>
+<p>着重號顏色。</p>
+</dd>
+<dt><code>$skip</code></dt>
+<dd>
+<p>規避標點符號與否（需配合JavaScript腳本）。</p>
+</dd>
+<dt><code>$extend</code></dt>
+<dd>
+<p>使用選擇器 @extend與否，可減縮生成的CSS代碼大小。</p>
+</dd>
+</dl>
+</div>
+<h4 id="sec-17">JavaScript（選用）</h4>
+<pre id="info-20"><code class="language-javascript">Han( context ).renderEm( selector )
+</code></pre>
+<div class="info parameter" id="info-21">
+<h4 id="sec-18">參數說明</h4>
+<dl>
+<dt><code>context</code></dt>
+<dd>
+<p>套用着重號選擇器的範圍，預設為文件內容<code>body</code>元素。</p>
+</dd>
+<dt><code>selector</code></dt>
+<dd>
+<p>套用着重號的目標選擇器，支援CSS選擇器語法。</p>
+</dd>
+</dl>
+</div>
+<p>示例請見<a href="http://ethantw.github.io/Han/latest/em.html">測試範例頁·強調元素（着重號）</a>。</p>
+<h3 id="inline-ligature">啓用web font合字功能 </h3>
+<p>在需要啓用web font合字（ligature）功能的選擇器上引用如下 @extend。</p>
+<pre id="info-22"><code>@<span class="hljs-keyword">extend</span> %han-ligature;
+</code></pre>
+<h3 id="inline-hanging_biaodian">行尾點號懸掛 </h3>
+<p>見<a href="/manual/sass-api#sec-26">Sass變數彙整下的相應小節</a>。</p>
+<h3 id="inline-vertical_zhuyin">直式注音符號 </h3>
+<p>非行間注元素下、符合han.js渲染的注音符號格式之容器可以引用直式注音符號樣式 @extend。</p>
+<pre id="info-23"><code class="language-scss">@<span class="hljs-keyword">extend</span> %han-zhuyin;
+</code></pre>
+</section>
+<section class="self-contained">
+<h2 id="variable"><span lang="en">Sass</span>變數彙整 </h2>
+<p>以下是「漢字標準格式」Sass樣式表下所有可調控的變數及其預設値。最佳實踐方式係在引用<code>_han.sass</code>前，為需要更動的變數賦値。</p>
+<h3 id="sec-23">檔案路徑</h3>
+<p>Web fonts所在路徑，</p>
+<pre id="info-24"><code class="language-scss"><span class="hljs-variable">$han-font-path</span>: <span class="hljs-string">'./font/'</span>;
+</code></pre>
+<h3 id="sec-24">元素容器的選用</h3>
+<p>根元素，依需求可改用<code>:root</code>等。</p>
+<pre id="info-25"><code class="language-scss"><span class="hljs-variable">$han-root</span>: html;
+</code></pre>
+<p>文章區塊容器，其他的可能値有<code>.article</code>、<code>.entry</code>、<code>#post</code>……等。</p>
+<pre id="info-26"><code class="language-scss"><span class="hljs-variable">$han-article</span>: article;
+</code></pre>
+<p>「行動裝置模式」的啓用寬度（裝置或瀏覽器視窗），</p>
+<pre id="info-27"><code class="language-scss"><span class="hljs-variable">$han-mobile-device-width</span>: <span class="hljs-number">480px</span>;
+</code></pre>
+<h3 id="sec-25">文字樣式</h3>
+<p>行高（<a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域行高</a>、<a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章行高</a>），</p>
+<pre id="info-28"><code class="language-scss"><span class="hljs-variable">$han-line-height</span>:         <span class="hljs-number">1.3</span>;  <span class="hljs-comment">// 全域行高（設置於根元素）</span>
+<span class="hljs-variable">$han-article-line-height</span>: <span class="hljs-number">1.7</span>;  <span class="hljs-comment">// 文章行高（設置於文章區塊容器）</span>
+</code></pre>
+<p>文章區塊是否使用<a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">齊頭尾文字對齊</a>。</p>
+<pre id="info-29"><code class="language-scss"><span class="hljs-variable">$han-article-justify</span>:     true;
+</code></pre>
+<p>文章區塊是否啓用「<a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a>」功能。</p>
+<pre id="info-30"><code class="language-scss"><span class="hljs-variable">$han-section-counter</span>:     false;  <span class="hljs-comment">// 章節標題計數</span>
+<span class="hljs-variable">$han-section-counter-toc</span>: false;  <span class="hljs-comment">// 目錄計數</span>
+</code></pre>
+<p><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">縮進</a>字數，</p>
+<pre id="info-31"><code class="language-scss"><span class="hljs-variable">$han-indent</span>:    <span class="hljs-number">2em</span>;
+<span class="hljs-variable">$han-indent-md</span>: <span class="hljs-number">1em</span>;  <span class="hljs-comment">// 行動裝置上的縮進</span>
+</code></pre>
+<p><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian-qiangdiao">着重號</a>相關設定，</p>
+<pre id="info-32"><code class="language-scss"><span class="hljs-comment">// 遇標點回避與否</span>
+<span class="hljs-variable">$han-text-emphasis-skip</span>: true;
+
+<span class="hljs-comment">// 着重號形狀</span>
+<span class="hljs-comment">// `none` || `filled` || `open`</span>
+<span class="hljs-variable">$han-text-emphasis-shape</span>: filled;
+
+<span class="hljs-comment">// 着重號符號</span>
+<span class="hljs-comment">// `dot` || `circle` || `double-circle` || `triangle` || `sesame` || &lt;string&gt;</span>
+<span class="hljs-variable">$han-text-emphasis-mark</span>: circle;
+
+<span class="hljs-comment">// 着重號位置</span>
+<span class="hljs-comment">// `over` || `under`</span>
+<span class="hljs-variable">$han-text-emphasis-posi</span>: under;
+
+<span class="hljs-comment">// 着重號顏色</span>
+<span class="hljs-comment">// `inherit` || &lt;color&gt;</span>
+<span class="hljs-variable">$han-text-emphasis-color</span>: inherit;
+
+<span class="hljs-comment">// 日文着重號樣式設定（同上）</span>
+<span class="hljs-variable">$han-text-emphasis-shape-ja</span>: filled;
+<span class="hljs-variable">$han-text-emphasis-mark-ja</span>:  sesame;
+<span class="hljs-variable">$han-text-emphasis-posi-ja</span>:  over;
+<span class="hljs-variable">$han-text-emphasis-color-ja</span>: inherit;
+</code></pre>
+<p>行間注元素中，<a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu-zhuyin_hangjianzhu">注音符號</a>的字體大小（單位：em），</p>
+<pre id="info-33"><code class="language-scss"><span class="hljs-variable">$han-zhuyin-size</span>: .<span class="hljs-number">5</span>;
+</code></pre>
+<h3 id="sec-26">文字設計</h3>
+<p>字集相關設定（<a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">漢字</a>、<a href="http://localhost:9999/manual/wenzisheji#biaodian_yangshi_xiuzheng-zhongwen_biaodian_liebiao">標點</a>），</p>
+<pre id="info-34"><code class="language-scss"><span class="hljs-comment">// 繁體中文字體變體</span>
+<span class="hljs-comment">// `default` || `CNS` || `GB`</span>
+<span class="hljs-variable">$han-glyph-set-hant</span>: default;
+
+<span class="hljs-comment">// 繁體中文標點字體</span>
+<span class="hljs-comment">// `Pro` || `CNS` || `GB` || `simp`</span>
+<span class="hljs-variable">$han-biaodian-hant</span>: Pro;
+
+<span class="hljs-comment">// 簡體中文字體變體</span>
+<span class="hljs-comment">// `default` || `GB`</span>
+<span class="hljs-variable">$han-glyph-set-hans</span>: GB;
+
+<span class="hljs-comment">// 簡體中文標點字體</span>
+<span class="hljs-comment">// `Pro` || `CNS` || `GB` || `simp`</span>
+<span class="hljs-variable">$han-biaodian-hans</span>: GB;
+</code></pre>
+<p>西文預設字體，</p>
+<pre id="info-35"><code class="language-scss"><span class="hljs-comment">// 無襯線</span>
+<span class="hljs-variable">$han-sans</span>:  <span class="hljs-string">'Helvetica Neue'</span>, Helvetica, Arial;
+<span class="hljs-comment">// 襯線</span>
+<span class="hljs-variable">$han-serif</span>: Georgia, <span class="hljs-string">'Times New Roman'</span>;
+<span class="hljs-comment">// 等寬</span>
+<span class="hljs-variable">$han-mono</span>:  Menlo, Courier;
+</code></pre>
+<p>中文預設字體，</p>
+<pre id="info-36"><code class="language-scss"><span class="hljs-variable">$han-sans-zh</span>:    <span class="hljs-string">''</span>;
+<span class="hljs-variable">$han-serif-zh</span>:   <span class="hljs-string">''</span>;
+<span class="hljs-variable">$han-cursive-zh</span>: <span class="hljs-string">''</span>;
+<span class="hljs-variable">$han-mono-zh</span>:    <span class="hljs-variable">$han-sans-zh</span>;
+</code></pre>
+<h3 id="sec-27">行的組成</h3>
+<p>各語言文字的<a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a>啓用與否，</p>
+<pre id="info-37"><code class="language-scss"><span class="hljs-comment">// 繁體中文</span>
+<span class="hljs-variable">$han-hanging-hant</span>: false;
+<span class="hljs-comment">// 簡體中文</span>
+<span class="hljs-variable">$han-hanging-hans</span>: true;
+<span class="hljs-comment">// 日語</span>
+<span class="hljs-variable">$han-hanging-ja</span>:   true;
+</code></pre>
+</section>
+<footer class="main-content"><ul class="github"><li><a id="edit-this" href="https://github.com/ethantw/Han-Manual/tree/master/doc">協助妥善這分文件</a>
+</li><li><a id="issue-this" href="https://github.com/ethantw/Han/issues">提問題</a></li></ul><ul class="share"><li><button id="share2twr" title="分享至Twitter">分享至Twitter</button></li><li><button id="share2fb" title="分享至Facebook">分享至Facebook</button></li><li><button id="share2goog" title="分享至Google+">分享至Google+</button></li><li><button id="share2wbo" title="分享至新浪微博">分享至新浪微博</button></li></ul></footer></article><div id="sidebar" class="layout toc"><ol><li class="conghe_kaishi starting">從何開始<ol><li class="jianjie index"><a href="/manual">簡介</a></li><li class="install anzhuang_yu_qiyong"><a href="/manual/anzhuang_yu_qiyong">安裝與啓用</a></li><li class="faq"><a href="/manual/faq">常見問題</a></li><li class="glossary"><a href="/manual/glossary">辭彙表</a></li><li class="used-by"><a href="/manual/used-by">使用的網站</a></li></ol></li><li class="jiben_gongneng basic">基本功能<ol><li class="yangshi_biaozhunhua normalisation"><a href="/manual/yangshi_biaozhunhua">樣式標準化</a><ol><li class="gaishu"><a href="/manual/yangshi_biaozhunhua#gaishu">概述</a></li><li class="quanyu_zitiyangshi"><a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域字體樣式</a></li><li class="suojin"><a href="/manual/yangshi_biaozhunhua#suojin">縮進</a></li><li class="lianluozixun_yuansu"><a href="/manual/yangshi_biaozhunhua#lianluozixun_yuansu">聯絡資訊元素</a></li><li class="geshiyuchuli_yuansu"><a href="/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu">格式預處理元素</a></li><li class="chaolianjie_yuansu"><a href="/manual/yangshi_biaozhunhua#chaolianjie_yuansu">超連結元素</a></li><li class="qiangdiao_yu_zhongdian"><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">強調與重點</a></li><li class="qita_cuti_wenben"><a href="/manual/yangshi_biaozhunhua#qita_cuti_wenben">其他粗體文本</a></li><li class="laiyuan_yu_yinyong_yuansu"><a href="/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu">來源與引用元素</a></li><li class="jisuanji_xiangguan_wenben"><a href="/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben">計算機相關文本</a></li><li class="bianyinwenzi_yu_bianshu_yuansu"><a href="/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素</a></li><li class="wenzi_zhuangshixian"><a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">文字裝飾線</a></li><li class="hangjianzhu_yuansu"><a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">行間注元素</a></li></ol></li><li class="wenzisheji typography"><a href="/manual/wenzisheji">文字設計</a><ol><li class="ziti_huitui_jizhi"><a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a></li><li class="biaodian_yangshi_xiuzheng"><a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a></li><li class="yushe_xiwen_ziti"><a href="/manual/wenzisheji#yushe_xiwen_ziti">預設西文字體</a></li><li class="zhongwen_hanzi_zitiji"><a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">中文漢字字體集</a></li><li class="yuansu_ziti_de_zhiding"><a href="/manual/wenzisheji#yuansu_ziti_de_zhiding">元素字體的指定</a></li><li class="butong_qingjing_xia_de_ziti"><a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti">不同情境下的字體</a></li></ol></li></ol></li><li class="gaoji_paipan_gongneng advanced">高級排版功能<ol><li class="zhangjie_de_bianpai sectional"><a href="/manual/zhangjie_de_bianpai">章節的編排</a><ol><li class="gaishu"><a href="/manual/zhangjie_de_bianpai#gaishu">概述</a></li><li class="wenzhang_de_hanggao"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章的行高</a></li><li class="wenzhang_de_duiqi"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">文章的對齊</a></li><li class="wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng"><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">文章、章節與內容的邊界調整</a></li><li class="zhangjie_yu_mulu_de_jishu"><a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a></li></ol></li><li class="hang_de_zucheng inline"><a href="/manual/hang_de_zucheng">行的組成</a><ol><li class="gaishu"><a href="/manual/hang_de_zucheng#gaishu">概述</a></li><li class="hanzi-xiwen_hunpai_jianxi"><a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a></li><li class="biaodian_jiya"><a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a></li><li class="hangwei_dianhao_xuangua"><a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a></li><li class="ziyuan_de_tihuan"><a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">字元的替換</a></li></ol></li></ol></li><li class="api">APIs<ol><li class="sass-api"><a href="/manual/sass-api">Sass</a><ol><li class="gaishu"><a href="/manual/sass-api#gaishu">概述</a></li><li class="module"><a href="/manual/sass-api#module">模組</a></li><li class="ziti_jixing_extend"><a href="/manual/sass-api#ziti_jixing_extend">字體基型@extend</a></li><li class="sectional"><a href="/manual/sass-api#sectional">章節的編排</a></li><li class="inline"><a href="/manual/sass-api#inline">行的組成</a></li><li class="variable"><a href="/manual/sass-api#variable">Sass變數彙整</a></li></ol></li><li class="js-api"><a href="/manual/js-api">JavaScript腳本</a><ol><li class="gaishu"><a href="/manual/js-api#gaishu">概述</a></li><li class="han"><a href="/manual/js-api#han">Han構造函數</a></li><li class="rendering"><a href="/manual/js-api#rendering">渲染機制</a></li><li class="init-cond"><a href="/manual/js-api#init-cond">環境初始化</a></li><li class="normalize"><a href="/manual/js-api#normalize">樣式標準化</a></li><li class="inline"><a href="/manual/js-api#inline">行的組成</a></li><li class="support"><a href="/manual/js-api#support">功能與字體支援偵測</a></li><li class="find"><a href="/manual/js-api#find">字元査替器</a></li><li class="selector"><a href="/manual/js-api#selector">詞級、字級選擇器</a></li><li class="unicode"><a href="/manual/js-api#unicode">萬國碼區段及正則表達式</a></li></ol></li></ol></li></ol></div><script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script><!--script(src='/latest/han.min.js')--><script src="/app.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-18673404-2', 'auto');
+ga('send', 'pageview');</script></body></html>

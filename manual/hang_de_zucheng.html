@@ -1,0 +1,167 @@
+<html lang="zh-Hant" class="han-init"><head><meta charset="utf-8"><title>行的組成 — 漢字標準格式・使用手冊</title><script>void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css"><!--link(rel='stylesheet', href='/latest/han.min.css')--><link rel="stylesheet" href="/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="印刷品般的漢字網頁排版框架"><meta name="keywords" content="漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography"><link rel="shortcut icon" href="/img/favicon.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><meta property="og:title" content="行的組成 — 漢字標準格式・使用手冊"><meta property="og:description" content="「漢字標準格式」是一套集成「語意樣式標準化」「文字設計」「高級排版功能」三大模組，完整支援繁簡中文與日文的排版框架，係萬維網時代的漢字問題解決之道。"><meta property="og:image" content="http://css.hanzi.co/img/typeset.png"><meta property="og:image" content="http://css.hanzi.co/img/em-based.png"><meta property="og:image" content="http://css.hanzi.co/img/typefaces.png"><link rel="image_src" href="http://css.hanzi.co/img/typeset.png"></head><body data-chap="hang_de_zucheng" class="manual hang_de_zucheng"><header class="layout"><div><div class="logo"><h1><a href="/manual/">漢字標準格式</a></h1><p class="desc">印刷品般的漢字排版框架</p></div><ul><li><a id="github-repo" href="https://github.com/ethantw/Han">GitHub Project</a></li><li><button id="trad2simp">繁簡切換</button></li></ul><button id="toggle-nav" hidden="">選單開關</button></div></header><article class="main-content layout"><h1>行的組成</h1>
+<h2 id="gaishu">概述 </h2>
+<p>「行的組成」屬於漢字標準格式的高級排版功能，藉由行內文字、標點符號等基本組成元素的調整，提升頁面整體的易讀性。</p>
+<h2 id="hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙 </h2>
+<p>現代排版中，漢字常同其他文字混排，其中最廣泛者即拉丁字母，此外，希臘字母、西里爾字母等亦時有所見，在漢字同這些字母文字混排時，由於字形特徵迥異，需在二者間加入間隙以達平滑過渡。「漢字標準格式」提供「漢字－西文混排間隙」功能（需配合JavaScript腳本），預設在「漢字－拉丁字母」「漢字－希臘字母」「漢字－西里耳字母」間自動加入寬為0.25em的間隙（可能隨字元對齊致寬度偶有差異）。</p>
+<h3 id="hanzi-xiwen_hunpai_jianxi-shili">示例 </h3>
+<div class="example" id="info-0">
+<h4 id="sec-3">拉丁字母及數字</h4>
+<p>研究發現，全球狂銷的蘋果iPad超省電。根據非營利組織<abbr lang="en" title="Electric Power Research Institute">EPRI</abbr>（電力研究中心），iPad一年電費只需1.36美刀（U.S. Dollar）。</p>
+<hr>
+<h4 id="sec-4">希臘字母</h4>
+<p>游離輻射可以區分為高能粒子流與高能電磁波，其中高能粒子流包含α粒子、β粒子（+/−）與中子，高能電磁波包含γ射線、X射線與特定波長的紫外線。</p>
+<hr>
+<h4 id="sec-5">西里爾字母</h4>
+<p>我有學過<span lang="uk">українська мова</span>，所以<span lang="ru">русский язык</span>我可以稍微看得懂。</p>
+</div>
+<p>關於本節的詳盡示例，請見<a href="http://ethantw.github.io/Han/latest/hws.html">測試範例頁·漢字－西文混排間隙</a>。</p>
+<h3 id="hanzi-xiwen_hunpai_jianxi-zuoyong_fanwei">作用範圍 </h3>
+<p>漢字－西文混排間隙預設作用範圍為文件內容<code>body</code>元素，遇下列元素將自行規避。</p>
+<ul>
+<li>文字輸入區塊<code>textarea</code>元素</li>
+<li>計算機相關文本，如<code>code, kbd, samp, pre</code>等元素</li>
+</ul>
+<h3 id="hanzi-xiwen_hunpai_jianxi-tingyong_fangshi">停用方式 </h3>
+<h4 id="sec-8">在特定DOM範圍內停用漢字－西文混排間隙</h4>
+<p>以下示例使用CSS將類別為<code>.warning</code>的容器下的漢字－西文混排間隙隱藏。</p>
+<pre id="info-1"><code class="language-css"><span class="hljs-selector-class">.warning</span> <span class="hljs-selector-tag">hws</span><span class="hljs-selector-attr">[hidden]</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+</code></pre>
+<p>或是使用JavaScript來清除漢字－西文混排間隙<code>hws</code>元素節點。</p>
+<pre id="info-2"><code class="language-javascript"><span class="hljs-keyword">var</span> warning = <span class="hljs-built_in">document</span>.querySelectorAll( <span class="hljs-string">'.warning'</span> )
+<span class="hljs-keyword">var</span> ahws = [].slice.call( warning.querySelectorAll( <span class="hljs-string">'hws'</span> ))
+
+ahws
+.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> hws </span>) </span>{
+    warning.removeChild( hws )
+})
+</code></pre>
+<h4 id="sec-9">停用JS腳本內的.renderHWS()渲染</h4>
+<p>目前<code>han.js</code>尚未提供定義預設渲染途徑的方法，通過規避<code>renderHWS()</code>，即可停用漢字－西文混排間隙功能。</p>
+<pre id="info-3"><code class="language-javascript">Han()
+.initCond()
+.renderElem()
+.renderHanging()
+.renderJiya()
+<span class="hljs-comment">//.renderHWS()</span>
+.correctBasicBD()
+.substCombLigaWithPUA()
+</code></pre>
+<p>或，</p>
+<pre id="info-4"><code class="language-javascript">Han().setRoutine([
+  <span class="hljs-string">'initCond'</span>, <span class="hljs-string">'renderElem'</span>, <span class="hljs-string">'renderHanging'</span>, <span class="hljs-string">'renderJiya'</span>,
+  <span class="hljs-comment">// 'renderHWS',</span>
+  <span class="hljs-string">'correctBasicBD'</span>, <span class="hljs-string">'substCombLigaWithPUA'</span>
+]).render()
+</code></pre>
+<h2 id="biaodian_jiya">標點擠壓 </h2>
+<p>漢字排版中，幾乎所有的標點符號皆佔一個漢字的空間，其中，日式點號、括號等符號位在靠近受注漢字一側，保留了半個漢字寬度的空白空間，連續使用多個符號時，字與字間將出現一個漢字寬度的空隙，不甚美觀。「漢字標準格式」提供「標點擠壓」功能（需配合JavaScript腳本），妥善縮減連續標點及行首／行尾標點的多餘空間。</p>
+<div class="example" id="info-5">
+<style scoped="">
+.reset h-char h-cs,
+.han-space .reset h-hangable h-char h-cs:lang(zh) {
+  display: inline-block !important;
+  width: .5em;
+}
+</style>
+<div class="reset">
+<h4 id="sec-11">調整前</h4>
+<p>何謂「標點『擠壓』」呢？<br>
+讓我來告訴你何謂「『標點』擠壓」。<br>
+「『漢字』標準格式」</p>
+</div>
+<hr>
+<h4 id="sec-12">調整後</h4>
+<p>何謂「標點『擠壓』」呢？<br>
+讓我來告訴你何謂「『標點』擠壓」。<br>
+「『漢字』標準格式」</p>
+</div> 
+<p>關於本節的詳盡示例，請見<a href="http://ethantw.github.io/Han/latest/jiya.html">測試範例頁·標點擠壓</a>。</p>
+<h3 id="biaodian_jiya-tingyong_fangshi">停用方式 </h3>
+<h4 id="sec-14">停用JS腳本內的.renderJiya()渲染</h4>
+<p>目前<code>han.js</code>尚未提供定義預設渲染途徑的方法，通過規避<code>renderJiya()</code>，即可停用標點擠壓功能。</p>
+<pre id="info-6"><code class="language-javascript">Han()
+.initCond()
+.renderElem()
+.renderHanging()
+<span class="hljs-comment">//.renderJiya()</span>
+.renderHWS()
+.correctBasicBD()
+.substCombLigaWithPUA()
+</code></pre>
+<p>或，</p>
+<pre id="info-7"><code class="language-javascript">Han().setRoutine([
+  <span class="hljs-string">'initCond'</span>, <span class="hljs-string">'renderElem'</span>, <span class="hljs-string">'renderHanging'</span>,
+  <span class="hljs-comment">// 'renderJiya',</span>
+  <span class="hljs-string">'renderHWS'</span>, <span class="hljs-string">'correctBasicBD'</span>, <span class="hljs-string">'substCombLigaWithPUA'</span>
+]).render()
+</code></pre>
+<h2 id="hangwei_dianhao_xuangua">行尾點號懸掛 </h2>
+<p>行尾點號懸掛功能是「標點禁則」與「標點擠壓」的延伸，將點號懸掛出版心，避免標點禁則影響頭尾對齊或行尾的空間。目前「漢字標準格式」支援頓號、逗號、句號、全形西文句號<code lang="zh-Hans">、，。．</code>四個點號的行尾懸掛。</p>
+<div class="info note" id="info-8">
+<p><strong>提示：</strong>此功能新增自v3.2.0，並需搭配空格字體<code>han-space.woff</code>方可正常使用。</p>
+</div>
+<div class="info flag related" id="info-9">
+<p><strong>提示：</strong>使用繁體中文的網頁或元素預設不使用行尾點號懸掛，可透過相應的Sass變數<code>$han-hanging-hant: true;</code>啓用。</p>
+</div>
+<div class="example" id="info-10">
+<style scoped="">
+.narrow {
+    width: 16em;
+    border-right: 1px solid #ddd;
+}
+</style>
+<div class="narrow">
+<div lang="zh-Hant">
+<h3 id="sec-16">調整前</h3>
+<p>请你们告诉我这是怎么一回事……。</p>
+<p>把示例给看清楚了，这是一种点号、「开引号」的组合也可以标点悬挂的概念。</p>
+</div>
+</div>
+<hr>
+<div class="narrow">
+<div lang="zh-Hans">
+<h3 id="sec-17">調整後</h3>
+<p>请你们告诉我这是怎么一回事……。</p>
+<p>把示例给看清楚了，这是一种点号、「开引号」的组合也可以标点悬挂的概念。</p>
+</div>
+</div> 
+</div> 
+<p>關於本節的詳盡示例，請見<a href="http://ethantw.github.io/Han/latest/hanging.html">測試範例頁·行尾點號懸掛</a>。</p>
+<h3 id="hangwei_dianhao_xuangua-tingyong_fangshi">停用方式 </h3>
+<h4 id="sec-19">使用Sass變數關閉行尾點號懸掛</h4>
+<pre id="info-11"><code class="language-scss"><span class="hljs-variable">$han-hanging-hant</span>: false; <span class="hljs-comment">// 繁體中文</span>
+<span class="hljs-variable">$han-hanging-hans</span>: false; <span class="hljs-comment">// 簡體中文</span>
+<span class="hljs-variable">$han-hanging-ja</span>:   false; <span class="hljs-comment">// 日語</span>
+</code></pre>
+<h4 id="sec-20">停用JS腳本內的.renderHanging()渲染</h4>
+<p>目前<code>han.js</code>尚未提供定義預設渲染途徑的方法，通過規避<code>renderHanging()</code>，即可停用行尾點號懸掛功能。</p>
+<pre id="info-12"><code class="language-javascript">Han()
+.initCond()
+.renderElem()
+<span class="hljs-comment">//.renderHanging()</span>
+.renderJiya()
+.renderHWS()
+.correctBasicBD()
+.substCombLigaWithPUA()
+</code></pre>
+<p>或，</p>
+<pre id="info-13"><code class="language-javascript">Han().setRoutine([
+  <span class="hljs-string">'initCond'</span>, <span class="hljs-string">'renderElem'</span>, 
+  <span class="hljs-comment">// 'renderHanging',</span>
+  <span class="hljs-string">'renderJiya'</span>, <span class="hljs-string">'renderHWS'</span>, <span class="hljs-string">'correctBasicBD'</span>, <span class="hljs-string">'substCombLigaWithPUA'</span>
+]).render()
+</code></pre>
+<h2 id="ziyuan_de_tihuan">字元的替換 </h2>
+<p>「漢字標準格式」腳本包含二種字元替換的模式——着重字體效果的「異體字顯示」與着重語意的「訛字（符）修正」（皆需配合JavaScript）。前者不更動DOM的原始文字，僅在顯示時使用異體字或PUA字元；後者則直接替換原始字元，確保語意正確的字符被使用。</p>
+<p><strong>請見<a href="http://ethantw.github.io/Han/latest/subst.html">測試範例頁·字元的替換</a>。</strong></p>
+<footer class="main-content"><ul class="github"><li><a id="edit-this" href="https://github.com/ethantw/Han-Manual/tree/master/doc">協助妥善這分文件</a>
+</li><li><a id="issue-this" href="https://github.com/ethantw/Han/issues">提問題</a></li></ul><ul class="share"><li><button id="share2twr" title="分享至Twitter">分享至Twitter</button></li><li><button id="share2fb" title="分享至Facebook">分享至Facebook</button></li><li><button id="share2goog" title="分享至Google+">分享至Google+</button></li><li><button id="share2wbo" title="分享至新浪微博">分享至新浪微博</button></li></ul></footer></article><div id="sidebar" class="layout toc"><ol><li class="conghe_kaishi starting">從何開始<ol><li class="jianjie index"><a href="/manual">簡介</a></li><li class="install anzhuang_yu_qiyong"><a href="/manual/anzhuang_yu_qiyong">安裝與啓用</a></li><li class="faq"><a href="/manual/faq">常見問題</a></li><li class="glossary"><a href="/manual/glossary">辭彙表</a></li><li class="used-by"><a href="/manual/used-by">使用的網站</a></li></ol></li><li class="jiben_gongneng basic">基本功能<ol><li class="yangshi_biaozhunhua normalisation"><a href="/manual/yangshi_biaozhunhua">樣式標準化</a><ol><li class="gaishu"><a href="/manual/yangshi_biaozhunhua#gaishu">概述</a></li><li class="quanyu_zitiyangshi"><a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域字體樣式</a></li><li class="suojin"><a href="/manual/yangshi_biaozhunhua#suojin">縮進</a></li><li class="lianluozixun_yuansu"><a href="/manual/yangshi_biaozhunhua#lianluozixun_yuansu">聯絡資訊元素</a></li><li class="geshiyuchuli_yuansu"><a href="/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu">格式預處理元素</a></li><li class="chaolianjie_yuansu"><a href="/manual/yangshi_biaozhunhua#chaolianjie_yuansu">超連結元素</a></li><li class="qiangdiao_yu_zhongdian"><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">強調與重點</a></li><li class="qita_cuti_wenben"><a href="/manual/yangshi_biaozhunhua#qita_cuti_wenben">其他粗體文本</a></li><li class="laiyuan_yu_yinyong_yuansu"><a href="/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu">來源與引用元素</a></li><li class="jisuanji_xiangguan_wenben"><a href="/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben">計算機相關文本</a></li><li class="bianyinwenzi_yu_bianshu_yuansu"><a href="/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素</a></li><li class="wenzi_zhuangshixian"><a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">文字裝飾線</a></li><li class="hangjianzhu_yuansu"><a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">行間注元素</a></li></ol></li><li class="wenzisheji typography"><a href="/manual/wenzisheji">文字設計</a><ol><li class="ziti_huitui_jizhi"><a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a></li><li class="biaodian_yangshi_xiuzheng"><a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a></li><li class="yushe_xiwen_ziti"><a href="/manual/wenzisheji#yushe_xiwen_ziti">預設西文字體</a></li><li class="zhongwen_hanzi_zitiji"><a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">中文漢字字體集</a></li><li class="yuansu_ziti_de_zhiding"><a href="/manual/wenzisheji#yuansu_ziti_de_zhiding">元素字體的指定</a></li><li class="butong_qingjing_xia_de_ziti"><a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti">不同情境下的字體</a></li></ol></li></ol></li><li class="gaoji_paipan_gongneng advanced">高級排版功能<ol><li class="zhangjie_de_bianpai sectional"><a href="/manual/zhangjie_de_bianpai">章節的編排</a><ol><li class="gaishu"><a href="/manual/zhangjie_de_bianpai#gaishu">概述</a></li><li class="wenzhang_de_hanggao"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章的行高</a></li><li class="wenzhang_de_duiqi"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">文章的對齊</a></li><li class="wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng"><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">文章、章節與內容的邊界調整</a></li><li class="zhangjie_yu_mulu_de_jishu"><a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a></li></ol></li><li class="hang_de_zucheng inline"><a href="/manual/hang_de_zucheng">行的組成</a><ol><li class="gaishu"><a href="/manual/hang_de_zucheng#gaishu">概述</a></li><li class="hanzi-xiwen_hunpai_jianxi"><a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a></li><li class="biaodian_jiya"><a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a></li><li class="hangwei_dianhao_xuangua"><a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a></li><li class="ziyuan_de_tihuan"><a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">字元的替換</a></li></ol></li></ol></li><li class="api">APIs<ol><li class="sass-api"><a href="/manual/sass-api">Sass</a><ol><li class="gaishu"><a href="/manual/sass-api#gaishu">概述</a></li><li class="module"><a href="/manual/sass-api#module">模組</a></li><li class="ziti_jixing_extend"><a href="/manual/sass-api#ziti_jixing_extend">字體基型@extend</a></li><li class="sectional"><a href="/manual/sass-api#sectional">章節的編排</a></li><li class="inline"><a href="/manual/sass-api#inline">行的組成</a></li><li class="variable"><a href="/manual/sass-api#variable">Sass變數彙整</a></li></ol></li><li class="js-api"><a href="/manual/js-api">JavaScript腳本</a><ol><li class="gaishu"><a href="/manual/js-api#gaishu">概述</a></li><li class="han"><a href="/manual/js-api#han">Han構造函數</a></li><li class="rendering"><a href="/manual/js-api#rendering">渲染機制</a></li><li class="init-cond"><a href="/manual/js-api#init-cond">環境初始化</a></li><li class="normalize"><a href="/manual/js-api#normalize">樣式標準化</a></li><li class="inline"><a href="/manual/js-api#inline">行的組成</a></li><li class="support"><a href="/manual/js-api#support">功能與字體支援偵測</a></li><li class="find"><a href="/manual/js-api#find">字元査替器</a></li><li class="selector"><a href="/manual/js-api#selector">詞級、字級選擇器</a></li><li class="unicode"><a href="/manual/js-api#unicode">萬國碼區段及正則表達式</a></li></ol></li></ol></li></ol></div><script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script><!--script(src='/latest/han.min.js')--><script src="/app.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-18673404-2', 'auto');
+ga('send', 'pageview');</script></body></html>

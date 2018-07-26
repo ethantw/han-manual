@@ -1,0 +1,722 @@
+<html lang="zh-Hant" class="han-init"><head><meta charset="utf-8"><title>JavaScript API — 漢字標準格式・使用手冊</title><script>void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css"><!--link(rel='stylesheet', href='/latest/han.min.css')--><link rel="stylesheet" href="/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="印刷品般的漢字網頁排版框架"><meta name="keywords" content="漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography"><link rel="shortcut icon" href="/img/favicon.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><meta property="og:title" content="JavaScript API — 漢字標準格式・使用手冊"><meta property="og:description" content="「漢字標準格式」是一套集成「語意樣式標準化」「文字設計」「高級排版功能」三大模組，完整支援繁簡中文與日文的排版框架，係萬維網時代的漢字問題解決之道。"><meta property="og:image" content="http://css.hanzi.co/img/typeset.png"><meta property="og:image" content="http://css.hanzi.co/img/em-based.png"><meta property="og:image" content="http://css.hanzi.co/img/typefaces.png"><link rel="image_src" href="http://css.hanzi.co/img/typeset.png"></head><body data-chap="js-api" class="manual js-api"><header class="layout"><div><div class="logo"><h1><a href="/manual/">漢字標準格式</a></h1><p class="desc">印刷品般的漢字排版框架</p></div><ul><li><a id="github-repo" href="https://github.com/ethantw/Han">GitHub Project</a></li><li><button id="trad2simp">繁簡切換</button></li></ul><button id="toggle-nav" hidden="">選單開關</button></div></header><article class="main-content layout"><h1><span lang="en">JavaScript API</span></h1>
+<h2 id="gaishu">概述 </h2>
+<p>「漢字標準格式」的腳本文件<code>han.js</code>提供多種接口以方便功能的調用，其所有開放的變量、常量、函數及方法皆收錄於<code>Han</code>構造函數中，亦支援異步模塊載入器（AMD或CommonJS）。</p>
+<h3 id="amd">AMD </h3>
+<pre id="info-0"><code class="language-javascript"><span class="hljs-built_in">require</span>( [ <span class="hljs-string">'./han.min'</span> ], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> Han </span>) </span>{
+  Han.init()
+})
+</code></pre>
+<h3 id="commonjs">CommonJS（NPM） </h3>
+<pre id="info-1"><code class="language-javascript"><span class="hljs-keyword">var</span> Han = <span class="hljs-built_in">require</span>( <span class="hljs-string">'han-css'</span> )
+Han.init()
+</code></pre>
+<h2 id="han">Han構造函數 </h2>
+<p>構造函數<code>Han</code>的使用方式類似jQuery，支援快捷的鏈式書寫，實例的生成亦<em>毋須</em>使用<code>new</code>運算符。</p>
+<pre id="info-2"><code class="language-javascript">Han( context, condition )
+.method()
+.method2()
+…
+</code></pre>
+<div class="info parameter" id="info-3">
+<h4 id="sec-4">參數說明</h4>
+<dl>
+<dt><code>context</code></dt>
+<dd>
+<p>選用。單一的指定渲染範圍DOM元件，預設為<code>document.body</code>。</p>
+</dd>
+<dt><code>condition</code></dt>
+<dd>
+<p>選用。附加信息——如功能、字體支援偵測類別等——的加載環境，預設為根元素<code>document.documentElement</code>。</p>
+</dd>
+</dl>
+</div>
+<section class="self-contained">
+<h2 id="rendering">渲染機制 </h2>
+<p>Han提供下列多種渲染方法，可依需求選用。</p>
+<h3 id="render">Han.fn.render() </h3>
+<p>在未更動「常規渲染途徑」（<code>Han.fn.routine</code>）的情況下，渲染途徑的簡寫方法<code>render()</code>將依下列清單之順序，依序執行各渲染方法。</p>
+<ul>
+<li>初始化<code>initCond()</code></li>
+<li>字級語意元素樣式標準化<code>renderElem()</code>
+<ul>
+<li>渲染行間注元素<code>renderRuby()</code></li>
+<li>渲染文字裝飾線元素<code>renderDecoLine()</code></li>
+<li>渲染強調元素<code>renderEm()</code></li>
+</ul></li>
+<li>渲染行尾點號懸掛<code>renderHanging()</code></li>
+<li>渲染標點擠壓<code>renderJiya()</code></li>
+<li>渲染漢字西文混排間隙<code>renderHWS()</code></li>
+<li>修正基本標點符號<code>correctBasicBD()</code><small>（瀏覽器不支援時啓用）</small></li>
+<li>以PUA字元取代合字符<code>substCombLigaWithPUA()</code><small>（瀏覽器不支援時啓用）</small></li>
+</ul>
+<pre id="info-4"><code class="language-javascript">Han( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">'.entry'</span> )).render()
+</code></pre>
+<p>上述簡寫同等於，</p>
+<pre id="info-5"><code class="language-javascript">Han( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">'.entry'</span> ))
+.initCond()
+.renderElem()
+.renderHanging()
+.renderJiya()
+.renderHWS()
+.correctBasicBD()
+.substCombLigaWithPUA()
+</code></pre>
+<h3 id="rendering-shortcut">全頁渲染簡寫Han.init() </h3>
+<p>全頁渲染簡寫方法<code>Han.init()</code>，網頁完成DOM載入後可使用乙次，為網頁載入Han渲染機制，並回傳該實例。</p>
+<pre id="info-6"><code class="language-javascript"><span class="hljs-keyword">var</span> hinst = Han.init()
+</code></pre>
+<p>等同於，</p>
+<pre id="info-7"><code class="language-javascript"><span class="hljs-keyword">var</span> hinst = Han( <span class="hljs-built_in">document</span>.body ).render()
+</code></pre>
+<h3 id="rendering-shortcut-w-class">使用類別啓用全頁渲染 </h3>
+<p>在根元素套用類別<code>.han-init</code>，或在指定單一元素上套用類別<code>.han-init-context</code>即可在DOM完成載入後渲染頁面。</p>
+<pre id="info-8"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-Hant"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"han-init"</span>&gt;</span>
+</code></pre>
+<p>或</p>
+<pre id="info-9"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"han-init-context"</span>&gt;</span>
+  …
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+</code></pre>
+<h3 id="Han-init-as-an-instance">Han.init作為實例 </h3>
+<p>原作為方法的命名空間<code>Han.init</code>在完成上述二種DOM ready渲染後，即替換為該Han實例，以利後續處理及調用。</p>
+<pre id="info-10"><code class="language-javascript">Han.init()
+
+<span class="hljs-comment">// …</span>
+
+<span class="hljs-comment">// After the DOM-ready rendering</span>
+<span class="hljs-keyword">var</span> hinst = Han.init
+
+hinst.replace( <span class="hljs-regexp">/IE\s?[6-8]/gi</span>, <span class="hljs-string">'IE11'</span> )
+</code></pre>
+<p>上述代碼大致同等於，</p>
+<pre id="info-11"><code class="language-javascript">Han.init().replace( <span class="hljs-regexp">/IE\s?[6-8]/gi</span>, <span class="hljs-string">'IE11'</span> )
+</code></pre>
+<!--
+### 設定渲染途徑
+<p>方法<code>Han.fn.setRoutine( routine )</code>可為實例定義渲染途徑。</p>
+<h4>變量說明</h4>
+<dl class='parameter'>
+<dt><code>routine</code></dt>
+<dd>
+<p>數列，渲染方法名稱組成的渲染順序。</p>
+</dd>
+</dl>
+-->
+</section>
+<section class="self-contained">
+<h2 id="init-cond">環境初始化 </h2>
+<h3 id="initCond">Han.fn.initCond() </h3>
+<p>為<code>condition</code>（預設為根元素）加入各項功能及字體支援偵測類別。</p>
+<table id="init-cond-class">
+  <style scoped="">
+#init-cond-class tr:last-child {
+  border-bottom: 1px dotted #ddd
+}
+#init-cond-class th:first-child {
+  width: 3.5em;
+}
+#init-cond-class th:nth-child(2) {
+  width: 11em;
+}
+#init-cond-class tr:first-of-type th {
+  padding: .5em 0;
+}
+  </style>
+  <thead>
+    <tr><th>分類
+    </th><th>類別名稱
+    </th><th>說明
+  </th></tr></thead>
+  <tbody><tr>
+    <th>渲染
+    </th><td><code>han-js-rendered</code>
+    </td><td>已完成「漢字標準格式」的腳本渲染。
+  </td></tr>
+  <tr>
+    <th rowspan="8">功能
+    </th><td><code>[no-]ruby</code>
+    </td><td>
+<p>瀏覽器是否支援HTML的基本行間注功能。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]ruby-display</code>
+    </td><td>
+<p>瀏覽器是否支援CSS行間注<code>ruby-display</code>屬性。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]ruby-interchar</code>
+    </td><td>
+<p>瀏覽器是否支援CSS行間注<code>ruby-position</code>屬性的<code>inter-character</code>値。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]fontface</code>
+    </td><td>
+<p>瀏覽器是否支援CSS3的<code>@font-face</code>功能。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]unicoderange</code>
+    </td><td>
+<p>瀏覽器是否支援CSS3 <code>@font-face</code>的<code>unicode-range</code>功能。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]columnwidth</code>
+    </td><td>
+<p>瀏覽器是否支援CSS3的容器分欄功能。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]textemphasis</code>
+    </td><td>
+<p>瀏覽器是否支援CSS3的文字着重號功能。</p>
+  </td></tr>
+  <tr>
+    <td><code>[no-]writingmode</code>
+    </td><td>
+<p>瀏覽器是否支援CSS的書寫模式（文字直排等）功能。</p>
+  </td></tr>
+  <tr>
+    <th rowspan="6">字體
+    </th><td><code>[no-]songti</code>
+    </td><td>作業系統是否支援宋體（Han Songti等）。
+  </td></tr>
+  <tr>
+    <td><code>[no-]songti-gb</code>
+    </td><td>作業系統是否支援簡體中文宋體（Han Songti GB）。
+  </td></tr>
+  <tr>
+    <td><code>[no-]kaiti</code>
+    </td><td>作業系統是否支援楷體（Han Kaiti等）。
+  </td></tr>
+  <tr>
+    <td><code>[no-]fangsong</code>
+    </td><td>作業系統是否支援仿宋體（Han Fangsong等）。
+  </td></tr>
+  <tr>
+    <td><code>heiti</code>
+    </td><td>假定所有作業系統皆支援黑體（Han Heiti等）。
+  </td></tr>
+  <tr>
+    <td><code>[no-]han-space</code>
+    </td><td>瀏覽器是否正確加載空格字體（用於行尾點號懸掛）。
+  </td></tr>
+</tbody></table>
+</section>
+<section class="self-contained">
+<h2 id="normalize">樣式標準化 </h2>
+<p>樣式標準化方法對下列四類、共六個字級語意元素進行DOM重構，以便在樣式表中修正樣式。</p>
+<p><a id="list-normalize-elem"></a></p>
+<!-- Use `id` instead of `name` for app.js to position correctly. -->
+<ul>
+<li>行間注<code>ruby</code>元素</li>
+<li>註記<code>u</code>及增訂<code>ins</code>元素（文字裝飾線）</li>
+<li>訛訊<code>s</code>及刪訂<code>del</code>元素（文字裝飾線）</li>
+<li>強調<code>em</code>元素（着重號）</li>
+</ul>
+<h3 id="renderElem">Han.fn.renderElem() </h3>
+<p>修正Han實例範圍內<a href="#list-normalize-elem">上述清單所列之元素樣式</a>，詳情請見以下各小節。</p>
+<h3 id="renderRuby">Han.fn.renderRuby() </h3>
+<p>依Han實例範圍內各個行間注<code>ruby</code>元素之類別，套用相應的DOM重構，以利樣式表正確顯示其樣式。</p>
+<p>相關說明，請見〈<a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">樣式標準化·行間注元素</a>〉。</p>
+<h3 id="renderDecoLine">Han.fn.renderDecoLine( [target] ) </h3>
+<p>修正Han實例範圍內包含文字裝飾線的相鄰元素，預設為註記<code>u</code>與增訂<code>ins</code>元素。<!--需要配合相應的Sass @mixin。--></p>
+<p>相關說明，請見〈<a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">樣式標準化·文字裝飾線</a>〉。</p>
+<div class="info parameter" id="info-13">
+<h4 id="sec-16">參數說明</h4>
+<dl>
+<dt><code>target</code>
+</dt><dd>
+<p>字串，選用。作用的目標元素選擇器，預設値為<code>'u, ins'</code>。</p>
+</dd></dl>
+</div>
+<h3 id="renderEm">Han.fn.renderEm( [target] ) </h3>
+<p>修正Han實例範圍內套用着重號樣式的元素，預設為強調<code>em</code>元素。需要配合相應的Sass @mixin。</p>
+<p>相關說明，請見〈<a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">樣式標準化·強調與重點</a>〉。</p>
+<div class="info parameter" id="info-14">
+<h4 id="sec-18">參數說明</h4>
+<dl>
+<dt><code>target</code>
+</dt><dd>
+<p>字串，選用。作用的目標元素選擇器，預設値為<code>'em'</code>。</p>
+</dd></dl>
+</div>
+</section>
+<section class="self-contained">
+<h2 id="inline">行的組成 </h2>
+<h3 id="renderHanging">Han.fn.renderHanging() </h3>
+<p>處理Han實例範圍內的「<a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a>」。</p>
+<h3 id="revertHanging">Han.fn.revertHanging() </h3>
+<p>回退Han實例範圍內，行尾點號懸掛修正前的DOM結構。</p>
+<h3 id="renderJiya">Han.fn.renderJiya() </h3>
+<p>處理Han實例範圍內的「<a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a>」。</p>
+<h3 id="revertJiya">Han.fn.revertJiya() </h3>
+<p>回退Han實例範圍內，標點擠壓修正前的DOM結構。</p>
+<h3 id="renderHWS">Han.fn.renderHWS( [strict] ) </h3>
+<p>處理Han實例範圍內的「<a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a>」。</p>
+<div class="info parameter" id="info-15">
+<h4 id="sec-25">參數說明</h4>
+<dl>
+<dt><code>strict</code>
+</dt><dd>
+<p>布林値，選用。是否啓用嚴格模式。預設為否。</p>
+</dd></dl>
+</div>
+<h3 id="revertHWS">Han.fn.revertHWS() </h3>
+<p>回退Han實例範圍內，漢字－西文混排間隙修正前的DOM結構。</p>
+<div class="info note important" id="info-16">
+<p><strong>注意：</strong>此方法並非嚴格的finder回退，可能導致非預期的結果，請謹慎使用。</p>
+</div>
+<h3 id="correctBasicBD">Han.fn.correctBasicBD( [all] ) </h3>
+<p>處理Han實例範圍內的「<a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a>」（瀏覽器不支援CSS3 @font-face的<code>unicode-range</code>屬性時啓用，如Mozilla Firefox）。</p>
+<div class="info parameter" id="info-17">
+<h4 id="sec-28">參數說明</h4>
+<dl>
+<dt><code>all</code>
+</dt><dd>
+<p>布林値，選用。是否在支援CSS3 <code>unicode-range</code>屬性的瀏覽器下亦進行修正。預設為否。</p>
+</dd></dl>
+</div>
+<h3 id="revertBasicBD">Han.fn.revertBasicBD() </h3>
+<p>回退Han實例範圍內，標點樣式修正前的DOM結構。</p>
+<h3 id="substCombLigaWithPUA">Han.fn.substCombLigaWithPUA() </h3>
+<p>處理Han實例範圍內的「<a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">變音組字符</a>」（瀏覽器無法正常顯示變音組字符時啓用，如IE）。</p>
+<h3 id="revertCombLigaWithPUA">Han.fn.revertCombLigaWithPUA() </h3>
+<p>回退Han實例範圍內，修正變音組字符前的DOM結構。</p>
+</section>
+<section class="self-contained">
+<h2 id="support">功能與字體支援偵測 </h2>
+<h3 id="Han-support">Han.support </h3>
+<p>對象（object），其下所包含各項目之値（布林値）表示該項目是否為使用者瀏覽器所支援。</p>
+<ul>
+<li><code>Han.support.ruby</code>（基本行間注，HTML）</li>
+<li><code>Han.support.ruby-display</code>（行間注，CSS3）</li>
+<li><code>Han.support.ruby-interchar</code>（行間注，CSS3）</li>
+<li><code>Han.support.fontface</code>（CSS3）</li>
+<li><code>Han.support.unicoderange</code>（CSS3 @font-face）</li>
+<li><code>Han.support.columnwidth</code>（CSS3）</li>
+<li><code>Han.support.textemphasis</code>（CSS3）</li>
+<li><code>Han.support.writingmode</code>（CSS3）</li>
+</ul>
+<h3 id="Han-isVowelCombLigaNormal">Han.isVowelCombLigaNormal() </h3>
+<p>函數方法。偵測瀏覽器是否正常支援拉丁字母元音的OpenType組合合字（combining ligature）功能，需在字體檔案<code>han.woff</code>正常載入的情況下，方回傳正確的偵測結果。回傳布林値。</p>
+<h3 id="Han-isVowelICombLigaNormal">Han.isVowelICombLigaNormal() </h3>
+<p>函數方法。偵測瀏覽器是否正常支援拉丁字母元音「i」的OpenType組合合字（combining ligature）功能，需在字體檔案<code>han.woff</code>正常載入的情況下，方回傳正確的偵測結果。回傳布林値。</p>
+<h3 id="Han-isZhuyinCombLigaNormal">Han.isZhuyinCombLigaNormal() </h3>
+<p>函數方法。偵測瀏覽器是否正常支援注音符號入聲調號的OpenType組合合字（combining ligature）功能，需在字體檔案<code>han.woff</code>正常載入的情況下，方回傳正確的偵測結果。回傳布林値。</p>
+<h3 id="Han-isCombLigaNormal">Han.isCombLigaNormal </h3>
+<p><strong>【已棄用】</strong>布林値，瀏覽器是否正常支援OpenType組合合字（combining ligature）功能，需在字體檔案<code>han.woff</code>正常載入的情況下，方回傳正確的偵測結果。</p>
+<h3 id="Han-isNodeNormalizeNormal">Han.isNodeNormalizeNormal </h3>
+<p>布林値，IE11的<code>Node.prototype.normalize()</code>方法可能導致錯誤，調用此變量可瞭解該方法在使用者瀏覽器上是否正常運行。</p>
+<h3 id="Han-detectFont">Han.detectFont( treat[, control, text] ) </h3>
+<p>函數方法。用於偵測字體是否為使用者作業系統所支援，回傳布林値。</p>
+<div class="info parameter" id="info-18">
+<h4 id="sec-40">參數說明</h4>
+<dl>
+<dt><code>treat</code>
+</dt><dd>
+<p>字串。實驗組字體名稱（列表）。</p>
+</dd><dt><code>control</code>
+</dt><dd>
+<p>字串，選用。對照組字體名稱（列表），預設値為無襯線<code>'sans-serif'</code>基型。</p>
+</dd><dt><code>text</code>
+</dt><dd>
+<p>字串，選用。比對二組字體的實驗文字，預設値為包含漢字及拉丁字母的<code>'辭Q'</code>。</p>
+</dd></dl>
+</div>
+<!--
+<script>
+window.addEventListener( 'DOMContentLoaded', function() {
+  for ( prop in Han ) {
+    if ( Han.hasOwnProperty( prop )) {
+      console.log( prop, Han[prop] )
+    }
+  }
+})
+</script>-->
+</section>
+<section class="self-contained">
+<h2 id="find">字元査替器 </h2>
+<p>字元査替器是基於<a href="https://github.com/padolsey/findAndReplaceDOMText">findAndReplaceDOMText庫</a>的字元査替方法集合，用以替換或使用元素來包裹DOM結構中的文字。</p>
+<p>與原生<code>String.prototype.replace()</code>等方法不同，字元査替器<em>支援跨元素邊界的字元査找。</em></p>
+<h3 id="sec-42">Han.fn.replace()</h3>
+<p>將Han指定範圍中符合<code>pattern</code>表達式的文字替換為<code>newSubStr</code>。</p>
+<pre id="info-19"><code class="language-javascript">Han( context ).replace( pattern, newSubStr )
+</code></pre>
+<div class="info parameter" id="info-20">
+<h4 id="sec-43">參數說明</h4>
+<dl>
+<dt><code>pattern</code></dt>  
+<dd>正則表達式或字串。査找指定範圍內相應的文字。
+</dd><dt><code>newSubStr</code></dt>  
+<dd>字串，目標文字的替換內容。
+</dd></dl>
+</div>
+<h3 id="sec-44">Han.fn.wrap()</h3>
+<p>以<code>newSubElem</code>返回的元素包裹Han指定範圍內、符合<code>pattern</code>表達式的文字。</p>
+<pre id="info-21"><code class="language-javascript">Han( context ).wrap( pattern, newSubElem )
+</code></pre>
+<div class="info parameter" id="info-22">
+<h4 id="sec-45">參數說明</h4>
+<dl>
+<dt><code>pattern</code></dt>
+<dd>正則表達式或字串。
+</dd><dt><code>newSubElem</code></dt>
+<dd>一個DOM對象或元素名稱字串。
+</dd></dl>
+</div>
+<h3 id="sec-46">Han.fn.revert()</h3>
+<p>回退至finder査替前的DOM狀態，回退層級以參數<code>level</code>決定，預設回退一級。</p>
+<pre id="info-23"><code class="language-javascript">Han( context )
+<span class="hljs-comment">// .replace()</span>
+<span class="hljs-comment">// .wrap()</span>
+<span class="hljs-comment">// …</span>
+.revert( [level] )
+</code></pre>
+<div class="info parameter" id="info-24">
+<h4 id="sec-47">參數說明</h4>
+<dl>
+<dt><code>level</code>
+</dt><dd>
+<p>數字、可轉換為數字的字串或<code>'all'</code>，使用<code>'all'</code>將回退該Han對象上的所有finder。</p>
+</dd></dl>
+</div>
+<h4 id="sec-48">範例</h4>
+<pre id="info-25"><code class="language-javascript"><span class="hljs-keyword">var</span> hinst = Han( <span class="hljs-built_in">document</span>.body )
+
+hinst
+.replace( <span class="hljs-regexp">/詞[匯會惠]/g</span>, <span class="hljs-string">'辭彙'</span> )
+.wrap( <span class="hljs-regexp">/辭彙/g</span>, <span class="hljs-string">'em'</span> )
+<span class="hljs-comment">// …</span>
+
+<span class="hljs-built_in">window</span>.addEventListener( <span class="hljs-string">'DOMContentLoaded'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    hinst.revert( <span class="hljs-string">'all'</span> )
+  }, <span class="hljs-number">5000</span> )
+})
+</code></pre>
+<p>網頁中的「詞匯」「詞會」「詞惠」等字樣將替換成「辭彙」，並為強調<code>em</code>元素所包裹。網頁在DOM載入完成事件觸發後5秒，受替換的文字將自動回退至先前的「詞匯」「詞會」或「詞惠」等，包裹的強調元素亦會移除。</p>
+</section>
+<section class="self-contained">
+<h2 id="selector">詞組、字級選擇器 </h2>
+<h3 id="groupify">Han.fn.groupify( [option] ) </h3>
+<p>依選項為Han對象上的指定範圍進行詞或組的包裹，實現「詞組選擇器」。</p>
+<div class="info note" id="info-26">
+<p>若需同時調用，方法<code>groupify()</code>應調用於方法<code>charify()</code><em>之前</em>，方能取得預期結果。</p>
+</div>
+<h4 id="charify-option">option及其預設値 </h4>
+<pre id="info-27"><code class="language-javascript">{
+  <span class="hljs-comment">// 漢字標點（以`h-char-group`元素包裹）</span>
+  biaodian: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 漢字（包含假名，以`h-char-group`元素包裹）</span>
+  <span class="hljs-comment">// 或使用鍵名`cjk`</span>
+  hanzi: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 假名（以`h-char-group`元素包裹）</span>
+  kana: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 諺文（詞組，以`h-word`元素包裹）</span>
+  <span class="hljs-comment">// 或使用鍵名`hangul`</span>
+  eonmun: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 西文詞（詞組，以`h-word`元素包裹）</span>
+  <span class="hljs-comment">// 包含拉丁字母、希臘字母、西里爾字母及西文標點組成的詞組</span>
+  western: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h4 id="sec-52">代碼示例</h4>
+<p>詞組選擇器處理前，</p>
+<pre id="info-28"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「你好」！
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「こんにちは」、"안녕하세요."
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>‘Hello World’, «Γειά Σου Κόσμε», 'привет мир'.
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>JavaScript代碼示例，</p>
+<pre id="info-29"><code class="language-javascript">Han( <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">'example'</span> ))
+.groupify({
+  <span class="hljs-attr">biaodian</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">hanzi</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">kana</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">eonmun</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">western</span>: <span class="hljs-literal">true</span>
+})
+</code></pre>
+<p>詞組選擇器處理後，</p>
+<pre id="info-30"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「<span class="hljs-tag">&lt;<span class="hljs-name">h-char-group</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>你好<span class="hljs-tag">&lt;/<span class="hljs-name">h-char-group</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char-group</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk"</span>&gt;</span>」！<span class="hljs-tag">&lt;/<span class="hljs-name">h-char-group</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「<span class="hljs-tag">&lt;<span class="hljs-name">h-char-group</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>こんにちは<span class="hljs-tag">&lt;/<span class="hljs-name">h-char-group</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char-group</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk"</span>&gt;</span>」、<span class="hljs-tag">&lt;/<span class="hljs-name">h-char-group</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>"<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>안녕하세요<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>."<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>‘Hello<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>World’,<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>«Γειά<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>Σου<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>Κόσμε»,<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>'привет<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-word</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"western"</span>&gt;</span>мир'.<span class="hljs-tag">&lt;/<span class="hljs-name">h-word</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<h3 id="charify">Han.fn.charify( [option] ) </h3>
+<p>依選項或預設設定為Han對象上的指定範圍進行字元包裹，實現「字級選擇器」。</p>
+<div class="info note" id="info-31">
+<p>若需同時調用，方法<code>groupify()</code>應調用於方法<code>charify()</code><em>之前</em>，有較佳效果。</p>
+</div>
+<h4 id="charify-option">option及其預設値 </h4>
+<pre id="info-32"><code class="language-javascript">{
+  <span class="hljs-comment">// 漢字標點</span>
+  biaodian: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 西文標點</span>
+  punct: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 漢字（包含假名）</span>
+  <span class="hljs-comment">// 或使用鍵名`cjk`</span>
+  hanzi: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 拉丁字母</span>
+  latin: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 希臘字母 </span>
+  <span class="hljs-comment">// 或使用鍵名`greek`</span>
+  ellinika: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 西里爾字母</span>
+  <span class="hljs-comment">// 或使用鍵名`cyrillic`</span>
+  kirillica: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 假名</span>
+  kana: <span class="hljs-literal">false</span>,
+
+  <span class="hljs-comment">// 諺文</span>
+  <span class="hljs-comment">// 或使用鍵名`hangul`</span>
+  eonmun: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h4 id="sec-55">代碼示例</h4>
+<h5 id="sec-56">字級選擇器處理前</h5>
+<pre id="info-33"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「你好」！
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「こんにちは」、"안녕하세요."
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>‘Hello World’, «Γειά Σου Κόσμε», 'привет мир'.
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>JavaScript腳本，</p>
+<pre id="info-34"><code class="language-javascript">Han( <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">'example'</span> ))
+.charify({
+  <span class="hljs-attr">biaodian</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">punct</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">hanzi</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">latin</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">ellinika</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">kirillica</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">kana</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">eonmun</span>: <span class="hljs-literal">true</span>
+})
+</code></pre>
+<h5 id="sec-57">字級選擇器處理後</h5>
+<pre id="info-35"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"300c"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-open"</span>&gt;</span>「<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>你<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>好<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"300d"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-close bd-end"</span>&gt;</span>」<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"ff01"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-end"</span>&gt;</span>！<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"300c"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-open"</span>&gt;</span>「<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>こ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>ん<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>に<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>ち<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hanzi cjk"</span>&gt;</span>は<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"300d"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-close bd-end"</span>&gt;</span>」<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">unicode</span>=<span class="hljs-string">"3001"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"biaodian cjk bd-end"</span>&gt;</span>、<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>"<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>안<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>녕<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>하<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>세<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"eonmun hangul"</span>&gt;</span>요<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>"<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>‘<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>H<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>e<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>l<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>l<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>o<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>W<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>o<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>r<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>l<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet latin"</span>&gt;</span>d<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>’<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>«<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>Γ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>ει<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>ά<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>Σ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>ο<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>υ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>Κ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>ό<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>σ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>μ<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet ellinika greek"</span>&gt;</span>ε<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>»<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>,<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>'<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>п<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>р<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>и<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>в<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>е<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>т<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>м<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>и<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alphabet kirillica cyrillic"</span>&gt;</span>р<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>'<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-char</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"punct"</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">h-char</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<h3 id="jinzify">Han.fn.jinzify() </h3>
+<p>為Han對象上的指定範圍加入標點禁則處理。</p>
+<div class="info note" id="info-36">
+<p>一般情況下，瀏覽器可以正常套用標點禁則，毋須使用此方法。若需同時調用，方法<code>jinzify()</code>應調用於方法<code>groupify()</code>及<code>charify()</code><em>之前</em>，有較佳效果。</p>
+</div>
+<h4 id="sec-59">代碼示例</h4>
+<h5 id="sec-60">禁則處理前</h5>
+<pre id="info-37"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>林·菲利認為，身為一個「航海家」，這是不可寬恕的過錯。
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>JavaScript腳本，</p>
+<pre id="info-38"><code class="language-javascript">Han( <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">'example'</span> )).jinzify()
+</code></pre>
+<h5 id="sec-61">禁則處理後</h5>
+<pre id="info-39"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h-jinze</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"middle"</span>&gt;</span>林·菲<span class="hljs-tag">&lt;/<span class="hljs-name">h-jinze</span>&gt;</span>利認<span class="hljs-tag">&lt;<span class="hljs-name">h-jinze</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wei"</span>&gt;</span>為，<span class="hljs-tag">&lt;/<span class="hljs-name">h-jinze</span>&gt;</span>身為一個<span class="hljs-tag">&lt;<span class="hljs-name">h-jinze</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tou"</span>&gt;</span>「航<span class="hljs-tag">&lt;/<span class="hljs-name">h-jinze</span>&gt;</span>海<span class="hljs-tag">&lt;<span class="hljs-name">h-jinze</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wei"</span>&gt;</span>家」，<span class="hljs-tag">&lt;/<span class="hljs-name">h-jinze</span>&gt;</span>這是不可寬恕的過<span class="hljs-tag">&lt;<span class="hljs-name">h-jinze</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wei"</span>&gt;</span>錯。<span class="hljs-tag">&lt;/<span class="hljs-name">h-jinze</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>相應的CSS樣式，</p>
+<pre id="info-40"><code class="language-css"><span class="hljs-selector-tag">h-jinze</span> {
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+</section>
+<section class="self-contained">
+<h2 id="unicode">萬國碼區段及正則表達式 </h2>
+<p>Han包含二類萬國碼區段表達式常量——以字串集合而成的<code>Han.UNICODE</code>及以正則表達式集合而成的<code>Han.TYPESET</code>。</p>
+<h3 id="unicode-cjk-biaodian">漢字標點 </h3>
+<h4 id="sec-64">點號</h4>
+<ul>
+<li><code>Han.UNICODE.biaodian.base</code></li>
+</ul>
+<h4 id="sec-65">開始括注號</h4>
+<ul>
+<li><code>Han.UNICODE.biaodian.open</code></li>
+<li><code>Han.TYPESET.char.biaodian.open</code></li>
+</ul>
+<h4 id="sec-66">結束括注號</h4>
+<ul>
+<li><code>Han.UNICODE.biaodian.close</code></li>
+<li><code>Han.TYPESET.char.biaodian.close</code></li>
+</ul>
+<h4 id="sec-67">結束標點符號（包含點號與結束括注號）</h4>
+<ul>
+<li><code>Han.UNICODE.biaodian.end</code></li>
+<li><code>Han.TYPESET.char.biaodian.end</code></li>
+</ul>
+<h4 id="sec-68">佔二個漢字空間的標點</h4>
+<ul>
+<li><code>Han.UNICODE.biaodian.liga</code></li>
+<li><code>Han.TYPESET.char.biaodian.liga</code></li>
+</ul>
+<h4 id="sec-69">漢字標點表達式</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.biaodian.all</code></li>
+<li>字符組：<code>Han.TYPESET.group.biaodian[0]</code></li>
+<li>字符組：<code>Han.TYPESET.group.biaodian[1]</code></li>
+</ul>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-western-punct">西文標點 </h3>
+<h4 id="sec-71">點號</h4>
+<ul>
+<li><code>Han.UNICODE.punct.base</code></li>
+</ul>
+<h4 id="sec-72">開始括注號</h4>
+<ul>
+<li><code>Han.UNICODE.punct.open</code></li>
+<li><code>Han.TYPESET.char.punct.open</code></li>
+</ul>
+<h4 id="sec-73">結束括注號</h4>
+<ul>
+<li><code>Han.UNICODE.punct.close</code></li>
+<li><code>Han.TYPESET.char.punct.close</code></li>
+</ul>
+<h4 id="sec-74">結束標點符號（包含點號與結束括注號）</h4>
+<ul>
+<li><code>Han.UNICODE.punct.end</code></li>
+<li><code>Han.TYPESET.punct.biaodian.end</code></li>
+</ul>
+<h4 id="sec-75">西文標點表達式</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.punct.all</code></li>
+</ul>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-cjk">漢字區段 </h3>
+<h4 id="sec-77">基本漢字（包含擴展區）</h4>
+<ul>
+<li><code>Han.UNICODE.cjk.base</code></li>
+<li>意音文字描述字元：<code>Han.UNICODE.cjk.desc</code></li>
+<li>繁簡漢字部首：<code>Han.UNICODE.cjk.radical</code></li>
+</ul>
+<h4 id="sec-78">漢字、假名及其相關區段表達式</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.cjk</code></li>
+<li>字符組：<code>Han.TYPESET.group.cjk</code></li>
+</ul>
+<div class="info" id="info-41">
+<p>亦可使用<code>hanzi</code>替代<code>cjk</code>鍵名。</p>
+</div>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-western">西文 </h3>
+<p>包含拉丁字母、希臘字母、西里爾字母及西文標點符號的正則表達式，多用於詞組。</p>
+<ul>
+<li>詞組：<code>Han.TYPESET.group.western</code></li>
+</ul>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-latin">拉丁字母區段 </h3>
+<h4 id="sec-81">基本拉丁字母、組合字符</h4>
+<ul>
+<li><code>Han.UNICODE.latin.base</code></li>
+<li><code>Han.UNICODE.latin.combine</code></li>
+</ul>
+<h4 id="sec-82">拉丁字母表達式（包含組合字符）</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.latin</code></li>
+<li>詞組：<code>Han.TYPESET.group.western</code></li>
+</ul>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-greek">希臘字母區段 </h3>
+<h4 id="sec-84">基本希臘字母、組合字符</h4>
+<ul>
+<li><code>Han.UNICODE.greek.base</code></li>
+<li><code>Han.UNICODE.greek.combine</code></li>
+</ul>
+<h4 id="sec-85">希臘字母表達式（包含組合字符）</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.greek</code></li>
+<li>詞組：<code>Han.TYPESET.group.western</code></li>
+</ul>
+<div class="info" id="info-42">
+<p>亦可使用<code>ellinika</code>替代<code>greek</code>鍵名。</p>
+</div>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-cyrillic">西里爾字母區段  </h3>
+<h4 id="sec-87">基本西里爾字母、組合字符</h4>
+<ul>
+<li><code>Han.UNICODE.cyrillic.base</code></li>
+<li><code>Han.UNICODE.cyrillic.combine</code></li>
+</ul>
+<h4 id="sec-88">西里爾字母表達式（包含組合字符）</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.cyrillic</code></li>
+<li>詞組：<code>Han.TYPESET.group.western</code></li>
+</ul>
+<div class="info" id="info-43">
+<p>亦可使用<code>kirillica</code>替代<code>cyrillic</code>鍵名。</p>
+</div>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-kana">假名區段  </h3>
+<h4 id="sec-90">基本假名</h4>
+<ul>
+<li><code>Han.UNICODE.kana.base</code></li>
+<li>組合字符：<code>Han.UNICODE.kana.combine</code></li>
+<li>半形：<code>Han.UNICODE.kana.half</code></li>
+<li>小寫：<code>Han.UNICODE.kana.base</code></li>
+<li>符號：<code>Han.UNICODE.kana.mark</code></li>
+</ul>
+<h4 id="sec-91">假名表達式</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.kana</code></li>
+<li>字符組：<code>Han.TYPESET.group.kana</code></li>
+</ul>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-eonmun">諺文區段  </h3>
+<h4 id="sec-93">基本諺文</h4>
+<ul>
+<li><code>Han.UNICODE.hangul.base</code></li>
+<li>半形：<code>Han.UNICODE.hangul.half</code></li>
+<li>字母：<code>Han.UNICODE.hangul.letter</code></li>
+</ul>
+<h4 id="sec-94">諺文表達式</h4>
+<ul>
+<li>字符：<code>Han.TYPESET.char.hangul</code></li>
+<li>詞組：<code>Han.TYPESET.group.hangul</code></li>
+</ul>
+<div class="info" id="info-44">
+<p>亦可使用<code>eonmun</code>替代<code>hangul</code>鍵名。</p>
+</div>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<h3 id="unicode-zhuyin">注音符號區段  </h3>
+<h4 id="sec-96">基本注音符號（國語及方言音）</h4>
+<ul>
+<li>全部：<code>Han.UNICODE.zhuyin.base</code></li>
+<li>聲母：<code>Han.UNICODE.zhuyin.initial</code></li>
+<li>介音：<code>Han.UNICODE.zhuyin.medial</code></li>
+<li>韻母：<code>Han.UNICODE.zhuyin.final</code></li>
+</ul>
+<h4 id="sec-97">聲調</h4>
+<ul>
+<li>平上去聲：<code>Han.UNICODE.zhuyin.tone</code>（包含國語四聲及輕聲）</li>
+<li>入聲：<code>Han.UNICODE.zhuyin.checked</code></li>
+</ul>
+<h4 id="sec-98">注音拼式表達式</h4>
+<ul>
+<li>整體：<code>Han.TYPESET.zhuyin.form</code></li>
+<li>聲調：<code>Han.TYPESET.zhuyin.diao</code></li>
+</ul>
+</section>
+<footer class="main-content"><ul class="github"><li><a id="edit-this" href="https://github.com/ethantw/Han-Manual/tree/master/doc">協助妥善這分文件</a>
+</li><li><a id="issue-this" href="https://github.com/ethantw/Han/issues">提問題</a></li></ul><ul class="share"><li><button id="share2twr" title="分享至Twitter">分享至Twitter</button></li><li><button id="share2fb" title="分享至Facebook">分享至Facebook</button></li><li><button id="share2goog" title="分享至Google+">分享至Google+</button></li><li><button id="share2wbo" title="分享至新浪微博">分享至新浪微博</button></li></ul></footer></article><div id="sidebar" class="layout toc"><ol><li class="conghe_kaishi starting">從何開始<ol><li class="jianjie index"><a href="/manual">簡介</a></li><li class="install anzhuang_yu_qiyong"><a href="/manual/anzhuang_yu_qiyong">安裝與啓用</a></li><li class="faq"><a href="/manual/faq">常見問題</a></li><li class="glossary"><a href="/manual/glossary">辭彙表</a></li><li class="used-by"><a href="/manual/used-by">使用的網站</a></li></ol></li><li class="jiben_gongneng basic">基本功能<ol><li class="yangshi_biaozhunhua normalisation"><a href="/manual/yangshi_biaozhunhua">樣式標準化</a><ol><li class="gaishu"><a href="/manual/yangshi_biaozhunhua#gaishu">概述</a></li><li class="quanyu_zitiyangshi"><a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域字體樣式</a></li><li class="suojin"><a href="/manual/yangshi_biaozhunhua#suojin">縮進</a></li><li class="lianluozixun_yuansu"><a href="/manual/yangshi_biaozhunhua#lianluozixun_yuansu">聯絡資訊元素</a></li><li class="geshiyuchuli_yuansu"><a href="/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu">格式預處理元素</a></li><li class="chaolianjie_yuansu"><a href="/manual/yangshi_biaozhunhua#chaolianjie_yuansu">超連結元素</a></li><li class="qiangdiao_yu_zhongdian"><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">強調與重點</a></li><li class="qita_cuti_wenben"><a href="/manual/yangshi_biaozhunhua#qita_cuti_wenben">其他粗體文本</a></li><li class="laiyuan_yu_yinyong_yuansu"><a href="/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu">來源與引用元素</a></li><li class="jisuanji_xiangguan_wenben"><a href="/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben">計算機相關文本</a></li><li class="bianyinwenzi_yu_bianshu_yuansu"><a href="/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素</a></li><li class="wenzi_zhuangshixian"><a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">文字裝飾線</a></li><li class="hangjianzhu_yuansu"><a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">行間注元素</a></li></ol></li><li class="wenzisheji typography"><a href="/manual/wenzisheji">文字設計</a><ol><li class="ziti_huitui_jizhi"><a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a></li><li class="biaodian_yangshi_xiuzheng"><a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a></li><li class="yushe_xiwen_ziti"><a href="/manual/wenzisheji#yushe_xiwen_ziti">預設西文字體</a></li><li class="zhongwen_hanzi_zitiji"><a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">中文漢字字體集</a></li><li class="yuansu_ziti_de_zhiding"><a href="/manual/wenzisheji#yuansu_ziti_de_zhiding">元素字體的指定</a></li><li class="butong_qingjing_xia_de_ziti"><a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti">不同情境下的字體</a></li></ol></li></ol></li><li class="gaoji_paipan_gongneng advanced">高級排版功能<ol><li class="zhangjie_de_bianpai sectional"><a href="/manual/zhangjie_de_bianpai">章節的編排</a><ol><li class="gaishu"><a href="/manual/zhangjie_de_bianpai#gaishu">概述</a></li><li class="wenzhang_de_hanggao"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章的行高</a></li><li class="wenzhang_de_duiqi"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">文章的對齊</a></li><li class="wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng"><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">文章、章節與內容的邊界調整</a></li><li class="zhangjie_yu_mulu_de_jishu"><a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a></li></ol></li><li class="hang_de_zucheng inline"><a href="/manual/hang_de_zucheng">行的組成</a><ol><li class="gaishu"><a href="/manual/hang_de_zucheng#gaishu">概述</a></li><li class="hanzi-xiwen_hunpai_jianxi"><a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a></li><li class="biaodian_jiya"><a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a></li><li class="hangwei_dianhao_xuangua"><a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a></li><li class="ziyuan_de_tihuan"><a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">字元的替換</a></li></ol></li></ol></li><li class="api">APIs<ol><li class="sass-api"><a href="/manual/sass-api">Sass</a><ol><li class="gaishu"><a href="/manual/sass-api#gaishu">概述</a></li><li class="module"><a href="/manual/sass-api#module">模組</a></li><li class="ziti_jixing_extend"><a href="/manual/sass-api#ziti_jixing_extend">字體基型@extend</a></li><li class="sectional"><a href="/manual/sass-api#sectional">章節的編排</a></li><li class="inline"><a href="/manual/sass-api#inline">行的組成</a></li><li class="variable"><a href="/manual/sass-api#variable">Sass變數彙整</a></li></ol></li><li class="js-api"><a href="/manual/js-api">JavaScript腳本</a><ol><li class="gaishu"><a href="/manual/js-api#gaishu">概述</a></li><li class="han"><a href="/manual/js-api#han">Han構造函數</a></li><li class="rendering"><a href="/manual/js-api#rendering">渲染機制</a></li><li class="init-cond"><a href="/manual/js-api#init-cond">環境初始化</a></li><li class="normalize"><a href="/manual/js-api#normalize">樣式標準化</a></li><li class="inline"><a href="/manual/js-api#inline">行的組成</a></li><li class="support"><a href="/manual/js-api#support">功能與字體支援偵測</a></li><li class="find"><a href="/manual/js-api#find">字元査替器</a></li><li class="selector"><a href="/manual/js-api#selector">詞級、字級選擇器</a></li><li class="unicode"><a href="/manual/js-api#unicode">萬國碼區段及正則表達式</a></li></ol></li></ol></li></ol></div><script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script><!--script(src='/latest/han.min.js')--><script src="/app.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-18673404-2', 'auto');
+ga('send', 'pageview');</script></body></html>

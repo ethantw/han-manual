@@ -1,0 +1,153 @@
+<html lang="zh-Hant" class="han-init"><head><meta charset="utf-8"><title>辭彙表 — 漢字標準格式・使用手冊</title><script>void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css"><!--link(rel='stylesheet', href='/latest/han.min.css')--><link rel="stylesheet" href="/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="印刷品般的漢字網頁排版框架"><meta name="keywords" content="漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography"><link rel="shortcut icon" href="/img/favicon.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><meta property="og:title" content="辭彙表 — 漢字標準格式・使用手冊"><meta property="og:description" content="「漢字標準格式」是一套集成「語意樣式標準化」「文字設計」「高級排版功能」三大模組，完整支援繁簡中文與日文的排版框架，係萬維網時代的漢字問題解決之道。"><meta property="og:image" content="http://css.hanzi.co/img/typeset.png"><meta property="og:image" content="http://css.hanzi.co/img/em-based.png"><meta property="og:image" content="http://css.hanzi.co/img/typefaces.png"><link rel="image_src" href="http://css.hanzi.co/img/typeset.png"></head><body data-chap="glossary" class="manual glossary"><header class="layout"><div><div class="logo"><h1><a href="/manual/">漢字標準格式</a></h1><p class="desc">印刷品般的漢字排版框架</p></div><ul><li><a id="github-repo" href="https://github.com/ethantw/Han">GitHub Project</a></li><li><button id="trad2simp">繁簡切換</button></li></ul><button id="toggle-nav" hidden="">選單開關</button></div></header><article class="main-content layout"><h1>辭彙表</h1>
+<h2 id="html">HTML </h2>
+<style scoped="">
+table.glossary {
+  font-size: .85em !important;
+}
+table.glossary thead th:nth-child(1) {
+  width: 7em;
+}
+table.glossary thead th:nth-child(2) {
+  width: 7em;
+}
+table.glossary td:nth-child(2) {
+  line-height: 1.4;
+  font-size: .9em;
+}
+</style>
+<table class="glossary" id="info-0">
+  <thead>
+    <tr><th>名稱
+    </th><th>原文／譯文
+    </th><th>定義
+  </th></tr></thead>
+  <tbody><tr>
+    <td>元素
+    </td><td>element
+    </td><td>構成HTML文件的基本組成單位，如文章<code>article</code>元素。
+  </td></tr><tr>
+    <td>標籤
+    </td><td>tag
+    </td><td>構成元素的開、閉標籤或空元素標籤的總稱，如<code>&lt;p&gt;</code>、<code>&lt;/p&gt;</code>及<code>&lt;br /&gt;</code>。
+  </td></tr><tr>
+    <td>類別
+    </td><td>class
+    </td><td>元素的語意細分。與元素不同，類別多由開發者自行定義，以滿足各種內容形態。
+  </td></tr><tr>
+    <td>根元素
+    </td><td>root element
+    </td><td>HTML文件的最上級元素，通常為<code>html</code>。
+  </td></tr><tr>
+    <td>章節類元素
+    </td><td>sections
+    </td><td>對文件或內容區分章或節的元素分類。
+  </td></tr><tr>
+    <td>內容群組元素
+    </td><td>grouping content
+    </td><td>可對內容群組化的元素分類。
+  </td></tr><tr>
+    <td>字級語意元素
+    </td><td>text-level semantics
+    </td><td>為文本文字細分功能或語意的元素分類。
+  </td></tr><tr>
+    <td>修訂元素
+    </td><td>edits
+    </td><td>標示文件或內容修訂的元素分類。
+  </td></tr><tr>
+    <td>強調
+    </td><td>emphasis
+    </td><td>用於凸顯文本語氣的加重、需要讀者多所留意之處，相應的元素為<code>em</code>，屬字級語意元素。
+  </td></tr><tr>
+    <td>重點
+    </td><td>importance
+    </td><td>用於表示文本作為段落甚或全文的重要概念或結論，相應的元素為<code>strong</code>，屬字級語意元素。
+  </td></tr><tr>
+    <td>變音文字
+    </td><td>alternative voice
+    </td><td>表示文本作為一段不同於正文的概念、夢境、想法或外來語，在英文中也用於船舶名的標示，相應的元素為<code>i</code>，屬字級語意元素。
+  </td></tr><tr>
+    <td>註記元素
+    </td><td>annotation
+    </td><td>表示文本作為專名（中文），亦可用於標示錯誤拼寫或錯別字等，相應的元素為<code>u</code>，屬字級語意元素。
+  </td></tr><tr>
+    <td>行間注
+    </td><td>interlinear annotation (ruby)
+    </td><td>標注於正文文本行間的說明，相應的元素為<code>ruby</code>，屬字級語意元素。有「漢字標音」及「雙語對照」二大類。
+  </td></tr><tr>
+    <td>斷行機會元素
+    </td><td>line break opportunity
+    </td><td>置於長字詞的各音節間，提示排版引擎可在需要時斷行之所在，避免文本超出容器或異常斷行，相應的元素為<code>wbr</code>，屬字級語意元素。
+</td></tr></tbody></table>
+<h2 id="han-css">漢字標準格式 </h2>
+<table class="glossary" id="info-1">
+  <thead>
+    <tr><th>名稱
+    </th><th>原文／譯文
+    </th><th>定義
+  </th></tr></thead>
+  <tbody><tr>
+    <td>樣式標準化或本地化
+    </td><td>normalize or localise
+    </td><td>為各種語言、文字變體或地區分別提供相應的元素基礎樣式，係可獨立的模組。
+  </td></tr><tr>
+    <td>文字設計
+    </td><td>typography
+    </td><td>又作字體排印，原指集合了字體設計與排版的各種技術。「漢字標準格式」中，特指在不同元素情境下設定的不同字體、字體集及基型，係可獨立的模組。
+  </td></tr><tr>
+    <td>章節的編排
+    </td><td>sectional arrangements (sectional)
+    </td><td>「漢字標準格式」的高級排版功能。為章節情境提供相對位置及樣式的編排等。
+  </td></tr><tr>
+    <td>行的組成
+    </td><td>line composition (inline)
+    </td><td>「漢字標準格式」的高級排版功能。用於處理行內文字或元素的排列或分布等。
+  </td></tr><tr>
+    <td>類詩篇段落
+    </td><td>poem-like paragraph
+    </td><td>「漢字標準格式」專有的語意類別，指詩篇或類似詩篇的文字段落，可用於文章元素、區塊引用元素、段落元素……等。
+  </td></tr><tr>
+    <td>字級選擇器
+    </td><td>character-level selector (charify)
+    </td><td>「漢字標準格式」腳本實作的功能，實現「以字元為單元的選擇器」，提供多項變數方便按需操作。
+  </td></tr><tr>
+    <td>漢字西文混排間隙
+    </td><td>Hanzi-Western script mixed spacing, HWS
+    </td><td>「漢字標準格式」腳本實作的功能，在漢字同西文（拉丁字母及數字、希臘字母、西里爾字母等）混排的情況下，加入合適的間隙，以求平滑的視覺過渡。
+  </td></tr><tr>
+    <td>回退
+    </td><td>fallback
+    </td><td>遇指定的方案不支援使用者當前環境時，系統或瀏覽器提供的向後降級處理，以求相對完整的資訊展示或功能實現。如為求最大支援程度，而排序多個字體的字體設定，即為回退的一種常見形式。
+  </td></tr><tr>
+    <td>專名
+    </td><td>proper noun, PN
+    </td><td>專有名詞。
+</td></tr></tbody></table>
+<h2 id="typography">文字設計 </h2>
+<table class="glossary" id="info-2">
+  <thead>
+    <tr><th>名稱
+    </th><th>原文／譯文
+    </th><th>定義
+  </th></tr></thead>
+  <tbody><tr>
+    <td>基型
+    </td><td>typeface generics
+    </td><td>字體的基本分類，常見有襯線、無襯線、手寫、等寬、裝飾等分類，在CSS中可設置為字體樣式的回退，以求最廣泛的支援程度。文字設計或CSS中，「generics」一詞應作「通用字體」；「漢字標準格式」為明顯區分「字體」與「通用字體」，遂將後者統一稱作「基型」或「字體基型」，以為差異。
+  </td></tr><tr>
+    <td>網頁安全字體
+    </td><td>web safe font
+    </td><td>為多數作業系統所支援（預裝）的字體，多用於字體回退。
+  </td></tr><tr>
+    <td>四大字體集
+    </td><td>the Four Typefaces
+    </td><td>「黑」「宋」「楷」「仿宋」四大中文印刷體的總稱。
+</td></tr></tbody></table>
+<footer class="main-content"><ul class="github"><li><a id="edit-this" href="https://github.com/ethantw/Han-Manual/tree/master/doc">協助妥善這分文件</a>
+</li><li><a id="issue-this" href="https://github.com/ethantw/Han/issues">提問題</a></li></ul><ul class="share"><li><button id="share2twr" title="分享至Twitter">分享至Twitter</button></li><li><button id="share2fb" title="分享至Facebook">分享至Facebook</button></li><li><button id="share2goog" title="分享至Google+">分享至Google+</button></li><li><button id="share2wbo" title="分享至新浪微博">分享至新浪微博</button></li></ul></footer></article><div id="sidebar" class="layout toc"><ol><li class="conghe_kaishi starting">從何開始<ol><li class="jianjie index"><a href="/manual">簡介</a></li><li class="install anzhuang_yu_qiyong"><a href="/manual/anzhuang_yu_qiyong">安裝與啓用</a></li><li class="faq"><a href="/manual/faq">常見問題</a></li><li class="glossary"><a href="/manual/glossary">辭彙表</a></li><li class="used-by"><a href="/manual/used-by">使用的網站</a></li></ol></li><li class="jiben_gongneng basic">基本功能<ol><li class="yangshi_biaozhunhua normalisation"><a href="/manual/yangshi_biaozhunhua">樣式標準化</a><ol><li class="gaishu"><a href="/manual/yangshi_biaozhunhua#gaishu">概述</a></li><li class="quanyu_zitiyangshi"><a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域字體樣式</a></li><li class="suojin"><a href="/manual/yangshi_biaozhunhua#suojin">縮進</a></li><li class="lianluozixun_yuansu"><a href="/manual/yangshi_biaozhunhua#lianluozixun_yuansu">聯絡資訊元素</a></li><li class="geshiyuchuli_yuansu"><a href="/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu">格式預處理元素</a></li><li class="chaolianjie_yuansu"><a href="/manual/yangshi_biaozhunhua#chaolianjie_yuansu">超連結元素</a></li><li class="qiangdiao_yu_zhongdian"><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">強調與重點</a></li><li class="qita_cuti_wenben"><a href="/manual/yangshi_biaozhunhua#qita_cuti_wenben">其他粗體文本</a></li><li class="laiyuan_yu_yinyong_yuansu"><a href="/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu">來源與引用元素</a></li><li class="jisuanji_xiangguan_wenben"><a href="/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben">計算機相關文本</a></li><li class="bianyinwenzi_yu_bianshu_yuansu"><a href="/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素</a></li><li class="wenzi_zhuangshixian"><a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">文字裝飾線</a></li><li class="hangjianzhu_yuansu"><a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">行間注元素</a></li></ol></li><li class="wenzisheji typography"><a href="/manual/wenzisheji">文字設計</a><ol><li class="ziti_huitui_jizhi"><a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a></li><li class="biaodian_yangshi_xiuzheng"><a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a></li><li class="yushe_xiwen_ziti"><a href="/manual/wenzisheji#yushe_xiwen_ziti">預設西文字體</a></li><li class="zhongwen_hanzi_zitiji"><a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">中文漢字字體集</a></li><li class="yuansu_ziti_de_zhiding"><a href="/manual/wenzisheji#yuansu_ziti_de_zhiding">元素字體的指定</a></li><li class="butong_qingjing_xia_de_ziti"><a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti">不同情境下的字體</a></li></ol></li></ol></li><li class="gaoji_paipan_gongneng advanced">高級排版功能<ol><li class="zhangjie_de_bianpai sectional"><a href="/manual/zhangjie_de_bianpai">章節的編排</a><ol><li class="gaishu"><a href="/manual/zhangjie_de_bianpai#gaishu">概述</a></li><li class="wenzhang_de_hanggao"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章的行高</a></li><li class="wenzhang_de_duiqi"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">文章的對齊</a></li><li class="wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng"><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">文章、章節與內容的邊界調整</a></li><li class="zhangjie_yu_mulu_de_jishu"><a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a></li></ol></li><li class="hang_de_zucheng inline"><a href="/manual/hang_de_zucheng">行的組成</a><ol><li class="gaishu"><a href="/manual/hang_de_zucheng#gaishu">概述</a></li><li class="hanzi-xiwen_hunpai_jianxi"><a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a></li><li class="biaodian_jiya"><a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a></li><li class="hangwei_dianhao_xuangua"><a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a></li><li class="ziyuan_de_tihuan"><a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">字元的替換</a></li></ol></li></ol></li><li class="api">APIs<ol><li class="sass-api"><a href="/manual/sass-api">Sass</a><ol><li class="gaishu"><a href="/manual/sass-api#gaishu">概述</a></li><li class="module"><a href="/manual/sass-api#module">模組</a></li><li class="ziti_jixing_extend"><a href="/manual/sass-api#ziti_jixing_extend">字體基型@extend</a></li><li class="sectional"><a href="/manual/sass-api#sectional">章節的編排</a></li><li class="inline"><a href="/manual/sass-api#inline">行的組成</a></li><li class="variable"><a href="/manual/sass-api#variable">Sass變數彙整</a></li></ol></li><li class="js-api"><a href="/manual/js-api">JavaScript腳本</a><ol><li class="gaishu"><a href="/manual/js-api#gaishu">概述</a></li><li class="han"><a href="/manual/js-api#han">Han構造函數</a></li><li class="rendering"><a href="/manual/js-api#rendering">渲染機制</a></li><li class="init-cond"><a href="/manual/js-api#init-cond">環境初始化</a></li><li class="normalize"><a href="/manual/js-api#normalize">樣式標準化</a></li><li class="inline"><a href="/manual/js-api#inline">行的組成</a></li><li class="support"><a href="/manual/js-api#support">功能與字體支援偵測</a></li><li class="find"><a href="/manual/js-api#find">字元査替器</a></li><li class="selector"><a href="/manual/js-api#selector">詞級、字級選擇器</a></li><li class="unicode"><a href="/manual/js-api#unicode">萬國碼區段及正則表達式</a></li></ol></li></ol></li></ol></div><script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script><!--script(src='/latest/han.min.js')--><script src="/app.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-18673404-2', 'auto');
+ga('send', 'pageview');</script></body></html>

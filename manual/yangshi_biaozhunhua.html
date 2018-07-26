@@ -1,0 +1,639 @@
+<html lang="zh-Hant" class="han-init"><head><meta charset="utf-8"><title>樣式標準化 — 漢字標準格式・使用手冊</title><script>void function(l){if('css.hanzi.co'===document.domain&&l.protocol!=='https:')location=l.href.replace(/^http:/i, 'https:')}(location);
+</script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.css"><!--link(rel='stylesheet', href='/latest/han.min.css')--><link rel="stylesheet" href="/style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="印刷品般的漢字網頁排版框架"><meta name="keywords" content="漢字標準格式, 中文, 排版, 排版規範, 日文, 字體排印, 文字設計, CLReq, CSS, Sass, typography"><link rel="shortcut icon" href="/img/favicon.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><meta property="og:title" content="樣式標準化 — 漢字標準格式・使用手冊"><meta property="og:description" content="「漢字標準格式」是一套集成「語意樣式標準化」「文字設計」「高級排版功能」三大模組，完整支援繁簡中文與日文的排版框架，係萬維網時代的漢字問題解決之道。"><meta property="og:image" content="http://css.hanzi.co/img/typeset.png"><meta property="og:image" content="http://css.hanzi.co/img/em-based.png"><meta property="og:image" content="http://css.hanzi.co/img/typefaces.png"><link rel="image_src" href="http://css.hanzi.co/img/typeset.png"></head><body data-chap="yangshi_biaozhunhua" class="manual yangshi_biaozhunhua"><header class="layout"><div><div class="logo"><h1><a href="/manual/">漢字標準格式</a></h1><p class="desc">印刷品般的漢字排版框架</p></div><ul><li><a id="github-repo" href="https://github.com/ethantw/Han">GitHub Project</a></li><li><button id="trad2simp">繁簡切換</button></li></ul><button id="toggle-nav" hidden="">選單開關</button></div></header><article class="main-content layout"><h1>樣式標準化</h1>
+<h2 id="gaishu">概述 </h2>
+<p>「漢字標準格式」使用由Nicolas Gallagher及Jonathan Neal主導開發的<a href="http://necolas.github.io/normalize.css/">Normalize.css</a>來增進各瀏覽器間樣式的一致性，並以此框架為基礎，延伸了專為各漢字語言及地區開發的本地樣式標準化模組。下文將詳細介紹其功能。</p>
+<div class="info note" id="info-0">
+<p><strong>提示：</strong>樣式標準化着重於網頁、元素的初始樣式修正及標準化，<em>不包含</em>各種元素間的使用情境樣式或單一指定的字體。</p>
+</div>
+<h3 id="normalize-css">Normalize.css </h3>
+<p>參考其作者編寫的<a href="http://nicolasgallagher.com/about-normalize-css/">說明文件</a><small>（英），</small>及Oli Studholme對<a href="https://the-pastry-box-project.net/oli-studholme/2013-june-3">一般CSS reset與Normalize.css的比較</a><small>（英）</small>來瞭解更多資訊。</p>
+<h3 id="locale">本地樣式標準化 </h3>
+<p>「漢字標準格式」內建本地化（locale）的樣式標準化模組。這個模組在<a href="http://necolas.github.io/normalize.css/">Normalize.css</a>的基礎上，提供了漢字地區的本地化樣式，<em>根據元素語言屬性的語言、文字變體或地區等元信息，</em>配適相應而合理的樣式。</p>
+<pre id="info-1"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">*</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"[巨集]-[語言]-[文字及變體]-[地區]"</span>&gt;</span>
+</code></pre>
+<h2 id="quanyu_ziti_yangshi">全域字體樣式 </h2>
+<p>各種漢字字體的行高不一，且漢字需要較西文鬆散的行距空間，故全域行高預設使用<code>1.3em</code>以求一致，並在瀏覽器及作業系統支援的前提下，啓用亞像素文字渲染。</p>
+<div class="info flag related" id="info-2">
+<h4 id="sec-4">不屬於樣式標準化模組的相關情境說明</h4>
+<p>網頁根元素<code>html</code>係由樣式標準化模組定義了字體基型、後<strong>由文字設計模組<a href="/manual/wenzisheji#yuansu_ziti_de_zhiding-quanyu_ziti_yangshi">處理其嚴密的字體回退機制</a>，方呈現出如此處的字體樣式。</strong></p>
+</div>
+<h2 id="suojin">縮進 </h2>
+<p>多數包含縮進的元素皆改用<em>二個漢字</em>（<code>2em</code>）的寬度取代UA樣式中預設的縮進寬度（<code>40px</code>），以求文字的高度對齊。</p>
+<h3 id="suojin-youxu_yu_wuxu_qingdan">有序與無序清單 </h3>
+<p>有序清單<code>ol</code>及無序清單<code>ul</code>元素的左間隙（<code>padding-left</code>）縮進。</p>
+<div class="example" id="info-3">
+<h4 id="sec-7">無序清單</h4>
+<p>後天免疫缺乏症候群的病程：</p>
+<ul>
+<li>急性感染</li>
+<li>臨床潛伏期</li>
+<li>發病期</li>
+</ul>
+<hr>
+<h4 id="sec-8">有序清單</h4>
+<p><a href="http://www.zhihu.com/question/20274713">為什麼</a>現代的印度音樂仍能保有一種強烈的、一聽就能辨別出來的風格，而中國音樂卻不是這樣？</p>
+<ol>
+<li><p>我們口口聲聲說的「中國音樂」到底是什麼？所謂「少數民族」音樂算在內麼？算的話，我能找到讓你非常困惑的、無法跟印度音樂區分開來的「中國音樂」；不算的話，那麼我們在說漢人的音樂？漢文化千百年來和異族文化的融混我們暫且不提，今人能聽到的漢樂是哪些？它們能歸納出什麼特徵，比如音階？答案沒有想象中那麼單純的。</p></li>
+<li><p>印度音樂是什麼？僅僅取所謂的印度古典音樂，南有卡那提克、北有印度斯坦，已經有極大差異，它們各自內部又因爲地域、族羣、宗教等差異導致門派林立，對音樂的認識和演繹有很大不同。</p></li>
+<li><p>我們都知道外國人喜歡開「亞洲人長得都一樣」的笑話，我們也覺得西洋人長的像。這點在對音樂的認識上也是，因爲不夠瞭解，感知才會被籠統、表面的印象所佔據。不記得講沒講過這個故事，曾經有個朋友發來一段音樂叫我聽，說一聽就是那種東歐的風情。我聽了一下告訴她，這是琉球／沖繩民樂。別笑話人家，這種錯誤誰都會有。</p></li>
+<li><p>通常聽音樂最容易去抓的幾個特徵：音階、特徵樂器、語言。這些的確很容易讓人產生簡單的判斷。尤其是樂器，聽到西塔琴、撻布拉的聲音會馬上想到「印度音樂」，聽到嗩吶、古琴、琵琶會想到中國音樂。但是實際情況沒那麼簡單。</p></li>
+</ol>
+<footer class="cite">
+<p>——<a href="http://www.zhihu.com/question/20274713/answer/14712749">經雷</a></p>
+</footer>
+</div>
+<h3 id="suojin-tubiao_yu_qukuaiyinyong_yuansu">圖表與區塊引用元素 </h3>
+<p>圖表<code>figure</code>、區塊引用<code>blockquote</code>等元素的左右邊界（<code>margin</code>）縮進。</p>
+<div class="example itff" id="info-4">
+<h4 id="sec-10">圖表元素</h4>
+<figure>
+<blockquote>
+<p>唯有知識才能解決問題。</p>
+</blockquote>
+  <figcaption>面對記者的採訪，吳寶春如是說，話語更顯其從容自若的氣質。</figcaption>
+</figure>
+</div>
+<pre id="info-5"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>唯有知識才能解決問題。
+  <span class="hljs-tag">&lt;/<span class="hljs-name">blockquote</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>面對記者的採訪，吳寶春如是說，話語更顯其從容自若的氣質。<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<div class="example itff itff-blockquote" id="info-6">
+  <style scoped="">
+.itff-blockquote blockquote {
+  line-height: 1.3 !important;
+  margin: 1em 2em !important;
+  text-align: left !important;
+}
+  </style>
+<h4 id="sec-11">區塊引用元素</h4>
+<p>「我是柏林人」是1963年6月26日美國總統約翰·甘迺迪在西柏林演講中的一句名言。當時正值冷戰，柏林牆已開始建造，西柏林被東德包圍。 這一部份演說內容及譯文如下：</p>
+<blockquote>
+<p lang="en">Two thousand years ago the proudest boast was <i lang="la">civis Romanus sum</i>. Today, in the world of freedom, the proudest boast is <i lang="de">‘Ich bin ein Berliner’</i>… All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words <i lang="de">‘Ich bin ein Berliner!’</i></p>
+<p>兩千年前最自豪的句子是「<i lang="la">civis Romanus sum</i>」（我是羅馬公民）。今天，在自由世界，最自豪的句子是「<i lang="de">Ich bin ein Berliner</i>」（我是柏林人）……所有自由人，無論生活在哪裡，都是柏林的公民。因此，身為自由人，我以「<i lang="de">Ich bin ein Berliner</i>」感到自豪！</p>
+</blockquote>
+<p>以德語說出「我是柏林人」這句子，是甘迺迪在最後才想到的。他走上舍嫩貝格市政廳（Rathaus Schöneberg）時，向翻譯員羅伯特·洛赫納請教這句子的德語說法，以小紙張標下讀音，並練習了幾次。</p>
+<footer class="cite">——《維基百科·我是柏林人》</footer>
+</div>
+<div class="info flag related" id="info-7">
+<h4 id="sec-12">不屬於樣式標準化模組的相關情境說明</h4>
+<p>在不同情境下，圖表、區塊元素有<a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">不同的縮進</a>及<a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti-wenzhang_xia_de_qukuaiyinyong_qingjing">字體樣式設定</a>，符合既成的閱讀習慣、便於同正文區隔。這些功能由文字設計模組及「漢字標準格式」的進階排版功能提供。</p>
+</div>
+<h2 id="lianluozixun_yuansu">聯絡資訊元素 </h2>
+<p>聯絡資訊<code>address</code>元素去除了西文常見的地址意大利體樣式。</p>
+<div class="example" id="info-8">
+<p>想瞭解更多關於我們的資訊，可以前往，
+</p><address>
+香港尖沙咀彌敦道105號<br>
+九龍清真寺
+</address><p></p>
+</div>
+<pre id="info-9"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>想瞭解更多關於我們的資訊，可以前往，
+
+<span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span>
+香港尖沙咀彌敦道105號<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+九龍清真寺
+<span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+</code></pre>
+<div class="info note" id="info-10">
+<p><strong>提示：</strong>聯絡資訊元素用以標示網頁或文章作者的聯絡資訊，並不適用於所有的地址文本。</p>
+</div>
+<h2 id="geshiyuchuli_yuansu">格式預處理元素 </h2>
+<p>格式預處理<code>pre</code>元素跟隨其原始代碼之格式，長文文本寬度大於其容器時仍不斷行，並啓用橫向捲軸。</p>
+<div class="example itff" id="info-11">
+<p>這是一段正常的段落文本。</p>
+<pre id="info-12">void !function(a,b){var c=b.documentElement,d,e;function D(a,d) {d=a*d/100+b.getElementById("main").textContent;return d;}return new D(20,5);}(window||this,window.document);
+</pre>
+<p>上方是一個格式預處理<code>pre</code>元素。</p>
+</div>
+<h2 id="chaolianjie_yuansu">超連結元素 </h2>
+<p>超連結<code>a</code>元素預設不使用底線。</p>
+<h2 id="qiangdiao_yu_zhongdian">強調與重點 </h2>
+<p>藉由差異於父文本的文字樣式，可以突顯警示或重要性，達成強調或重點標示的需求，着重號及粗體皆為此目的的排版手段之一。</p>
+<div class="info note important" id="info-13">
+<p><strong>提示：</strong>「強調」「重點」分別表示二種形而相似、概念卻有所不同的排版概念——前者用於凸顯語氣的加重、需要讀者多所留意之處；後者則表示段落甚或全文的重要概念或結論——請務必辨明二者的用法。</p>
+</div>
+<h3 id="qiangdiao_yu_zhongdian-qiangdiao">強調 </h3>
+<p>隷屬中文及日文語言屬性的強調<code>em</code>元素預設使用着重號；屬中、日文非漢字（如羅馬拼音）及其他語言的強調元素仍使用意大利體（斜體）。</p>
+<p>着重號遇標點時不顯示（需配合JS腳本）。中文着重號位字元下方，使用「●」（<code>U+25CF</code>）；日文着重號則位上方，使用「﹅」（<code>U+FE45</code>）。</p>
+<div class="info note" id="info-14">
+<p><strong>提示：</strong>強調元素的着重號修正包含樣式表及腳本的多重回退（fallback），然搭配腳本可有較佳且更為一致的效果。</p>
+</div>
+<div class="example" id="info-15">
+<h3 id="sec-18">中文的着重號形式</h3>
+<p>至今<em>關於古希臘遊吟詩人Ὅμηρος的資料很少</em>，所以對其生平有很多說法，但都無確鑿證據。</p>
+</div>
+<pre id="info-16"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>至今<span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>關於古希臘遊吟詩人Ὅμηρος的資料很少<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>，所以對其生平有很多說法，但都無確鑿證據。
+</code></pre>
+<div class="example" id="info-17">
+<h3 id="sec-19">日文的着重號形式</h3>
+<p lang="ja">アンネリース・マリー・フランク（ドイツ語：Annelies Marie Frank、1929年6月12日－1945年3月上旬）は、<em>『Annieの日記』の著者として知られるユダヤ系ドイツ人の少女である。</em></p>
+</div>
+<pre id="info-18"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> [<span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>]&gt;</span>アンネリース・マリー・フランク（ドイツ語：Annelies Marie Frank、Annieアンネの日記』の著者として知られるユダヤ系ドイツ人の少女である。<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+</code></pre>
+<div class="example" id="info-19">
+<h3 id="sec-20">西文或拼音的強調形式</h3>
+<p>「天下為公」是<em lang="yue-Latn">Sun Yat-sen</em>先生有名的思想理論之一。</p>
+</div>
+<pre id="info-20"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「天下為公」是<span class="hljs-tag">&lt;<span class="hljs-name">em</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"yue-Latn"</span>&gt;</span>Sun Yat-sen<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>先生有名的思想理論之一。
+</code></pre>
+<p>更詳盡的範例及測試，請見<a href="http://ethantw.github.io/Han/latest/em.html">程式測試頁·強調元素（着重號）</a>。</p>
+<h3 id="qiangdiao_yu_zhongdian-zhongdian">重點 </h3>
+<p>重點<code>strong</code>元素以粗於父文本的字重來凸顯其重要性。</p>
+<div class="example itff" id="info-21">
+<p>希望我們每一個人，都可以<strong>為自己的人生負責、找尋並達成自己設定的目標，</strong>才不枉為人。</p>
+</div>
+<pre id="info-22"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>希望我們每一個人，都可以<span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>為自己的人生負責、找尋並達成自己設定的目標，<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>才不枉為人。
+</code></pre>
+<h2 id="qita_cuti_wenben">其他粗體文本 </h2>
+<p>術語<code>dfn</code>及關鍵字<code>b</code>元素的樣式同<a href="#qiangdiao_yu_zhongdian-zhongdian">重點<code>strong</code>元素</a>，以粗於父文本的字重來凸顯其重要性。術語<code>dfn</code>元素僅在中文、日文環境中顯示為粗體，在其他語言中則跟隨瀏覽器UA樣式，顯示為意大利體（斜體）。</p>
+<div class="example" id="info-23">
+<p><dfn>火龍果</dfn>又稱紅龍果、龍珠果，是仙人掌科三角柱屬（<i lang="la">Hylocereus</i>）或蛇鞭柱屬（<i lang="la">Selenicereus</i>）植物果實，呈橢圓形，直徑約10公分，外觀為紅色或黃色，有綠色圓角三角形的葉狀體，白色、紅色或黃色果肉，具有黑色種子的水果。</p>
+<hr>
+<p lang="en">A <dfn>pitaya</dfn> or <dfn>pitahaya</dfn> is the fruit of several cactus species. ‘Pitaya’ usually refers to fruit of the genus <i lang="la">Selenicereus</i>, while ‘Pitahaya’ always refers to fruit of the genus <i lang="la">Hylocereus</i>.
+</p></div>
+<pre id="info-24"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dfn</span>&gt;</span>火龍果<span class="hljs-tag">&lt;/<span class="hljs-name">dfn</span>&gt;</span>又稱紅龍果、龍珠果，是仙人掌科三角柱屬（<span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"la"</span>&gt;</span>Hylocereus<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>）或蛇鞭柱屬（<span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"la"</span>&gt;</span>Selenicereus<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>）植物果實，呈橢圓形，直徑約10公分，外觀為紅色或黃色，有綠色圓角三角形的葉狀體，白色、紅色或黃色果肉，具有黑色種子的水果。
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  A <span class="hljs-tag">&lt;<span class="hljs-name">dfn</span>&gt;</span>pitaya<span class="hljs-tag">&lt;/<span class="hljs-name">dfn</span>&gt;</span> or <span class="hljs-tag">&lt;<span class="hljs-name">dfn</span>&gt;</span>pitahaya<span class="hljs-tag">&lt;/<span class="hljs-name">dfn</span>&gt;</span> is the fruit of several cactus species. ‘Pitaya’ usually refers to fruit of the genus <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"la"</span>&gt;</span>Selenicereus<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>, while ‘Pitahaya’ always refers to fruit of the genus <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"la"</span>&gt;</span>Hylocereus<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>.
+</code></pre>
+<h2 id="laiyuan_yu_yinyong_yuansu">來源與引用元素 </h2>
+<p>樣式標準化模組移除了隷屬中文及日文語言屬性下、來源<code>cite</code>元素的意大利體（斜體）樣式；引用<code>q</code>元素則依語言及地區屬性採用相應的內外引號，以突顯引用文本的結構。</p>
+<h3 id="sec-24">來源元素</h3>
+<div class="example" id="info-25">
+<p>《<cite>漢語語音學</cite>》探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。</p>
+<hr>
+<p lang="en"><cite>Webster Dictionary</cite> defines ‘marriage’ as…
+</p></div>
+<pre id="info-26"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">cite</span>&gt;</span>《漢語語音學》<span class="hljs-tag">&lt;/<span class="hljs-name">cite</span>&gt;</span>探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">'en'</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">cite</span>&gt;</span>Webster Dictionary<span class="hljs-tag">&lt;/<span class="hljs-name">cite</span>&gt;</span> defines ‘marriage’ as…
+</code></pre>
+<h3 id="sec-25">引用元素</h3>
+<div class="example" id="info-27">
+<h4 id="sec-26">中文的引號形式</h4>
+<p>那個清晨漫步在<u class="pn">高雄</u><u class="pn">澄清湖</u>湖畔，忽見<u class="pn">余光中</u>從旁擦身而過，對我吟詩：<q>顯赫的是太陽的金輦／絢爛的是雲旗和霞旌／東經，西經，勾勒的行程／南緯，北緯，架設的驛站／等待絡繹繽紛的隨扈／簇擁著春天的主人……</q></p>
+<hr>
+<p lang="zh-Hans">陈丹青曾在其作品<cite>《纽约琐记》</cite>中这么评论，<q>文艺复兴的重头作品不必在美国找。全美大概仅得一枚芬奇肖像，供在华盛顿国家美术馆，用丝绒绳子拦着。</q>
+</p></div>
+<pre id="info-28"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> [<span class="hljs-attr">lang</span>=<span class="hljs-string">'zh-Hant'</span>]&gt;</span>
+  那個清晨漫步在<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>高雄<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>澄清湖<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>湖畔，忽見<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>余光中<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>從旁擦身而過，對我吟詩：<span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>顯赫的是太陽的金輦／絢爛的是雲旗和霞旌／東經，西經，勾勒的行程／南緯，北緯，架設的驛站／等待絡繹繽紛的隨扈／簇擁著春天的主人……<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> [<span class="hljs-attr">lang</span>=<span class="hljs-string">'zh-Hans'</span>]&gt;</span>
+  陈丹青曾在其作品<span class="hljs-tag">&lt;<span class="hljs-name">cite</span>&gt;</span>《纽约琐记》<span class="hljs-tag">&lt;/<span class="hljs-name">cite</span>&gt;</span>中这么评论，<span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>文艺复兴的重头作品不必在美国找。全美大概仅得一枚芬奇肖像，供在华盛顿国家美术馆，用丝绒绳子拦着。<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span>
+</code></pre>
+<div class="example" id="info-29">
+<h4 id="sec-27">英文的引號形式</h4>
+<p lang="en">Albert Einstein once said: <q>Try not to become a man of success, but rather try to become a man of value.</q>
+</p><hr>
+<p lang="en-GB"><q>Friendship is certainly the finest balm for the pangs of disappointed love,</q> Jane Austen always speaks to my heart.
+</p></div>
+<pre id="info-30"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">'en'</span>&gt;</span>
+  Albert Einstein once said: <span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>Try not to become a man of success, but rather try to become a man of value.<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">'en-GB'</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">q</span>&gt;</span>Friendship is certainly the finest balm for the pangs of disappointed love,<span class="hljs-tag">&lt;/<span class="hljs-name">q</span>&gt;</span> Jane Austen always speaks to my heart.
+</code></pre>
+<div class="info tip note" id="info-31">
+<h4 id="sec-28">排版小技巧</h4>
+<p>行內引用若是詩篇等多行文字文本時，可以使用斜線「<span>／</span>」來表示原文的斷行。</p>
+</div>
+<h2 id="jisuanji_xiangguan_wenben">計算機相關文本 </h2>
+<p>計算機相關文本——如代碼<code>code</code>、輸入鍵<code>kbd</code>、計算機輸出示例<code>samp</code>及格式預處理<code>pre</code>等元素——使用「等寬基型、無襯線基型」的字體回退順序，漢字得以用較清晰的系統預設黑體顯示。</p>
+<div class="example itff" id="info-32">
+<h4 id="sec-30">代碼</h4>
+<p>這是一段包含了<code>const CODE = "代碼"</code>的段落<code>p</code>元素。</p>
+</div>
+<pre id="info-33"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>這是一段包含了<span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>const CODE = "代碼"<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>的段落<span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>p<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>元素。
+</code></pre>
+<div class="example itff" id="info-34">
+<h4 id="sec-31">輸入鍵</h4>
+<p>‘<kbd>command</kbd> + <kbd>P</kbd> makes the picture walk, walk, walk,’ sang Phil.</p>
+</div>
+<pre id="info-35"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>‘<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>command<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> + <span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>P<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> makes the picture walk, walk, walk,’ sang Phil.
+</code></pre>
+<div class="example itff" id="info-36">
+<h4 id="sec-32">計算機輸出示例</h4>
+<p>火龍果電腦居然跟我說：<samp>不能在brainstrom接口上插入芝士</samp>。我壓根兒看不懂這是什麼意思。</p>
+</div>
+<pre id="info-37"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>火龍果電腦居然跟我說：<span class="hljs-tag">&lt;<span class="hljs-name">samp</span>&gt;</span>不能在brainstrom接口上插入芝士<span class="hljs-tag">&lt;/<span class="hljs-name">samp</span>&gt;</span>。我壓根兒看不懂這是什麼意思。
+</code></pre>
+<div class="info flag related" id="info-38">
+<h4 id="sec-33">不屬於樣式標準化模組的相關情境說明</h4>
+<p>本節範例中，各計算機相關文本元素的字體樣式，係由樣式標準化模組定義了字體基型、後<strong>由文字設計模組<a href="/manual/wenzisheji#yuansu_ziti_de_zhiding-jisuanji_xiangguan_wenben">處理其嚴密的字體回退機制</a>，方呈現出如上方的字體樣式。</strong></p>
+</div>
+<h2 id="bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素 </h2>
+<p>變音文字<code>i</code>及變數<code>var</code>元素，使用「手寫體基型、襯線基型」的字體回退順序。</p>
+<div class="example" id="info-39">
+<p>此時我靈機一動，<i>如果我們在microwave內加上一層散熱片會如何？</i>也許幫助我們脫離這個窘境，說不準還能一舉拿下發明比賽的名次呢！</p>
+</div>
+<pre id="info-40"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>此時我靈機一動，<span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span>如果我們在microwave內加上一層散熱片會如何？<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>也許幫助我們脫離這個窘境，說不準還能一舉拿下發明比賽的名次呢！
+</code></pre>
+<div class="info flag related" id="info-41">
+<h4 id="sec-35">不屬於樣式標準化模組的相關情境說明</h4>
+<p>本節範例中，變音文字與變數元素的字體樣式，係由樣式標準化模組定義了字體基型、後<strong>由文字設計模組<a href="/manual/wenzisheji#yuansu_ziti_de_zhiding-bianyinwenzi_yu_bianshu_yuansu">處理其嚴密的字體回退機制</a>，方呈現出如上方的字體樣式。</strong>在文章的區塊引用元素下，變音文字及變數元素有相反的字體樣式，亦由文字設計模組提供。</p>
+<p>在不支援手寫漢字字體的系統中（如多數行動裝置），變音文字、變數元素<a href="/manual/hang_de_zucheng#字體不支援的文本">則改以雙灰底線文本表示</a>。<strong>此為漢字標準格式的進階腳本功能</strong>。</p>
+</div>
+<h3 id="bianyinwenzi_yu_bianshu_yuansu-chuanming">船名 </h3>
+<p>西文排版中，船名多使用意大利體表示。</p>
+<div class="example" lang="en" id="info-42">
+<p><i class="ship">Tsimtsum</i> had been sunk for weeks by then.</p>
+</div>
+<pre id="info-43"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ship"</span>&gt;</span>Tsimtsum<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span> had been sunk for weeks by then.
+</code></pre>
+<h2 id="wenzi_zhuangshixian">文字裝飾線 </h2>
+<p>二大使用漢字作為書寫系統的語言——中文及日文——皆不使用空格分詞，因而在當前的網頁環境下，難以明確標示或辨明二相鄰的同種裝飾線文字。樣式標準化模組內建了樣式及腳本的「文字裝飾線」雙重修正，毋需插入空白即可得到視覺上的間隔效果，同時避免了樣式性的標記。</p>
+<div class="info note" id="info-44">
+<p><strong>提示：</strong>相鄰文字裝飾線修正包含樣式表及腳本的多重回退（fallback），然搭配腳本可有較佳且更為一致的效果。</p>
+<p><strong>提示二：</strong>在二相鄰的裝飾線元素間，可存在不限數量的註解、機會斷行<code>wbr</code>元素並仍保有間隔效果；惟其餘受隱藏的元素（如容器顯示樣式設定為<code>display: none</code>者）將使二側的裝飾線元素失去相鄰關係，從而影響間隔效果。</p>
+</div>
+<h3 id="wenzi_zhuangshixian-zhuji_yu_zhengding_yuansu">註記與增訂元素 </h3>
+<p>預設的UA樣式中，註記<code>u</code>與增訂<code>ins</code>元素皆使用「底線」呈現，由於該底線會附着於漢字下方，影響易讀性，我們使用「底部邊框」（<code>border-bottom</code>）取代「裝飾底線」（<code>text-decoration</code>）。二個相鄰的註記或增訂元素效果如下，</p>
+<div class="example" id="info-45">
+<p><u class="pn">英國</u><!--注意：中間毋需插入任何空白--><u class="pn">倫敦</u>是個世上少有、數一數二，且融合古典及現代的大城市。</p>
+</div>
+<pre id="info-46"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>英國<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span><span class="hljs-comment">&lt;!--注意：中間毋需插入任何空白--&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>倫敦<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>是個世上少有、數一數二，且融合古典及現代的大城市。
+</code></pre>
+<div class="example" id="info-47">
+<h4 id="sec-39">更完整的辨義功能</h4>
+<p><u class="pn">歐洲大陸</u>眾多的西文當中，我最喜歡的語言是隷屬於<u class="pn">羅曼</u>語族的<u class="pn">西</u>文。</p>
+<hr>
+<p>「先看完電影，」他說，「<u class="pn">阿呆</u>舉辦的派對我們晚點<u class="typo">在</u>去。」</p>
+</div>
+<pre id="info-48"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>歐洲大陸<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>眾多的<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>西<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>文當中，我最喜歡的語言是隷屬於<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>羅曼<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>語族的<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>西<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>文。
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>「先看完電影，」他說，「<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pn"</span>&gt;</span>阿呆<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>舉辦的派對我們晚點<span class="hljs-tag">&lt;<span class="hljs-name">u</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"typo"</span>&gt;</span>在<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>去。」
+</code></pre>
+<div class="info note" id="info-49">
+<p><strong>提示：</strong>「註記<code>u</code>元素」雖有明確的樣式，用於避免文字上的爭議，但並不改變文本的本來意義，常有表示專名（中文專名號）或原、引文的拼寫錯誤等用途；而「增訂<code>ins</code>元素」表示相應文本在版本修改、增訂間的記錄。</p>
+</div>
+<h3 id="wenzi_zhuangshixian-exun_yu_shanding_yuansu">訛訊與刪訂元素 </h3>
+<p>二個相鄰的訛訊或刪訂元素效果如下，</p>
+<div class="example" id="info-50">
+<p>太陽系有<s>九大行星</s><s>入</s>八大行星。</p>
+</div>
+<pre id="info-51"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>太陽系有<span class="hljs-tag">&lt;<span class="hljs-name">s</span>&gt;</span>九大行星<span class="hljs-tag">&lt;/<span class="hljs-name">s</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">s</span>&gt;</span>入<span class="hljs-tag">&lt;/<span class="hljs-name">s</span>&gt;</span>八大行星。
+</code></pre>
+<div class="example" id="info-52">
+<p>立法院常設有<del datetime="1992-0-0">一六一</del><del datetime="1998-0-0">二二五</del><ins datetime="1998-0-0">一一三</ins>位議員。</p>
+</div>
+<pre id="info-53"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>立法院常設有<span class="hljs-tag">&lt;<span class="hljs-name">del</span> <span class="hljs-attr">datetime</span>=<span class="hljs-string">"1992-0-0"</span>&gt;</span>一六一<span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">del</span> <span class="hljs-attr">datetime</span>=<span class="hljs-string">"1998-0-0"</span>&gt;</span>二二五<span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">ins</span> <span class="hljs-attr">datetime</span>=<span class="hljs-string">"1998-0-0"</span>&gt;</span>一一三<span class="hljs-tag">&lt;/<span class="hljs-name">ins</span>&gt;</span>位議員。
+</code></pre>
+<div class="info note" id="info-54">
+<p><strong>提示：</strong>「訛訊<code>s</code>元素」用於標明錯誤或不再正確的資訊；而「刪訂<code>del</code>元素」表示相應文本在版本修改、刪訂間的記錄。</p>
+</div>
+<p>更詳盡的範例及測試，請見<a href="http://ethantw.github.io/Han/latest/deco-line.html">程式測試頁·文字裝飾線</a>。</p>
+<h2 id="hangjianzhu_yuansu">行間注元素 </h2>
+<p>「行間注」包含漢字標音（亦作漢字注音）及雙語對照二大功能，前者更可細分為「羅馬拼音」及「注音符號」。搭配腳本的樣式標準化模組完整支援行間注的所有功能，按需求加入相應的類別屬性（<code>class</code>）即可。</p>
+<div class="info note important" id="info-55">
+<p><strong>注意：</strong>除基本行間注外，包含注音、複合式行間注及拼－注音共同標注功能皆需配合JavaScript腳本方可正常顯示。</p>
+</div>
+<div class="info related" id="info-56">
+<p>小工具「<a href="https://az.hanzi.co/">az</a>」可<em>半自動</em>為漢字標注符合HTML5標準的現代標準漢語（國語／普通話）發音，並可設定代碼格式及標音系統。</p>
+</div>
+<h3 id="hangjianzhu_yuansu-jiben_hangjianzhu">基本行間注 </h3>
+<p>基本行間注的形式係「注文」位「基文」上方居中，適用雙語對照、羅馬拼音等。</p>
+<div class="example" id="info-57">
+<h4 id="sec-43">雙語對照</h4>
+<p><ruby>萬維網<rt>World Wide Web</rt></ruby></p>
+</div>
+<pre id="info-58"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ruby</span>&gt;</span>萬維網<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>World Wide Web<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+</code></pre>
+<div class="example" id="info-59">
+<h4 id="sec-44">羅馬拼音</h4>
+<p><ruby class="reading romanization annotation">
+你<rt>nĭ</rt>瞧<rt>qiáo</rt>！<rt></rt>
+一彎<rt>yìwān</rt>流水<rt>liúshuĭ</rt>架<rt>jià</rt>小橋<rt>xiăoqiáo</rt>，<rt></rt>
+兩岸<rt>liăng'àn</rt>楊柳<rt>yángliŭ</rt>隨風<rt>suífēng</rt>飄<rt>piāo</rt>。
+</ruby></p>
+</div>
+<pre id="info-60"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ruby</span>&gt;</span>
+    你<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>nĭ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>瞧<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>qiáo<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>！<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    一彎<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>yìwān<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>流水<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>liúshuĭ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>架<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>jià<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>小橋<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>xiăoqiáo<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    …
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<h3 id="hangjianzhu_yuansu-zhuyin_hangjianzhu">注音行間注 </h3>
+<p>注音行間注的「注文」位「單個基文漢字」的右側，用於標注漢字發音。現支援國語（普通話）注音符號及台灣方言音符號。</p>
+<div class="example" id="info-61">
+<p>那美麗的高塔竟在瞬間<ruby class="reading zhuyin"><!--
+  -->化<rt>ㄏㄨㄚˋ</rt>
+作<rt>ㄗㄨㄛˋ</rt>
+齏<rt>ㄐㄧ</rt>
+粉<rt>ㄈㄣˇ</rt>，</ruby>那曾令人<ruby class="reading zhuyin"><!--
+  -->齰<rt>ㄗㄜˊ</rt>
+舌<rt>ㄕㄜˊ</rt>
+的<rt>˙ㄉㄜ</rt>
+鬼<rt>ㄍㄨㄟˇ</rt>
+斧<rt>ㄈㄨˇ</rt>
+神<rt>ㄕㄣˊ</rt>
+工<rt>ㄍㄨㄥ</rt>
+只能長存在人們心中。
+</ruby></p>
+</div>
+<p>與各種字級語意元素並用，</p>
+<div class="example" id="info-62">
+<p><ruby class="reading zhuyin">
+我<rt>ㄨㄛ˅</rt>
+的<rt>˙ㄉㄜ</rt>
+朋<rt>ㄆㄥˊ</rt>
+友<rt>ㄧㄡ˅</rt>
+啊<rt>˙ㄚ</rt></ruby>——請<em>要</em>知道
+——「<strong><em><a href="https://www.moedict.tw/#柴米油鹽醬醋茶">
+<ruby class="reading zhuyin">
+柴<rt>ㄔㄞˊ</rt>
+米<rt>ㄇㄧ˅</rt>
+油<rt>ㄧㄡˊ</rt>
+鹽<rt>ㄧㄢˊ</rt>
+醬<rt>ㄐㄧㄤˋ</rt>
+醋<rt>ㄘㄨˋ</rt>
+茶<rt>ㄔㄚˊ</rt></ruby></a></em></strong>」，
+<ruby class="reading zhuyin">
+這些都是<rt></rt>
+我<rt>ㄨㄛˇ</rt>
+們<rt>˙ㄇㄣ</rt>
+日<rt>ㄖˋ</rt>
+常<rt>ㄔㄤˊ</rt>
+生<rt>ㄕㄥ</rt>
+活<rt>ㄏㄨㄛˊ</rt></ruby>
+<em><ruby class="reading zhuyin">必<rt>ㄅㄧˋ</rt>
+備<rt>ㄅㄟˋ</rt></ruby></em>
+<ruby class="reading zhuyin">的<rt>˙ㄉㄜ</rt></ruby>
+<u><ruby class="reading zhuyin">七<rt>ㄑㄧ</rt>
+樣<rt>ㄧㄤˋ</rt></ruby></u>
+<ruby class="reading zhuyin">東<rt>ㄉㄨㄥ</rt>
+西<rt>ㄒㄧ</rt></ruby>。
+</p>
+</div>
+<p>直接於<code>ruby</code>元素標籤上，加入<code>zhuyin</code>或<code>mps</code>類別即可顯示注音行間注，</p>
+<pre id="info-63"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ruby</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"zhuyin"</span>&gt;</span>
+  柴<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄔㄞˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  米<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄇㄧ˅<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  油<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄧㄡˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  鹽<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄧㄢˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  醬<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄐㄧㄤˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  醋<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄘㄨˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  茶<span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄔㄚˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+</code></pre>
+<h3 id="hangjianzhu_yuansu-fuheshi_hangjianzhu">複合式行間注 </h3>
+<p>複合式行間注可為一段基文同時標注雙注文，以更精煉的空間顯示更多資訊。</p>
+<div class="example" id="info-64">
+<p>朋友們，歡迎來到<ruby class="complex">
+<rb>紐約</rb><rb>市</rb>
+<rtc lang="en" class="reading pn name">
+<rt rbspan="2">New York City</rt>
+</rtc>
+<rtc lang="cmn-Latn" class="reading romanization pinyin">
+<rt>Niǔyuē</rt>
+<rt>Shì</rt>
+</rtc>
+</ruby>！</p>
+</div>
+<pre id="info-65"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ruby</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"complex"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>紐約<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>市<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>New York City<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"cmn-Latn"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>Niǔyuē<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>Shì<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+</code></pre>
+<p>如上方代碼所示，使用複合式行間注需為<code>ruby</code>元素標籤套用類別<code>complex</code>，並依「ruby text container」語法格式書寫。</p>
+<h3 id="hangjianzhu_yuansu-pinyin-zhuyin_gongtong_biaozhu">拼音－注音共同標注 </h3>
+<p>拼音－注音共同標注屬於複合式行間注的特殊情況，可同時為一段文本標注拼音與注音。</p>
+<blockquote lang="zh-nan-Hant" class="example poem-like" id="info-66">
+<p><ruby class="rightangle">
+<rb>我</rb><rb>有</rb><rb>一</rb><rb>个</rb><rb>朋</rb><rb>友</rb>，<rb>伊</rb><rb>真</rb><rb>有</rb><rb>志</rb><rb>氣</rb>，
+<rtc class="reading romanization">
+<rt>guá
+</rt><rt>ū
+</rt><rt rbspan="2">tsi̍t ê
+</rt><rt rbspan="2">pîng-iú
+</rt><rt>i
+</rt><rt rbspan="2">tsin-ū
+</rt><rt rbspan="2">tsì-khì
+</rt></rtc>
+<rtc class="reading zhuyin">
+<rt>ㆣㄨㄚˋ</rt>
+<rt>ㄨ˫</rt>
+<rt>ㄐㄧㆵ̍</rt>
+<rt>ㆤˊ</rt>
+<rt>ㄅㄧㄥˊ</rt>
+<rt>ㄧㄨˋ</rt>
+<rt>ㄧ</rt>
+<rt>ㄐㄧㄣ</rt>
+<rt>ㄨ˫</rt>
+<rt>ㄐㄧ˪</rt>
+<rt>ㄎㄧ˪</rt>
+</rtc>
+</ruby><br>
+<ruby class="rightangle">
+<rb>自</rb><rb>細</rb><rb>漢</rb><rb>就</rb><rb>立</rb><rb>志</rb><rb>講</rb><rb>欲</rb><rb>寫</rb><rb>歌</rb>、<rb>唱</rb><rb>歌</rb><rb>趁</rb><rb>錢</rb>，
+<rtc class="reading romanization">
+<rt>tsū
+</rt><rt rbspan="2">sè-hàn
+</rt><rt>tō
+</rt><rt rbspan="2">li̍p-tsì
+</rt><rt>kóng
+</rt><rt>beh
+</rt><rt rbspan="2">siá-kua
+</rt><rt rbspan="2">tshiùnn-kua
+</rt><rt rbspan="2">thàn-tsînn
+</rt></rtc>
+<rtc class="reading zhuyin">
+<rt>ㄗㄨ˫</rt>
+<rt>ㄙㆤ˪</rt>
+<rt>ㄏㄢ˪</rt>
+<rt>ㄉㄜ˫</rt>
+<rt>ㄌㄧㆴ̍</rt>
+<rt>ㄐㄧ˪</rt>
+<rt>ㄍㆲˋ</rt>
+<rt>ㆠㆤㆷ</rt>
+<rt>ㄒㄧㄚˋ</rt>
+<rt>ㄍㄨㄚ</rt>
+<rt>ㄑㄧㆫ˪</rt>
+<rt>ㄍㄨㄚ</rt>
+<rt>ㄊㄢ˪</rt>
+<rt>ㄐㆪˊ</rt>
+</rtc>
+</ruby><br>
+<ruby class="rightangle">
+<rb>伊</rb><rb>逐</rb><rb>工</rb><rb>攏</rb><rb>咧</rb><rb>痟</rb><rb>電</rb><rb>影</rb>，<rb>聽</rb><rb>阿</rb><rb>啄</rb><rb>仔</rb><rb>的</rb>CD。
+<rtc class="reading romanization">
+<rt>i
+</rt><rt rbspan="2">ta̍k-kang
+</rt><rt rbspan="2">lóng-teh
+</rt><rt>siáu
+</rt><rt rbspan="2">tiān-iánn
+</rt><rt>thiann
+</rt><rt rbspan="3">a-tok-á
+</rt><rt rbspan="1">ê
+</rt></rtc>
+<rtc class="reading zhuyin">
+<rt>ㄧ</rt>
+<rt>ㄉㄚㆶ̍</rt>
+<rt>ㄍㄤ</rt>
+<rt>ㄌㆲˋ</rt>
+<rt>ㄉㆤㆷ</rt>
+<rt>ㄒㄧㄠˋ</rt>
+<rt>ㄉㄧㄢ˫</rt>
+<rt>ㄧㆩˋ</rt>
+<rt>ㄊㄧㆩ</rt>
+<rt>ㄚ</rt>
+<rt>ㄉㆦㆶ</rt>
+<rt>ㄚˋ</rt>
+<rt>ㆤˊ</rt>
+</rtc>
+</ruby></p>
+<footer class="cite">——朱約信〈歡迎來唱我的歌〉</footer>
+</blockquote>
+<pre id="info-67"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ruby</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh-nan-Hant"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rightangle"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>我<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>有<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>一<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>个<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>朋<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>友<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>，
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"romanization"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>guá<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ū<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>tsi̍t-ê<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>pîng-iú<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"zhuyin"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㆣㄨㄚˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄨ˫<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄐㄧㆵ̍<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㆤˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄅㄧㄥˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄧㄨˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+</code></pre>
+<p>如上方代碼所示，使用「拼音－注音共同標注」式行間注時，需為<code>ruby</code>元素標籤套用類別<code>complex</code>或<code>rightangle</code>，並依「ruby text container」語法格式書寫。最後，在<code>rtc</code>元素標籤上，加入相應的拼音<code>romanization</code>或注音<code>zhuyin</code>類別。</p>
+<h4 id="hangjianzhu_yuansu-pinyin-zhuyin_gongtong_biaozhu-shili-triaxial_ruby">示例：注音及雙行拼音共同標注 </h4>
+<div lang="zh-nan-Hant" class="example" id="info-68">
+<ruby class="complex">
+  <rb>一</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>一</rb>
+  <rb>樣</rb>，
+  <rb>無</rb>
+  <rb>人</rb>
+  <rb>煩</rb>
+  <rb>惱</rb>
+  <rb>親</rb>
+  <rb>像</rb>。
+<p><rtc class="zhuyin">
+<rt>ㄐㄧㆵ͘</rt>
+<rt>ㄌㄤˊ</rt>
+<rt>ㄏㄨㄢˊ</rt>
+<rt>ㄌㄜˋ</rt>
+<rt>ㄐㄧㆵ͘</rt>
+<rt>ㄧㆫ˫</rt>
+<rt>ㆠㄜˊ</rt>
+<rt>ㄌㄤˊ</rt>
+<rt>ㄏㄨㄢˊ</rt>
+<rt>ㄌㄜˋ</rt>
+<rt>ㄑㄧㄣ</rt>
+<rt>ㄑㄧㆫ˫</rt>
+</rtc>
+<rtc class="romanization">
+<rt>Tsi̍t</rt>
+<rt>lâng</rt>
+<rt rbspan="2">hoân‑ló</rt>
+<rt>chi̍t</rt>
+<rt>iūⁿ</rt>
+<rt rbspan="2">bô‑lâng</rt>
+<rt rbspan="2">hoân‑ló</rt>
+<rt rbspan="2">chhin‑chhiūⁿ</rt>
+</rtc>
+<rtc class="romanization">
+<rt>Tsi̍t</rt>
+<rt>lâng</rt>
+<rt rbspan="2">huân-ló</rt>
+<rt>tsi̍t</rt>
+<rt>iūnn</rt>
+<rt rbspan="2">bô-lâng</rt>
+<rt rbspan="2">huân-ló</rt>
+<rt rbspan="2">tshin-tshiūnn</rt>
+</rtc>
+</p>
+</ruby></div>
+<pre id="info-69"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ruby</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"complex"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>一<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>人<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>煩<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>惱<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>一<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>樣<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>，
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>無<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>人<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>煩<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>惱<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>親<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rb</span>&gt;</span>像<span class="hljs-tag">&lt;/<span class="hljs-name">rb</span>&gt;</span>。
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"zhuyin"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄐㄧㆵ͘<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄌㄤˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄏㄨㄢˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄌㄜˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄐㄧㆵ͘<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄧㆫ˫<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㆠㄜˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄌㄤˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄏㄨㄢˊ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄌㄜˋ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄑㄧㄣ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>ㄑㄧㆫ˫<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"romanization"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>Tsi̍t<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>lâng<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>hoân‑ló<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>chi̍t<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>iūⁿ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>bô‑lâng<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>hoân‑ló<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>chhin‑chhiūⁿ<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">rtc</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"romanization"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>Tsi̍t<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>lâng<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>huân-ló<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>tsi̍t<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span>&gt;</span>iūnn<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>bô-lâng<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>huân-ló<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">rt</span> <span class="hljs-attr">rbspan</span>=<span class="hljs-string">"2"</span>&gt;</span>tshin-tshiūnn<span class="hljs-tag">&lt;/<span class="hljs-name">rt</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">rtc</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ruby</span>&gt;</span>
+</code></pre>
+<p>更詳盡的範例及測試，請見<a href="http://ethantw.github.io/Han/latest/ruby.html">程式測試頁·行間注元素</a>。</p>
+<div class="info flag related" id="info-70">
+<h4 id="sec-49">不屬於樣式標準化模組的相關情境說明</h4>
+<p>本節範例中，行間注的字體樣式，係由樣式標準化模組定義了字體基型、後<strong>由文字設計模組<a href="/manual/wenzisheji#yuansu_ziti_de_zhiding-hangjianzhu_yuansu">處理其嚴密的字體回退機制</a>，方呈現出如上方的字體樣式。</strong></p>
+</div>
+<footer class="main-content"><ul class="github"><li><a id="edit-this" href="https://github.com/ethantw/Han-Manual/tree/master/doc">協助妥善這分文件</a>
+</li><li><a id="issue-this" href="https://github.com/ethantw/Han/issues">提問題</a></li></ul><ul class="share"><li><button id="share2twr" title="分享至Twitter">分享至Twitter</button></li><li><button id="share2fb" title="分享至Facebook">分享至Facebook</button></li><li><button id="share2goog" title="分享至Google+">分享至Google+</button></li><li><button id="share2wbo" title="分享至新浪微博">分享至新浪微博</button></li></ul></footer></article><div id="sidebar" class="layout toc"><ol><li class="conghe_kaishi starting">從何開始<ol><li class="jianjie index"><a href="/manual">簡介</a></li><li class="install anzhuang_yu_qiyong"><a href="/manual/anzhuang_yu_qiyong">安裝與啓用</a></li><li class="faq"><a href="/manual/faq">常見問題</a></li><li class="glossary"><a href="/manual/glossary">辭彙表</a></li><li class="used-by"><a href="/manual/used-by">使用的網站</a></li></ol></li><li class="jiben_gongneng basic">基本功能<ol><li class="yangshi_biaozhunhua normalisation"><a href="/manual/yangshi_biaozhunhua">樣式標準化</a><ol><li class="gaishu"><a href="/manual/yangshi_biaozhunhua#gaishu">概述</a></li><li class="quanyu_zitiyangshi"><a href="/manual/yangshi_biaozhunhua#quanyu_ziti_yangshi">全域字體樣式</a></li><li class="suojin"><a href="/manual/yangshi_biaozhunhua#suojin">縮進</a></li><li class="lianluozixun_yuansu"><a href="/manual/yangshi_biaozhunhua#lianluozixun_yuansu">聯絡資訊元素</a></li><li class="geshiyuchuli_yuansu"><a href="/manual/yangshi_biaozhunhua#geshiyuchuli_yuansu">格式預處理元素</a></li><li class="chaolianjie_yuansu"><a href="/manual/yangshi_biaozhunhua#chaolianjie_yuansu">超連結元素</a></li><li class="qiangdiao_yu_zhongdian"><a href="/manual/yangshi_biaozhunhua#qiangdiao_yu_zhongdian">強調與重點</a></li><li class="qita_cuti_wenben"><a href="/manual/yangshi_biaozhunhua#qita_cuti_wenben">其他粗體文本</a></li><li class="laiyuan_yu_yinyong_yuansu"><a href="/manual/yangshi_biaozhunhua#laiyuan_yu_yinyong_yuansu">來源與引用元素</a></li><li class="jisuanji_xiangguan_wenben"><a href="/manual/yangshi_biaozhunhua#jisuanji_xiangguan_wenben">計算機相關文本</a></li><li class="bianyinwenzi_yu_bianshu_yuansu"><a href="/manual/yangshi_biaozhunhua#bianyinwenzi_yu_bianshu_yuansu">變音文字與變數元素</a></li><li class="wenzi_zhuangshixian"><a href="/manual/yangshi_biaozhunhua#wenzi_zhuangshixian">文字裝飾線</a></li><li class="hangjianzhu_yuansu"><a href="/manual/yangshi_biaozhunhua#hangjianzhu_yuansu">行間注元素</a></li></ol></li><li class="wenzisheji typography"><a href="/manual/wenzisheji">文字設計</a><ol><li class="ziti_huitui_jizhi"><a href="/manual/wenzisheji#ziti_huitui_jizhi">字體回退機制</a></li><li class="biaodian_yangshi_xiuzheng"><a href="/manual/wenzisheji#biaodian_yangshi_xiuzheng">標點樣式修正</a></li><li class="yushe_xiwen_ziti"><a href="/manual/wenzisheji#yushe_xiwen_ziti">預設西文字體</a></li><li class="zhongwen_hanzi_zitiji"><a href="/manual/wenzisheji#zhongwen_hanzi_zitiji">中文漢字字體集</a></li><li class="yuansu_ziti_de_zhiding"><a href="/manual/wenzisheji#yuansu_ziti_de_zhiding">元素字體的指定</a></li><li class="butong_qingjing_xia_de_ziti"><a href="/manual/wenzisheji#butong_qingjing_xia_de_ziti">不同情境下的字體</a></li></ol></li></ol></li><li class="gaoji_paipan_gongneng advanced">高級排版功能<ol><li class="zhangjie_de_bianpai sectional"><a href="/manual/zhangjie_de_bianpai">章節的編排</a><ol><li class="gaishu"><a href="/manual/zhangjie_de_bianpai#gaishu">概述</a></li><li class="wenzhang_de_hanggao"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_hanggao">文章的行高</a></li><li class="wenzhang_de_duiqi"><a href="/manual/zhangjie_de_bianpai#wenzhang_de_duiqi">文章的對齊</a></li><li class="wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng"><a href="/manual/zhangjie_de_bianpai#wenzhang_zhangjie_yu_neirong_de_bianjie_tiaozheng">文章、章節與內容的邊界調整</a></li><li class="zhangjie_yu_mulu_de_jishu"><a href="/manual/zhangjie_de_bianpai#zhangjie_yu_mulu_de_jishu">章節與目錄的計數</a></li></ol></li><li class="hang_de_zucheng inline"><a href="/manual/hang_de_zucheng">行的組成</a><ol><li class="gaishu"><a href="/manual/hang_de_zucheng#gaishu">概述</a></li><li class="hanzi-xiwen_hunpai_jianxi"><a href="/manual/hang_de_zucheng#hanzi-xiwen_hunpai_jianxi">漢字－西文混排間隙</a></li><li class="biaodian_jiya"><a href="/manual/hang_de_zucheng#biaodian_jiya">標點擠壓</a></li><li class="hangwei_dianhao_xuangua"><a href="/manual/hang_de_zucheng#hangwei_dianhao_xuangua">行尾點號懸掛</a></li><li class="ziyuan_de_tihuan"><a href="/manual/hang_de_zucheng#ziyuan_de_tihuan">字元的替換</a></li></ol></li></ol></li><li class="api">APIs<ol><li class="sass-api"><a href="/manual/sass-api">Sass</a><ol><li class="gaishu"><a href="/manual/sass-api#gaishu">概述</a></li><li class="module"><a href="/manual/sass-api#module">模組</a></li><li class="ziti_jixing_extend"><a href="/manual/sass-api#ziti_jixing_extend">字體基型@extend</a></li><li class="sectional"><a href="/manual/sass-api#sectional">章節的編排</a></li><li class="inline"><a href="/manual/sass-api#inline">行的組成</a></li><li class="variable"><a href="/manual/sass-api#variable">Sass變數彙整</a></li></ol></li><li class="js-api"><a href="/manual/js-api">JavaScript腳本</a><ol><li class="gaishu"><a href="/manual/js-api#gaishu">概述</a></li><li class="han"><a href="/manual/js-api#han">Han構造函數</a></li><li class="rendering"><a href="/manual/js-api#rendering">渲染機制</a></li><li class="init-cond"><a href="/manual/js-api#init-cond">環境初始化</a></li><li class="normalize"><a href="/manual/js-api#normalize">樣式標準化</a></li><li class="inline"><a href="/manual/js-api#inline">行的組成</a></li><li class="support"><a href="/manual/js-api#support">功能與字體支援偵測</a></li><li class="find"><a href="/manual/js-api#find">字元査替器</a></li><li class="selector"><a href="/manual/js-api#selector">詞級、字級選擇器</a></li><li class="unicode"><a href="/manual/js-api#unicode">萬國碼區段及正則表達式</a></li></ol></li></ol></li></ol></div><script src="//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js"></script><!--script(src='/latest/han.min.js')--><script src="/app.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-18673404-2', 'auto');
+ga('send', 'pageview');</script></body></html>
