@@ -29,7 +29,7 @@ config =
   han-version: pkg.dependencies['han-css'].replace( /^[\^\~]/, '' )
   production: yes
 
-config.asset-path = '//ethantw.github.io/han-manual/'
+config.asset-path = '/'
 
 src  = gulp.src
 dest = gulp.dest
@@ -83,6 +83,7 @@ gulp.task \md2html <[ jade doc ]> ->
   all-doc.for-each ( file ) !->
     page-id = file - /\.md$/
     dot-html = page-id + \.html
+    chap = if page-id is \index then \jianjie else page-id
 
     src \./doc/ + file
       .pipe gulp-remarkable preset: \commonmark
@@ -92,6 +93,7 @@ gulp.task \md2html <[ jade doc ]> ->
         process: ( src ) ->
             doc = jsdom src
             title = doc.query-selector 'article h1' .text-content + ' — '
+
 
             try
               make-array( doc.query-selector-all 'h2, h3, h4, h5, h6' )
@@ -113,7 +115,7 @@ gulp.task \md2html <[ jade doc ]> ->
             src
               .replace /\{\{asset\-path\}\}/gi, config.asset-path
               .replace /\{\{han\-version\}\}/gi, config.han-version
-              .replace /\{\{manual\-page\-id\}\}/gi, page-id
+              .replace /\{\{manual\-page\-id\}\}/gi, chap
               .replace /\{\{manual\-page\-title\}\}/gi, title
         }
         .pipe dest \_www_/manual

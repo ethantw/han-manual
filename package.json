@@ -10,7 +10,7 @@
     "start": "node server/app.js",
     "postinstall": "gulp",
     "watch": "gulp dev",
-    "www": "gulp www",
+    "www": "gulp www && mv _www_/manual/404.html _www_",
     "deploy": "yarn www && gh-pages -d _www_",
     "dev": "yarn watch & yarn start"
   },
