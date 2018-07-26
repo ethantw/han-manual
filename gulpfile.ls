@@ -29,7 +29,7 @@ config =
   han-version: pkg.dependencies['han-css'].replace( /^[\^\~]/, '' )
   production: yes
 
-config.asset-path = '/' 
+config.asset-path = '//ethantw.github.io/han-manual/'
 
 src  = gulp.src
 dest = gulp.dest
