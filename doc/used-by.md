@@ -4,7 +4,7 @@
 
 - [萌典](https://moedict.tw/)
 - [Type is Beautiful](http://www.typeisbeautiful.com/psa/gutenberg-in-shanghai/)
-- [IT公論](http://itgonglun.com/)
+- [TAN](https://tan.today/)
 - [g0v零時政府](http://g0v.tw/)
 - [Markdown中文語法說明](http://markdown.tw/)
 - [免費資源網路社群](http://free.com.tw/)
