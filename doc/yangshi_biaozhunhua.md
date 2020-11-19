@@ -198,7 +198,7 @@
 </div>
 
 ```html
-<p [lang="ja"]>アンネリース・マリー・フランク（ドイツ語：Annelies Marie Frank、Annieアンネの日記』の著者として知られるユダヤ系ドイツ人の少女である。</em>
+<p [lang="ja"]>アンネリース・マリー・フランク（ドイツ語：Annelies Marie Frank、1929年6月12日－1945年3月上旬）は、<em>『Annieの日記』の著者として知られるユダヤ系ドイツ人の少女である。</em>
 ```
 <div class="example">
 
